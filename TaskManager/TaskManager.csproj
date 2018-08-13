@@ -131,7 +131,11 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="1.PNG" />
+    <Resource Include="2.PNG" />
+    <Resource Include="3.PNG" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Views\AddNewTaskView.xaml">
       <SubType>Designer</SubType>
