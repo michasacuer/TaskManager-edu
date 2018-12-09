@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TaskManager.Enums;
+using System.Linq;
 
 namespace TaskManager.Models
 {
@@ -9,9 +10,9 @@ namespace TaskManager.Models
         {
             users = new List<User>
             {
-                new User("admin", "admin", "Michał", "Szewczak", "michasacuer3@gmail.com", true, Position.Manager),
-                new User("login", "login", "Adam", "Kowalski", "temp@op.pl", false, Position.Manager),
-                new User("test", "test", "Maciej", "Nowak", "temp2@op.pl", false, Position.Viewer)
+                new User("admin", "admin", "Michał", "Szewczak", "michasacuer3@gmail.com", Position.Manager),
+                new User("login", "login", "Adam", "Kowalski", "temp@op.pl", Position.Developer),
+                new User("test", "test", "Maciej", "Nowak", "temp2@op.pl", Position.Viewer)
             };
 
             projects = new List<Project>
@@ -27,6 +28,7 @@ namespace TaskManager.Models
         }
 
         public List<User> GetUsers() => users;
+        public User GetUser(string login) => users.FirstOrDefault(u => u.Login == login);
 
         private List<User> users { get; set; }
         private List<Project> projects { get; set; }

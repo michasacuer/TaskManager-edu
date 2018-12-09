@@ -10,34 +10,30 @@ namespace TaskManager.ViewModels
         public string Login    { get; set; }
         public string Password { get; set; }
 
-        public LoginViewModel(FakeData context)
+        public LoginViewModel(FakeData context, LoggedUser loggedUser)
         {
             this.context = context;
+            this.loggedUser = loggedUser;
         }
 
         public void LoginButton()
         {
-            if (Validation.IsValid(Login, Password, context))
+            if (Validation.IsLoginValid(Login, Password, context))
             {
-                MessageBox.Show("Zalogowano pomyślnie!");
+                manager.ShowWindow(new SuccesBoxViewModel("Zalogowano Pomyślnie!"), null, null);
+                loggedUser.LoginUserToApp(context.GetUser(Login));
                 TryClose();
             }
             else
-                MessageBox.Show("Niepoprawne dane logowania!");
+                manager.ShowDialog(new ErrorBoxViewModel("Błędne dane logowania!"), null, null);
         }
 
-        public void RegisterButton()
-        {
-            IWindowManager manager = new WindowManager();
-            RegistrationViewModel registrationView = new RegistrationViewModel();
-            manager.ShowWindow(registrationView, null, null);
-        }
+        public void RegisterButton() => manager.ShowWindow(new RegistrationViewModel(), null, null);
 
-        public void CancelButton()
-        {
-            Application.Current.Shutdown();
-        }
+        public void CancelButton() => Application.Current.Shutdown();
 
+        private LoggedUser loggedUser;
         private FakeData context;
+        private IWindowManager manager = new WindowManager();
     }
 }

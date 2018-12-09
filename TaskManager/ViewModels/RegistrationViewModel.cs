@@ -9,9 +9,7 @@ namespace TaskManager.ViewModels
 {
     class RegistrationViewModel : Screen
     {
-        public void AcceptButton()
-        {
-            TryClose();
-        }
+        public string FullNameTextbox { get; set; }
+        public void AcceptButton() => TryClose();
     }
 }
