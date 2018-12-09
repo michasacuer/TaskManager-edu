@@ -9,5 +9,9 @@ namespace TaskManager.ViewModels
 {
     class RegistrationViewModel : Screen
     {
+        public void AcceptButton()
+        {
+            TryClose();
+        }
     }
 }

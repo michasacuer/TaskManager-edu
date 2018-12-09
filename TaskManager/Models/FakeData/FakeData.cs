@@ -9,9 +9,9 @@ namespace TaskManager.Models
         {
             users = new List<User>
             {
-                new User("admin", "admin", "Michał", "Szewczak", "michasacuer3@gmail.com", true),
-                new User("login", "login", "Adam", "Kowalski", "temp@op.pl", false),
-                new User("test", "test", "Maciej", "Nowak", "temp2@op.pl", false)
+                new User("admin", "admin", "Michał", "Szewczak", "michasacuer3@gmail.com", true, Position.Manager),
+                new User("login", "login", "Adam", "Kowalski", "temp@op.pl", false, Position.Manager),
+                new User("test", "test", "Maciej", "Nowak", "temp2@op.pl", false, Position.Viewer)
             };
 
             projects = new List<Project>

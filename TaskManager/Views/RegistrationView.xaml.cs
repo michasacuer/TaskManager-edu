@@ -18,7 +18,7 @@ namespace TaskManager.Views
     /// <summary>
     /// Logika interakcji dla klasy RegistrationView.xaml
     /// </summary>
-    public partial class RegistrationView : UserControl
+    public partial class RegistrationView : Window
     {
         public RegistrationView()
         {

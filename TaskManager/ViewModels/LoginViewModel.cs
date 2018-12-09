@@ -17,7 +17,7 @@ namespace TaskManager.ViewModels
 
         public void LoginButton()
         {
-            if (LoginData.IsValid(Login, Password, context))
+            if (Validation.IsValid(Login, Password, context))
             {
                 MessageBox.Show("Zalogowano pomyślnie!");
                 TryClose();
@@ -28,7 +28,9 @@ namespace TaskManager.ViewModels
 
         public void RegisterButton()
         {
-            TryClose();
+            IWindowManager manager = new WindowManager();
+            RegistrationViewModel registrationView = new RegistrationViewModel();
+            manager.ShowWindow(registrationView, null, null);
         }
 
         public void CancelButton()
