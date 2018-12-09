@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TaskManager.Views
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Logika interakcji dla klasy UserInfoView.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class UserInfoView : UserControl
     {
-        public LoginView()
+        public UserInfoView()
         {
             InitializeComponent();
         }

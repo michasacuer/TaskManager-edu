@@ -1,12 +1,21 @@
 ﻿using Caliburn.Micro;
+using TaskManager.Models;
 
 namespace TaskManager.ViewModels
 {
     class MainWindowViewModel : Conductor<IScreen>.Collection.OneActive
     {
-        public void LoadLoginPage()
+
+        protected override void OnViewLoaded(object view)
         {
-            ActivateItem(new LoginViewModel());
+            IWindowManager manager = new WindowManager();
+            LoginViewModel loginView = new LoginViewModel(context); //Login page
+            manager.ShowDialog(loginView, null, null);
+        }
+
+        public void LoadUserInfoPage() //here starts "main" program
+        {
+            ActivateItem(new UserInfoViewModel());
         }
 
         public void LoadTaskManagerPage()
@@ -23,5 +32,7 @@ namespace TaskManager.ViewModels
         {
             ActivateItem(new AddNewTaskViewModel());
         }
+
+        private FakeData context = new FakeData();
     }
 }
