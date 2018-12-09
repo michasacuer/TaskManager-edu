@@ -20,5 +20,6 @@ namespace TaskManager.ViewModels
         private LoggedUser loggedUser = new LoggedUser();
         private IWindowManager manager = new WindowManager();
         private FakeData context = new FakeData();
+
     }
 }

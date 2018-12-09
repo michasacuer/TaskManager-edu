@@ -25,10 +25,10 @@ namespace TaskManager.ViewModels
                 TryClose();
             }
             else
-                manager.ShowDialog(new ErrorBoxViewModel("Błędne dane logowania!"), null, null);
+                manager.ShowWindow(new ErrorBoxViewModel("Błędne dane logowania!"), null, null);
         }
 
-        public void RegisterButton() => manager.ShowWindow(new RegistrationViewModel(), null, null);
+        public void RegisterButton() => manager.ShowWindow(new RegistrationViewModel(context), null, null);
 
         public void CancelButton() => Application.Current.Shutdown();
 

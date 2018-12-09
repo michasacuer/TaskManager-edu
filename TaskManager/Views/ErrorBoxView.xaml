@@ -56,10 +56,9 @@
                VerticalAlignment="Center" 
                FontWeight="Bold" Margin="0,7,0,5" Height="38" Width="129" />
 
-        <TextBox x:Name="ErrorTextBox" Grid.Row="3" 
-                     HorizontalContentAlignment="Center"
-                     VerticalContentAlignment="Center"
-                     BorderThickness="0"
+        <TextBlock x:Name="ErrorTextBox" Grid.Row="3" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
                      FontWeight="Bold" 
                      FontSize="12" Grid.ColumnSpan="3" Margin="15,0" />
 

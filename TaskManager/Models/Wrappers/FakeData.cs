@@ -29,6 +29,7 @@ namespace TaskManager.Models
 
         public List<User> GetUsers() => users;
         public User GetUser(string login) => users.FirstOrDefault(u => u.Login == login);
+        public void AddUser(User user) => users.Add(user);
 
         private List<User> users { get; set; }
         private List<Project> projects { get; set; }
