@@ -10,7 +10,7 @@ namespace TaskManager.ViewModels
 {
     class UserInfoViewModel : Screen
     {
-        public void CancelButton()
+        public void LogoutButton()
         {
             TryClose();
         }

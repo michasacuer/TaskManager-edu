@@ -35,7 +35,7 @@ namespace TaskManager.ViewModels
 
         public void CancelButton()
         {
-            TryClose();
+            Application.Current.Shutdown();
         }
 
         private FakeData context;

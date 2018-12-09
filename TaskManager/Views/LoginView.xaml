@@ -43,7 +43,7 @@
         
         <Button x:Name="CancelButton"
                 Grid.Row="3" Grid.Column="2" 
-                Content="Anuluj"
+                Content="Wyjście"
                 FontSize="8"
                 Foreground="White" 
                 BorderThickness="0"  
