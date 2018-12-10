@@ -55,7 +55,7 @@ namespace TaskManager.ViewModels
             }
 
             TryClose();
-            manager.ShowDialog(new ActiveTaskViewModel(context.GetTask(SelectedTasksList, SelectedProjectsList)), null, null);
+            manager.ShowDialog(new ActiveTaskViewModel(context.GetTask(SelectedTasksList, SelectedProjectsList), context, SelectedProjectsList), null, null);
         }
 
         public void CancelButton() => TryClose();

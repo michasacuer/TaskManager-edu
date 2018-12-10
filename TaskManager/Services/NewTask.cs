@@ -18,7 +18,7 @@ namespace TaskManager.Services
             bool isValid;
             string alert;
 
-            if (task.TaskName == String.Empty)
+            if (task.TaskName == null)
             {
                 isValid = false;
                 alert = "Nazwa zadania nie może być pusta!";

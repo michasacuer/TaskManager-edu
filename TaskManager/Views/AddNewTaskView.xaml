@@ -139,7 +139,9 @@
 
         <TextBox Name="DescriptionTextBox"
             Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="2"
-            FontSize="10"/>
+            FontSize="10"
+                 AcceptsReturn = "True"
+                 TextWrapping="Wrap"/>
 
         <Button x:Name="AcceptButton" 
                 VerticalAlignment="Bottom"

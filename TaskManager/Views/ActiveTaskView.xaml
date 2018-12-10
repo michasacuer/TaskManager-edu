@@ -66,7 +66,8 @@
                      Width="167"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
-                     FontSize="10" Margin="84,39,49,31" Grid.Column="2" Grid.RowSpan="2" />
+                     FontSize="10" Margin="84,39,49,31" Grid.Column="2" Grid.RowSpan="2" 
+                     TextWrapping="Wrap"/>
 
         <TextBlock x:Name="TimerActiveTaskTextBlock" Grid.Row="5"
                      Height="24"
@@ -75,7 +76,7 @@
                      VerticalAlignment="Center"
                      Foreground="White" 
                      FontWeight="Bold"
-                     FontSize="10" Margin="276,22,0,10" Grid.Column="2" Grid.ColumnSpan="5" />
+                     FontSize="10" Margin="276,21,0,11" Grid.Column="2" Grid.ColumnSpan="5" />
 
         <Button x:Name="EndTaskButton"               
                 Grid.Row="6" Grid.Column="2" 
@@ -85,7 +86,7 @@
                 Foreground="White" 
                 BorderThickness="0"  
                 BorderBrush="{x:Null}" 
-                Background="Green" Margin="280,48,5,54" Grid.RowSpan="2" Grid.ColumnSpan="3" />
+                Background="Green" Margin="280,41,5,61" Grid.RowSpan="2" Grid.ColumnSpan="3" />
 
         <Button x:Name="CancelTaskButton"               
                 Grid.Row="7" Grid.Column="2" 
@@ -95,7 +96,7 @@
                 Foreground="White" 
                 BorderThickness="0"  
                 BorderBrush="{x:Null}" 
-                Background="Red" Margin="280,17,5,29" Grid.ColumnSpan="3" />
+                Background="Red" Margin="280,10,5,36" Grid.ColumnSpan="3" />
 
     </Grid>
 </Window>

@@ -30,6 +30,12 @@ namespace TaskManager.Models
         public List<Task> GetProjectsTasks(string projectName) => projects.FirstOrDefault(p => p.ProjectName == projectName).Tasks;
         public void AddTaskToProject(Task task, string projectName) => projects.FirstOrDefault(p => p.ProjectName == projectName).Tasks.Add(task);
 
+        public void EndTask(Task task, string projectName)
+        {
+            projects.FirstOrDefault(p => p.ProjectName == projectName).EndedTasks.Add(task);
+            projects.FirstOrDefault(p => p.ProjectName == projectName).Tasks.Remove(task);
+        }
+
         private void InitData()
         {
             users = new List<User>

@@ -47,7 +47,7 @@
                Grid.Column="0"
                Grid.Row="3"
                FontSize="10"
-               Text="{Binding LoggedUserJob, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="6,10,74,-10" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+               Text="{Binding LoggedUserJob, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="6,7,74,-7" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
 
         <Button x:Name="LogoutButton"
                 Grid.Row="2" Grid.Column="2" 

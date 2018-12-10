@@ -13,8 +13,10 @@ namespace TaskManager.ViewModels
         public string DescriptionTextBlock { get; set; }
         public string TimerActiveTaskTextBlock { get; set; }
 
-        public ActiveTaskViewModel(Task task)
+        public ActiveTaskViewModel(Task task, FakeData context, string projectName)
         {
+            this.projectName = projectName;
+            this.context = context;
             stopwatch.Start();
             activeTask = task;
             ActiveTaskTextBlock = $"{task.TaskName}, Priorytet: {task.Priority}";
@@ -23,8 +25,16 @@ namespace TaskManager.ViewModels
             NotifyOfPropertyChange(() => TimerActiveTaskTextBlock);
         }
 
+        public void EndTaskButton()
+        {
+            context.EndTask(activeTask, projectName);
+            TryClose();
+        }
+
         public void CancelTaskButton() => TryClose();
 
+        private string projectName;
+        private FakeData context;
         private Stopwatch stopwatch = new Stopwatch();
         private Task activeTask;
     }
