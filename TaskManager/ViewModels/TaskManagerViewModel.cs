@@ -28,7 +28,7 @@ namespace TaskManager.ViewModels
                 }
                 catch(ArgumentNullException ex)
                 {
-                    manager.ShowWindow(new ErrorBoxViewModel($"Projekt o nazwie {selectedProjectList} nie ma tasków!"), null, null);
+                    manager.ShowDialog(new ErrorBoxViewModel($"Projekt o nazwie {selectedProjectList} nie ma tasków!"), null, null);
                 }
             }
         }
@@ -43,7 +43,8 @@ namespace TaskManager.ViewModels
         public void AcceptButton()
         {
             if (!loggedUser.HavePermissionToTakeTask())
-                manager.ShowWindow(new ErrorBoxViewModel("Brak uprawnień! Zgłoś się do administratora"), null, null); return;
+                manager.ShowDialog(new ErrorBoxViewModel("Brak uprawnień! Zgłoś się do administratora"), null, null); return;
+
 
         }
 

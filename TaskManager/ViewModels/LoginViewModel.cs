@@ -20,12 +20,12 @@ namespace TaskManager.ViewModels
         {
             if (Validation.IsLoginValid(Login, Password, context))
             {
-                manager.ShowWindow(new SuccesBoxViewModel("Zalogowano Pomyślnie!"), null, null);
+                manager.ShowDialog(new SuccesBoxViewModel("Zalogowano Pomyślnie!"), null, null);
                 loggedUser.LoginUserToApp(context.GetUser(Login));
                 TryClose();
             }
             else
-                manager.ShowWindow(new ErrorBoxViewModel("Błędne dane logowania!"), null, null);
+                manager.ShowDialog(new ErrorBoxViewModel("Błędne dane logowania!"), null, null);
         }
 
         public void RegisterButton() => manager.ShowWindow(new RegistrationViewModel(context), null, null);
