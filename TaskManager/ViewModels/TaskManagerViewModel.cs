@@ -43,8 +43,16 @@ namespace TaskManager.ViewModels
         public void AcceptButton()
         {
             if (!loggedUser.HavePermissionToTakeTask())
-                manager.ShowDialog(new ErrorBoxViewModel("Brak uprawnień! Zgłoś się do administratora"), null, null); return;
+            {
+                manager.ShowDialog(new ErrorBoxViewModel("Brak uprawnień! Zgłoś się do administratora."), null, null);
+                return;
+            }
 
+            if(SelectedTasksList == null)
+            {
+                manager.ShowDialog(new ErrorBoxViewModel("Wybierz zadanie!"), null, null);
+                return;
+            }
 
         }
 

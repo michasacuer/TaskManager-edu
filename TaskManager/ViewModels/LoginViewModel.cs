@@ -20,9 +20,9 @@ namespace TaskManager.ViewModels
         {
             if (Validation.IsLoginValid(LoginTextBox, PasswordTextBox, context))
             {
+                TryClose();
                 manager.ShowDialog(new SuccesBoxViewModel("Zalogowano Pomyślnie!"), null, null);
                 loggedUser.LoginUserToApp(context.GetUser(LoginTextBox));
-                TryClose();
             }
             else
                 manager.ShowDialog(new ErrorBoxViewModel("Błędne dane logowania!"), null, null);

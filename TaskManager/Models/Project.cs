@@ -16,6 +16,7 @@ namespace TaskManager.Models
         public Project(string projectName)
         {
             ProjectName = projectName;
+            Tasks = new List<Task>();
         }
     }
 }

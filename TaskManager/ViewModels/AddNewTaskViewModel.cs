@@ -1,9 +1,7 @@
 ﻿using Caliburn.Micro;
 using TaskManager.Models;
-using System.Collections.Generic;
 using TaskManager.Enums;
 using TaskManager.Services;
-using TaskManager.Models;
 
 namespace TaskManager.ViewModels
 {
@@ -27,6 +25,12 @@ namespace TaskManager.ViewModels
 
         public void AcceptButton()
         {
+            if(!loggedUser.HavePermissionToAddTask())
+            {
+                manager.ShowDialog(new ErrorBoxViewModel("Brak uprawnień! Zgłoś się do administratora."), null, null);
+                return;
+            }
+
             if (!NewTask.ProjectSelected(SelectedProjectsList))
             {
                 manager.ShowDialog(new ErrorBoxViewModel("Wybierz Projekt!"), null, null);
@@ -42,7 +46,7 @@ namespace TaskManager.ViewModels
             if (isValid)
             {
                 context.AddTaskToProject(taskToCheck, SelectedProjectsList);
-                manager.ShowDialog(new SuccesBoxViewModel(alert), null, null);
+                manager.ShowDialog(new SuccesBoxViewModel(alert + $" do projektu {SelectedProjectsList}!"), null, null);
                 TryClose();
             }
             else

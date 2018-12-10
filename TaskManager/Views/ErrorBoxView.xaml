@@ -12,7 +12,7 @@
              Topmost="True"
              ShowInTaskbar="False"
              Height="160"
-             Width="300"
+             Width="320"
              WindowStartupLocation="CenterScreen"
              BorderThickness="3"
              BorderBrush="Red"
