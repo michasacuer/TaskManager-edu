@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Caliburn.Micro;
 using TaskManager.Models;
 
@@ -16,11 +17,18 @@ namespace TaskManager.ViewModels
             {
                 selectedProjectList = value;
                 TasksList = new BindableCollection<string>();
-                tasks = context.GetProjectsTasks(SelectedProjectsList);
-                foreach (Task task in tasks)
+                try
                 {
-                    TasksList.Add(task.TaskName + " - " + task.Priority.ToString());
-                    NotifyOfPropertyChange(() => TasksList);
+                    tasks = context.GetProjectsTasks(SelectedProjectsList);
+                    foreach (Task task in tasks)
+                    {
+                        TasksList.Add(task.TaskName + " - " + task.Priority.ToString());
+                        NotifyOfPropertyChange(() => TasksList);
+                    }
+                }
+                catch(ArgumentNullException ex)
+                {
+                    manager.ShowWindow(new ErrorBoxViewModel($"Projekt o nazwie {selectedProjectList} nie ma tasków!"), null, null);
                 }
             }
         }
@@ -28,15 +36,14 @@ namespace TaskManager.ViewModels
         public TaskManagerViewModel(FakeData context, LoggedUser loggedUser)
         {
             this.context = context;
+            this.loggedUser = loggedUser;
             ProjectsList = context.GetProjectsName();
         }
 
         public void AcceptButton()
         {
             if (!loggedUser.HavePermissionToTakeTask())
-                manager.ShowWindow(new ErrorBoxViewModel("Brak uprawnień! Zgłoś się do administratora"), null, null);
-
-
+                manager.ShowWindow(new ErrorBoxViewModel("Brak uprawnień! Zgłoś się do administratora"), null, null); return;
 
         }
 
