@@ -62,8 +62,8 @@
                HorizontalAlignment="Left" VerticalAlignment="Center"
                FontWeight="Bold" Height="20" Width="auto"/>
 
-        <ComboBox Grid.ColumnSpan="4" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Width="170" Height="16"/>
-        <TextBox FontSize="10" Grid.ColumnSpan="4" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Width="170" Height="16"/>
+        <ComboBox FontSize="10" x:Name="ProjectsList" SelectedValuePath="{Binding Path=SelectedProjectsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Width="170" Height="16"/>
+        <TextBox Name="TaskNameTextBox" FontSize="10" Grid.ColumnSpan="4" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Width="170" Height="16"/>
 
         <ToggleButton x:Name="LowPriorityButton"               
                 Grid.Row="3" Grid.Column="2"
@@ -98,7 +98,7 @@
                 HorizontalAlignment="Left"
                 BorderThickness="0"  
                 BorderBrush="{x:Null}" 
-                Background="#FF085078">
+                Background="Orange">
             <ToggleButton.Style>
                 <Style TargetType="ToggleButton" BasedOn="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}">
                     <Style.Triggers>
@@ -122,7 +122,7 @@
                 HorizontalAlignment="Left"
                 BorderThickness="0"  
                 BorderBrush="{x:Null}" 
-                Background="#FF085078">
+                Background="#FF0000">
             <ToggleButton.Style>
                 <Style TargetType="ToggleButton" BasedOn="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}">
                     <Style.Triggers>
@@ -137,7 +137,7 @@
             </ToggleButton.Style>
         </ToggleButton>
 
-        <TextBox
+        <TextBox Name="DescriptionTextBox"
             Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="2"
             FontSize="10"/>
 
@@ -163,7 +163,7 @@
                 Foreground="White" 
                 BorderThickness="0"  
                 BorderBrush="{x:Null}" 
-                Background="#FF085078" Margin="33,0,20,0"/>
+                Background="#FF0000" Margin="33,0,20,0"/>
 
     </Grid>
 </UserControl>

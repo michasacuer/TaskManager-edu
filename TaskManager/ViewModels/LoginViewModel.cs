@@ -7,8 +7,8 @@ namespace TaskManager.ViewModels
 {
     class LoginViewModel : Screen
     {
-        public string Login    { get; set; }
-        public string Password { get; set; }
+        public string LoginTextBox    { get; set; }
+        public string PasswordTextBox { get; set; }
 
         public LoginViewModel(FakeData context, LoggedUser loggedUser)
         {
@@ -18,10 +18,10 @@ namespace TaskManager.ViewModels
 
         public void LoginButton()
         {
-            if (Validation.IsLoginValid(Login, Password, context))
+            if (Validation.IsLoginValid(LoginTextBox, PasswordTextBox, context))
             {
                 manager.ShowDialog(new SuccesBoxViewModel("Zalogowano Pomyślnie!"), null, null);
-                loggedUser.LoginUserToApp(context.GetUser(Login));
+                loggedUser.LoginUserToApp(context.GetUser(LoginTextBox));
                 TryClose();
             }
             else

@@ -5,14 +5,11 @@ namespace TaskManager.Services
 {
     static public class Registration
     {
-        public static Position SetJob(bool isManager, bool isDeveloper, bool isViewer)
-        {
-            var position = isManager == true ? Position.Manager : 
-                           isDeveloper == true ? Position.Developer : 
-                           isViewer == true ? Position.Viewer : throw new System.ArgumentNullException();
+        public static Position SetJob(bool isManager, bool isDeveloper, bool isViewer) => 
+            isManager == true ? Position.Manager : 
+            isDeveloper == true ? Position.Developer : 
+            isViewer == true ? Position.Viewer : throw new System.ArgumentNullException();
 
-            return position;
-        }
 
         public static (bool, string) IsValid(User userToCheck, FakeData context)
         {

@@ -12,6 +12,7 @@ namespace TaskManager.Models
         public bool HavePermissionToTakeTask() =>
             user.Position == Position.Manager ? true :
             user.Position == Position.Developer ? true : false;
+        public bool HavePermissionToAddTask() => user.Position == Position.Manager ? true : false;
 
         private User user { get; set; }
     }

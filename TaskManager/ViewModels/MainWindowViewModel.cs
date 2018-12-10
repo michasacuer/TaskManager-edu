@@ -15,7 +15,7 @@ namespace TaskManager.ViewModels
 
         public void LoadNotificationsPage() => ActivateItem(new NotificationsViewModel());
 
-        public void LoadAddNewTaskPage() => ActivateItem(new AddNewTaskViewModel());
+        public void LoadAddNewTaskPage() => ActivateItem(new AddNewTaskViewModel(context, loggedUser));
 
         private LoggedUser loggedUser = new LoggedUser();
         private IWindowManager manager = new WindowManager();

@@ -22,12 +22,8 @@ namespace TaskManager.Models
             return projectsNames;
         }
 
-        public List<Task> GetProjectsTasks(string projectName)
-        {
-            var project = projects.FirstOrDefault(p => p.ProjectName == projectName);
-            return new List<Task>(project.Tasks);
-        }
-
+        public List<Task> GetProjectsTasks(string projectName) => projects.FirstOrDefault(p => p.ProjectName == projectName).Tasks;
+        public void AddTaskToProject(Task task, string projectName) => projects.FirstOrDefault(p => p.ProjectName == projectName).Tasks.Add(task);
 
         private void InitData()
         {

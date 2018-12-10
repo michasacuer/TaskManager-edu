@@ -87,6 +87,7 @@
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Wrappers\LoggedUser.cs" />
+    <Compile Include="Services\NewTask.cs" />
     <Compile Include="Services\Validation.cs" />
     <Compile Include="Services\Registration.cs" />
     <Compile Include="ViewModels\AddNewTaskViewModel.cs" />

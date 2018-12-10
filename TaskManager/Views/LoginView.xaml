@@ -73,12 +73,12 @@
                VerticalAlignment="Center" 
                FontWeight="Bold" Margin="0,7,0,5" Height="38" Width="129" />
 
-        <TextBox x:Name="Login"
+        <TextBox x:Name="LoginTextBox"
                  Grid.Column="1" Grid.Row="2"
                  MinWidth="100" FontSize="12"
                  VerticalContentAlignment="Center" Margin="0,2,10,2"/>
 
-        <PasswordBox x:Name="Password"
+        <PasswordBox x:Name="PasswordTextBox"
                      Grid.Column="1" Grid.Row="3" 
                      MinWidth="100" 
                      FontSize="12" 
