@@ -12,7 +12,7 @@
              Topmost="True"
              ShowInTaskbar="False"
              Height="160"
-             Width="200"
+             Width="300"
              WindowStartupLocation="CenterScreen"
              >
 

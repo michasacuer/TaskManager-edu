@@ -56,7 +56,7 @@
                 Foreground="White" 
                 BorderThickness="0"  
                 BorderBrush="{x:Null}" 
-                Background="#FF085078" Margin="15,17,10,7" Grid.RowSpan="2"/>
+                Background="#FF0000" Margin="15,17,10,7" Grid.RowSpan="2"/>
 
     </Grid>
 </UserControl>

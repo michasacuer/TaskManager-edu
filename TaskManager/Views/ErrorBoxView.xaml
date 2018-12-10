@@ -12,7 +12,7 @@
              Topmost="True"
              ShowInTaskbar="False"
              Height="160"
-             Width="200"
+             Width="300"
              WindowStartupLocation="CenterScreen"
              >
 
@@ -56,10 +56,12 @@
                VerticalAlignment="Center" 
                FontWeight="Bold" Margin="0,7,0,5" Height="38" Width="129" />
 
-        <TextBlock x:Name="ErrorTextBox" Grid.Row="3" 
+        <TextBlock x:Name="ErrorTextBox" Grid.Row="3"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      FontWeight="Bold" 
+                     Height="auto"
+                     Width="auto"
                      FontSize="12" Grid.ColumnSpan="3" Margin="15,0" />
 
 

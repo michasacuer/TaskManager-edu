@@ -48,11 +48,11 @@
                 Foreground="White" 
                 BorderThickness="0"  
                 BorderBrush="{x:Null}" 
-                Background="#FF085078" Margin="13,2,12,2"/>
+                Background="#FF0000" Margin="13,2,12,2"/>
 
         <Button x:Name="RegisterButton"
                 Grid.Row="4" Grid.Column="0"  Grid.ColumnSpan="3"
-                Height="25"
+                Height="21"
                 Content="Zarejestruj się"
                 FontSize="8"
                 Foreground="White" 

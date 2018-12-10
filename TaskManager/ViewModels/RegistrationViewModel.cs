@@ -17,35 +17,20 @@ namespace TaskManager.ViewModels
 
         public void AcceptButton()
         {
-            if(LoginTextBox == null || FirstNameTextBox == null ||LastNameTextBox == null || EmailTextBox == null)
+            User userToCheck = new User(LoginTextBox, "", FirstNameTextBox, LastNameTextBox, EmailTextBox, Position);
+            (bool isValid, string alert) = Registration.IsRegistrationValid(userToCheck, context);
+
+            if (isValid)
             {
-                manager.ShowWindow(new ErrorBoxViewModel("Wypełnij wszystkie wymagane pola!"), null, null);
-                return;
+                context.AddUser(userToCheck);
+                manager.ShowWindow(new SuccesBoxViewModel(alert), null, null);
+                TryClose();
             }
-
-            if(!Validation.IsEmailValid(EmailTextBox))
-            {
-                manager.ShowWindow(new ErrorBoxViewModel("Błędny adres email!"), null, null);
-                return;
-            }
-
-            if(Validation.IsEmailExist(EmailTextBox, context))
-            {
-                manager.ShowWindow(new ErrorBoxViewModel("Podany Email jest już w bazie!"), null, null);
-                return;
-            }
-
-            if(Validation.IsLoginExist(LoginTextBox, context))
-            {
-                manager.ShowWindow(new ErrorBoxViewModel("Podany login jest już w bazie!"), null, null);
-                return;
-            }
-
-            context.AddUser(new User(LoginTextBox, "", FirstNameTextBox, LastNameTextBox, EmailTextBox, Position));
-            manager.ShowWindow(new SuccesBoxViewModel("Zarejestrowano pomyślnie!"), null, null);
-            TryClose(); //przeniesc to do sevices xD
-
+            else
+                manager.ShowWindow(new ErrorBoxViewModel(alert), null, null);
         }
+
+        public void CancelButton() => TryClose();
 
         private IWindowManager manager = new WindowManager();
         private FakeData context;
