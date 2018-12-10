@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TaskManager.Enums;
 using TaskManager.Models;
 
 namespace TaskManager.Services
 {
     static public class Registration
     {
-        public static (bool, string) IsRegistrationValid(User userToCheck, FakeData context)
+        public static Position SetJob(bool isManager, bool isDeveloper, bool isViewer)
+        {
+            var position = isManager == true ? Position.Manager : 
+                           isDeveloper == true ? Position.Developer : 
+                           isViewer == true ? Position.Viewer : throw new System.ArgumentNullException();
+
+            return position;
+        }
+
+        public static (bool, string) IsValid(User userToCheck, FakeData context)
         {
             bool isUserOk = true;
             string alert = "Zarejestrowano pomyślnie!";
@@ -19,6 +24,12 @@ namespace TaskManager.Services
             {
                 isUserOk = false;
                 alert = "Wypełnij wszystkie wymagane pola!";
+            }
+
+            else if (Validation.IsStringHaveSpaces(userToCheck.Login))
+            {
+                isUserOk = false;
+                alert = "Niedozwolone znaki w polu Login!";
             }
 
             else if (Validation.IsLoginExist(userToCheck.Login, context))
@@ -39,6 +50,11 @@ namespace TaskManager.Services
                 alert = "Podany Email jest już w bazie!";
             }
 
+            else if (Validation.IsStringHaveSpaces(userToCheck.LastName))
+            {
+                isUserOk = false;
+                alert = "Niedozwolone znaki w polu Nazwisko!";
+            }
 
             return (isUserOk, alert);
         }

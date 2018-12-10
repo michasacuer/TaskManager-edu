@@ -14,6 +14,8 @@
              Height="160"
              Width="300"
              WindowStartupLocation="CenterScreen"
+             BorderThickness="3"
+             BorderBrush="Red"
              >
 
     <Grid>
@@ -26,7 +28,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="5"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
