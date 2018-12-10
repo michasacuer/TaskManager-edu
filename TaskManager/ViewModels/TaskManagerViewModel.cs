@@ -36,6 +36,8 @@ namespace TaskManager.ViewModels
             if (!loggedUser.HavePermissionToTakeTask())
                 manager.ShowWindow(new ErrorBoxViewModel("Brak uprawnień! Zgłoś się do administratora"), null, null);
 
+
+
         }
 
         public void CancelButton() => TryClose();
