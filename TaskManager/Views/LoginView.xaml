@@ -73,6 +73,16 @@
                VerticalAlignment="Center" 
                FontWeight="Bold" Margin="0,7,0,5" Height="38" Width="129" />
 
+        <Label Grid.Column="2"
+               Grid.Row="0"
+               Content="miniJIRA"  
+               FontSize="20" 
+               Foreground="White" 
+
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Center" 
+               Margin="10,12,-6,0" Height="38" Width="129" FontFamily="Trajan Pro 3" />
+
         <TextBox x:Name="LoginTextBox"
                  Grid.Column="1" Grid.Row="2"
                  MinWidth="100" FontSize="12"

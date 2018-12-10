@@ -75,7 +75,7 @@
                      VerticalAlignment="Center"
                      Foreground="White" 
                      FontWeight="Bold"
-                     FontSize="10" Margin="276,16,0,16" Grid.Column="2" Grid.ColumnSpan="5" />
+                     FontSize="10" Margin="276,22,0,10" Grid.Column="2" Grid.ColumnSpan="5" />
 
         <Button x:Name="EndTaskButton"               
                 Grid.Row="6" Grid.Column="2" 
