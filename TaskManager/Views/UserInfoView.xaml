@@ -47,7 +47,7 @@
                Grid.Column="0"
                Grid.Row="3"
                FontSize="10"
-               Text="{Binding LoggedUserJob, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="6,10,74,-10" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+               Text="{Binding LoggedUserJob, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="6,5,74,-5" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
 
         <Button x:Name="LogoutButton"
                 Grid.Row="2" Grid.Column="2" 
@@ -56,7 +56,17 @@
                 Foreground="White" 
                 BorderThickness="0"  
                 BorderBrush="{x:Null}" 
-                Background="#FF0000" Margin="15,17,10,7" Grid.RowSpan="2"/>
+                Background="#FF0000" Margin="15,6,10,18" Grid.RowSpan="2"/>
+
+        <Button x:Name="OkButton"
+                Grid.Row="3" Grid.Column="2" 
+                Content="Ok"
+                FontSize="8"
+                Foreground="White" 
+                Height="15"
+                BorderThickness="0"  
+                BorderBrush="{x:Null}" 
+                Background="#FF085078" Margin="15,5,10,0"/>
 
     </Grid>
 </UserControl>

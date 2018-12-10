@@ -317,7 +317,7 @@
                 <Style TargetType="ToggleButton" BasedOn="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}">
                     <Setter Property="Visibility" Value="Hidden"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=LoadLoginPage, Path=Visibility}"
+                        <DataTrigger Binding="{Binding ElementName=LoadUserInfoPage, Path=Visibility}"
                                      Value="Hidden">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>

@@ -9,7 +9,7 @@ namespace TaskManager.ViewModels
         protected override void OnViewLoaded(object view) => 
             manager.ShowDialog(new LoginViewModel(context, loggedUser), null, null);
 
-        public void LoadUserInfoPage() => ActivateItem(new UserInfoViewModel(loggedUser));
+        public void LoadUserInfoPage() => ActivateItem(new UserInfoViewModel(loggedUser, context));
 
         public void LoadTaskManagerPage() => ActivateItem(new TaskManagerViewModel());
 
