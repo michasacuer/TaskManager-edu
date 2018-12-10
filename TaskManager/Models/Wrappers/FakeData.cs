@@ -22,6 +22,11 @@ namespace TaskManager.Models
             return projectsNames;
         }
 
+        public Task GetTask(string taskName, string projectName) =>
+            projects.FirstOrDefault(p => p.ProjectName == projectName)
+            .Tasks.FirstOrDefault(t => t.TaskName == taskName.Substring(0, taskName.IndexOf(" -")));
+
+
         public List<Task> GetProjectsTasks(string projectName) => projects.FirstOrDefault(p => p.ProjectName == projectName).Tasks;
         public void AddTaskToProject(Task task, string projectName) => projects.FirstOrDefault(p => p.ProjectName == projectName).Tasks.Add(task);
 

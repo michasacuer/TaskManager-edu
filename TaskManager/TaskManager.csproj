@@ -90,6 +90,7 @@
     <Compile Include="Services\NewTask.cs" />
     <Compile Include="Services\Validation.cs" />
     <Compile Include="Services\Registration.cs" />
+    <Compile Include="ViewModels\ActiveTaskViewModel.cs" />
     <Compile Include="ViewModels\AddNewTaskViewModel.cs" />
     <Compile Include="ViewModels\ErrorBoxViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -99,6 +100,9 @@
     <Compile Include="ViewModels\SuccesBoxViewModel.cs" />
     <Compile Include="ViewModels\TaskManagerViewModel.cs" />
     <Compile Include="ViewModels\UserInfoViewModel.cs" />
+    <Compile Include="Views\ActiveTaskView.xaml.cs">
+      <DependentUpon>ActiveTaskView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddNewTaskView.xaml.cs">
       <DependentUpon>AddNewTaskView.xaml</DependentUpon>
     </Compile>
@@ -164,6 +168,10 @@
     <Resource Include="3.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\ActiveTaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddNewTaskView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
