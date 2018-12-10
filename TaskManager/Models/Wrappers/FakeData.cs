@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TaskManager.Enums;
 using System.Linq;
+using Caliburn.Micro;
 
 namespace TaskManager.Models
 {
@@ -30,6 +31,21 @@ namespace TaskManager.Models
         public List<User> GetUsers() => users;
         public User GetUser(string login) => users.FirstOrDefault(u => u.Login == login);
         public void AddUser(User user) => users.Add(user);
+
+        public BindableCollection<string> GetProjectsName()
+        {
+            var projectsNames = new BindableCollection<string>();
+            foreach (Project item in projects)
+                projectsNames.Add(item.ProjectName);
+
+            return projectsNames;
+        }
+
+        public List<Task> GetProjectsTasks(string projectName)
+        {
+            var project = projects.FirstOrDefault(p => p.ProjectName == projectName);
+            return new List<Task>(project.Tasks);
+        }
 
         private List<User> users { get; set; }
         private List<Project> projects { get; set; }

@@ -4,8 +4,8 @@ namespace TaskManager.Models
 {
     public class Project
     {
-        private string ProjectName { get; set; }
-        private List<Task> Tasks { get; set; }
+        public string ProjectName { get; private set; }
+        public List<Task> Tasks { get; private set; }
 
         public Project(string projectName, List<Task> tasks)
         {

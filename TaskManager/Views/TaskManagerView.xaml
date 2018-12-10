@@ -22,7 +22,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="LoginButton"               
+        <Button x:Name="AcceptButton"               
                 Grid.Row="2" Grid.Column="2" 
                 Content="Akceptuj"
                 FontSize="8"
@@ -65,7 +65,25 @@
                Content="Projekt" 
                HorizontalAlignment="Left" VerticalAlignment="Center"
                FontWeight="Bold" Height="20" Width="auto"/>
-        <ComboBox Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="42,2,0,0" Grid.Row="2" VerticalAlignment="Top" Width="153" Height="16"/>
-        <ComboBox Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="42,2,0,0" Grid.Row="3" VerticalAlignment="Top" Width="153" Height="16"/>
+        <ComboBox 
+            FontSize="10" 
+            x:Name="ProjectsList" 
+            Grid.ColumnSpan="3" 
+            HorizontalAlignment="Left" 
+            Margin="42,2,0,0" 
+            Grid.Row="2" 
+            VerticalAlignment="Top" 
+            Width="153" Height="16"
+            SelectedValuePath="{Binding Path=SelectedProjectsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <ComboBox 
+            FontSize="10"
+            x:Name="TasksList" 
+            Grid.ColumnSpan="3" 
+            HorizontalAlignment="Left" 
+            Margin="42,2,0,0" 
+            Grid.Row="3" 
+            VerticalAlignment="Top" 
+            Width="153" Height="16"    
+            />
     </Grid>
 </UserControl>

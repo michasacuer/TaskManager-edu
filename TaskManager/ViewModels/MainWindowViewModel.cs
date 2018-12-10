@@ -11,7 +11,7 @@ namespace TaskManager.ViewModels
 
         public void LoadUserInfoPage() => ActivateItem(new UserInfoViewModel(loggedUser, context));
 
-        public void LoadTaskManagerPage() => ActivateItem(new TaskManagerViewModel());
+        public void LoadTaskManagerPage() => ActivateItem(new TaskManagerViewModel(context, loggedUser));
 
         public void LoadNotificationsPage() => ActivateItem(new NotificationsViewModel());
 
