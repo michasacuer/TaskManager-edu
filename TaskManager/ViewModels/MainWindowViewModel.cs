@@ -13,7 +13,7 @@ namespace TaskManager.ViewModels
 
         public void LoadTaskManagerPage() => ActivateItem(new TaskManagerViewModel(context, loggedUser));
 
-        public void LoadNotificationsPage() => ActivateItem(new NotificationsViewModel());
+        public void LoadNotificationsPage() => ActivateItem(new NotificationsViewModel(context));
 
         public void LoadAddNewTaskPage() => ActivateItem(new AddNewTaskViewModel(context, loggedUser));
 

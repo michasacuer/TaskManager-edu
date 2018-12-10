@@ -36,6 +36,15 @@ namespace TaskManager.Models
             projects.FirstOrDefault(p => p.ProjectName == projectName).Tasks.Remove(task);
         }
 
+        public BindableCollection<string> GetEndedTasks()
+        {
+            var endedTasks = new BindableCollection<string>();
+            foreach (Project project in projects)
+                endedTasks.Add(project.EndedTasks.ToString());
+
+            return endedTasks;
+        }
+
         private void InitData()
         {
             users = new List<User>
