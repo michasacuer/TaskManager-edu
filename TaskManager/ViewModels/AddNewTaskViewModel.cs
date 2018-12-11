@@ -27,18 +27,18 @@ namespace TaskManager.ViewModels
         {
             if(!loggedUser.HavePermissionToAddTask())
             {
-                manager.ShowDialog(new ErrorBoxViewModel("Brak uprawnień! Zgłoś się do administratora."), null, null);
+                Show.ErrorBox("Brak uprawnień! Zgłoś się do administratora.");
                 return;
             }
 
             if (!NewTask.ProjectSelected(SelectedProjectsList))
             {
-                manager.ShowDialog(new ErrorBoxViewModel("Wybierz Projekt!"), null, null);
+                Show.ErrorBox("Wybierz projekt!");
                 return;
             }
             
             try { Priority = NewTask.SetPriority(LowPriorityButton, MediumPriorityButton, HighPriorityButton); }
-            catch { manager.ShowDialog(new ErrorBoxViewModel("Wybierz Priorytet!"), null, null); return; }
+            catch { Show.ErrorBox("Wybierz Priorytet!"); return; }
 
             Task taskToCheck = new Task(TaskNameTextBox, Priority, DescriptionTextBox);
             (bool isValid, string alert) = NewTask.IsValid(taskToCheck);
@@ -46,16 +46,15 @@ namespace TaskManager.ViewModels
             if (isValid)
             {
                 context.AddTaskToProject(taskToCheck, SelectedProjectsList);
-                manager.ShowDialog(new SuccesBoxViewModel(alert + $" do projektu {SelectedProjectsList}!"), null, null);
+                Show.SuccesBox(alert + $" do projektu {SelectedProjectsList}!");
                 TryClose();
             }
             else
-                manager.ShowDialog(new ErrorBoxViewModel(alert), null, null);
+                Show.ErrorBox(alert);
         }
 
         public void CancelButton() => TryClose();
 
-        private IWindowManager manager = new WindowManager();
         FakeData context;
         LoggedUser loggedUser;
     }

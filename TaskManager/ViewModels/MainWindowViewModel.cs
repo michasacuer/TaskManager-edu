@@ -5,21 +5,13 @@ namespace TaskManager.ViewModels
 {
     class MainWindowViewModel : Conductor<IScreen>.Collection.OneActive
     {
-
-        protected override void OnViewLoaded(object view) => 
-            manager.ShowDialog(new LoginViewModel(context, loggedUser), null, null);
-
+        protected override void OnViewLoaded(object view) => Show.LoginBox(context, loggedUser);
         public void LoadUserInfoPage() => ActivateItem(new UserInfoViewModel(loggedUser, context));
-
         public void LoadTaskManagerPage() => ActivateItem(new TaskManagerViewModel(context, loggedUser));
-
         public void LoadNotificationsPage() => ActivateItem(new NotificationsViewModel(context));
-
         public void LoadAddNewTaskPage() => ActivateItem(new AddNewTaskViewModel(context, loggedUser));
 
         private LoggedUser loggedUser = new LoggedUser();
-        private IWindowManager manager = new WindowManager();
         private FakeData context = new FakeData();
-
     }
 }

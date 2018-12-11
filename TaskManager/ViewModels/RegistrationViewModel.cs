@@ -25,7 +25,7 @@ namespace TaskManager.ViewModels
         public void AcceptButton()
         {
             try { Position = Registration.SetJob(ManagerChecked, DeveloperChecked, ViewerChecked); }
-            catch { manager.ShowDialog(new ErrorBoxViewModel("Wybierz stanowisko!"), null, null); return; }
+            catch { Show.ErrorBox("Wybierz stanowisko!"); return; }
 
             User userToCheck = new User(LoginTextBox, "", FirstNameTextBox, LastNameTextBox, EmailTextBox, Position);
             (bool isValid, string alert) = Registration.IsValid(userToCheck, context);
@@ -33,11 +33,11 @@ namespace TaskManager.ViewModels
             if (isValid)
             {
                 context.AddUser(userToCheck);
-                manager.ShowDialog(new SuccesBoxViewModel(alert), null, null);
+                Show.SuccesBox(alert);
                 TryClose();
             }
             else
-                manager.ShowDialog(new ErrorBoxViewModel(alert), null, null);
+                Show.ErrorBox(alert);
         }
 
         public void CancelButton() => TryClose();
@@ -50,7 +50,6 @@ namespace TaskManager.ViewModels
             EmailTextBox = "Wpisz swój Email";
         }
 
-        private IWindowManager manager = new WindowManager();
         private FakeData context;
     }
 }

@@ -26,10 +26,7 @@ namespace TaskManager.ViewModels
                         NotifyOfPropertyChange(() => TasksList);
                     }
                 }
-                catch(ArgumentNullException ex)
-                {
-                    manager.ShowDialog(new ErrorBoxViewModel($"Projekt o nazwie {selectedProjectList} nie ma tasków!"), null, null);
-                }
+                catch (ArgumentNullException ex) { Show.ErrorBox($"Projekt o nazwie {selectedProjectList} nie ma tasków!"); }
             }
         }
 
@@ -44,23 +41,22 @@ namespace TaskManager.ViewModels
         {
             if (!loggedUser.HavePermissionToTakeTask())
             {
-                manager.ShowDialog(new ErrorBoxViewModel("Brak uprawnień! Zgłoś się do administratora."), null, null);
+                Show.ErrorBox("Brak uprawnień! Zgłoś się do administratora.");
                 return;
             }
 
             if(SelectedTasksList == null)
             {
-                manager.ShowDialog(new ErrorBoxViewModel("Wybierz zadanie!"), null, null);
+                Show.ErrorBox("Wybierz zadanie!");
                 return;
             }
 
             TryClose();
-            manager.ShowDialog(new ActiveTaskViewModel(context.GetTask(SelectedTasksList, SelectedProjectsList), context, SelectedProjectsList), null, null);
+            Show.ActiveTaskBox(SelectedTasksList, SelectedProjectsList, context);
         }
 
         public void CancelButton() => TryClose();
 
-        IWindowManager manager = new WindowManager();
         private LoggedUser loggedUser;
         private FakeData context;
         private List<Task> tasks;

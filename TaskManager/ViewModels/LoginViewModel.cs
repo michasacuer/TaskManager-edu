@@ -21,19 +21,18 @@ namespace TaskManager.ViewModels
             if (Validation.IsLoginValid(LoginTextBox, PasswordTextBox, context))
             {
                 TryClose();
-                manager.ShowDialog(new SuccesBoxViewModel("Zalogowano Pomyślnie!"), null, null);
+                Show.SuccesBox("Zalogowano pomyślnie!");
                 loggedUser.LoginUserToApp(context.GetUser(LoginTextBox));
             }
             else
-                manager.ShowDialog(new ErrorBoxViewModel("Błędne dane logowania!"), null, null);
+                Show.ErrorBox("Błędne dane logowania!");
         }
 
-        public void RegisterButton() => manager.ShowWindow(new RegistrationViewModel(context), null, null);
+        public void RegisterButton() => Show.RegistrationBox(context);
 
         public void CancelButton() => Application.Current.Shutdown();
 
         private LoggedUser loggedUser;
         private FakeData context;
-        private IWindowManager manager = new WindowManager();
     }
 }
