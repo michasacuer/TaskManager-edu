@@ -4,7 +4,7 @@ using TaskManager.Models;
 namespace TaskManager.ViewModels
 {
     class UserInfoViewModel : Screen
-    {
+    {   
         public string LoggedUserFullName { get; set; }
         public string LoggedUserJob      { get; set; }
 

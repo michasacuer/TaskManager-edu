@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using TaskManager.Enums;
-using System.Linq;
+﻿using System.Linq;
 using Caliburn.Micro;
+using TaskManager.Enums;
+using System.Collections.Generic;
 
 namespace TaskManager.Models
 {

@@ -1,9 +1,6 @@
 ﻿using Caliburn.Micro;
 using TaskManager.Models;
-using System.Timers;
-using System;
 using System.Diagnostics;
-using System.Threading;
 
 namespace TaskManager.ViewModels
 {
