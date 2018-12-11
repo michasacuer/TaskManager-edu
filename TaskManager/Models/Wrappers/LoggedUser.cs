@@ -10,9 +10,9 @@ namespace TaskManager.Models
         public string GetPosition() => user.Position.ToString();
         public void Logout() => user = null;
         public bool HavePermissionToTakeTask() =>
-            user.Position == Position.Manager ? true :
-            user.Position == Position.Developer ? true : false;
-        public bool HavePermissionToAddTask() => user.Position == Position.Manager ? true : false;
+            user.Position == Position.Manager ||
+            user.Position == Position.Developer;
+        public bool HavePermissionToAddTask() => user.Position == Position.Manager;
 
         private User user { get; set; }
     }

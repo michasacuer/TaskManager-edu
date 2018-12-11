@@ -6,9 +6,9 @@ namespace TaskManager.Services
     static public class Registration
     {
         public static Position SetJob(bool isManager, bool isDeveloper, bool isViewer) => 
-            isManager == true ? Position.Manager : 
-            isDeveloper == true ? Position.Developer : 
-            isViewer == true ? Position.Viewer : throw new System.ArgumentNullException();
+            isManager ? Position.Manager : 
+            isDeveloper ? Position.Developer : 
+            isViewer ? Position.Viewer : throw new System.ArgumentNullException();
 
 
         public static (bool, string) IsValid(User userToCheck, FakeData context)

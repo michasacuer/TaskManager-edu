@@ -10,8 +10,8 @@ namespace TaskManager.ViewModels
         public void LoadTaskManagerPage()   => ActivateItem(new TaskManagerViewModel(context, loggedUser));
         public void LoadNotificationsPage() => ActivateItem(new NotificationsViewModel(context));
         public void LoadAddNewTaskPage()    => ActivateItem(new AddNewTaskViewModel(context, loggedUser));
-
-        private LoggedUser loggedUser = new LoggedUser();
-        private FakeData context      = new FakeData();
+                        
+        private readonly LoggedUser loggedUser = new LoggedUser();
+        private readonly FakeData context      = new FakeData();
     }
 }
