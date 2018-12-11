@@ -9,12 +9,12 @@ namespace TaskManager.ViewModels
     {
         public BindableCollection<string> ProjectsList { get; set; }
         public string SelectedProjectsList { get; set; }
-        public string DescriptionTextBox { get; set; }
-        public string TaskNameTextBox { get; set; }
-        public bool LowPriorityButton { get; set; }
-        public bool MediumPriorityButton { get; set; }
-        public bool HighPriorityButton { get; set; }
-        public Priority Priority { get; set; }
+        public string DescriptionTextBox   { get; set; }
+        public string TaskNameTextBox      { get; set; }
+        public bool LowPriorityButton      { get; set; }
+        public bool MediumPriorityButton   { get; set; }
+        public bool HighPriorityButton     { get; set; }
+        public Priority Priority           { get; set; }
 
         public AddNewTaskViewModel(FakeData context, LoggedUser loggedUser)
         {
@@ -55,7 +55,7 @@ namespace TaskManager.ViewModels
 
         public void CancelButton() => TryClose();
 
-        FakeData context;
+        FakeData   context;
         LoggedUser loggedUser;
     }
 }

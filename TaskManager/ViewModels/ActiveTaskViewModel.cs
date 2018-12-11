@@ -9,8 +9,8 @@ namespace TaskManager.ViewModels
 {
     public class ActiveTaskViewModel : Screen
     {
-        public string ActiveTaskTextBlock { get; set; }
-        public string DescriptionTextBlock { get; set; }
+        public string ActiveTaskTextBlock      { get; set; }
+        public string DescriptionTextBlock     { get; set; }
         public string TimerActiveTaskTextBlock { get; set; }
 
         public ActiveTaskViewModel(Task task, FakeData context, string projectName)
@@ -33,9 +33,9 @@ namespace TaskManager.ViewModels
 
         public void CancelTaskButton() => TryClose();
 
-        private string projectName;
-        private FakeData context;
+        private string    projectName;
+        private FakeData  context;
         private Stopwatch stopwatch = new Stopwatch();
-        private Task activeTask;
+        private Task      activeTask;
     }
 }

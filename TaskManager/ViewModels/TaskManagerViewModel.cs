@@ -8,8 +8,8 @@ namespace TaskManager.ViewModels
     class TaskManagerViewModel : Screen
     {
         public BindableCollection<string> ProjectsList { get; set; }
-        public BindableCollection<string> TasksList { get; set; }
-        public string SelectedTasksList { get; set; }
+        public BindableCollection<string> TasksList    { get; set; }
+        public string SelectedTasksList                { get; set; }
         public string SelectedProjectsList
         {
             get => selectedProjectList; 
@@ -58,8 +58,8 @@ namespace TaskManager.ViewModels
         public void CancelButton() => TryClose();
 
         private LoggedUser loggedUser;
-        private FakeData context;
+        private FakeData   context;
         private List<Task> tasks;
-        private string selectedProjectList;
+        private string     selectedProjectList;
     }
 }

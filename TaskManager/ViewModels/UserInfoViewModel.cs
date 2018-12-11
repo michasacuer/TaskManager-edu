@@ -6,9 +6,9 @@ namespace TaskManager.ViewModels
     class UserInfoViewModel : Screen
     {
         public string LoggedUserFullName { get; set; }
-        public string LoggedUserJob { get; set; }
+        public string LoggedUserJob      { get; set; }
 
-        public UserInfoViewModel(LoggedUser loggedUser, FakeData context)
+        public UserInfoViewModel(FakeData context, LoggedUser loggedUser)
         {
             this.loggedUser = loggedUser;
             this.context = context;
@@ -22,15 +22,14 @@ namespace TaskManager.ViewModels
 
         public void LogoutButton()
         {
-            loggedUser.LogOut();
+            loggedUser.Logout();
             TryClose();
-            manager.ShowDialog(new LoginViewModel(context, loggedUser), null, null);
+            Show.LoginBox(context, loggedUser);
         }
 
         public void OkButton() => TryClose();
 
-        private IWindowManager manager = new WindowManager();
         private LoggedUser loggedUser;
-        private FakeData context;
+        private FakeData   context;
     }
 }

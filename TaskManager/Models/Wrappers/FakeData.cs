@@ -17,7 +17,7 @@ namespace TaskManager.Models
         {
             var projectsNames = new BindableCollection<string>();
             foreach (Project item in projects)
-                projectsNames.Add(item.ProjectName);
+                projectsNames.Add(item.ProjectName); //todo
 
             return projectsNames;
         }

@@ -5,7 +5,6 @@ namespace TaskManager.ViewModels
 {
     class NotificationsViewModel : Screen
     {
-
         public BindableCollection<string> EndedTasksList { get; set; }
 
         public NotificationsViewModel(FakeData context)
@@ -15,11 +14,7 @@ namespace TaskManager.ViewModels
             NotifyOfPropertyChange(() => EndedTasksList);
         }
 
-
-        public void CancelButton()
-        {
-            TryClose();
-        }
+        public void CancelButton() => TryClose();
 
         private FakeData context;
     }

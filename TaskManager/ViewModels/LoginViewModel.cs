@@ -33,6 +33,6 @@ namespace TaskManager.ViewModels
         public void CancelButton() => Application.Current.Shutdown();
 
         private LoggedUser loggedUser;
-        private FakeData context;
+        private FakeData   context;
     }
 }
