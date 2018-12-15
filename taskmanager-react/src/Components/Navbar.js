@@ -1,29 +1,24 @@
 import React, { Component } from "react";
-import { Navbar, NavDropdown, MenuItem, NavItem, Nav } from "react-bootstrap";
+import { Navbar, NavItem, Nav } from "react-bootstrap";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class NavBar extends Component {
   render() {
     return (
-      <Navbar inverse collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#brand">Mini Jira</a>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav>
-            <NavItem eventKey={1} href="#">
-              Projekty
-            </NavItem>
-          </Nav>
-          <Nav pullRight>
-            <NavItem eventKey={1} href="#">
-              Wyloguj się
-            </NavItem>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+      <Router>
+        <Navbar inverse collapseOnSelect>
+          <Navbar.Collapse>
+            <Nav>
+              <Navbar.Brand>
+                <Link to="/projects">Projekty</Link>
+              </Navbar.Brand>
+            </Nav>
+            <Nav pullRight>
+              <Navbar.Brand>Wyloguj się</Navbar.Brand>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      </Router>
     );
   }
 }
