@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { ListGroupItem, Button, ButtonToolbar } from "react-bootstrap";
 import ProjectDetails from "./ProjectDetails";
+import { Link } from "react-router-dom";
 
 class Project extends Component {
   constructor(props) {
-    super(props); // needed in javascript constructors
+    super(props);
     this.state = {
       showDetails: false
     };

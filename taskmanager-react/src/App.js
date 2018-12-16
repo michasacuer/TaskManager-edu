@@ -6,7 +6,8 @@ import axios from "axios";
 
 class App extends Component {
   state = {
-    projects: []
+    projects: [],
+    showProjects: false
   };
 
   componentDidMount() {
@@ -16,12 +17,23 @@ class App extends Component {
     });
   }
 
+  toggleShowProjects = () => {
+    this.setState(prevState => ({
+      showProjects: !prevState.showProjects
+    }));
+  };
+
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar toggleProjects={this.toggleShowProjects} />
         <h1 className="App-header-text">Mini Jira</h1>
-        <ProjectsList projects={this.state.projects} />
+        {this.state.showProjects && (
+          <ProjectsList
+            showProjects={this.state.showProjects}
+            projects={this.state.projects}
+          />
+        )}
       </div>
     );
   }

@@ -3,7 +3,7 @@ import "../../Styles/Projects.css";
 
 class ProjectDetails extends Component {
   render() {
-    return <li>{this.props.project.name}</li>;
+    return <li className="text">{this.props.project.description}</li>;
   }
 }
 

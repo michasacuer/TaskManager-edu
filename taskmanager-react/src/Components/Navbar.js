@@ -7,10 +7,12 @@ class NavBar extends Component {
       <Navbar inverse collapseOnSelect>
         <Navbar.Collapse>
           <Navbar.Form>
-            <Navbar.Brand href="#">Projekty</Navbar.Brand>
-          </Navbar.Form>
-          <Navbar.Form>
-            <Navbar.Brand href="#">Użytkownicy</Navbar.Brand>
+            <Navbar.Brand onClick={this.props.toggleProjects}>
+              Projekty
+            </Navbar.Brand>
+            <Navbar.Form>
+              <Navbar.Brand href="#">Użytkownicy</Navbar.Brand>
+            </Navbar.Form>
           </Navbar.Form>
           <Navbar.Form pullRight>
             <Navbar.Brand>Wyloguj się</Navbar.Brand>
