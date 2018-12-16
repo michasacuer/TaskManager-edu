@@ -1,4 +1,4 @@
-.App {
+.App-header-text {
   text-align: center;
   color: white;
   font-family: headerFont;
@@ -8,5 +8,5 @@
 
 @font-face {
   font-family: headerFont;
-  src: url("./Styles/Fonts/trajanproregular.ttf");
+  src: url("./Fonts/trajanproregular.ttf");
 }

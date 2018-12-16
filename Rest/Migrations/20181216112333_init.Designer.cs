@@ -9,7 +9,7 @@ using Rest.Models;
 namespace Rest.Migrations
 {
     [DbContext(typeof(TaskManagerDbContext))]
-    [Migration("20181213190623_init")]
+    [Migration("20181216112333_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,8 @@ namespace Rest.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description");
 
                     b.Property<string>("Name");
 
