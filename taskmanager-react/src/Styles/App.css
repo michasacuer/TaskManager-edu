@@ -6,6 +6,10 @@
   margin-top: 50px;
 }
 
+.btn-toolbar {
+  display: flex;
+}
+
 @font-face {
   font-family: headerFont;
   src: url("./Fonts/trajanproregular.ttf");

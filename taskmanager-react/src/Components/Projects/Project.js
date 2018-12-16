@@ -1,10 +1,28 @@
 import React, { Component } from "react";
-import { ListGroupItem } from "react-bootstrap";
+import { ListGroupItem, Button, ButtonToolbar } from "react-bootstrap";
+import ProjectDetails from "./ProjectDetails";
 
 class Project extends Component {
+  constructor(props) {
+    super(props); // needed in javascript constructors
+    this.state = {
+      showDetails: false
+    };
+  }
   render() {
     return (
-      <ListGroupItem href="#link1">{this.props.project.name}</ListGroupItem>
+      <ButtonToolbar>
+        <ListGroupItem>{this.props.project.name}</ListGroupItem>
+        <Button
+          onClick={() => this.setState({ showDetails: true })}
+          bsStyle="primary"
+        >
+          Details
+        </Button>
+        {this.state.showDetails && (
+          <ProjectDetails project={this.props.project} />
+        )}
+      </ButtonToolbar>
     );
   }
 }

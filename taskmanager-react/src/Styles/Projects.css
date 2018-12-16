@@ -1,3 +1,7 @@
-.spread {
-  width: 500px;
+.text {
+  text-align: center;
+  color: white;
+  font-family: headerFont;
+  font-size: 50px;
+  margin-top: 50px;
 }
