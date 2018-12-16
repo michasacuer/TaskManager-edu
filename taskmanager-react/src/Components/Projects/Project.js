@@ -22,7 +22,9 @@ class Project extends Component {
   render() {
     return (
       <ButtonToolbar>
-        <ListGroupItem>{this.props.project.name}</ListGroupItem>
+        <ListGroupItem className="spread">
+          {this.props.project.name}
+        </ListGroupItem>
         <Button onClick={this.toggleShowProjects} bsStyle="primary">
           Details
         </Button>

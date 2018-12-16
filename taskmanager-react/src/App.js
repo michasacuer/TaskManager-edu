@@ -3,6 +3,7 @@ import Navbar from "./Components/Navbar";
 import "./Styles/App.css";
 import ProjectsList from "./Components/Projects/ProjectsList";
 import axios from "axios";
+import ProjectDetails from "./Components/Projects/ProjectDetails";
 
 class App extends Component {
   state = {
