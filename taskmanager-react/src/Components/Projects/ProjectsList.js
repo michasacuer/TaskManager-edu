@@ -21,7 +21,7 @@ class ProjectsList extends Component {
     return (
       <div className="centered">
         <Search projects={this.props.projects} />
-        <ListGroup>
+        <ListGroup a href="/projects">
           {this.state.projects.map(project => {
             return <Project project={project} key={project.id} />;
           })}

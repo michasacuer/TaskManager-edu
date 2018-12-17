@@ -1,4 +1,4 @@
-﻿namespace Rest.Models
+﻿namespace Rest.Enums
 {
     public enum Priority
     {
