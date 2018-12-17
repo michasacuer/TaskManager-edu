@@ -3,16 +3,13 @@ import { ListGroupItem, Button, ButtonToolbar } from "react-bootstrap";
 import UserDetails from "./UserDetails";
 import { Route, BrowserRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import ApiController from "../Helpers/ApiController";
 
 class User extends Component {
   deleteUser = () => {
-    axios
-      .delete(`https://localhost:44344/api/Users/${this.props.user.id}`)
-      .then(res => {
-        console.log(res);
-      });
-    window.location.reload();
+    ApiController.api(
+      `https://localhost:44344/api/Users/${this.props.user.id}`
+    ).delete();
   };
 
   render() {

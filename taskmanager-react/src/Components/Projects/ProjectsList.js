@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Project from "./Project";
-import { ListGroup } from "react-bootstrap";
+import { ListGroup, Button } from "react-bootstrap";
 import Search from "../Search";
 import "../../Styles/Projects.css";
-import axios from "axios";
+import ApiController from "../Helpers/ApiController";
 
 class ProjectsList extends Component {
   state = {
@@ -11,10 +11,12 @@ class ProjectsList extends Component {
   };
 
   componentDidMount() {
-    axios.get("https://localhost:44344/api/Projects").then(res => {
-      console.log(res);
-      this.setState({ projects: res.data });
-    });
+    ApiController.api("https://localhost:44344/api/Projects")
+      .getAll()
+      .then(res => {
+        console.log(res);
+        this.setState({ projects: res.data });
+      });
   }
 
   render() {
@@ -26,6 +28,9 @@ class ProjectsList extends Component {
             return <Project project={project} key={project.id} />;
           })}
         </ListGroup>
+        <Button className="succes-button" bsStyle="success">
+          Add new project
+        </Button>
       </div>
     );
   }

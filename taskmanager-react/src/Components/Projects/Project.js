@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import { ListGroupItem, Button, ButtonToolbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import ApiController from "../Helpers/ApiController";
 
 class Project extends Component {
   deleteProject = () => {
-    axios
-      .delete(`https://localhost:44344/api/Projects/${this.props.project.id}`)
-      .then(res => {
-        console.log(res);
-      });
-    window.location.reload();
+    ApiController.api(
+      `https://localhost:44344/api/Projects/${this.props.project.id}`
+    ).delete();
   };
 
   render() {
