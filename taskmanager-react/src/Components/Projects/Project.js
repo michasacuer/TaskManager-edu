@@ -1,22 +1,16 @@
 import React, { Component } from "react";
 import { ListGroupItem, Button, ButtonToolbar } from "react-bootstrap";
-import ProjectDetails from "./ProjectDetails";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 class Project extends Component {
-  state = {
-    showDetails: false
-  };
-  constructor(props) {
-    super(props);
-    this.state = {
-      showDetails: false
-    };
-  }
-
-  toggleShowProjects = () => {
-    this.setState(prevState => ({
-      showDetails: !prevState.showDetails
-    }));
+  deleteProject = () => {
+    axios
+      .delete(`https://localhost:44344/api/Projects/${this.props.project.id}`)
+      .then(res => {
+        console.log(res);
+      });
+    window.location.reload();
   };
 
   render() {
@@ -25,12 +19,14 @@ class Project extends Component {
         <ListGroupItem className="spread">
           {this.props.project.name}
         </ListGroupItem>
-        <Button onClick={this.toggleShowProjects} bsStyle="primary">
-          Details
-        </Button>
-        {this.state.showDetails && (
-          <ProjectDetails project={this.props.project} />
-        )}
+        <Link to={`/projects/${this.props.project.id}`}>
+          <Button bsStyle="primary">Details</Button>
+        </Link>
+        <Link to={"/projects"}>
+          <Button onClick={this.deleteProject} bsStyle="danger">
+            Delete
+          </Button>
+        </Link>
       </ButtonToolbar>
     );
   }

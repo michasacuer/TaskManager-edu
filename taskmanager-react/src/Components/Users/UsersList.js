@@ -20,7 +20,7 @@ class UsersList extends Component {
   render() {
     return (
       <div className="centered">
-        <Search users={this.props.users} />
+        {/* <Search users={this.props.users} /> */}
         <ListGroup a href="/users">
           {this.state.users.map(user => {
             return <User user={user} key={user.id} />;

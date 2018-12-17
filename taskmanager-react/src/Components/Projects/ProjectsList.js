@@ -20,7 +20,7 @@ class ProjectsList extends Component {
   render() {
     return (
       <div className="centered">
-        <Search projects={this.props.projects} />
+        {/* <Search projects={this.props.projects} /> */}
         <ListGroup a href="/projects">
           {this.state.projects.map(project => {
             return <Project project={project} key={project.id} />;
