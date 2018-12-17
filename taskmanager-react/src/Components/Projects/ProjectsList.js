@@ -4,6 +4,7 @@ import { ListGroup, Button } from "react-bootstrap";
 import Search from "../Search";
 import "../../Styles/Projects.css";
 import ApiController from "../Helpers/ApiController";
+import { Link } from "react-router-dom";
 
 class ProjectsList extends Component {
   state = {
@@ -27,9 +28,11 @@ class ProjectsList extends Component {
             return <Project project={project} key={project.id} />;
           })}
         </ListGroup>
-        <Button className="succes-button" bsStyle="success">
-          Add new project
-        </Button>
+        <Link to="add/project/">
+          <Button className="succes-button" bsStyle="success">
+            Add new project
+          </Button>
+        </Link>
       </div>
     );
   }
