@@ -11,10 +11,9 @@ class ProjectsList extends Component {
   };
 
   componentDidMount() {
-    ApiController.api("https://localhost:44344/api/Projects")
+    ApiController.api("projects")
       .getAll()
       .then(res => {
-        console.log(res);
         this.setState({ projects: res.data });
       });
   }
