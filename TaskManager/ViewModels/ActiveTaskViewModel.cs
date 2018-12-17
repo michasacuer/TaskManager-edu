@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using TaskManager.Models;
 using System.Diagnostics;
+using System;
 
 namespace TaskManager.ViewModels
 {
@@ -18,7 +19,7 @@ namespace TaskManager.ViewModels
             activeTask = task;
             ActiveTaskTextBlock = $"{task.TaskName}, Priorytet: {task.Priority}";
             DescriptionTextBlock = task.Description;
-            TimerActiveTaskTextBlock = stopwatch.Elapsed.ToString();
+            TimerActiveTaskTextBlock = DateTime.Now.ToString();
             NotifyOfPropertyChange(() => TimerActiveTaskTextBlock);
         }
 
