@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rest.Models;
 
-namespace Rest.Migrations
+namespace TaskManagerWebapi.Migrations
 {
     [DbContext(typeof(TaskManagerDbContext))]
     partial class TaskManagerDbContextModelSnapshot : ModelSnapshot
@@ -52,6 +52,26 @@ namespace Rest.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("Tasks");
+                });
+
+            modelBuilder.Entity("Rest.Models.User", b =>
+                {
+                    b.Property<string>("Login")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("Password");
+
+                    b.Property<int>("Position");
+
+                    b.HasKey("Login");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Rest.Models.Task", b =>
