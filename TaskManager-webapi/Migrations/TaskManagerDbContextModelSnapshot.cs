@@ -56,8 +56,9 @@ namespace TaskManagerWebapi.Migrations
 
             modelBuilder.Entity("Rest.Models.User", b =>
                 {
-                    b.Property<string>("Login")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email");
 
@@ -65,11 +66,13 @@ namespace TaskManagerWebapi.Migrations
 
                     b.Property<string>("LastName");
 
+                    b.Property<string>("Login");
+
                     b.Property<string>("Password");
 
                     b.Property<int>("Position");
 
-                    b.HasKey("Login");
+                    b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
