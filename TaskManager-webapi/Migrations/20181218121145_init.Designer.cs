@@ -9,7 +9,7 @@ using Rest.Models;
 namespace TaskManagerWebapi.Migrations
 {
     [DbContext(typeof(TaskManagerDbContext))]
-    [Migration("20181217102634_init")]
+    [Migration("20181218121145_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
