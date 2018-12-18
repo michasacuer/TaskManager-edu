@@ -6,11 +6,15 @@ class NavBar extends Component {
   render() {
     return (
       <div>
-        <Navbar inverse collapseOnSelect>
+        <Navbar className="Navbar-height" inverse collapseOnSelect>
+        <Navbar.Header>
+        <Navbar.Brand>
           <a href="/" h1 className="Navbar-header-text">
             miniJira
           </a>
           <p />
+          </Navbar.Brand>
+          </Navbar.Header>
           <Navbar.Header>
             <Navbar.Brand>
               <a href="/projects">Projekty</a>

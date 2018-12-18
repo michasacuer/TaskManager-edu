@@ -12,7 +12,7 @@ class ProjectsList extends Component {
   };
 
   componentDidMount() {
-    ApiController.api("projects")
+    ApiController.api("Projects")
       .getAll()
       .then(res => {
         this.setState({ projects: res.data });

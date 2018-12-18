@@ -11,7 +11,7 @@ class UsersList extends Component {
   };
 
   componentDidMount() {
-    ApiController.api("users")
+    ApiController.api("Users")
       .getAll()
       .then(res => {
         console.log(res);

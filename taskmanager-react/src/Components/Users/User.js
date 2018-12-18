@@ -6,7 +6,8 @@ import ApiController from "../Helpers/ApiController";
 
 class User extends Component {
   deleteUser = () => {
-    ApiController.api("users").delete(this.props.user.id);
+    ApiController.api("Users").delete(this.props.user.id);
+    window.location.reload();
   };
 
   render() {

@@ -5,7 +5,8 @@ import ApiController from "../Helpers/ApiController";
 
 class Project extends Component {
   deleteProject = () => {
-    ApiController.api("projects").delete(this.props.project.id);
+    ApiController.api("Projects").delete(this.props.project.id);
+    window.location.reload();
   };
 
   render() {

@@ -2,22 +2,15 @@ import axios from "axios";
 
 export default {
   api(url) {
+    const localUrl = "https://localhost:44344/api";
     return {
-      getAll: () =>
-        url == "projects"
-          ? axios.get("https://localhost:44344/api/Projects")
-          : axios.get("https://localhost:44344/api/Users"),
-      delete: id => {
-        url == "projects"
-          ? axios.delete(`https://localhost:44344/api/Projects/${id}`)
-          : axios.delete(`https://localhost:44344/api/Users/${id}`);
-        window.location.reload();
-      },
-      post: data => {
-        url == "projects"
-          ? axios.post("https://localhost:44344/api/Projects", data)
-          : axios.post("https://localhost:44344/api/Users", data);
-      }
+      getAll: () => axios.get(`${localUrl}/${url}`),
+
+      delete: id => axios.delete(`${localUrl}/${url}/${id}`),
+
+      post: data => axios.post(`${localUrl}/${url}`, data),
+
+      getOne: id => axios.get(`${localUrl}/${url}/${id}`)
     };
   }
 };
