@@ -14,7 +14,6 @@ class UsersList extends Component {
     ApiController.api("Users")
       .getAll()
       .then(res => {
-        console.log(res);
         this.setState({ users: res.data });
       });
   }
