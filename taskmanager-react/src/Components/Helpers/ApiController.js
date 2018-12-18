@@ -7,9 +7,14 @@ export default {
       getAll: () => axios.get(`${localUrl}/${url}`),
       delete: id => axios.delete(`${localUrl}/${url}/${id}`),
       post: data =>
-        axios.post(`${localUrl}/${url}`, data).catch(function(error) {
-          window.alert("Błąd serwera! Taki projekt już istnieje w bazie!");
-        }),
+        axios
+          .post(`${localUrl}/${url}`, data)
+          .then(function(response) {
+            window.alert("Pomyślnie dodano obiekt do bazy");
+          })
+          .catch(function(error) {
+            window.alert("Błąd serwera! Taki obiekt już istnieje w bazie!");
+          }),
       getOne: id => axios.get(`${localUrl}/${url}/${id}`)
     };
   }

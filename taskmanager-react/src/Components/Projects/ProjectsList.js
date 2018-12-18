@@ -31,7 +31,7 @@ class ProjectsList extends Component {
         </ListGroup>
         <Link to="add/project/">
           <Button className="succes-button" bsStyle="success">
-            Add new project
+            Dodaj nowy projekt
           </Button>
         </Link>
       </div>

@@ -16,11 +16,11 @@ class Project extends Component {
           {this.props.project.name}
         </ListGroupItem>
         <Link to={`/projects/${this.props.project.id}`}>
-          <Button bsStyle="primary">Details</Button>
+          <Button bsStyle="primary">Szczegóły</Button>
         </Link>
         <Link to={"/projects"}>
           <Button onClick={this.deleteProject} bsStyle="danger">
-            Delete
+            Usuń
           </Button>
         </Link>
       </ButtonToolbar>

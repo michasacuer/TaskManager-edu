@@ -17,11 +17,11 @@ class User extends Component {
           {this.props.user.login}
         </ListGroupItem>
         <Link to={`/users/${this.props.user.id}`}>
-          <Button bsStyle="primary">Details</Button>
+          <Button bsStyle="primary">Szczegóły</Button>
         </Link>
         <Link to={"/users"}>
           <Button onClick={this.deleteUser} bsStyle="danger">
-            Delete
+            Usuń
           </Button>
         </Link>
       </ButtonToolbar>

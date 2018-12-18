@@ -4,15 +4,13 @@ import {
   Col,
   FormGroup,
   FormControl,
-  ControlLabel,
-  HelpBlock,
-  Alert
+  ControlLabel
 } from "react-bootstrap";
 import React, { Component } from "react";
 import "../../Styles/Forms.css";
 import ApiController from "../Helpers/ApiController";
 
-class AddProject extends React.Component {
+class AddProject extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -56,18 +54,17 @@ class AddProject extends React.Component {
           <FormControl
             type="text"
             name={this.state.name}
-            placeholder="Enter text"
+            placeholder="Podaj nazwe projektu"
             onChange={this.handleChangeName.bind(this)}
           />
           <FormControl.Feedback />
-          <HelpBlock>Nazwa nie może być krótsza niż 3 znaki!</HelpBlock>
         </FormGroup>
         <FormGroup controlId="formBasicText">
           <ControlLabel>Opis</ControlLabel>
           <FormControl
             type="text"
             description={this.state.description}
-            placeholder="Enter text"
+            placeholder="Podaj opis projektu"
             onChange={this.handleChangeDesc.bind(this)}
           />
         </FormGroup>

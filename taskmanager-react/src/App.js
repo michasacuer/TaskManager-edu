@@ -7,6 +7,7 @@ import { Route, BrowserRouter } from "react-router-dom";
 import ProjectDetails from "./Components/Projects/ProjectDetails";
 import UserDetails from "./Components/Users/UserDetails";
 import AddProject from "./Components/Forms/AddProject";
+import AddUser from "./Components/Forms/AddUser";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route exact path="/projects/:id" component={ProjectDetails} />
             <Route exact path="/users" component={UsersList} />
             <Route exact path="/users/:id" component={UserDetails} />
+            <Route exact path="/add/user" component={AddUser} />
             <Route exact path="/add/project" component={AddProject} />
           </div>
         </BrowserRouter>
