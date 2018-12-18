@@ -4,11 +4,6 @@ import { Link } from "react-router-dom";
 import ApiController from "../Helpers/ApiController";
 
 class Project extends Component {
-  deleteProject = () => {
-    ApiController.api("Projects").delete(this.props.project.id);
-    window.location.reload();
-  };
-
   render() {
     return (
       <ButtonToolbar>
@@ -16,11 +11,14 @@ class Project extends Component {
           {this.props.project.name}
         </ListGroupItem>
         <Link to={`/projects/${this.props.project.id}`}>
-          <Button bsStyle="primary">Szczegóły</Button>
+          <Button bsStyle="primary">Details</Button>
         </Link>
         <Link to={"/projects"}>
-          <Button onClick={this.deleteProject} bsStyle="danger">
-            Usuń
+          <Button
+            onClick={() => this.props.deleteItem(this.props.project)}
+            bsStyle="danger"
+          >
+            Delete
           </Button>
         </Link>
       </ButtonToolbar>

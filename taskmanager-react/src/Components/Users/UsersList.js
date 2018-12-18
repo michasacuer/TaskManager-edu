@@ -1,13 +1,16 @@
 import React, { Component } from "react";
-import User from "./User";
 import { ListGroup, Button } from "react-bootstrap";
 import Search from "../Search";
 import "../../Styles/Projects.css";
 import ApiController from "../Helpers/ApiController";
-import { Link } from "react-router-dom";
+import AddButton from "../Helpers/AddButton";
+import Item from "../Helpers/Item";
 
 class UsersList extends Component {
   state = {
+    buttonTitle: "Stwórz nowego użytkownika",
+    link: "/add/user",
+    listOf: "users",
     users: []
   };
 
@@ -19,20 +22,32 @@ class UsersList extends Component {
       });
   }
 
+  deleteUser = user => {
+    ApiController.api(this.state.listOf).delete(user.id);
+    window.location.reload();
+  };
+
   render() {
     return (
       <div className="centered">
         {/* <Search users={this.props.users} /> */}
         <ListGroup a href="/users">
           {this.state.users.map(user => {
-            return <User user={user} key={user.id} />;
+            return (
+              <Item
+                item={user}
+                name={user.login}
+                items={this.state.listOf}
+                key={user.id}
+                deleteItem={this.deleteUser}
+              />
+            );
           })}
         </ListGroup>
-        <Link to="add/user/">
-          <Button className="succes-button" bsStyle="success">
-            Dodaj nowego użytkownika
-          </Button>
-        </Link>
+        <AddButton
+          buttonTitle={this.state.buttonTitle}
+          link={this.state.link}
+        />
       </div>
     );
   }

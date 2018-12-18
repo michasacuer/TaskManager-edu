@@ -38,7 +38,7 @@ class AddProject extends Component {
       window.alert("Adres email jest niepoprawny!");
       return;
     }
-    if (this.state.position === -1) {
+    if (this.state.emailposition === -1) {
       window.alert("Zaznacz pozycję pracownika!");
       return;
     }
