@@ -36,8 +36,7 @@ namespace TaskManager_Webapi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var project = await _context.Projects.FindAsync(id);
-            
+            var project = await System.Threading.Tasks.Task.Run(() => _context.Projects.Where(p => p.Id == id).Include(t => t.Tasks));            
 
             if (project == null)
             {
@@ -91,8 +90,6 @@ namespace TaskManager_Webapi.Controllers
                 return BadRequest(ModelState);
             }
 
-            
-
             _context.Projects.Add(project);
             await _context.SaveChangesAsync();
 
@@ -109,6 +106,7 @@ namespace TaskManager_Webapi.Controllers
             }
 
             var project = await _context.Projects.FindAsync(id);
+            
             if (project == null)
             {
                 return NotFound();

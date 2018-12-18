@@ -3,15 +3,17 @@ import "../../Styles/Projects.css";
 import ApiController from "../Helpers/ApiController";
 
 class UserDetails extends Component {
-  state ={
+  state = {
     user: []
   };
 
   componentDidMount() {
-    ApiController.api("Users").getOne(this.props.match.params.id).then(res =>{
-      console.log(res);
-      this.setState({user: res.data});
-    });
+    ApiController.api("Users")
+      .getOne(this.props.match.params.id)
+      .then(res => {
+        console.log(res);
+        this.setState({ user: res.data });
+      });
   }
 
   render() {
