@@ -25,20 +25,19 @@ class ProjectDetails extends Component {
       <div className="spread-panel centered">
         {console.log(this.state)}
         {console.log(this.state.project)}
-        {console.log(this.state.project.tasks)}
+        {console.log(this.state.project[0].tasks)}
         <BasePanel item={this.state.project} />
         <ListGroup>
-          {this.state.project.tasks.map(tasks => {
-            return (
-              <Item
-              // item={project}
-              // name={project.name}
-              // items={this.state.listOf}
-              // key={project.id}
-              // deleteItem={this.deleteProject}
-              />
-            );
-          })}
+          {/* {this.state.project.tasks.map(tasks => {
+            return ( */}
+          <Item
+          // item={project}
+          // name={project.name}
+          // items={this.state.listOf}
+          // key={project.id}
+          // deleteItem={this.deleteProject}
+          />
+          ); })}
         </ListGroup>
       </div>
     );
