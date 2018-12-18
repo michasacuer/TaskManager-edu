@@ -9,6 +9,7 @@
 }
 
 .succes-button {
-  width: 413px;
+  position: fixed;
+  width: 287px;
   height: 35px;
 }

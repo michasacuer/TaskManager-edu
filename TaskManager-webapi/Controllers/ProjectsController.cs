@@ -24,7 +24,7 @@ namespace TaskManager_Webapi.Controllers
         [HttpGet]
         public IEnumerable<Project> GetProjects()
         {
-            return _context.Projects.Include(t => t.Tasks);
+            return _context.Projects.Include(p => p.Tasks).ToList();
         }
 
         // GET: api/Projects/5
@@ -37,6 +37,7 @@ namespace TaskManager_Webapi.Controllers
             }
 
             var project = await _context.Projects.FindAsync(id);
+            
 
             if (project == null)
             {
@@ -85,10 +86,12 @@ namespace TaskManager_Webapi.Controllers
         [HttpPost]
         public async Task<IActionResult> PostProject([FromBody] Project project)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || _context.Projects.Any(p => p.Name == project.Name))
             {
                 return BadRequest(ModelState);
             }
+
+            
 
             _context.Projects.Add(project);
             await _context.SaveChangesAsync();

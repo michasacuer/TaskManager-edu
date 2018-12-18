@@ -26,7 +26,9 @@ namespace Rest
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(
+                options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+        );
             services.AddDbContext<TaskManagerDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddCors();
         }
@@ -40,8 +42,10 @@ namespace Rest
             }
 
             app.UseCors(builder =>
-             builder.WithOrigins("http://localhost:3000")
-             .AllowAnyMethod());
+             builder
+             .AllowAnyMethod()
+             .AllowAnyHeader()
+             .AllowAnyOrigin());
             app.UseHttpsRedirection();
             app.UseMvc();
         }

@@ -15,6 +15,7 @@ class ProjectsList extends Component {
     ApiController.api("Projects")
       .getAll()
       .then(res => {
+        console.log(res);
         this.setState({ projects: res.data });
       });
   }
