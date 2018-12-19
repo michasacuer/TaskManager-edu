@@ -84,7 +84,7 @@ class AddProject extends Component {
 
   render() {
     return (
-      <form className="text-user">
+      <form className="text" horizontal="true">
         <FormGroup
           controlId="formBasicLogin"
           validationState={this.getValidationStateLogin()}
@@ -107,7 +107,7 @@ class AddProject extends Component {
             onChange={this.handleChangePass.bind(this)}
           />
         </FormGroup>
-        <FormGroup controlId="formBasicfirstname">
+        <FormGroup controlId="formBasicfirstName">
           <ControlLabel>Imię</ControlLabel>
           <FormControl
             type="text"

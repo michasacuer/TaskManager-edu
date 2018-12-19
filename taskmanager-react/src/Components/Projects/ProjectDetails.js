@@ -7,15 +7,12 @@ import Item from "../Helpers/Item";
 
 class ProjectDetails extends Component {
   state = {
-    project: {
-      tasks: [],
-    }
+    project: []
   };
   componentDidMount() {
     ApiController.api("Projects")
       .getOne(this.props.match.params.id)
       .then(res => {
-        console.log(res);
         this.setState({ project: res.data });
       });
   }
@@ -23,23 +20,21 @@ class ProjectDetails extends Component {
   render() {
     return (
       <div className="spread-panel centered">
-        {/* {console.log(this.state)}
         {console.log(this.state.project)}
-        {console.log(this.state.project.tasks)} */}
         <BasePanel item={this.state.project} />
-        {/* <ListGroup>
-          {this.state.project.map(tasks => {
+        <ListGroup>
+          {/* {this.state.project.map(project => {
             return (
               <Item
-              // item={project}
-              // name={project.name}
-              // items={this.state.listOf}
-              // key={project.id}
-              // deleteItem={this.deleteProject}
+                item={project}
+                name={project.name}
+                items={this.state.listOf}
+                key={project.id}
+                deleteItem={this.deleteProject}
               />
             );
-          })}
-        </ListGroup> */}
+          })} */}
+        </ListGroup>
       </div>
     );
   }
