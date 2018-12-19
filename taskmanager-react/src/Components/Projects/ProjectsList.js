@@ -33,7 +33,7 @@ class ProjectsList extends Component {
     return (
       <div className="centered">
         {/* <Search projects={this.props.projects} /> */}
-        <ListGroup a href="/projects">
+        <ListGroup a="true" href="/projects">
           {this.state.projects.map(project => {
             return (
               <Item

@@ -8,7 +8,7 @@ const navbar = props => {
       <Navbar className="Navbar-height" inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="/" h1 className="Navbar-header-text">
+            <a href="/" h1="true" className="Navbar-header-text">
               miniJira
             </a>
             <p />
