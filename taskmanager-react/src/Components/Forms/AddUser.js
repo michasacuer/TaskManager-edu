@@ -18,8 +18,8 @@ class AddProject extends Component {
     this.state = {
       login: "",
       password: "",
-      firstName: "",
-      lastName: "",
+      firstname: "",
+      lastname: "",
       email: "",
       position: -1
     };
@@ -43,10 +43,10 @@ class AddProject extends Component {
       return;
     }
     this.setState({
-      firstName: Validator.check(this.state.firstName).firstLetterCapital()
+      firstname: Validator.check(this.state.firstname).firstLetterCapital()
     });
     this.setState({
-      lastName: Validator.check(this.state.lastName).firstLetterCapital()
+      lastname: Validator.check(this.state.lastname).firstLetterCapital()
     });
     ApiController.api("Users").post(this.state);
   }
@@ -67,11 +67,11 @@ class AddProject extends Component {
   }
 
   handleChangefirstName(e) {
-    this.setState({ firstName: e.target.value });
+    this.setState({ firstname: e.target.value });
   }
 
   handleChangelastName(e) {
-    this.setState({ lastName: e.target.value });
+    this.setState({ lastname: e.target.value });
   }
 
   handleChangeEmail(e) {
@@ -84,7 +84,7 @@ class AddProject extends Component {
 
   render() {
     return (
-      <form className="text" horizontal>
+      <form className="text-user">
         <FormGroup
           controlId="formBasicLogin"
           validationState={this.getValidationStateLogin()}
@@ -107,21 +107,21 @@ class AddProject extends Component {
             onChange={this.handleChangePass.bind(this)}
           />
         </FormGroup>
-        <FormGroup controlId="formBasicfirstName">
+        <FormGroup controlId="formBasicfirstname">
           <ControlLabel>Imię</ControlLabel>
           <FormControl
             type="text"
-            firstName={this.state.firstName}
+            firstname={this.state.firstname}
             placeholder="Podaj Imię"
             onChange={this.handleChangefirstName.bind(this)}
           />
           <FormControl.Feedback />
         </FormGroup>
-        <FormGroup controlId="formBasiclastName">
+        <FormGroup controlId="formBasiclastname">
           <ControlLabel>Nazwisko</ControlLabel>
           <FormControl
             type="text"
-            lastName={this.state.lastName}
+            lastname={this.state.lastname}
             placeholder="Podaj nazwisko"
             onChange={this.handleChangelastName.bind(this)}
           />

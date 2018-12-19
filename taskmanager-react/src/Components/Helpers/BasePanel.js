@@ -8,6 +8,7 @@ class BasePanel extends Component {
         <Panel bsStyle="primary">
           <Panel.Heading>
             <Panel.Title componentClass="h3">
+          {console.log(this.props.item)}
               {this.props.item.name}
             </Panel.Title>
           </Panel.Heading>

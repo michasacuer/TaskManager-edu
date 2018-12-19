@@ -9,10 +9,10 @@ class NavBar extends Component {
         <Navbar className="Navbar-height" inverse collapseOnSelect>
         <Navbar.Header>
         <Navbar.Brand>
-          <a href="/" h1 className="Navbar-header-text">
+          {/* <a href="/" h1 className="Navbar-header-text">
             miniJira
           </a>
-          <p />
+          <p /> */}
           </Navbar.Brand>
           </Navbar.Header>
           <Navbar.Header>

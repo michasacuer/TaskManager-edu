@@ -8,7 +8,7 @@ import Item from "../Helpers/Item";
 class ProjectDetails extends Component {
   state = {
     project: {
-      tasks: []
+      tasks: [],
     }
   };
   componentDidMount() {
@@ -23,12 +23,12 @@ class ProjectDetails extends Component {
   render() {
     return (
       <div className="spread-panel centered">
-        {console.log(this.state)}
+        {/* {console.log(this.state)}
         {console.log(this.state.project)}
-        {console.log(this.state.project.tasks)}
+        {console.log(this.state.project.tasks)} */}
         <BasePanel item={this.state.project} />
-        <ListGroup>
-          {this.state.project.tasks.map(tasks => {
+        {/* <ListGroup>
+          {this.state.project.map(tasks => {
             return (
               <Item
               // item={project}
@@ -39,7 +39,7 @@ class ProjectDetails extends Component {
               />
             );
           })}
-        </ListGroup>
+        </ListGroup> */}
       </div>
     );
   }

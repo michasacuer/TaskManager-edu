@@ -45,7 +45,7 @@ class AddProject extends Component {
 
   render() {
     return (
-      <form className="text" horizontal>
+      <form className="text">
         <FormGroup
           controlId="formBasicText"
           validationState={this.getValidationState()}

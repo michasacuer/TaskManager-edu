@@ -17,3 +17,13 @@
 .radio {
   position: fixed;
 }
+
+.text-user{
+  color: white;
+  width: 500px;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
