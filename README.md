@@ -11,11 +11,11 @@ User's credentials for login into WPF app in **TaskManager-WPF.TaskManager.Model
 - Improvement on React app
 
 # Registration
-![My image](https://github.com/michasacuer/TaskManager-edu/blob/master/TaskManager-wpf/photos/3.PNG) <br /> <br />
-
+![My image](https://github.com/michasacuer/TaskManager-edu/blob/master/TaskManager-wpf/photos/3.PNG)
 # Login in
-![My image](https://github.com/michasacuer/TaskManager-edu/blob/master/TaskManager-wpf/photos/1.PNG) ![My image](https://github.com/michasacuer/TaskManager-edu/blob/master/TaskManager-wpf/photos/4.PNG) ![My image](https://github.com/michasacuer/TaskManager-edu/blob/master/TaskManager-wpf/photos/2.PNG) <br /> <br />
-
-
+![My image](https://github.com/michasacuer/TaskManager-edu/blob/master/TaskManager-wpf/photos/1.PNG) ![My image](https://github.com/michasacuer/TaskManager-edu/blob/master/TaskManager-wpf/photos/4.PNG) ![My image](https://github.com/michasacuer/TaskManager-edu/blob/master/TaskManager-wpf/photos/2.PNG)
+# Views
+![My image](https://github.com/michasacuer/TaskManager-edu/blob/master/TaskManager-wpf/photos/5.PNG) ![My image](https://github.com/michasacuer/TaskManager-edu/blob/master/TaskManager-wpf/photos/6.PNG) <br /> <br />
+![My image](https://github.com/michasacuer/TaskManager-edu/blob/master/TaskManager-wpf/photos/7.PNG) ![My image](https://github.com/michasacuer/TaskManager-edu/blob/master/TaskManager-wpf/photos/8.PNG) ![My image](https://github.com/michasacuer/TaskManager-edu/blob/master/TaskManager-wpf/photos/9.PNG)
 
 
