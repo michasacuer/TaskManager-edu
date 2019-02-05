@@ -1,7 +1,7 @@
 # Task Manager app
 
 
-App made for educational purposes. For now, there is only view. Business logic - work in progress.
+Work in progress.
 
 
 
