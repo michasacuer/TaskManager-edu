@@ -158,11 +158,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="1.PNG" />
-    <Resource Include="2.PNG" />
-    <Resource Include="3.PNG" />
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="Views\ActiveTaskView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
