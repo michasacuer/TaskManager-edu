@@ -6,12 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TaskManager.ViewModels;
+
 namespace TaskManager
 {
     class Bootstrapper : BootstrapperBase
     {
         public Bootstrapper()
         {
+            //test
             Initialize();
         }
 
