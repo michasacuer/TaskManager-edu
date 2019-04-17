@@ -1,14 +1,14 @@
-﻿using System;
-using TaskManager.Enums;
-using TaskManager.Models;
-
-namespace TaskManager.Services
+﻿namespace TaskManager.Services
 {
-    static public class NewTask
+    using System;
+    using TaskManager.Enums;
+    using TaskManager.Models;
+
+    public static class NewTask
     {
         public static Priority SetPriority(bool isLow, bool isMedium, bool isHigh) =>
-            isLow ? Priority.Low : 
-            isMedium ? Priority.Medium : 
+            isLow ? Priority.Low :
+            isMedium ? Priority.Medium :
             isHigh ? Priority.High : throw new ArgumentNullException();
 
         public static bool ProjectSelected(string projectName) => projectName != null;

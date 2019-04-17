@@ -1,13 +1,13 @@
-﻿using TaskManager.Enums;
-using TaskManager.Models;
-
-namespace TaskManager.Services
+﻿namespace TaskManager.Services
 {
-    static public class Registration
+    using TaskManager.Enums;
+    using TaskManager.Models;
+
+    public static class Registration
     {
         public static Position SetJob(bool isManager, bool isDeveloper, bool isViewer) => 
-            isManager ? Position.Manager : 
-            isDeveloper ? Position.Developer : 
+            isManager ? Position.Manager :
+            isDeveloper ? Position.Developer :
             isViewer ? Position.Viewer : throw new System.ArgumentNullException();
 
 
@@ -22,31 +22,26 @@ namespace TaskManager.Services
                 isUserOk = false;
                 alert = "Wypełnij wszystkie wymagane pola!";
             }
-
             else if (Validation.IsStringHaveSpaces(userToCheck.Login))
             {
                 isUserOk = false;
                 alert = "Niedozwolone znaki w polu Login!";
             }
-
             else if (Validation.IsLoginExist(userToCheck.Login, context))
             {
                 isUserOk = false;
                 alert = "Podany login jest już w bazie!";
             }
-
             else if (!Validation.IsEmailValid(userToCheck.Email))
             {
                 isUserOk = false;
                 alert = "Błędny adres email!";
             }
-
             else if (Validation.IsEmailExist(userToCheck.Email, context))
             {
                 isUserOk = false;
                 alert = "Podany Email jest już w bazie!";
             }
-
             else if (Validation.IsStringHaveSpaces(userToCheck.LastName))
             {
                 isUserOk = false;
