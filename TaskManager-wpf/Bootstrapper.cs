@@ -17,6 +17,7 @@ namespace TaskManager
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
+            //test
             DisplayRootViewFor<MainWindowViewModel>();
         }
     }
