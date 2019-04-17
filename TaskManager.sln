@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager-WPF", "TaskManager-wpf\TaskManager-WPF.csproj", "{81D9A849-B02C-4556-B111-174143361597}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager-Webapi", "TaskManager-webapi\TaskManager-Webapi.csproj", "{AFBA63B9-B675-4A09-9542-DDFFB9EC37F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager-Models", "TaskManager-Models\TaskManager-Models.csproj", "{B2AEF5CD-0E36-4C2F-8DE4-4C1AA2E93615}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{81D9A849-B02C-4556-B111-174143361597}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81D9A849-B02C-4556-B111-174143361597}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81D9A849-B02C-4556-B111-174143361597}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AFBA63B9-B675-4A09-9542-DDFFB9EC37F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AFBA63B9-B675-4A09-9542-DDFFB9EC37F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AFBA63B9-B675-4A09-9542-DDFFB9EC37F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AFBA63B9-B675-4A09-9542-DDFFB9EC37F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2AEF5CD-0E36-4C2F-8DE4-4C1AA2E93615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2AEF5CD-0E36-4C2F-8DE4-4C1AA2E93615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2AEF5CD-0E36-4C2F-8DE4-4C1AA2E93615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2AEF5CD-0E36-4C2F-8DE4-4C1AA2E93615}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
