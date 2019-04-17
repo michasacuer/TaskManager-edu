@@ -3,15 +3,20 @@ using TaskManager.Models;
 
 namespace TaskManager.ViewModels
 {
-    class MainWindowViewModel : Conductor<IScreen>.Collection.OneActive
+    internal class MainWindowViewModel : Conductor<IScreen>.Collection.OneActive
     {
-        protected override void OnViewLoaded(object view) => Show.LoginBox(context, loggedUser);
-        public void LoadUserInfoPage()      => ActivateItem(new UserInfoViewModel(context, loggedUser));
-        public void LoadTaskManagerPage()   => ActivateItem(new TaskManagerViewModel(context, loggedUser));
-        public void LoadNotificationsPage() => ActivateItem(new NotificationsViewModel(context));
-        public void LoadAddNewTaskPage()    => ActivateItem(new AddNewTaskViewModel(context, loggedUser));
-                        
+        protected override void OnViewLoaded(object view) => Show.LoginBox(this.context, this.loggedUser);
+
+        public void LoadUserInfoPage() => this.ActivateItem(new UserInfoViewModel(this.context, this.loggedUser));
+
+        public void LoadTaskManagerPage() => this.ActivateItem(new TaskManagerViewModel(this.context, this.loggedUser));
+
+        public void LoadNotificationsPage() => this.ActivateItem(new NotificationsViewModel(this.context));
+
+        public void LoadAddNewTaskPage() => this.ActivateItem(new AddNewTaskViewModel(this.context, this.loggedUser));
+
         private readonly LoggedUser loggedUser = new LoggedUser();
-        private readonly FakeData context      = new FakeData();
+
+        private readonly FakeData context = new FakeData();
     }
 }

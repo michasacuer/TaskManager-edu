@@ -1,11 +1,13 @@
-﻿using Caliburn.Micro;
-
-namespace TaskManager.ViewModels 
+﻿namespace TaskManager.ViewModels 
 {
-    class SuccesBoxViewModel : Screen
+    using Caliburn.Micro;
+
+    internal class SuccesBoxViewModel : Screen
     {
         public string SuccesTextBox { get; set; }
-        public SuccesBoxViewModel(string alert) => SuccesTextBox = alert;
-        public void OkButton() => TryClose();
+
+        public SuccesBoxViewModel(string alert) => this.SuccesTextBox = alert;
+
+        public void OkButton() => this.TryClose();
     }
 }

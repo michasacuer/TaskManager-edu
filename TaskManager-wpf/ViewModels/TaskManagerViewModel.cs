@@ -1,32 +1,38 @@
-﻿using System;
-using Caliburn.Micro;
-using TaskManager.Models;
-using System.Collections.Generic;
-
-namespace TaskManager.ViewModels
+﻿namespace TaskManager.ViewModels
 {
-    class TaskManagerViewModel : Screen
+    using System;
+    using System.Collections.Generic;
+    using Caliburn.Micro;
+    using TaskManager.Models;
+
+    internal class TaskManagerViewModel : Screen
     {
         public BindableCollection<string> ProjectsList { get; set; }
-        public BindableCollection<string> TasksList    { get; set; }
-        public string SelectedTasksList                { get; set; }
+
+        public BindableCollection<string> TasksList { get; set; }
+
+        public string SelectedTasksList { get; set; }
+
         public string SelectedProjectsList
         {
-            get => selectedProjectList; 
+            get => this.selectedProjectList;
             set
             {
-                selectedProjectList = value;
-                TasksList = new BindableCollection<string>();
+                this.selectedProjectList = value;
+                this.TasksList = new BindableCollection<string>();
                 try
                 {
-                    tasks = context.GetProjectsTasks(SelectedProjectsList);
-                    foreach (Task task in tasks)
+                    this.tasks = this.context.GetProjectsTasks(this.SelectedProjectsList);
+                    foreach (Task task in this.tasks)
                     {
-                        TasksList.Add(task.TaskName + " - " + task.Priority.ToString());
-                        NotifyOfPropertyChange(() => TasksList);
+                        this.TasksList.Add(task.TaskName + " - " + task.Priority.ToString());
+                        this.NotifyOfPropertyChange(() => this.TasksList);
                     }
                 }
-                catch (ArgumentNullException ex) { Show.ErrorBox($"Projekt o nazwie {selectedProjectList} nie ma tasków!"); }
+                catch (ArgumentNullException ex)
+                {
+                    Show.ErrorBox($"Projekt o nazwie {this.selectedProjectList} nie ma tasków!");
+                }
             }
         }
 
@@ -34,32 +40,32 @@ namespace TaskManager.ViewModels
         {
             this.context = context;
             this.loggedUser = loggedUser;
-            ProjectsList = context.GetProjectsName();
+            this.ProjectsList = context.GetProjectsName();
         }
 
         public void AcceptButton()
         {
-            if (!loggedUser.HavePermissionToTakeTask())
+            if (!this.loggedUser.HavePermissionToTakeTask())
             {
                 Show.ErrorBox("Brak uprawnień! Zgłoś się do administratora.");
                 return;
             }
 
-            if(SelectedTasksList == null)
+            if (this.SelectedTasksList == null)
             {
                 Show.ErrorBox("Wybierz zadanie!");
                 return;
             }
 
-            TryClose();
-            Show.ActiveTaskBox(SelectedTasksList, SelectedProjectsList, context);
+            this.TryClose();
+            Show.ActiveTaskBox(this.SelectedTasksList, this.SelectedProjectsList, this.context);
         }
 
-        public void CancelButton() => TryClose();
+        public void CancelButton() => this.TryClose();
 
         private LoggedUser loggedUser;
-        private FakeData   context;
+        private FakeData context;
         private List<Task> tasks;
-        private string     selectedProjectList;
+        private string selectedProjectList;
     }
 }

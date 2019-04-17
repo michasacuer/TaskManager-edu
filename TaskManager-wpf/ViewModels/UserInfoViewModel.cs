@@ -1,35 +1,36 @@
-﻿using Caliburn.Micro;
-using TaskManager.Models;
-
-namespace TaskManager.ViewModels
+﻿namespace TaskManager.ViewModels
 {
-    class UserInfoViewModel : Screen
-    {   
+    using Caliburn.Micro;
+    using TaskManager.Models;
+
+    internal class UserInfoViewModel : Screen
+    {
         public string LoggedUserFullName { get; set; }
-        public string LoggedUserJob      { get; set; }
+
+        public string LoggedUserJob { get; set; }
 
         public UserInfoViewModel(FakeData context, LoggedUser loggedUser)
         {
             this.loggedUser = loggedUser;
             this.context = context;
 
-            LoggedUserFullName = loggedUser.GetFullName();
-            LoggedUserJob = loggedUser.GetPosition();
+            this.LoggedUserFullName = loggedUser.GetFullName();
+            this.LoggedUserJob = loggedUser.GetPosition();
 
-            NotifyOfPropertyChange(() => LoggedUserJob);
-            NotifyOfPropertyChange(() => LoggedUserFullName);
+            this.NotifyOfPropertyChange(() => this.LoggedUserJob);
+            this.NotifyOfPropertyChange(() => this.LoggedUserFullName);
         }
 
         public void LogoutButton()
         {
-            loggedUser.Logout();
-            TryClose();
-            Show.LoginBox(context, loggedUser);
+            this.loggedUser.Logout();
+            this.TryClose();
+            Show.LoginBox(this.context, this.loggedUser);
         }
 
-        public void OkButton() => TryClose();
+        public void OkButton() => this.TryClose();
 
         private LoggedUser loggedUser;
-        private FakeData   context;
+        private FakeData context;
     }
 }

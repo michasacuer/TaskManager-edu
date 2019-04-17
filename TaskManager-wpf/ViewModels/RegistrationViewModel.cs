@@ -1,54 +1,75 @@
-﻿using Caliburn.Micro;
-using TaskManager.Enums;
-using TaskManager.Models;
-using TaskManager.Services;
-
-namespace TaskManager.ViewModels
+﻿namespace TaskManager.ViewModels
 {
-    class RegistrationViewModel : Screen
-    {
-        public string LoginTextBox     { get; set; }
-        public string FirstNameTextBox { get; set; }
-        public string LastNameTextBox  { get; set; }
-        public string EmailTextBox     { get; set; }
-        public Position Position       { get; set; }
+    using Caliburn.Micro;
+    using TaskManager.Enums;
+    using TaskManager.Models;
+    using TaskManager.Services;
 
-        public bool ManagerChecked     { get; set; }
-        public bool DeveloperChecked   { get; set; }
-        public bool ViewerChecked      { get; set; }
+    internal class RegistrationViewModel : Screen
+    {
+        public string LoginTextBox { get; set; }
+
+        public string FirstNameTextBox { get; set; }
+
+        public string LastNameTextBox { get; set; }
+
+        public string EmailTextBox { get; set; }
+
+        public Position Position { get; set; }
+
+        public bool ManagerChecked { get; set; }
+
+        public bool DeveloperChecked { get; set; }
+
+        public bool ViewerChecked { get; set; }
         
         public RegistrationViewModel(FakeData context)
         {
-            TextBoxesInitialize();
+            this.TextBoxesInitialize();
             this.context = context;
         }
 
         public void AcceptButton()
         {
-            try { Position = Registration.SetJob(ManagerChecked, DeveloperChecked, ViewerChecked); }
-            catch { Show.ErrorBox("Wybierz stanowisko!"); return; }
+            try
+            {
+                this.Position = Registration.SetJob(this.ManagerChecked, this.DeveloperChecked, this.ViewerChecked);
+            }
+            catch
+            {
+                Show.ErrorBox("Wybierz stanowisko!");
+                return;
+            }
 
-            User userToCheck = new User(LoginTextBox, "", FirstNameTextBox, LastNameTextBox, EmailTextBox, Position);
-            (bool isValid, string alert) = Registration.IsValid(userToCheck, context);
+            User userToCheck = new User(
+                this.LoginTextBox, string.Empty,
+                this.FirstNameTextBox,
+                this.LastNameTextBox,
+                this.EmailTextBox,
+                this.Position);
+
+            (bool isValid, string alert) = Registration.IsValid(userToCheck, this.context);
 
             if (isValid)
             {
-                context.AddUser(userToCheck);
+                this.context.AddUser(userToCheck);
                 Show.SuccesBox(alert);
-                TryClose();
+                this.TryClose();
             }
             else
+            {
                 Show.ErrorBox(alert);
+            }
         }
 
-        public void CancelButton() => TryClose();
+        public void CancelButton() => this.TryClose();
 
         private void TextBoxesInitialize()
         {
-            LoginTextBox = "Wpisz swój Login";
-            FirstNameTextBox = "Wpisz swoje Imie";
-            LastNameTextBox = "Wpisz swoje Nazwisko";
-            EmailTextBox = "Wpisz swój Email";
+            this.LoginTextBox = "Wpisz swój Login";
+            this.FirstNameTextBox = "Wpisz swoje Imie";
+            this.LastNameTextBox = "Wpisz swoje Nazwisko";
+            this.EmailTextBox = "Wpisz swój Email";
         }
 
         private FakeData context;

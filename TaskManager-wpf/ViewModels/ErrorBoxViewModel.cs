@@ -1,11 +1,13 @@
-﻿using Caliburn.Micro;
-
-namespace TaskManager.ViewModels
+﻿namespace TaskManager.ViewModels
 {
-    class ErrorBoxViewModel : Screen
+    using Caliburn.Micro;
+
+    internal class ErrorBoxViewModel : Screen
     {
         public string ErrorTextBox { get; set; }
-        public ErrorBoxViewModel(string alert) => ErrorTextBox = alert;
-        public void OkButton() => TryClose();
+
+        public ErrorBoxViewModel(string alert) => this.ErrorTextBox = alert;
+
+        public void OkButton() => this.TryClose();
     }
 }
