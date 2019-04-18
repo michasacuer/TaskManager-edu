@@ -1,22 +1,25 @@
-﻿using System.Collections.Generic;
-
-namespace TaskManager.Models
+﻿namespace TaskManager.Models
 {
+    using System.Collections.Generic;
+
     public class Project
     {
-        public string ProjectName    { get; private set; }
-        public List<Task> Tasks      { get; private set; }
+        public string ProjectName { get; private set; }
+
+        public List<Task> Tasks { get; private set; }
+
         public List<Task> EndedTasks { get; private set; }
 
         public Project(string projectName, List<Task> tasks)
         {
-            ProjectName = projectName;
-            Tasks = tasks;
-            EndedTasks = new List<Task>();
+            this.ProjectName = projectName;
+            this.Tasks = tasks;
+            this.EndedTasks = new List<Task>();
         }
 
         public Project(string projectName)
             : this(projectName, new List<Task>())
-        { }
+        {
+        }
     }
 }
