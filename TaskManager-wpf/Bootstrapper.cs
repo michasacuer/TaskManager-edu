@@ -1,25 +1,19 @@
-﻿using Caliburn.Micro;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using TaskManager.ViewModels;
-
-namespace TaskManager
+﻿namespace TaskManager.WPF
 {
-    class Bootstrapper : BootstrapperBase
+    using System.Windows;
+    using Caliburn.Micro;
+    using TaskManager.ViewModels;
+
+    internal class Bootstrapper : BootstrapperBase
     {
         public Bootstrapper()
         {
-            //test
-            Initialize();
+            this.Initialize();
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor<MainWindowViewModel>();
+            this.DisplayRootViewFor<MainWindowViewModel>();
         }
     }
 }
