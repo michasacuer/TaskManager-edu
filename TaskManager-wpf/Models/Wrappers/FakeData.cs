@@ -1,9 +1,9 @@
-﻿namespace TaskManager.Models
+﻿namespace TaskManager.WPF.Models
 {
     using System.Collections.Generic;
     using System.Linq;
     using Caliburn.Micro;
-    using TaskManager.Enums;
+    using TaskManager.WPF.Enums;
 
     public class FakeData
     {

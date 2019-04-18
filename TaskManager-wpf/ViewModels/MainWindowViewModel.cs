@@ -1,8 +1,8 @@
-﻿using Caliburn.Micro;
-using TaskManager.Models;
-
-namespace TaskManager.ViewModels
+﻿namespace TaskManager.WPF.ViewModels
 {
+    using Caliburn.Micro;
+    using TaskManager.WPF.Models;
+
     internal class MainWindowViewModel : Conductor<IScreen>.Collection.OneActive
     {
         protected override void OnViewLoaded(object view) => Show.LoginBox(this.context, this.loggedUser);

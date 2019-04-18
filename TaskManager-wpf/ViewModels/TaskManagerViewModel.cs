@@ -1,9 +1,9 @@
-﻿namespace TaskManager.ViewModels
+﻿namespace TaskManager.WPF.ViewModels
 {
     using System;
     using System.Collections.Generic;
     using Caliburn.Micro;
-    using TaskManager.Models;
+    using TaskManager.WPF.Models;
 
     internal class TaskManagerViewModel : Screen
     {

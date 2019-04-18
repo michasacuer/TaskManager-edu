@@ -1,9 +1,9 @@
-﻿namespace TaskManager.ViewModels
+﻿namespace TaskManager.WPF.ViewModels
 {
     using Caliburn.Micro;
-    using TaskManager.Enums;
-    using TaskManager.Models;
-    using TaskManager.Services;
+    using TaskManager.WPF.Enums;
+    using TaskManager.WPF.Models;
+    using TaskManager.WPF.Services;
 
     internal class RegistrationViewModel : Screen
     {

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TaskManager.Views
+namespace TaskManager.WPF.Views
 {
     /// <summary>
     /// Interaction logic for NotificationsView.xaml

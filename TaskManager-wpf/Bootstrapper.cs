@@ -2,7 +2,7 @@
 {
     using System.Windows;
     using Caliburn.Micro;
-    using TaskManager.ViewModels;
+    using TaskManager.WPF.ViewModels;
 
     internal class Bootstrapper : BootstrapperBase
     {

@@ -1,7 +1,7 @@
-﻿namespace TaskManager.Services
+﻿namespace TaskManager.WPF.Services
 {
-    using TaskManager.Enums;
-    using TaskManager.Models;
+    using TaskManager.WPF.Enums;
+    using TaskManager.WPF.Models;
 
     public static class Registration
     {
@@ -10,8 +10,7 @@
             isDeveloper ? Position.Developer :
             isViewer ? Position.Viewer : throw new System.ArgumentNullException();
 
-
-        public static (bool, string) IsValid(User userToCheck, FakeData context)
+        public static(bool, string) IsValid(User userToCheck, FakeData context)
         {
             bool isUserOk = true;
             string alert = "Zarejestrowano pomyślnie!";

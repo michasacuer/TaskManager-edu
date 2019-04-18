@@ -1,9 +1,9 @@
-﻿namespace TaskManager.ViewModels
+﻿namespace TaskManager.WPF.ViewModels
 {
     using System.Windows;
     using Caliburn.Micro;
-    using TaskManager.Models;
-    using TaskManager.Services;
+    using TaskManager.WPF.Models;
+    using TaskManager.WPF.Services;
 
     internal class LoginViewModel : Screen
     {

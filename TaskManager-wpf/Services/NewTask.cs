@@ -1,8 +1,8 @@
-﻿namespace TaskManager.Services
+﻿namespace TaskManager.WPF.Services
 {
     using System;
-    using TaskManager.Enums;
-    using TaskManager.Models;
+    using TaskManager.WPF.Enums;
+    using TaskManager.WPF.Models;
 
     public static class NewTask
     {

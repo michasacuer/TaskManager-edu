@@ -1,8 +1,8 @@
-﻿namespace TaskManager.Services
+﻿namespace TaskManager.WPF.Services
 {
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
-    using TaskManager.Models;
+    using TaskManager.WPF.Models;
 
     internal static class Validation 
     {

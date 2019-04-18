@@ -1,4 +1,4 @@
-﻿namespace TaskManager.Enums
+﻿namespace TaskManager.WPF.Enums
 {
     public enum Position
     {

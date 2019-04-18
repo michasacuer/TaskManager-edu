@@ -1,4 +1,4 @@
-﻿namespace TaskManager.ViewModels 
+﻿namespace TaskManager.WPF.ViewModels
 {
     using Caliburn.Micro;
 

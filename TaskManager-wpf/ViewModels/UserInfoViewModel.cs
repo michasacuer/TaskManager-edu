@@ -1,7 +1,7 @@
-﻿namespace TaskManager.ViewModels
+﻿namespace TaskManager.WPF.ViewModels
 {
     using Caliburn.Micro;
-    using TaskManager.Models;
+    using TaskManager.WPF.Models;
 
     internal class UserInfoViewModel : Screen
     {
