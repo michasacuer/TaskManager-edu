@@ -42,6 +42,8 @@ namespace TaskManager_WebApi
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyHeader().AllowAnyOrigin());
+            app.UseHttpsRedirection();
         }
     }
 }
