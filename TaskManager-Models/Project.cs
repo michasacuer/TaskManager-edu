@@ -7,6 +7,7 @@
 
     public class Project
     {
+        //aaaaaaaaaaaaaaaaaaaaaaaa wojtek here
         [Key]
         public int Id { get; set; }
 
