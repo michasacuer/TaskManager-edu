@@ -13,22 +13,29 @@
     using Microsoft.IdentityModel.Tokens;
     using TaskManager.Models;
     using TaskManager.Models.BingindModels;
+    using TaskManager.Models.Enums;
 
     [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
     {
         private readonly SignInManager<ApplicationUser> signInManager;
+
         private readonly UserManager<ApplicationUser> userManager;
+
+        private readonly RoleManager<IdentityRole> roleManager;
+
         private readonly IConfiguration configuration;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
             IConfiguration configuration)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.roleManager = roleManager;
             this.configuration = configuration;
         }
 
@@ -40,7 +47,7 @@
             if (result.Succeeded)
             {
                 var appUser = this.userManager.Users.SingleOrDefault(r => r.UserName == model.UserName);
-                return await GenerateJwtToken(model.UserName, appUser);
+                return await this.GenerateJwtToken(model.UserName, appUser);
             }
 
             throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
@@ -60,20 +67,32 @@
 
             if (result.Succeeded)
             {
+                var roleName = model.Role.ToString();
+                if (!await this.roleManager.RoleExistsAsync(roleName))
+                {
+                    var role = new IdentityRole(roleName);
+                    await this.roleManager.CreateAsync(role);
+                }
+
+                await this.userManager.AddToRoleAsync(user, roleName);
+
                 await this.signInManager.SignInAsync(user, false);
-                return await this.GenerateJwtToken(model.Email, user);
+                return await this.GenerateJwtToken(model.UserName, user);
             }
 
             throw new ApplicationException("UNKNOWN_ERROR");
         }
 
-        private async Task<object> GenerateJwtToken(string email, IdentityUser user)
+        private async Task<object> GenerateJwtToken(string userName, ApplicationUser user)
         {
+            var userRole = await this.userManager.GetRolesAsync(user);
+
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
+                new Claim(JwtRegisteredClaimNames.Sub, userName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.Id)
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.Role, userRole[0])
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.configuration["JwtKey"]));
