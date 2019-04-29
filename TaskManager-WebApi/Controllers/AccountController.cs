@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.IdentityModel.Tokens.Jwt;
     using System.Linq;
     using System.Security.Claims;
@@ -13,6 +12,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.IdentityModel.Tokens;
     using TaskManager.Models;
+    using TaskManager.Models.BingindModels;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -33,26 +33,28 @@
         }
 
         [HttpPost("Login")]
-        public async Task<object> Login([FromBody] LoginDto model)
+        public async Task<object> Login([FromBody] LoginBindingModel model)
         {
-            var result = await this.signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+            var result = await this.signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
 
             if (result.Succeeded)
             {
-                var appUser = this.userManager.Users.SingleOrDefault(r => r.Email == model.Email);
-                return await GenerateJwtToken(model.Email, appUser);
+                var appUser = this.userManager.Users.SingleOrDefault(r => r.UserName == model.UserName);
+                return await GenerateJwtToken(model.UserName, appUser);
             }
 
             throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
         }
 
         [HttpPost("Register")]
-        public async Task<object> Register([FromBody] RegisterDto model)
+        public async Task<object> Register([FromBody] RegistrationBindingModel model)
         {
             var user = new ApplicationUser
             {
-                UserName = model.Email,
-                Email = model.Email
+                UserName = model.UserName,
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName
             };
             var result = await this.userManager.CreateAsync(user, model.Password);
 
@@ -86,25 +88,6 @@
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-        public class LoginDto
-        {
-            [Required]
-            public string Email { get; set; }
-
-            [Required]
-            public string Password { get; set; }
-        }
-
-        public class RegisterDto
-        {
-            [Required]
-            public string Email { get; set; }
-
-            [Required]
-            [StringLength(100, ErrorMessage = "PASSWORD_MIN_LENGTH", MinimumLength = 6)]
-            public string Password { get; set; }
         }
     }
 }

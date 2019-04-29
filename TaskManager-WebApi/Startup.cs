@@ -32,11 +32,18 @@
             services.AddDbContext<TaskManagerDbContext>(
                 options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+            })
                 .AddEntityFrameworkStores<TaskManagerDbContext>()
                 .AddDefaultTokenProviders();
 
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services
                 .AddAuthentication(options =>
                 {
@@ -50,10 +57,10 @@
                     cfg.SaveToken = true;
                     cfg.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidIssuer = "http://taskmanager.com",
-                        ValidAudience = "http://taskmanager.com",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TASK_MANAGER")),
-                        ClockSkew = TimeSpan.Zero // remove delay of token when expire
+                        ValidIssuer = this.Configuration["JwtIssuer"],
+                        ValidAudience = this.Configuration["JwtIssuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.Configuration["JwtKey"])),
+                        ClockSkew = TimeSpan.Zero
                     };
                 });
         }

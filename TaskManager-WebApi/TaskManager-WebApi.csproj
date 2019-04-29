@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-  <RootNamespace>TaskManager.WebApi</RootNamespace>
+    <RootNamespace>TaskManager.WebApi</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
