@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TaskManager_WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [Authorize(Roles = "Developer")]
     [ApiController]
     public class DefaultController : ControllerBase

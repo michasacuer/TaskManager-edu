@@ -10,7 +10,7 @@ using TaskManager.WebApi.Models;
 
 namespace TaskManager_WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ProjectController : ControllerBase
     {
