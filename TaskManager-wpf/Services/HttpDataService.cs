@@ -1,30 +1,45 @@
 ﻿namespace TaskManager.WPF.Services
 {
     using System;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading.Tasks;
 
-    public static class HttpDataService
+    public class HttpDataService
     {
-        private static readonly string Url = "https://localhost:44365/";
+        public HttpDataService(string token)
+        {
+            this.HttpClient = new HttpClient();
+            this.HttpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
+        }
 
-        public static object Get(string controller, string method)
+        private HttpClient HttpClient { get; set; }
+
+        public async Task<object> Get(string controller, string method)
+        {
+            object data;
+            HttpResponseMessage response = await this.HttpClient.GetAsync(UrlBuilder.Build(controller, method));
+
+            if (response.IsSuccessStatusCode)
+            {
+                data = await response.Content.ReadAsAsync<object>();
+                return data;
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
+
+        public object Post(string controller, string method, object data)
         {
             throw new NotImplementedException();
         }
 
-        public static object Post(string controller, string method, object data)
+        public object Put(string controller, string method, object data)
         {
             throw new NotImplementedException();
         }
-
-        public static object Put(string controller, string method, object data)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static string UrlBuilder(string controller) => $"{Url}/{controller}";
-
-        private static string UrlBuilder(string controller, string method) => $"{Url}/{controller}/{method}";
-
-        private static string UrlBuilder(string controller, string method, int id) => $"{Url}/{controller}/{method}/{id}";
     }
 }
