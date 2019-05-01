@@ -13,9 +13,9 @@
     using Microsoft.IdentityModel.Tokens;
     using TaskManager.Models;
     using TaskManager.Models.BingindModels;
-    using TaskManager.Models.Enums;
+    using TaskManager.Models.ViewModels;
 
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
     {
@@ -47,10 +47,20 @@
             if (result.Succeeded)
             {
                 var appUser = this.userManager.Users.SingleOrDefault(r => r.UserName == model.UserName);
-                return await this.GenerateJwtToken(model.UserName, appUser);
+                var appUserRoles = await this.userManager.GetRolesAsync(appUser);
+                var role = appUserRoles.FirstOrDefault();
+                var token = await this.GenerateJwtToken(model.UserName, appUser);
+
+                return this.Ok(new AccountViewModel
+                {
+                    FirstName = appUser.FirstName,
+                    LastName = appUser.LastName,
+                    Role = role,
+                    Bearer = (string)token,
+                });
             }
 
-            throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
+            return this.Unauthorized();
         }
 
         [HttpPost("Register")]
@@ -77,7 +87,7 @@
                 await this.userManager.AddToRoleAsync(user, roleName);
 
                 await this.signInManager.SignInAsync(user, false);
-                return await this.GenerateJwtToken(model.UserName, user);
+                return this.Ok();
             }
 
             throw new ApplicationException("UNKNOWN_ERROR");
