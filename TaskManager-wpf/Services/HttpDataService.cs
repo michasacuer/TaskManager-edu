@@ -10,8 +10,7 @@
         public HttpDataService(string token)
         {
             this.HttpClient = new HttpClient();
-            this.HttpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", token);
+            this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
 
         private HttpClient HttpClient { get; set; }
@@ -19,7 +18,7 @@
         public async Task<object> Get(string controller, string method)
         {
             object data;
-            HttpResponseMessage response = await this.HttpClient.GetAsync(UrlBuilder.Build(controller, method));
+            HttpResponseMessage response = await this.HttpClient.GetAsync(UrlService.BuildEndpoint(controller, method));
 
             if (response.IsSuccessStatusCode)
             {
@@ -28,7 +27,7 @@
             }
             else
             {
-                throw new Exception();
+                throw new Exception(); //todo
             }
         }
 
