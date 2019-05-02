@@ -1,6 +1,5 @@
 ﻿namespace TaskManager.WPF.Services
 {
-    using System;
     using System.Linq;
 
     public static class UrlService
