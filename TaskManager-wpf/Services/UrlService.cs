@@ -16,6 +16,5 @@
 
         public static string BuildEndpoint(params string[] parameters)
             => url + parameters.Aggregate(string.Empty, (current, next) => current + @"/" + next);
-        //
     }
 }
