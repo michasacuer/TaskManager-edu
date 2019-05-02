@@ -57,9 +57,9 @@
         {
             this.users = new List<User>
             {
-                new User("admin", "admin", "Michał", "Szewczak", "michasacuer3@gmail.com", Position.Manager),
-                new User("login", "login", "Adam", "Kowalski", "temp@op.pl", Position.Developer),
-                new User("test", "test", "Maciej", "Nowak", "temp2@op.pl", Position.Viewer)
+                new User("admin", "admin", "Michał", "Szewczak", "michasacuer3@gmail.com", Role.Manager),
+                new User("login", "login", "Adam", "Kowalski", "temp@op.pl", Role.Developer),
+                new User("test", "test", "Maciej", "Nowak", "temp2@op.pl", Role.Viewer)
             };
 
             this.projects = new List<Project>

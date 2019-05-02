@@ -15,9 +15,9 @@
         public void Logout() => this.user = null;
 
         public bool HavePermissionToTakeTask()
-            => this.user.Position == Position.Manager || this.user.Position == Position.Developer;
+            => this.user.Position == Role.Manager || this.user.Position == Role.Developer;
 
-        public bool HavePermissionToAddTask() => this.user.Position == Position.Manager;
+        public bool HavePermissionToAddTask() => this.user.Position == Role.Manager;
 
         private User user { get; set; }
     }

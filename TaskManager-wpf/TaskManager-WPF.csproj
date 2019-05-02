@@ -80,7 +80,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\Enums\Position.cs" />
+    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\BindingModels\LoginBindingModel.cs" />
+    <Compile Include="Models\Enums\Role.cs" />
     <Compile Include="Models\Enums\Priority.cs" />
     <Compile Include="Models\Wrappers\FakeData.cs" />
     <Compile Include="Models\Project.cs" />
@@ -210,6 +212,9 @@
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

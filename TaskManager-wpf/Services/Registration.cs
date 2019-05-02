@@ -5,10 +5,10 @@
 
     public static class Registration
     {
-        public static Position SetJob(bool isManager, bool isDeveloper, bool isViewer) => 
-            isManager ? Position.Manager :
-            isDeveloper ? Position.Developer :
-            isViewer ? Position.Viewer : throw new System.ArgumentNullException();
+        public static Role SetJob(bool isManager, bool isDeveloper, bool isViewer) => 
+            isManager ? Role.Manager :
+            isDeveloper ? Role.Developer :
+            isViewer ? Role.Viewer : throw new System.ArgumentNullException();
 
         public static(bool, string) IsValid(User userToCheck, FakeData context)
         {

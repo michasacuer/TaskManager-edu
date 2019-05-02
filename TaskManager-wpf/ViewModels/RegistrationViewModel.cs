@@ -15,14 +15,14 @@
 
         public string EmailTextBox { get; set; }
 
-        public Position Position { get; set; }
+        public Role Position { get; set; }
 
         public bool ManagerChecked { get; set; }
 
         public bool DeveloperChecked { get; set; }
 
         public bool ViewerChecked { get; set; }
-        
+
         public RegistrationViewModel(FakeData context)
         {
             this.TextBoxesInitialize();

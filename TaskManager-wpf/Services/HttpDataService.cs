@@ -5,16 +5,33 @@
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
+    using Newtonsoft.Json;
+    using TaskManager.WPF.Models;
+    using TaskManager.WPF.Models.BingindModels;
 
     public class HttpDataService
     {
-        public HttpDataService(string token)
+        public HttpDataService()
         {
             this.HttpClient = new HttpClient();
-            this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
 
         private HttpClient HttpClient { get; set; }
+
+        public async Task<Account> Login(string username, string password)
+        {
+            HttpResponseMessage response = await this.HttpClient.PostAsJsonAsync(
+                    UrlService.BuildEndpoint("Account", "Login"),
+                    new LoginBindingModel { UserName = username, Password = password });
+
+            response.EnsureSuccessStatusCode();
+
+            Account account = JsonConvert.DeserializeObject<Account>(await response.Content.ReadAsStringAsync());
+
+            this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", account.Bearer);
+
+            return account;
+        }
 
         public async Task<IEnumerable<TObject>> Get<TObject>()
         {
@@ -52,21 +69,23 @@
             }
         }
 
-        public async Task Post<TObject>(TObject data)
+        public async Task<TObject> Post<TObject>(TObject data)
         {
             string controller = typeof(TObject).Name;
 
             HttpResponseMessage response = await this.HttpClient.PostAsJsonAsync(UrlService.BuildEndpoint(controller), data);
+
+            return data;
         }
 
-        public async Task Put<TObject>(TObject data, int id)
+        public async System.Threading.Tasks.Task Put<TObject>(TObject data, int id)
         {
             string controller = typeof(TObject).Name;
 
             HttpResponseMessage response = await this.HttpClient.PutAsJsonAsync(UrlService.BuildEndpoint(controller, id), data);
         }
 
-        public async Task Delete<TObject>(TObject data, int id)
+        public async System.Threading.Tasks.Task Delete<TObject>(TObject data, int id)
         {
             string controller = typeof(TObject).Name;
 

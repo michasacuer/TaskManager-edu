@@ -14,9 +14,9 @@
 
         public string Email { get; private set; }
 
-        public Position Position { get; private set; }
+        public Role Position { get; private set; }
 
-        public User(string login, string password, string firstName, string lastName, string email, Position position)
+        public User(string login, string password, string firstName, string lastName, string email, Role position)
         {
             this.Login = login;
             this.Password = password;
