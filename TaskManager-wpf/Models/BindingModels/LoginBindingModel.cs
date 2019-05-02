@@ -1,4 +1,4 @@
-﻿namespace TaskManager.WPF.Models.BingindModels
+﻿namespace TaskManager.WPF.Models.BindingModels
 {
     public class LoginBindingModel
     {

@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\BindingModels\LoginBindingModel.cs" />
+    <Compile Include="Models\BindingModels\RegistrationBindingModel.cs" />
     <Compile Include="Models\Enums\Priority.cs" />
     <Compile Include="Models\Enums\Role.cs" />
     <Compile Include="Models\Wrappers\FakeData.cs" />

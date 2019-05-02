@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using TaskManager.WPF.Models;
-    using TaskManager.WPF.Models.BingindModels;
+    using TaskManager.WPF.Models.BindingModels;
 
     public class HttpDataService
     {
@@ -18,11 +18,10 @@
 
         private HttpClient HttpClient { get; set; }
 
-        public async Task<Account> Login(string username, string password)
+        public async Task<Account> Login(LoginBindingModel login)
         {
-            HttpResponseMessage response = await this.HttpClient.PostAsJsonAsync(
-                    UrlService.BuildEndpoint("Account", "Login"),
-                    new LoginBindingModel { UserName = username, Password = password });
+            HttpResponseMessage response
+                = await this.HttpClient.PostAsJsonAsync(UrlService.BuildEndpoint("Account", "Login"), login);
 
             response.EnsureSuccessStatusCode();
 
@@ -31,6 +30,16 @@
             this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", account.Bearer);
 
             return account;
+        }
+
+        public async Task<string> Register(RegistrationBindingModel account)
+        {
+            HttpResponseMessage response
+                = await this.HttpClient.PostAsJsonAsync(UrlService.BuildEndpoint("Account", "Register"), account);
+
+            response.EnsureSuccessStatusCode();
+
+            return response.StatusCode.ToString();
         }
 
         public async Task<IEnumerable<TObject>> Get<TObject>()
