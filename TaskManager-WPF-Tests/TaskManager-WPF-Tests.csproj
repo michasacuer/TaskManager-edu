@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7937B865-E935-44DA-999B-13EB330AA37A}</ProjectGuid>
+    <ProjectGuid>{309CE906-317C-457E-9C59-33B9B1D72B43}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TaskManager_WPF_Tests</RootNamespace>
