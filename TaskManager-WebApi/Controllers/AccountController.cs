@@ -90,7 +90,7 @@
                 return this.Ok();
             }
 
-            throw new ApplicationException("UNKNOWN_ERROR");
+            return this.Conflict();
         }
 
         private async Task<object> GenerateJwtToken(string userName, ApplicationUser user)

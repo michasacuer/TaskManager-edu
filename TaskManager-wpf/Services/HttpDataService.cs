@@ -37,9 +37,16 @@
             HttpResponseMessage response
                 = await this.HttpClient.PostAsJsonAsync(UrlService.BuildEndpoint("Account", "Register"), account);
 
-            response.EnsureSuccessStatusCode();
+            string statusCode = response.StatusCode.ToString();
 
-            return response.StatusCode.ToString();
+            if (statusCode.Equals("Conflict"))
+            {
+                throw new ArgumentException("Błąd serwera, sprawdź formularz!");
+            }
+            else
+            {
+                return statusCode;
+            }
         }
 
         public async Task<IEnumerable<TObject>> Get<TObject>()

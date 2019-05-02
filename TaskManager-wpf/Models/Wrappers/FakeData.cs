@@ -68,9 +68,7 @@
                 new Project("Mini Jira", new List<Task>
                 {
                     new Task("Add first functionality", Priority.Low, "First task for our project"),
-
                     new Task("Add second functionality", Priority.High, "Very important"),
-
                     new Task("Add third functionality", Priority.Medium, "")
                 })
             };

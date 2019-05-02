@@ -1,53 +1,44 @@
 ﻿namespace TaskManager.WPF.Services
 {
+    using System;
     using TaskManager.WPF.Enums;
     using TaskManager.WPF.Models;
+    using TaskManager.WPF.Models.BindingModels;
 
     public static class Registration
     {
-        public static Role SetJob(bool isManager, bool isDeveloper, bool isViewer) => 
+        public static Role SetJob(bool isManager, bool isDeveloper, bool isViewer) =>
             isManager ? Role.Manager :
             isDeveloper ? Role.Developer :
-            isViewer ? Role.Viewer : throw new System.ArgumentNullException();
+            isViewer ? Role.Viewer : throw new ArgumentException("Wybierz stanowisko!");
 
-        public static(bool, string) IsValid(User userToCheck, FakeData context)
+        public static void IsValid(RegistrationBindingModel userToCheck, FakeData context)
         {
-            bool isUserOk = true;
-            string alert = "Zarejestrowano pomyślnie!";
-
-            if (userToCheck.Login == null || userToCheck.FirstName == null ||
+            if (userToCheck.UserName == null || userToCheck.FirstName == null ||
                 userToCheck.LastName == null || userToCheck.Email == null)
             {
-                isUserOk = false;
-                alert = "Wypełnij wszystkie wymagane pola!";
+                throw new ArgumentException("Wypełnij wszystkie pola!");
             }
-            else if (Validation.IsStringHaveSpaces(userToCheck.Login))
+            else if (Validation.IsStringHaveSpaces(userToCheck.UserName))
             {
-                isUserOk = false;
-                alert = "Niedozwolone znaki w polu Login!";
+                throw new ArgumentException("Niedozwolone znaki w polu Login!");
             }
-            else if (Validation.IsLoginExist(userToCheck.Login, context))
+            else if (Validation.IsLoginExist(userToCheck.UserName, context))
             {
-                isUserOk = false;
-                alert = "Podany login jest już w bazie!";
+                throw new ArgumentException("Podany login jest już w bazie!");
             }
             else if (!Validation.IsEmailValid(userToCheck.Email))
             {
-                isUserOk = false;
-                alert = "Błędny adres email!";
+                throw new ArgumentException("Błędny adres Email!");
             }
             else if (Validation.IsEmailExist(userToCheck.Email, context))
             {
-                isUserOk = false;
-                alert = "Podany Email jest już w bazie!";
+                throw new ArgumentException("Podany Email jest już w bazie!");
             }
             else if (Validation.IsStringHaveSpaces(userToCheck.LastName))
             {
-                isUserOk = false;
-                alert = "Niedozwolone znaki w polu Nazwisko!";
+                throw new ArgumentException("Niedozwolone znaki w polu Nazwisko!");
             }
-
-            return (isUserOk, alert);
         }
     }
 }
