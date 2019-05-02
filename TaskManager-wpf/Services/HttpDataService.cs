@@ -16,8 +16,10 @@
 
         private HttpClient HttpClient { get; set; }
 
-        public async Task<IEnumerable<TObject>> Get<TObject>(string controller)
+        public async Task<IEnumerable<TObject>> Get<TObject>()
         {
+            string controller = typeof(TObject).Name;
+
             IEnumerable<TObject> data;
             HttpResponseMessage response = await this.HttpClient.GetAsync(UrlService.BuildEndpoint(controller));
 
@@ -32,8 +34,10 @@
             }
         }
 
-        public async Task<TObject> Get<TObject>(string controller, int id)
+        public async Task<TObject> Get<TObject>(int id)
         {
+            string controller = typeof(TObject).Name;
+
             TObject data;
             HttpResponseMessage response = await this.HttpClient.GetAsync(UrlService.BuildEndpoint(controller, id));
 
@@ -48,14 +52,25 @@
             }
         }
 
-        public object Post(string controller, string method, object data)
+        public async Task Post<TObject>(TObject data)
         {
-            throw new NotImplementedException();
+            string controller = typeof(TObject).Name;
+
+            HttpResponseMessage response = await this.HttpClient.PostAsJsonAsync(UrlService.BuildEndpoint(controller), data);
         }
 
-        public object Put(string controller, string method, object data)
+        public async Task Put<TObject>(TObject data, int id)
         {
-            throw new NotImplementedException();
+            string controller = typeof(TObject).Name;
+
+            HttpResponseMessage response = await this.HttpClient.PutAsJsonAsync(UrlService.BuildEndpoint(controller, id), data);
+        }
+
+        public async Task Delete<TObject>(TObject data, int id)
+        {
+            string controller = typeof(TObject).Name;
+
+            HttpResponseMessage response = await this.HttpClient.DeleteAsync(UrlService.BuildEndpoint(controller, id));
         }
     }
 }
