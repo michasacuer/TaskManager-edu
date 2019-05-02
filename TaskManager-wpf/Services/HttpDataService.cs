@@ -1,6 +1,7 @@
 ﻿namespace TaskManager.WPF.Services
 {
     using System;
+    using System.Collections.Generic;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
@@ -15,14 +16,30 @@
 
         private HttpClient HttpClient { get; set; }
 
-        public async Task<object> Get(string controller, string method)
+        public async Task<IEnumerable<TObject>> Get<TObject>(string controller)
         {
-            object data;
-            HttpResponseMessage response = await this.HttpClient.GetAsync(UrlService.BuildEndpoint(controller, method));
+            IEnumerable<TObject> data;
+            HttpResponseMessage response = await this.HttpClient.GetAsync(UrlService.BuildEndpoint(controller));
 
             if (response.IsSuccessStatusCode)
             {
-                data = await response.Content.ReadAsAsync<object>();
+                data = await response.Content.ReadAsAsync<IEnumerable<TObject>>();
+                return data;
+            }
+            else
+            {
+                throw new Exception(); //todo
+            }
+        }
+
+        public async Task<TObject> Get<TObject>(string controller, int id)
+        {
+            TObject data;
+            HttpResponseMessage response = await this.HttpClient.GetAsync(UrlService.BuildEndpoint(controller, id));
+
+            if (response.IsSuccessStatusCode)
+            {
+                data = await response.Content.ReadAsAsync<TObject>();
                 return data;
             }
             else
