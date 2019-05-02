@@ -80,6 +80,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\BindingModels\LoginBindingModel.cs" />
     <Compile Include="Models\Enums\Role.cs" />
     <Compile Include="Models\Enums\Priority.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Models\Wrappers\Show.cs" />
     <Compile Include="Services\HttpDataService.cs" />
     <Compile Include="Services\NewTask.cs" />
+    <Compile Include="Services\UrlService.cs" />
     <Compile Include="Services\Validation.cs" />
     <Compile Include="Services\Registration.cs" />
     <Compile Include="ViewModels\ActiveTaskViewModel.cs" />
