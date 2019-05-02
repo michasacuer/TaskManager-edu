@@ -2,31 +2,32 @@
 {
     using TaskManager.WPF.Enums;
     using TaskManager.WPF.Models;
+    using TaskManager.WPF.Models.BindingModels;
 
     public static class Registration
     {
-        public static Role SetJob(bool isManager, bool isDeveloper, bool isViewer) => 
+        public static Role SetJob(bool isManager, bool isDeveloper, bool isViewer) =>
             isManager ? Role.Manager :
             isDeveloper ? Role.Developer :
             isViewer ? Role.Viewer : throw new System.ArgumentNullException();
 
-        public static(bool, string) IsValid(User userToCheck, FakeData context)
+        public static(bool, string) IsValid(RegistrationBindingModel userToCheck, FakeData context)
         {
             bool isUserOk = true;
             string alert = "Zarejestrowano pomyślnie!";
 
-            if (userToCheck.Login == null || userToCheck.FirstName == null ||
+            if (userToCheck.UserName == null || userToCheck.FirstName == null ||
                 userToCheck.LastName == null || userToCheck.Email == null)
             {
                 isUserOk = false;
                 alert = "Wypełnij wszystkie wymagane pola!";
             }
-            else if (Validation.IsStringHaveSpaces(userToCheck.Login))
+            else if (Validation.IsStringHaveSpaces(userToCheck.UserName))
             {
                 isUserOk = false;
                 alert = "Niedozwolone znaki w polu Login!";
             }
-            else if (Validation.IsLoginExist(userToCheck.Login, context))
+            else if (Validation.IsLoginExist(userToCheck.UserName, context))
             {
                 isUserOk = false;
                 alert = "Podany login jest już w bazie!";

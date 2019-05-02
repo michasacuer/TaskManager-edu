@@ -3,19 +3,29 @@
     using Caliburn.Micro;
     using TaskManager.WPF.Enums;
     using TaskManager.WPF.Models;
+    using TaskManager.WPF.Models.BindingModels;
     using TaskManager.WPF.Services;
 
     internal class RegistrationViewModel : Screen
     {
+        public RegistrationViewModel(FakeData context, HttpDataService httpDataService)
+        {
+            this.TextBoxesInitialize();
+            this.context = context;
+            this.httpDataService = httpDataService;
+        }
+
         public string LoginTextBox { get; set; }
 
         public string FirstNameTextBox { get; set; }
+
+        public string PasswordTextBox { get; set; }
 
         public string LastNameTextBox { get; set; }
 
         public string EmailTextBox { get; set; }
 
-        public Role Position { get; set; }
+        public Role Role { get; set; }
 
         public bool ManagerChecked { get; set; }
 
@@ -23,17 +33,12 @@
 
         public bool ViewerChecked { get; set; }
 
-        public RegistrationViewModel(FakeData context)
-        {
-            this.TextBoxesInitialize();
-            this.context = context;
-        }
 
-        public void AcceptButton()
+        public async void AcceptButton()
         {
             try
             {
-                this.Position = Registration.SetJob(this.ManagerChecked, this.DeveloperChecked, this.ViewerChecked);
+                this.Role = Registration.SetJob(this.ManagerChecked, this.DeveloperChecked, this.ViewerChecked);
             }
             catch
             {
@@ -41,18 +46,21 @@
                 return;
             }
 
-            User userToCheck = new User(
-                this.LoginTextBox, string.Empty,
-                this.FirstNameTextBox,
-                this.LastNameTextBox,
-                this.EmailTextBox,
-                this.Position);
+            RegistrationBindingModel account = new RegistrationBindingModel
+            {
+                UserName = this.LoginTextBox,
+                Password = this.PasswordTextBox,
+                FirstName = this.FirstNameTextBox,
+                LastName = this.LastNameTextBox,
+                Email = this.EmailTextBox,
+                Role = this.Role
+            };
 
-            (bool isValid, string alert) = Registration.IsValid(userToCheck, this.context);
+            (bool isValid, string alert) = Registration.IsValid(account, this.context);
 
             if (isValid)
             {
-                this.context.AddUser(userToCheck);
+                await this.httpDataService.Register(account);
                 Show.SuccesBox(alert);
                 this.TryClose();
             }
@@ -73,5 +81,7 @@
         }
 
         private FakeData context;
+
+        private HttpDataService httpDataService;
     }
 }

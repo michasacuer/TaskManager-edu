@@ -11,10 +11,11 @@
 
         public string PasswordTextBox { get; set; }
 
-        public LoginViewModel(FakeData context, LoggedUser loggedUser)
+        public LoginViewModel(FakeData context, LoggedUser loggedUser, HttpDataService httpDataService)
         {
             this.context = context;
             this.loggedUser = loggedUser;
+            this.httpDataService = httpDataService;
         }
 
         public void LoginButton()
@@ -31,11 +32,14 @@
             }
         }
 
-        public void RegisterButton() => Show.RegistrationBox(this.context);
+        public void RegisterButton() => Show.RegistrationBox(this.context, this.httpDataService);
 
         public void CancelButton() => Application.Current.Shutdown();
 
         private LoggedUser loggedUser;
+
         private FakeData context;
+
+        private HttpDataService httpDataService;
     }
 }
