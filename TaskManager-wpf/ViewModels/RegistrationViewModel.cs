@@ -1,5 +1,6 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
+    using System;
     using Caliburn.Micro;
     using TaskManager.WPF.Enums;
     using TaskManager.WPF.Models;
@@ -33,40 +34,31 @@
 
         public bool ViewerChecked { get; set; }
 
-
         public async void AcceptButton()
         {
             try
             {
+                RegistrationBindingModel account = new RegistrationBindingModel
+                {
+                    UserName = this.LoginTextBox,
+                    Password = this.PasswordTextBox,
+                    FirstName = this.FirstNameTextBox,
+                    LastName = this.LastNameTextBox,
+                    Email = this.EmailTextBox,
+                    Role = this.Role
+                };
+
                 this.Role = Registration.SetJob(this.ManagerChecked, this.DeveloperChecked, this.ViewerChecked);
-            }
-            catch
-            {
-                Show.ErrorBox("Wybierz stanowisko!");
-                return;
-            }
+                Registration.IsValid(account, this.context);
 
-            RegistrationBindingModel account = new RegistrationBindingModel
-            {
-                UserName = this.LoginTextBox,
-                Password = this.PasswordTextBox,
-                FirstName = this.FirstNameTextBox,
-                LastName = this.LastNameTextBox,
-                Email = this.EmailTextBox,
-                Role = this.Role
-            };
+                string succes = await this.httpDataService.Register(account);
 
-            (bool isValid, string alert) = Registration.IsValid(account, this.context);
-
-            if (isValid)
-            {
-                await this.httpDataService.Register(account);
-                Show.SuccesBox(alert);
+                Show.SuccesBox(succes);
                 this.TryClose();
             }
-            else
+            catch (ArgumentException exception)
             {
-                Show.ErrorBox(alert);
+                Show.ErrorBox(exception.Message);
             }
         }
 
@@ -75,13 +67,14 @@
         private void TextBoxesInitialize()
         {
             this.LoginTextBox = "Wpisz swój Login";
+            this.PasswordTextBox = "Hasło";
             this.FirstNameTextBox = "Wpisz swoje Imie";
             this.LastNameTextBox = "Wpisz swoje Nazwisko";
             this.EmailTextBox = "Wpisz swój Email";
         }
 
-        private FakeData context;
+        private readonly FakeData context;
 
-        private HttpDataService httpDataService;
+        private readonly HttpDataService httpDataService;
     }
 }
