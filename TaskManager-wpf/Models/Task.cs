@@ -1,21 +1,26 @@
 ﻿namespace TaskManager.WPF.Models
 {
+    using System;
     using TaskManager.WPF.Enums;
 
     public class Task
     {
-        public string TaskName { get; private set; }
+        public int Id { get; set; }
 
-        public Priority Priority { get; private set; }
+        public int ProjectId { get; set; }
 
-        public string Description { get; private set; }
+        public Project Project { get; set; }
 
-        public Task(string taskName, Priority priority, string desc)
-        {
-            this.TaskName = taskName;
-            this.Priority = priority;
-            this.Description = desc;
-        }
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public Priority Priority { get; set; }
+
+        public int? StoryPoints { get; set; }
+
+        public DateTime? StartTime { get; set; }
+
+        public DateTime? EndTime { get; set; }
     }
-    //test
 }

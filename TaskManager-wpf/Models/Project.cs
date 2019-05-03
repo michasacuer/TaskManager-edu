@@ -4,15 +4,21 @@
 
     public class Project
     {
-        public string ProjectName { get; private set; }
+        public int Id { get; set; }
 
-        public List<Task> Tasks { get; private set; }
+        public string Tag { get; set; }
+
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public List<Task> Tasks { get; set; }
 
         public List<Task> EndedTasks { get; private set; }
 
         public Project(string projectName, List<Task> tasks)
         {
-            this.ProjectName = projectName;
+            this.Name = projectName;
             this.Tasks = tasks;
             this.EndedTasks = new List<Task>();
         }
