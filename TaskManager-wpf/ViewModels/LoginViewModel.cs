@@ -1,16 +1,15 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
+    using System;
     using System.Windows;
     using Caliburn.Micro;
     using TaskManager.WPF.Models;
+    using TaskManager.WPF.Models.BindingModels;
     using TaskManager.WPF.Services;
+    using TaskManager.WPF.Services.FormsValidation;
 
     internal class LoginViewModel : Screen
     {
-        public string LoginTextBox { get; set; }
-
-        public string PasswordTextBox { get; set; }
-
         public LoginViewModel(FakeData context, LoggedUser loggedUser, HttpDataService httpDataService)
         {
             this.context = context;
@@ -18,17 +17,31 @@
             this.httpDataService = httpDataService;
         }
 
-        public void LoginButton()
+        public string LoginTextBox { get; set; }
+
+        public string PasswordTextBox { get; set; }
+
+        public async void LoginButton()
         {
-            if (Validation.IsLoginValid(this.LoginTextBox, this.PasswordTextBox, this.context))
+            try
             {
+                LoginForm.IsValid(this.LoginTextBox, this.PasswordTextBox, this.context); //TODO
+
+                var login = new LoginBindingModel
+                {
+                    UserName = this.LoginTextBox,
+                    Password = this.PasswordTextBox
+                };
+
+                await this.httpDataService.Login(login);
+
                 this.TryClose();
                 Show.SuccesBox("Zalogowano pomyślnie!");
                 this.loggedUser.LoginUserToApp(this.context.GetUser(this.LoginTextBox));
             }
-            else
+            catch (ArgumentException exception)
             {
-                Show.ErrorBox("Błędne dane logowania!");
+                Show.ErrorBox(exception.Message);
             }
         }
 
