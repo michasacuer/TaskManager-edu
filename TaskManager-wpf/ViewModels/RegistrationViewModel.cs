@@ -48,8 +48,8 @@
                     Role = this.Role
                 };
 
-                this.Role = Registration.SetJob(this.ManagerChecked, this.DeveloperChecked, this.ViewerChecked);
-                Registration.IsValid(account, this.context);
+                this.Role = RegistrationForm.SetJob(this.ManagerChecked, this.DeveloperChecked, this.ViewerChecked);
+                RegistrationForm.IsValid(account, this.context);
 
                 string succes = await this.httpDataService.Register(account);
 

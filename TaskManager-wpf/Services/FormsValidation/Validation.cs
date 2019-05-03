@@ -4,7 +4,7 @@
     using System.Linq;
     using TaskManager.WPF.Models;
 
-    internal static class Validation 
+    internal static class Validation
     {
         public static bool IsLoginValid(string login, string password, FakeData context)
             => context.GetUsers().Any(u => u.Login == login);

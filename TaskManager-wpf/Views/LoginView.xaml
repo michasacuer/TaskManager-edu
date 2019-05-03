@@ -88,10 +88,11 @@
                  MinWidth="100" FontSize="12"
                  VerticalContentAlignment="Center" Margin="0,2,10,2"/>
 
-        <PasswordBox x:Name="PasswordTextBox"
+        <TextBox x:Name="PasswordTextBox"
                      Grid.Column="1" Grid.Row="3" 
                      MinWidth="100" 
                      FontSize="12" 
+                     FontFamily="/Font/#Password"
                      VerticalContentAlignment="Center" Margin="0,2,10,2"/>
 
         <Label Grid.Column="0" Grid.Row="3" 
