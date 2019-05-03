@@ -91,11 +91,11 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Wrappers\LoggedUser.cs" />
     <Compile Include="Models\Wrappers\Show.cs" />
+    <Compile Include="Services\FormsValidation\LoginForm.cs" />
     <Compile Include="Services\HttpDataService.cs" />
     <Compile Include="Services\NewTask.cs" />
     <Compile Include="Services\UrlService.cs" />
-    <Compile Include="Services\Validation.cs" />
-    <Compile Include="Services\Registration.cs" />
+    <Compile Include="Services\FormsValidation\RegistrationForm.cs" />
     <Compile Include="ViewModels\ActiveTaskViewModel.cs" />
     <Compile Include="ViewModels\AddNewTaskViewModel.cs" />
     <Compile Include="ViewModels\ErrorBoxViewModel.cs" />

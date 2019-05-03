@@ -6,6 +6,7 @@
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Models.BindingModels;
     using TaskManager.WPF.Services;
+    using TaskManager.WPF.Services.FormsValidation;
 
     internal class RegistrationViewModel : Screen
     {
@@ -38,7 +39,7 @@
         {
             try
             {
-                RegistrationBindingModel account = new RegistrationBindingModel
+                RegistrationBindingModel accountForm = new RegistrationBindingModel
                 {
                     UserName = this.LoginTextBox,
                     Password = this.PasswordTextBox,
@@ -48,10 +49,10 @@
                     Role = this.Role
                 };
 
-                this.Role = Registration.SetJob(this.ManagerChecked, this.DeveloperChecked, this.ViewerChecked);
-                Registration.IsValid(account, this.context);
+                RegistrationForm.SetJob(accountForm, this.ManagerChecked, this.DeveloperChecked, this.ViewerChecked);
+                RegistrationForm.IsValid(accountForm, this.context);
 
-                string succes = await this.httpDataService.Register(account);
+                string succes = await this.httpDataService.Register(accountForm);
 
                 Show.SuccesBox(succes);
                 this.TryClose();

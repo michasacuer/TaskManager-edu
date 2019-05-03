@@ -13,7 +13,7 @@ namespace TaskManager_WPF_Tests
         HttpDataService http = new HttpDataService();
 
         [TestMethod]
-        public async Task IsLoginWorking()
+        public async Task IsLoginWorking()3
         {
             var login = new LoginBindingModel { UserName = "write smth", Password = "write smth" };
 
