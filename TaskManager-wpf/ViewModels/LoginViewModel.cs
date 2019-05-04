@@ -14,8 +14,10 @@
         {
             this.context = context;
             this.loggedUser = loggedUser;
-            this.httpDataService = httpDataService;
+            this.HttpDataService = httpDataService;
         }
+
+        public bool IsFormEnabled { get; set; } = true;
 
         public string LoginTextBox { get; set; }
 
@@ -25,7 +27,10 @@
         {
             try
             {
-                LoginForm.IsValid(this.LoginTextBox, this.PasswordTextBox, this.context); //TODO
+                this.IsFormEnabled = false;
+                this.NotifyOfPropertyChange(() => this.IsFormEnabled);
+
+                //LoginForm.IsValid(this.LoginTextBox, this.PasswordTextBox, this.context); //TODO
 
                 var login = new LoginBindingModel
                 {
@@ -33,7 +38,7 @@
                     Password = this.PasswordTextBox
                 };
 
-                await this.httpDataService.Login(login);
+                await this.HttpDataService.Login(login);
 
                 this.TryClose();
                 Show.SuccesBox("Zalogowano pomyślnie!");
@@ -42,10 +47,13 @@
             catch (ArgumentException exception)
             {
                 Show.ErrorBox(exception.Message);
+
+                this.IsFormEnabled = true;
+                this.NotifyOfPropertyChange(() => this.IsFormEnabled);
             }
         }
 
-        public void RegisterButton() => Show.RegistrationBox(this.context, this.httpDataService);
+        public void RegisterButton() => Show.RegistrationBox(this.context, this.HttpDataService);
 
         public void CancelButton() => Application.Current.Shutdown();
 
@@ -53,6 +61,6 @@
 
         private FakeData context;
 
-        private HttpDataService httpDataService;
+        private HttpDataService HttpDataService { get; set; }
     }
 }
