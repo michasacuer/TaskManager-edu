@@ -14,8 +14,10 @@
         {
             this.TextBoxesInitialize();
             this.context = context;
-            this.httpDataService = httpDataService;
+            this.HttpDataService = httpDataService;
         }
+
+        public bool IsFormEnabled { get; set; } = true;
 
         public string LoginTextBox { get; set; }
 
@@ -39,6 +41,9 @@
         {
             try
             {
+                this.IsFormEnabled = false;
+                this.NotifyOfPropertyChange(() => this.IsFormEnabled);
+
                 RegistrationBindingModel accountForm = new RegistrationBindingModel
                 {
                     UserName = this.LoginTextBox,
@@ -52,13 +57,16 @@
                 RegistrationForm.SetJob(accountForm, this.ManagerChecked, this.DeveloperChecked, this.ViewerChecked);
                 RegistrationForm.IsValid(accountForm, this.context);
 
-                string succes = await this.httpDataService.Register(accountForm);
+                string succes = await this.HttpDataService.Register(accountForm);
 
                 Show.SuccesBox(succes);
                 this.TryClose();
             }
             catch (ArgumentException exception)
             {
+                this.IsFormEnabled = true;
+                this.NotifyOfPropertyChange(() => this.IsFormEnabled);
+
                 Show.ErrorBox(exception.Message);
             }
         }
@@ -76,6 +84,6 @@
 
         private readonly FakeData context;
 
-        private readonly HttpDataService httpDataService;
+        private HttpDataService HttpDataService { get; set; }
     }
 }

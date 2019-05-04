@@ -14,6 +14,6 @@
         public static bool ProjectSelected(string projectName) => projectName != null;
 
         public static (bool, string) IsValid(Task task) =>
-            task.TaskName == null ? (false, "Nazwa zadania nie może być pusta!") : (true, "Zadanie dodano pomyślnie");
+            task.Name == null ? (false, "Nazwa zadania nie może być pusta!") : (true, "Zadanie dodano pomyślnie");
     }
 }

@@ -53,6 +53,7 @@
 
                 return this.Ok(new AccountViewModel
                 {
+                    Id = appUser.Id,
                     FirstName = appUser.FirstName,
                     LastName = appUser.LastName,
                     Role = role,

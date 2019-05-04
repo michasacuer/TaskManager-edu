@@ -45,7 +45,9 @@
                 Foreground="White" 
                 BorderThickness="0"  
                 BorderBrush="{x:Null}" 
-                Background="#FF085078" Margin="13,11,12,4" Grid.RowSpan="2"/>
+                Background="#FF085078" Margin="13,11,12,4" Grid.RowSpan="2"
+                IsEnabled="{Binding IsFormEnabled}"/>
+        
         <Button x:Name="CancelButton"
                 Grid.Row="8" Grid.Column="0"  Grid.ColumnSpan="2"
                 Content="Anuluj"
@@ -111,31 +113,36 @@
         <TextBox x:Name="LoginTextBox"
                  Grid.Column="1" Grid.Row="1"
                  MinWidth="100" FontSize="12"
-                 VerticalContentAlignment="Center" Margin="0,2,10,2"/>
+                 VerticalContentAlignment="Center" Margin="0,2,10,2"
+                 IsEnabled="{Binding IsFormEnabled}"/>
 
         <TextBox x:Name="PasswordTextBox"
                  Grid.Column="1" Grid.Row="2"
                  MinWidth="100" FontSize="12"
                  FontFamily="/Font/#Password"
-                 VerticalContentAlignment="Center" Margin="0,2,10,2"/>
+                 VerticalContentAlignment="Center" Margin="0,2,10,2"
+                 IsEnabled="{Binding IsFormEnabled}"/>
 
         <TextBox x:Name="FirstNameTextBox"
                  Grid.Column="1" Grid.Row="3"
                  MinWidth="100" FontSize="12"
-                 VerticalContentAlignment="Center" Margin="0,2,10,2"/>
+                 VerticalContentAlignment="Center" Margin="0,2,10,2"
+                 IsEnabled="{Binding IsFormEnabled}"/>
 
         <TextBox x:Name="LastNameTextBox"
                  Grid.Column="1" Grid.Row="4"
                  MinWidth="100" FontSize="12"
-                 VerticalContentAlignment="Center" Margin="0,2,10,2"/>
+                 VerticalContentAlignment="Center" Margin="0,2,10,2"
+                 IsEnabled="{Binding IsFormEnabled}"/>
 
         <TextBox x:Name="EmailTextBox"
                  Grid.Column="1" Grid.Row="5"
                  MinWidth="100" FontSize="12"
-                 VerticalContentAlignment="Center" Margin="0,2,10,2"/>
-        <RadioButton Name="ManagerChecked" GroupName="PositionGroup" Content="Manager" Grid.Column="1" HorizontalAlignment="Left" Margin="10,8,0,0" Grid.Row="6" VerticalAlignment="Top"/>
-        <RadioButton Name="DeveloperChecked" GroupName="PositionGroup" Content="Developer" Grid.Column="1" HorizontalAlignment="Left" Margin="124,8,0,0" Grid.Row="6" VerticalAlignment="Top"/>
-        <RadioButton Name="ViewerChecked" GroupName="PositionGroup" Content="Viewer" Grid.Column="1" HorizontalAlignment="Left" Margin="241,8,0,0" Grid.Row="6" VerticalAlignment="Top"/>
+                 VerticalContentAlignment="Center" Margin="0,2,10,2"
+                 IsEnabled="{Binding IsFormEnabled}"/>
+        <RadioButton Name="ManagerChecked" GroupName="PositionGroup" Content="Manager" Grid.Column="1" HorizontalAlignment="Left" Margin="10,8,0,0" Grid.Row="6" VerticalAlignment="Top" IsEnabled="{Binding IsFormEnabled}"/>
+        <RadioButton Name="DeveloperChecked" GroupName="PositionGroup" Content="Developer" Grid.Column="1" HorizontalAlignment="Left" Margin="124,8,0,0" Grid.Row="6" VerticalAlignment="Top" IsEnabled="{Binding IsFormEnabled}"/>
+        <RadioButton Name="ViewerChecked" GroupName="PositionGroup" Content="Viewer" Grid.Column="1" HorizontalAlignment="Left" Margin="241,8,0,0" Grid.Row="6" VerticalAlignment="Top" IsEnabled="{Binding IsFormEnabled}"/>
 
 
     </Grid>

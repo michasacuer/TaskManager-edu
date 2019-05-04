@@ -25,7 +25,7 @@
                     this.tasks = this.context.GetProjectsTasks(this.SelectedProjectsList);
                     foreach (Task task in this.tasks)
                     {
-                        this.TasksList.Add(task.TaskName + " - " + task.Priority.ToString());
+                        this.TasksList.Add(task.Name + " - " + task.Priority.ToString());
                         this.NotifyOfPropertyChange(() => this.TasksList);
                     }
                 }

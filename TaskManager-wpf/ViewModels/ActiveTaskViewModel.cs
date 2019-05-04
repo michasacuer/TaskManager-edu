@@ -19,7 +19,7 @@
             this.context = context;
             this.stopwatch.Start();
             this.activeTask = task;
-            this.ActiveTaskTextBlock = $"{task.TaskName}, Priorytet: {task.Priority}";
+            this.ActiveTaskTextBlock = $"{task.Name}, Priorytet: {task.Priority}";
             this.DescriptionTextBlock = task.Description;
             this.TimerActiveTaskTextBlock = DateTime.Now.ToString();
             this.NotifyOfPropertyChange(() => this.TimerActiveTaskTextBlock);
