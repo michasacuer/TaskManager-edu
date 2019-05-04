@@ -23,13 +23,19 @@
             HttpResponseMessage response
                 = await this.HttpClient.PostAsJsonAsync(UrlService.BuildEndpoint("Account", "Login"), login);
 
-            response.EnsureSuccessStatusCode();
+            string statusCode = response.StatusCode.ToString();
 
             Account account = JsonConvert.DeserializeObject<Account>(await response.Content.ReadAsStringAsync());
 
-            this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", account.Bearer);
-
-            return account;
+            if (statusCode.Equals("Unauthorized"))
+            {
+                throw new ArgumentException("Błędne dane logowania!");
+            }
+            else
+            {
+                this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", account.Bearer);
+                return account;
+            }
         }
 
         public async Task<string> Register(RegistrationBindingModel account)

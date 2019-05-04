@@ -30,7 +30,7 @@
                 this.IsFormEnabled = false;
                 this.NotifyOfPropertyChange(() => this.IsFormEnabled);
 
-                //LoginForm.IsValid(this.LoginTextBox, this.PasswordTextBox, this.context); //TODO
+                LoginForm.IsValid(this.LoginTextBox, this.PasswordTextBox, this.context); //TODO
 
                 var login = new LoginBindingModel
                 {
