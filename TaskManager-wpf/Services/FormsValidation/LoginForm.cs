@@ -9,7 +9,11 @@
         {
             bool isValid = true;
 
-            if (login.Contains(" ") || password.Contains(" "))
+            if (login == null || password == null)
+            {
+                throw new ArgumentException("Wypełnij wszystkie pola!");
+            }
+            else if (login.Contains(" ") || password.Contains(" "))
             {
                 throw new ArgumentException("Niedozwolone znaki w formularzu!");
             }
