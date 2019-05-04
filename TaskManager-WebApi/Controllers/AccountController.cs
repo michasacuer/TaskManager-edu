@@ -53,6 +53,7 @@
 
                 return this.Ok(new AccountViewModel
                 {
+                    Id = appUser.Id,
                     FirstName = appUser.FirstName,
                     LastName = appUser.LastName,
                     Role = role,
@@ -90,7 +91,7 @@
                 return this.Ok();
             }
 
-            throw new ApplicationException("UNKNOWN_ERROR");
+            return this.Conflict();
         }
 
         private async Task<object> GenerateJwtToken(string userName, ApplicationUser user)

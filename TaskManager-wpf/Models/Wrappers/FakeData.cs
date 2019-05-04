@@ -20,26 +20,26 @@
             var projectsNames = new BindableCollection<string>();
             foreach (Project item in this.projects)
             {
-                projectsNames.Add(item.ProjectName);
+                projectsNames.Add(item.Name);
             }
 
             return projectsNames;
         }
 
         public Task GetTask(string taskName, string projectName) =>
-            this.projects.FirstOrDefault(p => p.ProjectName == projectName)
-            .Tasks.FirstOrDefault(t => t.TaskName == taskName.Substring(0, taskName.IndexOf(" -")));
+            this.projects.FirstOrDefault(p => p.Name == projectName)
+            .Tasks.FirstOrDefault(t => t.Name == taskName.Substring(0, taskName.IndexOf(" -")));
 
         public List<Task> GetProjectsTasks(string projectName)
-            => this.projects.FirstOrDefault(p => p.ProjectName == projectName).Tasks;
+            => this.projects.FirstOrDefault(p => p.Name == projectName).Tasks;
 
         public void AddTaskToProject(Task task, string projectName)
-            => this.projects.FirstOrDefault(p => p.ProjectName == projectName).Tasks.Add(task);
+            => this.projects.FirstOrDefault(p => p.Name == projectName).Tasks.Add(task);
 
         public void EndTask(Task task, string projectName)
         {
-            this.projects.FirstOrDefault(p => p.ProjectName == projectName).EndedTasks.Add(task);
-            this.projects.FirstOrDefault(p => p.ProjectName == projectName).Tasks.Remove(task);
+            this.projects.FirstOrDefault(p => p.Name == projectName).EndedTasks.Add(task);
+            this.projects.FirstOrDefault(p => p.Name == projectName).Tasks.Remove(task);
         }
 
         public BindableCollection<string> GetEndedTasks()
@@ -67,11 +67,12 @@
                 new Project("Farm"),
                 new Project("Mini Jira", new List<Task>
                 {
-                    new Task("Add first functionality", Priority.Low, "First task for our project"),
-
-                    new Task("Add second functionality", Priority.High, "Very important"),
-
-                    new Task("Add third functionality", Priority.Medium, "")
+                    new Task
+                    {
+                        Name = "Pierwszy task",
+                        Priority = Priority.Low,
+                        Description = "desc"
+                    }
                 })
             };
         }

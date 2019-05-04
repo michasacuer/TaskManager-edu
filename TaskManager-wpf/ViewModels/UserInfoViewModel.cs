@@ -2,6 +2,7 @@
 {
     using Caliburn.Micro;
     using TaskManager.WPF.Models;
+    using TaskManager.WPF.Services;
 
     internal class UserInfoViewModel : Screen
     {
@@ -25,12 +26,15 @@
         {
             this.loggedUser.Logout();
             this.TryClose();
-            Show.LoginBox(this.context, this.loggedUser);
+            Show.LoginBox(this.context, this.loggedUser, this.httpDataService);
         }
 
         public void OkButton() => this.TryClose();
 
         private LoggedUser loggedUser;
+
         private FakeData context;
+
+        private HttpDataService httpDataService;
     }
 }

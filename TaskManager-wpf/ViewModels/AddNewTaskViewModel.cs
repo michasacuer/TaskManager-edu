@@ -54,7 +54,7 @@
                 return;
             }
 
-            Task taskToCheck = new Task(this.TaskNameTextBox, this.Priority, this.DescriptionTextBox);
+            Task taskToCheck = new Task { Name = this.TaskNameTextBox, Priority = this.Priority, Description = this.DescriptionTextBox };
             (bool isValid, string alert) = NewTask.IsValid(taskToCheck);
 
             if (isValid)
