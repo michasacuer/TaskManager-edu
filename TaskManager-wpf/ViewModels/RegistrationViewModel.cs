@@ -1,8 +1,8 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
-    using System;
     using Caliburn.Micro;
     using TaskManager.WPF.Enums;
+    using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Models.BindingModels;
     using TaskManager.WPF.Services;
@@ -62,7 +62,7 @@
                 Show.SuccesBox(succes);
                 this.TryClose();
             }
-            catch (ArgumentException exception)
+            catch (FormValidationException exception)
             {
                 this.IsFormEnabled = true;
                 this.NotifyOfPropertyChange(() => this.IsFormEnabled);

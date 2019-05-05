@@ -1,6 +1,6 @@
 ﻿namespace TaskManager.WPF.Services.FormsValidation
 {
-    using System;
+    using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Models;
 
     public static class LoginForm
@@ -11,11 +11,11 @@
 
             if (login == null || password == null)
             {
-                throw new ArgumentException("Wypełnij wszystkie pola!");
+                throw new FormValidationException("Wypełnij wszystkie pola!");
             }
             else if (login.Contains(" ") || password.Contains(" "))
             {
-                throw new ArgumentException("Niedozwolone znaki w formularzu!");
+                throw new FormValidationException("Niedozwolone znaki w formularzu!");
             }
 
             return isValid;

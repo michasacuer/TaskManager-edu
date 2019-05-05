@@ -1,8 +1,8 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
-    using System;
     using System.Windows;
     using Caliburn.Micro;
+    using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Models.BindingModels;
     using TaskManager.WPF.Services;
@@ -44,7 +44,7 @@
                 Show.SuccesBox("Zalogowano pomyślnie!");
                 this.loggedUser.LoginUserToApp(this.context.GetUser(this.LoginTextBox));
             }
-            catch (ArgumentException exception)
+            catch (FormValidationException exception)
             {
                 Show.ErrorBox(exception.Message);
 

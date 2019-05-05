@@ -80,6 +80,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Exceptions\FormValidationException.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\BindingModels\LoginBindingModel.cs" />
     <Compile Include="Models\BindingModels\RegistrationBindingModel.cs" />
