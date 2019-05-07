@@ -9,7 +9,7 @@
 
     public static class RegistrationForm
     {
-        public static void SetJob(RegistrationBindingModel accountForm, bool isManager, bool isDeveloper, bool isViewer)
+        public static void SetRole(RegistrationBindingModel accountForm, bool isManager, bool isDeveloper, bool isViewer)
             => accountForm.Role = isManager ?
                Role.Manager : isDeveloper ?
                Role.Developer : isViewer ?

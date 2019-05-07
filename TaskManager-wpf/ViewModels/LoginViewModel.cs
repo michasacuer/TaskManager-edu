@@ -30,19 +30,19 @@
                 this.IsFormEnabled = false;
                 this.NotifyOfPropertyChange(() => this.IsFormEnabled);
 
-                LoginForm.IsValid(this.LoginTextBox, this.PasswordTextBox, this.context); //TODO
-
-                var login = new LoginBindingModel
+                var loginForm = new LoginBindingModel
                 {
                     UserName = this.LoginTextBox,
                     Password = this.PasswordTextBox
                 };
 
-                await this.HttpDataService.Login(login);
+                LoginForm.IsValid(loginForm);
+
+                await this.HttpDataService.Login(loginForm);
+                this.loggedUser.LoginUserToApp(this.context.GetUser(this.LoginTextBox));
 
                 this.TryClose();
                 Show.SuccesBox("Zalogowano pomyślnie!");
-                this.loggedUser.LoginUserToApp(this.context.GetUser(this.LoginTextBox));
             }
             catch (FormValidationException exception)
             {

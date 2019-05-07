@@ -95,6 +95,7 @@
     <Compile Include="Models\Wrappers\Show.cs" />
     <Compile Include="Services\FormsValidation\LoginForm.cs" />
     <Compile Include="Services\HttpDataService.cs" />
+    <Compile Include="Services\LogInService.cs" />
     <Compile Include="Services\NewTask.cs" />
     <Compile Include="Services\UrlService.cs" />
     <Compile Include="Services\FormsValidation\RegistrationForm.cs" />
@@ -219,6 +220,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TaskManager-Models\TaskManager-Models.csproj">
+      <Project>{b2aef5cd-0e36-4c2f-8de4-4c1aa2e93615}</Project>
+      <Name>TaskManager-Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
