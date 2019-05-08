@@ -36,7 +36,7 @@
 
             if (statusCode.Equals("Unauthorized"))
             {
-                throw new FormValidationException("Błędne dane logowania!");
+                throw new ExternalLoginException("Błędne dane logowania!");
             }
             else
             {
@@ -55,7 +55,7 @@
 
             if (statusCode.Equals("Conflict"))
             {
-                throw new FormValidationException("Błąd serwera, sprawdź formularz!");
+                throw new RegistrationException("Błąd serwera, sprawdź formularz!");
             }
             else
             {

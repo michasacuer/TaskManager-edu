@@ -14,6 +14,6 @@
 
         public string LastName { get; set; }
 
-        public Role Role { get; set; }
+        public Role? Role { get; set; }
     }
 }

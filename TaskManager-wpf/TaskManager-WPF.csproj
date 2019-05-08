@@ -80,7 +80,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Exceptions\ExternalLoginException.cs" />
     <Compile Include="Exceptions\FormValidationException.cs" />
+    <Compile Include="Exceptions\RegistrationException.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\BindingModels\LoginBindingModel.cs" />
     <Compile Include="Models\BindingModels\RegistrationBindingModel.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Models\Wrappers\LoggedUser.cs" />
     <Compile Include="Models\Wrappers\Show.cs" />
     <Compile Include="Services\FormsValidation\LoginForm.cs" />
+    <Compile Include="Services\FormsValidation\ValidationResult.cs" />
     <Compile Include="Services\HttpDataService.cs" />
     <Compile Include="Services\LogInService.cs" />
     <Compile Include="Services\NewTask.cs" />

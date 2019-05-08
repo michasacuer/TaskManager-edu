@@ -3,45 +3,92 @@
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using TaskManager.WPF.Enums;
-    using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Models.BindingModels;
 
     public static class RegistrationForm
     {
-        public static void SetRole(RegistrationBindingModel accountForm, bool isManager, bool isDeveloper, bool isViewer)
-            => accountForm.Role = isManager ?
-               Role.Manager : isDeveloper ?
-               Role.Developer : isViewer ?
-               Role.Viewer : throw new FormValidationException("Wyrz stanowisko!");
-
-        public static void IsValid(RegistrationBindingModel accountForm, FakeData context)
+        public static ValidationResult IsValid(
+            RegistrationBindingModel accountForm,
+            FakeData context,
+            bool isManager,
+            bool isDeveloper,
+            bool isViewer)
         {
+            var result = SetRole(accountForm, isManager, isDeveloper, isViewer);
+
+            if (!result.IsValid)
+            {
+                return result;
+            }
+
             if (accountForm.UserName == null || accountForm.FirstName == null ||
                 accountForm.LastName == null || accountForm.Email == null)
             {
-                throw new FormValidationException("Wypełnij wszystkie pola!");
+                result.IsValid = false;
+                result.Message = "Wypełnij wszystkie pola!";
+
+                return result;
             }
             else if (IsStringHaveSpaces(accountForm.UserName))
             {
-                throw new FormValidationException("Niedozwolone znaki w polu Login!");
+                result.IsValid = false;
+                result.Message = "Niedozwolone znaki w polu Login!";
+
+                return result;
             }
             else if (IsLoginExist(accountForm.UserName, context))
             {
-                throw new FormValidationException("Podany login jest już w bazie!");
+                result.IsValid = false;
+                result.Message = "Podany login jest już w bazie!";
+
+                return result;
             }
             else if (!IsEmailValid(accountForm.Email))
             {
-                throw new FormValidationException("Błędny adres Email!");
+                result.IsValid = false;
+                result.Message = "Błędny adres Email!";
+
+                return result;
             }
             else if (IsEmailExist(accountForm.Email, context))
             {
-                throw new FormValidationException("Podany Email jest już w bazie!");
+                result.IsValid = false;
+                result.Message = "Podany Email jest już w bazie!";
+
+                return result;
             }
             else if (IsStringHaveSpaces(accountForm.LastName))
             {
-                throw new FormValidationException("Niedozwolone znaki w polu Nazwisko!");
+                result.IsValid = false;
+                result.Message = "Niedozwolone znaki w polu Nazwisko!";
+
+                return result;
             }
+
+            result.Message = "Zarejestrowano pomyślnie!";
+
+            return result;
+        }
+
+        private static ValidationResult SetRole(RegistrationBindingModel accountForm, bool isManager, bool isDeveloper, bool isViewer)
+        {
+            var result = new ValidationResult();
+
+            if (!isManager && !isDeveloper && !isViewer)
+            {
+                result.IsValid = false;
+                result.Message = "Wybierz stanowisko!";
+
+                return result;
+            }
+
+            accountForm.Role = isManager ?
+                 Role.Manager : isDeveloper ?
+                 Role.Developer : isViewer ?
+                 Role.Viewer : Role.Viewer;
+
+            return result;
         }
 
         private static bool IsLoginExist(string login, FakeData context) => context.GetUsers().Any(u => u.Login == login);

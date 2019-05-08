@@ -1,5 +1,6 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
+    using System.Net.Http;
     using System.Windows;
     using Caliburn.Micro;
     using TaskManager.WPF.Exceptions;
@@ -25,28 +26,39 @@
 
         public async void LoginButton()
         {
-            try
-            {
-                this.IsFormEnabled = false;
-                this.NotifyOfPropertyChange(() => this.IsFormEnabled);
 
-                var loginForm = new LoginBindingModel
+            this.IsFormEnabled = false;
+            this.NotifyOfPropertyChange(() => this.IsFormEnabled);
+
+            var loginForm = new LoginBindingModel
+            {
+                UserName = this.LoginTextBox,
+                Password = this.PasswordTextBox
+            };
+
+            var validationResult = LoginForm.IsValid(loginForm);
+
+            if (validationResult.IsValid)
+            {
+                try
                 {
-                    UserName = this.LoginTextBox,
-                    Password = this.PasswordTextBox
-                };
+                    await this.HttpDataService.Login(loginForm);
+                    this.loggedUser.LoginUserToApp(this.context.GetUser(this.LoginTextBox));
 
-                LoginForm.IsValid(loginForm);
+                    this.TryClose();
+                    Show.SuccesBox(validationResult.Message);
+                }
+                catch (ExternalLoginException exception)
+                {
+                    Show.ErrorBox(exception.Message);
 
-                await this.HttpDataService.Login(loginForm);
-                this.loggedUser.LoginUserToApp(this.context.GetUser(this.LoginTextBox));
-
-                this.TryClose();
-                Show.SuccesBox("Zalogowano pomyślnie!");
+                    this.IsFormEnabled = true;
+                    this.NotifyOfPropertyChange(() => this.IsFormEnabled);
+                }
             }
-            catch (FormValidationException exception)
+            else
             {
-                Show.ErrorBox(exception.Message);
+                Show.ErrorBox(validationResult.Message);
 
                 this.IsFormEnabled = true;
                 this.NotifyOfPropertyChange(() => this.IsFormEnabled);

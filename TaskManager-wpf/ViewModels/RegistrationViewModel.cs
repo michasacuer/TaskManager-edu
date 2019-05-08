@@ -39,35 +39,50 @@
 
         public async void AcceptButton()
         {
-            try
-            {
-                this.IsFormEnabled = false;
-                this.NotifyOfPropertyChange(() => this.IsFormEnabled);
 
-                RegistrationBindingModel accountForm = new RegistrationBindingModel
+            this.IsFormEnabled = false;
+            this.NotifyOfPropertyChange(() => this.IsFormEnabled);
+
+            RegistrationBindingModel accountForm = new RegistrationBindingModel
+            {
+                UserName = this.LoginTextBox,
+                Password = this.PasswordTextBox,
+                FirstName = this.FirstNameTextBox,
+                LastName = this.LastNameTextBox,
+                Email = this.EmailTextBox,
+                Role = this.Role
+            };
+
+            var validationResult = RegistrationForm.IsValid(
+                accountForm,
+                this.context,
+                this.ManagerChecked,
+                this.DeveloperChecked,
+                this.ViewerChecked);
+
+            if (validationResult.IsValid)
+            {
+                try
                 {
-                    UserName = this.LoginTextBox,
-                    Password = this.PasswordTextBox,
-                    FirstName = this.FirstNameTextBox,
-                    LastName = this.LastNameTextBox,
-                    Email = this.EmailTextBox,
-                    Role = this.Role
-                };
+                    await this.HttpDataService.Register(accountForm);
 
-                RegistrationForm.SetRole(accountForm, this.ManagerChecked, this.DeveloperChecked, this.ViewerChecked);
-                RegistrationForm.IsValid(accountForm, this.context);
+                    Show.SuccesBox(validationResult.Message);
+                    this.TryClose();
+                }
+                catch (RegistrationException exception)
+                {
+                    Show.ErrorBox(exception.Message);
 
-                string succes = await this.HttpDataService.Register(accountForm);
-
-                Show.SuccesBox(succes);
-                this.TryClose();
+                    this.IsFormEnabled = true;
+                    this.NotifyOfPropertyChange(() => this.IsFormEnabled);
+                }
             }
-            catch (FormValidationException exception)
+            else
             {
+                Show.ErrorBox(validationResult.Message);
+
                 this.IsFormEnabled = true;
                 this.NotifyOfPropertyChange(() => this.IsFormEnabled);
-
-                Show.ErrorBox(exception.Message);
             }
         }
 

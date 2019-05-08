@@ -1,24 +1,28 @@
 ﻿namespace TaskManager.WPF.Services.FormsValidation
 {
-    using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Models.BindingModels;
 
     public static class LoginForm
     {
-        public static bool IsValid(LoginBindingModel loginForm)
+        public static ValidationResult IsValid(LoginBindingModel loginForm)
         {
-            bool isValid = true;
+            var result = new ValidationResult();
+            result.IsValid = true;
 
             if (loginForm.UserName == null || loginForm.Password == null)
             {
-                throw new FormValidationException("Wypełnij wszystkie pola!");
+                result.IsValid = false;
+                result.Message = "Wypełnij wszystkie pola!";
             }
             else if (loginForm.UserName.Contains(" ") || loginForm.Password.Contains(" "))
             {
-                throw new FormValidationException("Niedozwolone znaki w formularzu!");
+                result.IsValid = false;
+                result.Message = "Niedozwolone znaki w formularzu!";
             }
 
-            return isValid;
+            result.Message = "Zalogowano pomyślnie!";
+
+            return result;
         }
     }
 }
