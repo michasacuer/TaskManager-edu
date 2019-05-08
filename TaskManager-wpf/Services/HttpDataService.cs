@@ -40,7 +40,8 @@
             }
             else
             {
-                this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", account.Bearer);
+                this.HttpClient.DefaultRequestHeaders.Authorization
+                    = new AuthenticationHeaderValue("Bearer", account.Bearer);
                 return account;
             }
         }
@@ -67,7 +68,8 @@
             string controller = typeof(TObject).Name;
 
             IEnumerable<TObject> data;
-            HttpResponseMessage response = await this.HttpClient.GetAsync(UrlService.BuildEndpoint(controller));
+            HttpResponseMessage response
+                = await this.HttpClient.GetAsync(UrlService.BuildEndpoint(controller));
 
             if (response.IsSuccessStatusCode)
             {
@@ -85,7 +87,8 @@
             string controller = typeof(TObject).Name;
 
             TObject data;
-            HttpResponseMessage response = await this.HttpClient.GetAsync(UrlService.BuildEndpoint(controller, id));
+            HttpResponseMessage response
+                = await this.HttpClient.GetAsync(UrlService.BuildEndpoint(controller, id));
 
             if (response.IsSuccessStatusCode)
             {
