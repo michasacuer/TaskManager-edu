@@ -6,6 +6,7 @@
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
+    using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Models.BindingModels;
 
@@ -18,6 +19,12 @@
 
         private HttpClient HttpClient { get; set; }
 
+        public async System.Threading.Tasks.Task TestServerConnection()
+        {
+            HttpResponseMessage response
+                = await this.HttpClient.GetAsync(UrlService.BuildEndpoint("Test"));
+        }
+
         public async Task<Account> Login(LoginBindingModel login)
         {
             HttpResponseMessage response
@@ -29,7 +36,7 @@
 
             if (statusCode.Equals("Unauthorized"))
             {
-                throw new ArgumentException("Błędne dane logowania!");
+                throw new FormValidationException("Błędne dane logowania!");
             }
             else
             {
@@ -47,7 +54,7 @@
 
             if (statusCode.Equals("Conflict"))
             {
-                throw new ArgumentException("Błąd serwera, sprawdź formularz!");
+                throw new FormValidationException("Błąd serwera, sprawdź formularz!");
             }
             else
             {

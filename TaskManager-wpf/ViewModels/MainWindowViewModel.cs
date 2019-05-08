@@ -19,7 +19,7 @@
         private readonly LoggedUser loggedUser = new LoggedUser();
 
         private readonly FakeData context = new FakeData();
-
+        
         private readonly HttpDataService httpDataService = new HttpDataService();
     }
 }

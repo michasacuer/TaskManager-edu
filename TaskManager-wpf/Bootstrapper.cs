@@ -1,7 +1,10 @@
 ﻿namespace TaskManager.WPF
 {
+    using System.Net.Http;
     using System.Windows;
     using Caliburn.Micro;
+    using TaskManager.WPF.Models;
+    using TaskManager.WPF.Services;
     using TaskManager.WPF.ViewModels;
 
     internal class Bootstrapper : BootstrapperBase
@@ -11,9 +14,19 @@
             this.Initialize();
         }
 
-        protected override void OnStartup(object sender, StartupEventArgs e)
+        protected override async void OnStartup(object sender, StartupEventArgs e)
         {
-            this.DisplayRootViewFor<MainWindowViewModel>();
+            var client = new HttpDataService();
+
+            try
+            {
+                await client.TestServerConnection();
+                this.DisplayRootViewFor<MainWindowViewModel>();
+            }
+            catch (HttpRequestException ex)
+            {
+                Show.ErrorBox(ex.Message);
+            }
         }
     }
 }
