@@ -5,9 +5,9 @@ Work in progress.
 User's credentials for login into WPF app in **TaskManager-WPF.TaskManager.Models.FakeData**
 
 # TODO:
-- ASP Identity (for now, users are hardcoded in WPF project)
+- ~~ASP Identity (for now, users are hardcoded in WPF project)~~
 - More integration with ASP
-- REST on WPF part (deserialize json from ASP Core backend)
+- ~~REST on WPF part (deserialize json from ASP Core backend)~~
 - Improvement in React app
 - Improvement in WPF app (will be done in next semester)
 
