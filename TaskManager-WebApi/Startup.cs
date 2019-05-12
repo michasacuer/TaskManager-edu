@@ -14,6 +14,7 @@
     using Microsoft.IdentityModel.Tokens;
     using TaskManager.Models;
     using TaskManager.WebApi.Models;
+    using TaskManager.WebApi.Services;
 
     public class Startup
     {
@@ -31,6 +32,8 @@
 
             services.AddDbContext<TaskManagerDbContext>(
                 options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<DatabaseService>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {

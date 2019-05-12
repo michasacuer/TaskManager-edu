@@ -1,24 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using TaskManager.Models;
-using TaskManager.WebApi.Models;
-
-namespace TaskManager_WebApi.Controllers
+﻿namespace TaskManager_WebApi.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using TaskManager.Models;
+    using TaskManager.WebApi.Models;
+    using TaskManager.WebApi.Services;
+
     [Route("[controller]")]
     [ApiController]
     public class ProjectController : ControllerBase
     {
         private readonly TaskManagerDbContext _context;
 
-        public ProjectController(TaskManagerDbContext context)
+        private readonly DatabaseService databaseService;
+
+        public ProjectController(TaskManagerDbContext context, DatabaseService databaseService)
         {
-            _context = context;
+            this._context = context;
+            this.databaseService = databaseService;
         }
 
         // GET: api/Project
