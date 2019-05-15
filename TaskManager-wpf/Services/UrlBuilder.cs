@@ -2,7 +2,7 @@
 {
     using System.Linq;
 
-    public static class UrlService
+    public static class UrlBuilder
     {
         private static string url = "https://localhost:44365";
 

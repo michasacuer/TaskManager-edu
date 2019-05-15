@@ -9,6 +9,7 @@
     using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Models.BindingModels;
+    using TaskManager.WPF.Strings;
 
     public class HttpDataService
     {
@@ -22,13 +23,13 @@
         public async System.Threading.Tasks.Task TestServerConnection()
         {
             HttpResponseMessage response
-                = await this.HttpClient.GetAsync(UrlService.BuildEndpoint("Test"));
+                = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint("Test"));
         }
 
         public async Task<Account> Login(LoginBindingModel login)
         {
             HttpResponseMessage response
-                = await this.HttpClient.PostAsJsonAsync(UrlService.BuildEndpoint("Account", "Login"), login);
+                = await this.HttpClient.PostAsJsonAsync(UrlBuilder.BuildEndpoint("Account", "Login"), login);
 
             string statusCode = response.StatusCode.ToString();
 
@@ -36,7 +37,7 @@
 
             if (statusCode.Equals("Unauthorized"))
             {
-                throw new ExternalLoginException("Błędne dane logowania!");
+                throw new ExternalLoginException(Error.ExternalLogin);
             }
             else
             {
@@ -49,13 +50,13 @@
         public async Task<string> Register(RegistrationBindingModel account)
         {
             HttpResponseMessage response
-                = await this.HttpClient.PostAsJsonAsync(UrlService.BuildEndpoint("Account", "Register"), account);
+                = await this.HttpClient.PostAsJsonAsync(UrlBuilder.BuildEndpoint("Account", "Register"), account);
 
             string statusCode = response.StatusCode.ToString();
 
             if (statusCode.Equals("Conflict"))
             {
-                throw new RegistrationException("Błąd serwera, sprawdź formularz!");
+                throw new RegistrationException(Error.Registration);
             }
             else
             {
@@ -69,7 +70,7 @@
 
             IEnumerable<TObject> data;
             HttpResponseMessage response
-                = await this.HttpClient.GetAsync(UrlService.BuildEndpoint(controller));
+                = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint(controller));
 
             if (response.IsSuccessStatusCode)
             {
@@ -88,7 +89,7 @@
 
             TObject data;
             HttpResponseMessage response
-                = await this.HttpClient.GetAsync(UrlService.BuildEndpoint(controller, id));
+                = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint(controller, id));
 
             if (response.IsSuccessStatusCode)
             {
@@ -105,7 +106,7 @@
         {
             string controller = typeof(TObject).Name;
 
-            HttpResponseMessage response = await this.HttpClient.PostAsJsonAsync(UrlService.BuildEndpoint(controller), data);
+            HttpResponseMessage response = await this.HttpClient.PostAsJsonAsync(UrlBuilder.BuildEndpoint(controller), data);
 
             return data;
         }
@@ -114,14 +115,14 @@
         {
             string controller = typeof(TObject).Name;
 
-            HttpResponseMessage response = await this.HttpClient.PutAsJsonAsync(UrlService.BuildEndpoint(controller, id), data);
+            HttpResponseMessage response = await this.HttpClient.PutAsJsonAsync(UrlBuilder.BuildEndpoint(controller, id), data);
         }
 
         public async System.Threading.Tasks.Task Delete<TObject>(TObject data, int id)
         {
             string controller = typeof(TObject).Name;
 
-            HttpResponseMessage response = await this.HttpClient.DeleteAsync(UrlService.BuildEndpoint(controller, id));
+            HttpResponseMessage response = await this.HttpClient.DeleteAsync(UrlBuilder.BuildEndpoint(controller, id));
         }
     }
 }

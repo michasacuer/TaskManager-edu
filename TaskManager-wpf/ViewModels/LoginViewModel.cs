@@ -1,6 +1,5 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
-    using System.Net.Http;
     using System.Windows;
     using Caliburn.Micro;
     using TaskManager.WPF.Exceptions;
