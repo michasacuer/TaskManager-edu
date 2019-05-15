@@ -5,6 +5,7 @@
     using Caliburn.Micro;
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Services;
+    using TaskManager.WPF.Strings;
     using TaskManager.WPF.ViewModels;
 
     internal class Bootstrapper : BootstrapperBase
@@ -23,9 +24,9 @@
                 await client.TestServerConnection();
                 this.DisplayRootViewFor<MainWindowViewModel>();
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
-                Show.ErrorBox(ex.Message);
+                Show.ErrorBox(Error.NoServerConnection);
             }
         }
     }

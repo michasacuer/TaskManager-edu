@@ -5,6 +5,7 @@
     using TaskManager.WPF.Enums;
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Models.BindingModels;
+    using TaskManager.WPF.Strings;
 
     public static class RegistrationForm
     {
@@ -26,47 +27,47 @@
                 accountForm.LastName == null || accountForm.Email == null)
             {
                 result.IsValid = false;
-                result.Message = "Wypełnij wszystkie pola!";
+                result.Message = Error.FormEmpty;
 
                 return result;
             }
             else if (IsStringHaveSpaces(accountForm.UserName))
             {
                 result.IsValid = false;
-                result.Message = "Niedozwolone znaki w polu Login!";
+                result.Message = Error.UnallowedCharsInLoginLabel;
 
                 return result;
             }
             else if (IsLoginExist(accountForm.UserName, context))
             {
                 result.IsValid = false;
-                result.Message = "Podany login jest już w bazie!";
+                result.Message = Error.LoginExist;
 
                 return result;
             }
             else if (!IsEmailValid(accountForm.Email))
             {
                 result.IsValid = false;
-                result.Message = "Błędny adres Email!";
+                result.Message = Error.WrongEmail;
 
                 return result;
             }
             else if (IsEmailExist(accountForm.Email, context))
             {
                 result.IsValid = false;
-                result.Message = "Podany Email jest już w bazie!";
+                result.Message = Error.EmailExist;
 
                 return result;
             }
             else if (IsStringHaveSpaces(accountForm.LastName))
             {
                 result.IsValid = false;
-                result.Message = "Niedozwolone znaki w polu Nazwisko!";
+                result.Message = Error.UnallowrdCharsInLastnameLabel;
 
                 return result;
             }
 
-            result.Message = "Zarejestrowano pomyślnie!";
+            result.Message = Succes.Registration;
 
             return result;
         }
@@ -78,7 +79,7 @@
             if (!isManager && !isDeveloper && !isViewer)
             {
                 result.IsValid = false;
-                result.Message = "Wybierz stanowisko!";
+                result.Message = Error.SetRole;
 
                 return result;
             }
