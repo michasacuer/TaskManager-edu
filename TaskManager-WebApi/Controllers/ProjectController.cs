@@ -17,9 +17,9 @@
     {
         private readonly TaskManagerDbContext _context;
 
-        private readonly DatabaseService databaseService;
+        private readonly IDatabaseService<Project> databaseService;
 
-        public ProjectController(TaskManagerDbContext context, DatabaseService databaseService)
+        public ProjectController(TaskManagerDbContext context, IDatabaseService<Project> databaseService)
         {
             this._context = context;
             this.databaseService = databaseService;

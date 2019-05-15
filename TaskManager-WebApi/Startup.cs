@@ -2,6 +2,8 @@
 {
     using System;
     using System.IdentityModel.Tokens.Jwt;
+    using System.Linq;
+    using System.Reflection;
     using System.Text;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
@@ -25,7 +27,6 @@
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -33,7 +34,16 @@
             services.AddDbContext<TaskManagerDbContext>(
                 options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<DatabaseService>();
+            Assembly.GetExecutingAssembly()
+            .GetTypes()
+            .Where(item => item.GetInterfaces()
+            .Where(i => i.IsGenericType).Any(i => i.GetGenericTypeDefinition() == typeof(IDatabaseService<>)) && !item.IsAbstract && !item.IsInterface)
+            .ToList()
+            .ForEach(assignedTypes =>
+            {
+                var serviceType = assignedTypes.GetInterfaces().First(i => i.GetGenericTypeDefinition() == typeof(IDatabaseService<>));
+                services.AddScoped(serviceType, assignedTypes);
+            });
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
@@ -69,7 +79,6 @@
                 });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

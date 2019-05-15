@@ -10,11 +10,8 @@
     [ApiController]
     public class TestController : ControllerBase
     {
-        private readonly DatabaseService databaseService;
-
-        public TestController(DatabaseService databaseService)
+        public TestController()
         {
-            this.databaseService = databaseService;
         }
 
         [HttpGet]
