@@ -15,21 +15,21 @@
     [ApiController]
     public class ProjectController : ControllerBase
     {
-        private readonly TaskManagerDbContext _context;
+        private readonly TaskManagerDbContext context;
 
-        private readonly IDatabaseService<Project> databaseService;
+        private readonly IDatabaseService<Project> projectService;
 
-        public ProjectController(TaskManagerDbContext context, IDatabaseService<Project> databaseService)
+        public ProjectController(TaskManagerDbContext context, IDatabaseService<Project> projectService)
         {
-            this._context = context;
-            this.databaseService = databaseService;
+            this.context = context;
+            this.projectService = projectService;
         }
 
         // GET: api/Project
         [HttpGet]
         public IEnumerable<Project> GetProjects()
         {
-            return _context.Projects;
+            return context.Projects;
         }
 
         // GET: api/Project/5
@@ -41,7 +41,7 @@
                 return BadRequest(ModelState);
             }
 
-            var project = await _context.Projects.FindAsync(id);
+            var project = await context.Projects.FindAsync(id);
 
             if (project == null)
             {
@@ -65,11 +65,11 @@
                 return BadRequest();
             }
 
-            _context.Entry(project).State = EntityState.Modified;
+            context.Entry(project).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -96,8 +96,8 @@
                 return BadRequest(ModelState);
             }
 
-            _context.Projects.Add(project);
-            await _context.SaveChangesAsync();
+            context.Projects.Add(project);
+            await context.SaveChangesAsync();
 
             return CreatedAtAction("GetProject", new { id = project.Id }, project);
         }
@@ -111,21 +111,21 @@
                 return BadRequest(ModelState);
             }
 
-            var project = await _context.Projects.FindAsync(id);
+            var project = await context.Projects.FindAsync(id);
             if (project == null)
             {
                 return NotFound();
             }
 
-            _context.Projects.Remove(project);
-            await _context.SaveChangesAsync();
+            context.Projects.Remove(project);
+            await context.SaveChangesAsync();
 
             return Ok(project);
         }
 
         private bool ProjectExists(int id)
         {
-            return _context.Projects.Any(e => e.Id == id);
+            return context.Projects.Any(e => e.Id == id);
         }
     }
 }
