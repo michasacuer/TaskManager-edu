@@ -18,8 +18,6 @@
 
         private readonly IConfiguration configuration;
 
-        private readonly IAccountService accountService;
-
         public AccountService(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
