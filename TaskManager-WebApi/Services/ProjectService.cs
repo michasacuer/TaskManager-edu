@@ -2,18 +2,17 @@
 {
     using System;
     using System.Collections.Generic;
-    using Microsoft.EntityFrameworkCore;
     using TaskManager.Models;
     using TaskManager.WebApi.Models;
 
     public class ProjectService : IDatabaseService<Project>
     {
+        private readonly TaskManagerDbContext context;
+
         public ProjectService(TaskManagerDbContext context)
         {
-            this.Projects = context.Projects;
+            this.context = context;
         }
-
-        private DbSet<Project> Projects { get; set; }
 
         public void Add(Project data)
         {
