@@ -14,6 +14,7 @@
     using TaskManager.Models;
     using TaskManager.Models.BingindModels;
     using TaskManager.Models.ViewModels;
+    using TaskManager.WebApi.Services;
 
     [Route("[controller]")]
     [ApiController]
@@ -27,16 +28,20 @@
 
         private readonly IConfiguration configuration;
 
+        private readonly IAccountService accountService; 
+
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             RoleManager<IdentityRole> roleManager,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IAccountService accountService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
             this.configuration = configuration;
+            this.accountService = accountService;
         }
 
         [HttpPost("Login")]

@@ -34,6 +34,8 @@
             services.AddDbContext<TaskManagerDbContext>(
                 options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<IAccountService, AccountService>();
+
             Assembly.GetExecutingAssembly()
             .GetTypes()
             .Where(item => item.GetInterfaces()
