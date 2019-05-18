@@ -10,14 +10,14 @@
 
         public string GetFullName() => $"{this.user.FirstName} {this.user.LastName}";
 
-        public string GetPosition() => this.user.Position.ToString();
+        public string GetPosition() => this.user.Role.ToString();
 
         public void Logout() => this.user = null;
 
         public bool HavePermissionToTakeTask()
-            => this.user.Position == Role.Manager || this.user.Position == Role.Developer;
+            => this.user.Role == Role.Manager || this.user.Role == Role.Developer;
 
-        public bool HavePermissionToAddTask() => this.user.Position == Role.Manager;
+        public bool HavePermissionToAddTask() => this.user.Role == Role.Manager;
 
         private User user { get; set; }
     }

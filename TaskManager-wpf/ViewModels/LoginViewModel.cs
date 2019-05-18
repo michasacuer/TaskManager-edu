@@ -41,8 +41,8 @@
             {
                 try
                 {
-                    await this.HttpDataService.Login(loginForm);
-                    this.loggedUser.LoginUserToApp(this.context.GetUser(this.LoginTextBox));
+                    var account = await this.HttpDataService.Login(loginForm);
+                    this.loggedUser.LoginUserToApp(account);
 
                     this.TryClose();
                     Show.SuccesBox(validationResult.Message);

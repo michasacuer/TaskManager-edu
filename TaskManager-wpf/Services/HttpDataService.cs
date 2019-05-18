@@ -26,14 +26,14 @@
                 = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint("Test"));
         }
 
-        public async Task<Account> Login(LoginBindingModel login)
+        public async Task<User> Login(LoginBindingModel login)
         {
             HttpResponseMessage response
                 = await this.HttpClient.PostAsJsonAsync(UrlBuilder.BuildEndpoint("Account", "Login"), login);
 
             string statusCode = response.StatusCode.ToString();
 
-            Account account = JsonConvert.DeserializeObject<Account>(await response.Content.ReadAsStringAsync());
+            User account = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync());
 
             if (statusCode.Equals("Unauthorized"))
             {

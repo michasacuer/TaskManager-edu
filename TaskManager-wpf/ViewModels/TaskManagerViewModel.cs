@@ -29,7 +29,7 @@
                         this.NotifyOfPropertyChange(() => this.TasksList);
                     }
                 }
-                catch (ArgumentNullException ex)
+                catch (ArgumentNullException)
                 {
                     Show.ErrorBox($"Projekt o nazwie {this.selectedProjectList} nie ma tasków!");
                 }
