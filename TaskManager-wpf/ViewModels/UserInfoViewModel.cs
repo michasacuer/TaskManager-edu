@@ -26,7 +26,7 @@
         {
             this.loggedUser.Logout();
             this.TryClose();
-            Show.LoginBox(this.context, this.loggedUser, this.httpDataService);
+            Show.LoginBox(this.context, this.loggedUser);
         }
 
         public void OkButton() => this.TryClose();

@@ -48,6 +48,9 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -88,7 +91,6 @@
     <Compile Include="Models\BindingModels\RegistrationBindingModel.cs" />
     <Compile Include="Models\Enums\Priority.cs" />
     <Compile Include="Models\Enums\Role.cs" />
-    <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\Wrappers\FakeData.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Task.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="Services\HttpDataService.cs" />
     <Compile Include="Services\LogInService.cs" />
     <Compile Include="Services\NewTask.cs" />
+    <Compile Include="Services\Repository.cs" />
     <Compile Include="Services\UrlBuilder.cs" />
     <Compile Include="Services\FormsValidation\RegistrationForm.cs" />
     <Compile Include="Strings\Error.cs" />

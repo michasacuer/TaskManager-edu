@@ -10,11 +10,11 @@
 
     internal class LoginViewModel : Screen
     {
-        public LoginViewModel(FakeData context, LoggedUser loggedUser, HttpDataService httpDataService)
+        public LoginViewModel(FakeData context, LoggedUser loggedUser)
         {
             this.context = context;
             this.loggedUser = loggedUser;
-            this.HttpDataService = httpDataService;
+            this.HttpDataService = new HttpDataService();
         }
 
         public bool IsFormEnabled { get; set; } = true;

@@ -7,6 +7,10 @@
 
     public class Task
     {
+        public Task()
+        {
+        }
+
         [Key]
         public int Id { get; set; }
 
