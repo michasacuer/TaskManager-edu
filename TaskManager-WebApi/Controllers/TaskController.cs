@@ -29,7 +29,7 @@ namespace TaskManager_WebApi.Controllers
 
         // GET: api/Task/5
         [HttpGet("{id}")]
-        public Task<IActionResult> GetTask([FromRoute] int id)
+        public IActionResult GetTask([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -48,7 +48,7 @@ namespace TaskManager_WebApi.Controllers
 
         // PUT: api/Task/5
         [HttpPut("{id}")]
-        public Task<IActionResult> PutTask([FromRoute] int id, [FromBody] Task task)
+        public IActionResult PutTask([FromRoute] int id, [FromBody] Task task)
         {
             if (!ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace TaskManager_WebApi.Controllers
 
         // POST: api/Task
         [HttpPost]
-        public = Task<IActionResult> PostTask([FromBody] Task task)
+        public IActionResult PostTask([FromBody] Task task)
         {
             if (!ModelState.IsValid)
             {
@@ -91,14 +91,14 @@ namespace TaskManager_WebApi.Controllers
             }
 
             _context.Tasks.Add(task);
-            = _context.SaveChanges();
+            _context.SaveChanges();
 
             return CreatedAtAction("GetTask", new { id = task.Id }, task);
         }
 
         // DELETE: api/Task/5
         [HttpDelete("{id}")]
-        public  Task<IActionResult> DeleteTask([FromRoute] int id)
+        public IActionResult DeleteTask([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
