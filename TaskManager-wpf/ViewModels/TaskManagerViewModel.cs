@@ -8,11 +8,10 @@
 
     internal class TaskManagerViewModel : Screen
     {
-        public TaskManagerViewModel(FakeData context, LoggedUser loggedUser, Repository repository)
+        public TaskManagerViewModel(LoggedUser loggedUser, Repository repository)
         {
             this.Projects = repository.Projects;
 
-            this.context = context;
             this.loggedUser = loggedUser;
             this.ProjectsList = new BindableCollection<string>();
 
@@ -37,12 +36,12 @@
                 this.TasksList = new BindableCollection<string>();
                 try
                 {
-                    this.tasks = this.Projects.First().Tasks;
+                    this.tasks = this.Projects.Single(p => p.Name == this.SelectedProjectsList).Tasks;
                     foreach (TaskManager.Models.Task task in this.tasks)
                     {
                         this.TasksList.Add(task.Name + " - " + task.Priority.ToString());
-                        this.NotifyOfPropertyChange(() => this.TasksList);
                     }
+                    this.NotifyOfPropertyChange(() => this.TasksList);
                 }
                 catch (ArgumentNullException)
                 {
@@ -68,14 +67,15 @@
             }
 
             this.TryClose();
-            Show.ActiveTaskBox(this.SelectedTasksList, this.SelectedProjectsList, this.context);
+            //Show.ActiveTaskBox(this.SelectedTasksList, this.SelectedProjectsList, this.context);
         }
 
         public void CancelButton() => this.TryClose();
 
         private LoggedUser loggedUser;
-        private FakeData context;
-        private IEnumerable<TaskManager.Models.Task> tasks;
+
+        private List<TaskManager.Models.Task> tasks;
+
         private string selectedProjectList;
     }
 }
