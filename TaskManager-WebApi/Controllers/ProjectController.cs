@@ -29,7 +29,7 @@
         [HttpGet]
         public IEnumerable<Project> GetProjects()
         {
-            return context.Projects;
+            return context.Projects.Include(t => t.Tasks);
         }
 
         // GET: api/Project/5

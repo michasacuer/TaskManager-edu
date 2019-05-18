@@ -9,7 +9,7 @@
 
         public void LoadUserInfoPage() => this.ActivateItem(new UserInfoViewModel(this.context, this.loggedUser));
 
-        public void LoadTaskManagerPage() => this.ActivateItem(new TaskManagerViewModel(this.context, this.loggedUser));
+        public void LoadTaskManagerPage() => this.ActivateItem(new TaskManagerViewModel(this.context, this.loggedUser, this.repository));
 
         public void LoadNotificationsPage() => this.ActivateItem(new NotificationsViewModel(this.context));
 
