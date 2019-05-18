@@ -11,7 +11,7 @@
 
         public List<User> GetUsers() => this.users;
 
-        public User GetUser(string login) => this.users.FirstOrDefault(u => u.Login == login);
+        public User GetUser(string login) => this.users.FirstOrDefault(u => u.UserName == login);
 
         public void AddUser(User user) => this.users.Add(user);
 
@@ -57,9 +57,9 @@
         {
             this.users = new List<User>
             {
-                new User("admin", "admin", "Michał", "Szewczak", "michasacuer3@gmail.com", Role.Manager),
-                new User("login", "login", "Adam", "Kowalski", "temp@op.pl", Role.Developer),
-                new User("test", "test", "Maciej", "Nowak", "temp2@op.pl", Role.Viewer)
+                //new User("admin", "admin", "Michał", "Szewczak", "michasacuer3@gmail.com", Role.Manager),
+                //new User("login", "login", "Adam", "Kowalski", "temp@op.pl", Role.Developer),
+                //new User("test", "test", "Maciej", "Nowak", "temp2@op.pl", Role.Viewer)
             };
 
             this.projects = new List<Project>

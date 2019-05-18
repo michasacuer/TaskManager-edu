@@ -92,7 +92,7 @@
             return result;
         }
 
-        private static bool IsLoginExist(string login, FakeData context) => context.GetUsers().Any(u => u.Login == login);
+        private static bool IsLoginExist(string login, FakeData context) => context.GetUsers().Any(u => u.UserName == login);
 
         private static bool IsEmailExist(string email, FakeData context) => context.GetUsers().Any(u => u.Email == email);
 
