@@ -29,7 +29,7 @@ namespace TaskManager_WebApi.Controllers
 
         // GET: api/Task/5
         [HttpGet("{id}")]
-        public  Task<IActionResult> GetTask([FromRoute] int id)
+        public Task<IActionResult> GetTask([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
