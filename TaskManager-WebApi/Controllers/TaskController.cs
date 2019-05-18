@@ -10,7 +10,7 @@ using TaskManager.WebApi.Models;
 
 namespace TaskManager_WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TaskController : ControllerBase
     {
@@ -30,14 +30,14 @@ namespace TaskManager_WebApi.Controllers
 
         // GET: api/Task/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTask([FromRoute] int id)
+        public  Task<IActionResult> GetTask([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var task = await _context.Tasks.FindAsync(id);
+            var task =  _context.Tasks.Find(id);
 
             if (task == null)
             {
@@ -49,7 +49,7 @@ namespace TaskManager_WebApi.Controllers
 
         // PUT: api/Task/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTask([FromRoute] int id, [FromBody] Task task)
+        public Task<IActionResult> PutTask([FromRoute] int id, [FromBody] Task task)
         {
             if (!ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace TaskManager_WebApi.Controllers
 
             try
             {
-                await _context.SaveChangesAsync();
+                 _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,7 +84,7 @@ namespace TaskManager_WebApi.Controllers
 
         // POST: api/Task
         [HttpPost]
-        public async Task<IActionResult> PostTask([FromBody] Task task)
+        public = Task<IActionResult> PostTask([FromBody] Task task)
         {
             if (!ModelState.IsValid)
             {
@@ -92,28 +92,28 @@ namespace TaskManager_WebApi.Controllers
             }
 
             _context.Tasks.Add(task);
-            await _context.SaveChangesAsync();
+            = _context.SaveChanges();
 
             return CreatedAtAction("GetTask", new { id = task.Id }, task);
         }
 
         // DELETE: api/Task/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTask([FromRoute] int id)
+        public  Task<IActionResult> DeleteTask([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var task = await _context.Tasks.FindAsync(id);
+            var task =  _context.Tasks.Find(id);
             if (task == null)
             {
                 return NotFound();
             }
 
             _context.Tasks.Remove(task);
-            await _context.SaveChangesAsync();
+             _context.SaveChanges();
 
             return Ok(task);
         }
