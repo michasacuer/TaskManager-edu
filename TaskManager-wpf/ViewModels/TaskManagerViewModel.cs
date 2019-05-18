@@ -37,10 +37,11 @@
                 try
                 {
                     this.tasks = this.Projects.Single(p => p.Name == this.SelectedProjectsList).Tasks;
-                    foreach (TaskManager.Models.Task task in this.tasks)
+                    foreach (var task in this.tasks)
                     {
                         this.TasksList.Add(task.Name + " - " + task.Priority.ToString());
                     }
+
                     this.NotifyOfPropertyChange(() => this.TasksList);
                 }
                 catch (ArgumentNullException)
