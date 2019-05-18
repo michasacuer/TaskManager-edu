@@ -38,7 +38,7 @@
             throw new NotImplementedException();
         }
 
-        public Task Remove(Task data)
+        public void Remove(Task data)
         {
             throw new NotImplementedException();
         }

@@ -34,7 +34,7 @@
             throw new NotImplementedException();
         }
 
-        public Project Remove(Project data)
+        public void Remove(Project data)
         {
             throw new NotImplementedException();
         }

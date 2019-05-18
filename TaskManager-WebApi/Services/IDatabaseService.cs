@@ -13,6 +13,6 @@
 
         T Add(T data);
 
-        T Remove(T data);
+        void Remove(T data);
     }
 }
