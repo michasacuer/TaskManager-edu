@@ -2,45 +2,57 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
     using TaskManager.Models;
     using TaskManager.WebApi.Models;
 
     public class TaskService : IDatabaseService<Task>
     {
-        private List<Task> Tasks { get; set; }
-
         private readonly TaskManagerDbContext context;
 
         public TaskService(TaskManagerDbContext context)
         {
             this.context = context;
-            this.Tasks = this.context.Tasks.ToList();
         }
 
         public Task Add(Task data)
         {
-            throw new NotImplementedException();
+            this.context.Tasks.Add(data);
+            this.context.SaveChanges();
+
+            return data;
         }
 
         public Task Edit(Task data)
         {
-            throw new NotImplementedException();
+            this.context.Entry(data).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            this.context.SaveChanges();
+
+            return data;
         }
 
         public Task GetItem(int id)
         {
-            throw new NotImplementedException();
+            var task = this.context.Tasks.Find(id);
+
+            if (task != null)
+            {
+                return task;
+            }
+
+            return null;
         }
 
         public IEnumerable<Task> GetList()
         {
-            throw new NotImplementedException();
+            return this.context.Tasks.ToList();
         }
 
         public void Remove(Task data)
         {
-            throw new NotImplementedException();
+            this.context.Tasks.Remove(data);
+            this.context.SaveChanges();
         }
     }
 }
