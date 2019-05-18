@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.Models;
 using TaskManager.WebApi.Models;
+using TaskManager.WebApi.Services;
 
 namespace TaskManager_WebApi.Controllers
 {
@@ -15,9 +16,12 @@ namespace TaskManager_WebApi.Controllers
     {
         private readonly TaskManagerDbContext _context;
 
-        public TaskController(TaskManagerDbContext context)
+        private readonly IDatabaseService<Task> taskService;
+
+        public TaskController(TaskManagerDbContext context, IDatabaseService<Task> taskService)
         {
             _context = context;
+            this.taskService = taskService;
         }
 
         // GET: api/Task
