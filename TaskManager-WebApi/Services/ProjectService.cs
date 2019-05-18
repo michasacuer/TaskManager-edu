@@ -14,12 +14,12 @@
             this.context = context;
         }
 
-        public void Add(Project data)
+        public Project Add(Project data)
         {
             throw new NotImplementedException();
         }
 
-        public void Edit(Project data)
+        public Project Edit(Project data)
         {
             throw new NotImplementedException();
         }
