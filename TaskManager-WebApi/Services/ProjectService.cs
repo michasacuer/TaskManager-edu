@@ -14,12 +14,12 @@
             this.context = context;
         }
 
-        public void Add(Project data)
+        public Project Add(Project data)
         {
             throw new NotImplementedException();
         }
 
-        public void Edit(Project data)
+        public Project Edit(Project data)
         {
             throw new NotImplementedException();
         }
@@ -34,7 +34,7 @@
             throw new NotImplementedException();
         }
 
-        public void Remove(Project data)
+        public Project Remove(Project data)
         {
             throw new NotImplementedException();
         }

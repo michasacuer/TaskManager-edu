@@ -18,12 +18,12 @@
             this.Tasks = this.context.Tasks.ToList();
         }
 
-        public void Add(Task data)
+        public Task Add(Task data)
         {
             throw new NotImplementedException();
         }
 
-        public void Edit(Task data)
+        public Task Edit(Task data)
         {
             throw new NotImplementedException();
         }
@@ -38,7 +38,7 @@
             throw new NotImplementedException();
         }
 
-        public void Remove(Task data)
+        public Task Remove(Task data)
         {
             throw new NotImplementedException();
         }
