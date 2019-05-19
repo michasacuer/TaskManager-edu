@@ -12,21 +12,20 @@
     {
         public RegistrationViewModel(HttpDataService httpDataService)
         {
-            this.TextBoxesInitialize();
             this.HttpDataService = httpDataService;
         }
 
         public bool IsFormEnabled { get; set; } = true;
 
-        public string LoginTextBox { get; set; }
+        public string LoginTextBox { get; set; } = "Wpisz swój Login";
 
-        public string FirstNameTextBox { get; set; }
+        public string PasswordTextBox { get; set; } = "Hasło";
 
-        public string PasswordTextBox { get; set; }
+        public string FirstNameTextBox { get; set; } = "Wpisz swoje Imie";
 
-        public string LastNameTextBox { get; set; }
+        public string LastNameTextBox { get; set; } = "Wpisz swoje Nazwisko";
 
-        public string EmailTextBox { get; set; }
+        public string EmailTextBox { get; set; } = "Wpisz swój Email";
 
         public Role Role { get; set; }
 
@@ -85,15 +84,6 @@
         }
 
         public void CancelButton() => this.TryClose();
-
-        private void TextBoxesInitialize()
-        {
-            this.LoginTextBox = "Wpisz swój Login";
-            this.PasswordTextBox = "Hasło";
-            this.FirstNameTextBox = "Wpisz swoje Imie";
-            this.LastNameTextBox = "Wpisz swoje Nazwisko";
-            this.EmailTextBox = "Wpisz swój Email";
-        }
 
         private HttpDataService HttpDataService { get; set; }
     }

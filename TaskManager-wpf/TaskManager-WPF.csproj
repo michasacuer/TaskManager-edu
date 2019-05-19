@@ -87,6 +87,7 @@
     <Compile Include="Exceptions\FormValidationException.cs" />
     <Compile Include="Exceptions\RegistrationException.cs" />
     <Compile Include="Helpers\LoginHelper.cs" />
+    <Compile Include="Helpers\RegistrationHelper.cs" />
     <Compile Include="Helpers\TaskManagerHelper.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\BindingModels\LoginBindingModel.cs" />
