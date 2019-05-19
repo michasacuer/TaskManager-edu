@@ -7,7 +7,7 @@
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Services;
 
-    internal class LoginViewModel : Screen
+    public class LoginViewModel : Screen
     {
         public LoginViewModel(LoggedUser loggedUser)
         {

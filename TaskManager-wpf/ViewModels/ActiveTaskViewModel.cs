@@ -5,7 +5,7 @@
     using Caliburn.Micro;
     using TaskManager.WPF.Models;
 
-    internal class ActiveTaskViewModel : Screen
+    public class ActiveTaskViewModel : Screen
     {
         public string ActiveTaskTextBlock { get; set; }
 

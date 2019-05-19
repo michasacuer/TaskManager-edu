@@ -6,7 +6,7 @@
     using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
 
-    internal class TaskManagerViewModel : Screen
+    public class TaskManagerViewModel : Screen
     {
         public TaskManagerViewModel(LoggedUser loggedUser, Repository repository)
         {

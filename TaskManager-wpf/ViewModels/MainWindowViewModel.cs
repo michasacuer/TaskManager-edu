@@ -3,7 +3,7 @@
     using Caliburn.Micro;
     using TaskManager.WPF.Models;
 
-    internal class MainWindowViewModel : Conductor<IScreen>.Collection.OneActive
+    public class MainWindowViewModel : Conductor<IScreen>.Collection.OneActive
     {
         protected override void OnViewLoaded(object view) => Show.LoginBox(this.loggedUser);
 

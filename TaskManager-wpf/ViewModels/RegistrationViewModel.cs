@@ -3,12 +3,13 @@
     using Caliburn.Micro;
     using TaskManager.WPF.Enums;
     using TaskManager.WPF.Exceptions;
+    using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Models.BindingModels;
     using TaskManager.WPF.Services;
     using TaskManager.WPF.Services.FormsValidation;
 
-    internal class RegistrationViewModel : Screen
+    public class RegistrationViewModel : Screen
     {
         public RegistrationViewModel(HttpDataService httpDataService)
         {
@@ -37,9 +38,11 @@
 
         public async void AcceptButton()
         {
-
             this.IsFormEnabled = false;
             this.NotifyOfPropertyChange(() => this.IsFormEnabled);
+
+            //var helper = new RegistrationHelper();
+            //helper.ExternalRegistration(this);
 
             RegistrationBindingModel accountForm = new RegistrationBindingModel
             {

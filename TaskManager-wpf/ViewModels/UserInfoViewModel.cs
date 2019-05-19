@@ -4,7 +4,7 @@
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Services;
 
-    internal class UserInfoViewModel : Screen
+    public class UserInfoViewModel : Screen
     {
         public UserInfoViewModel(LoggedUser loggedUser)
         {
