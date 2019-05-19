@@ -10,11 +10,11 @@
 
         public static void SuccesBox(string alert) => manager.ShowDialog(new SuccesBoxViewModel(alert), null, null);
 
-        public static void RegistrationBox(FakeData context, HttpDataService httpDataService)
-            => manager.ShowDialog(new RegistrationViewModel(context, httpDataService), null, null);
+        public static void RegistrationBox(HttpDataService httpDataService)
+            => manager.ShowDialog(new RegistrationViewModel(httpDataService), null, null);
 
-        public static void LoginBox(FakeData context, LoggedUser loggedUser)
-            => manager.ShowDialog(new LoginViewModel(context, loggedUser), null, null);
+        public static void LoginBox(LoggedUser loggedUser)
+            => manager.ShowDialog(new LoginViewModel(loggedUser), null, null);
 
         public static void ActiveTaskBox(string taskName, string projectName, FakeData context)
             => manager.ShowDialog(new ActiveTaskViewModel(context.GetTask(taskName, projectName), context, projectName), null, null);

@@ -10,10 +10,9 @@
 
     internal class RegistrationViewModel : Screen
     {
-        public RegistrationViewModel(FakeData context, HttpDataService httpDataService)
+        public RegistrationViewModel(HttpDataService httpDataService)
         {
             this.TextBoxesInitialize();
-            this.context = context;
             this.HttpDataService = httpDataService;
         }
 
@@ -55,7 +54,6 @@
 
             var validationResult = RegistrationForm.IsValid(
                 accountForm,
-                this.context,
                 this.ManagerChecked,
                 this.DeveloperChecked,
                 this.ViewerChecked);
@@ -96,8 +94,6 @@
             this.LastNameTextBox = "Wpisz swoje Nazwisko";
             this.EmailTextBox = "Wpisz swój Email";
         }
-
-        private readonly FakeData context;
 
         private HttpDataService HttpDataService { get; set; }
     }

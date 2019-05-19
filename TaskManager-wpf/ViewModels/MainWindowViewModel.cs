@@ -5,11 +5,11 @@
 
     internal class MainWindowViewModel : Conductor<IScreen>.Collection.OneActive
     {
-        protected override void OnViewLoaded(object view) => Show.LoginBox(this.context, this.loggedUser);
+        protected override void OnViewLoaded(object view) => Show.LoginBox(this.loggedUser);
 
-        public void LoadUserInfoPage() => this.ActivateItem(new UserInfoViewModel(this.context, this.loggedUser));
+        public void LoadUserInfoPage() => this.ActivateItem(new UserInfoViewModel(this.loggedUser));
 
-        public void LoadTaskManagerPage() => this.ActivateItem(new TaskManagerViewModel(this.context, this.loggedUser, this.repository));
+        public void LoadTaskManagerPage() => this.ActivateItem(new TaskManagerViewModel(this.loggedUser, this.repository));
 
         public void LoadNotificationsPage() => this.ActivateItem(new NotificationsViewModel(this.context));
 

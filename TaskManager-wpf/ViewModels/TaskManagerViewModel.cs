@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Caliburn.Micro;
+    using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
 
     internal class TaskManagerViewModel : Screen
@@ -11,6 +11,8 @@
         public TaskManagerViewModel(LoggedUser loggedUser, Repository repository)
         {
             this.Projects = repository.Projects;
+
+            this.repository = repository;
 
             this.loggedUser = loggedUser;
             this.ProjectsList = new BindableCollection<string>();
@@ -33,15 +35,10 @@
             set
             {
                 this.selectedProjectList = value;
-                this.TasksList = new BindableCollection<string>();
+                var helper = new TaskManagerHelper();
                 try
                 {
-                    this.tasks = this.Projects.Single(p => p.Name == this.SelectedProjectsList).Tasks;
-                    foreach (var task in this.tasks)
-                    {
-                        this.TasksList.Add(task.Name + " - " + task.Priority.ToString());
-                    }
-
+                    this.TasksList = helper.PopulateTasksList(this.repository, this.SelectedProjectsList);
                     this.NotifyOfPropertyChange(() => this.TasksList);
                 }
                 catch (ArgumentNullException)
@@ -78,5 +75,7 @@
         private List<TaskManager.Models.Task> tasks;
 
         private string selectedProjectList;
+
+        private Repository repository;
     }
 }
