@@ -72,6 +72,8 @@
                  Role.Developer : isViewer ?
                  Role.Viewer : Role.Viewer;
 
+            result.IsValid = true;
+
             return result;
         }
 
