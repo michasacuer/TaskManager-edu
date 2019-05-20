@@ -10,8 +10,8 @@
 
         public static void SuccesBox(string alert) => manager.ShowDialog(new SuccesBoxViewModel(alert), null, null);
 
-        public static void RegistrationBox(HttpDataService httpDataService)
-            => manager.ShowDialog(new RegistrationViewModel(httpDataService), null, null);
+        public static void RegistrationBox()
+            => manager.ShowDialog(new RegistrationViewModel(), null, null);
 
         public static void LoginBox(LoggedUser loggedUser)
             => manager.ShowDialog(new LoginViewModel(loggedUser), null, null);

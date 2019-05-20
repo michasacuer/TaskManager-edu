@@ -5,15 +5,15 @@
     using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
-    using TaskManager.WPF.Services;
 
     public class LoginViewModel : Screen
     {
-        public LoginViewModel(LoggedUser loggedUser)
+        public LoginViewModel(LoggedUser LoggedUser)
         {
-            this.loggedUser = loggedUser;
-            this.HttpDataService = new HttpDataService();
+            this.LoggedUser = LoggedUser;
         }
+
+        public LoggedUser LoggedUser { get; set; }
 
         public bool IsFormEnabled { get; set; } = true;
 
@@ -27,9 +27,10 @@
             this.NotifyOfPropertyChange(() => this.IsFormEnabled);
 
             var helper = new LoginHelper();
+
             try
             {
-                var validationResult = await helper.ExternalLogin(this.loggedUser, this.HttpDataService, this.LoginTextBox, this.PasswordTextBox);
+                var validationResult = await helper.ExternalLogin(this);
 
                 if (validationResult.IsValid)
                 {
@@ -53,12 +54,8 @@
             }
         }
 
-        public void RegisterButton() => Show.RegistrationBox(this.HttpDataService);
+        public void RegisterButton() => Show.RegistrationBox();
 
         public void CancelButton() => Application.Current.Shutdown();
-
-        private LoggedUser loggedUser;
-
-        private HttpDataService HttpDataService { get; set; }
     }
 }

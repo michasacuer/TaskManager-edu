@@ -1,27 +1,28 @@
 ﻿namespace TaskManager.WPF.Helpers
 {
     using System.Threading.Tasks;
-    using TaskManager.WPF.Models;
     using TaskManager.WPF.Models.BindingModels;
     using TaskManager.WPF.Services;
     using TaskManager.WPF.Services.FormsValidation;
+    using TaskManager.WPF.ViewModels;
 
     public class LoginHelper
     {
-        public async Task<ValidationResult> ExternalLogin(LoggedUser loggedUser, HttpDataService httpDataService, string login, string password)
+        public async Task<ValidationResult> ExternalLogin(LoginViewModel vm)
         {
             var loginForm = new LoginBindingModel
             {
-                UserName = login,
-                Password = password
+                UserName = vm.LoginTextBox,
+                Password = vm.PasswordTextBox
             };
 
             var validationResult = LoginForm.IsValid(loginForm);
 
             if (validationResult.IsValid)
             {
+                var httpDataService = new HttpDataService();
                 var user = await httpDataService.Login(loginForm);
-                loggedUser.LoginUserToApp(user);
+                vm.LoggedUser.LoginUserToApp(user);
             }
 
             return validationResult;

@@ -5,17 +5,10 @@
     using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
-    using TaskManager.WPF.Models.BindingModels;
     using TaskManager.WPF.Services;
-    using TaskManager.WPF.Services.FormsValidation;
 
     public class RegistrationViewModel : Screen
     {
-        public RegistrationViewModel(HttpDataService httpDataService)
-        {
-            this.HttpDataService = httpDataService;
-        }
-
         public bool IsFormEnabled { get; set; } = true;
 
         public string LoginTextBox { get; set; } = "Wpisz swój Login";
@@ -41,45 +34,28 @@
             this.IsFormEnabled = false;
             this.NotifyOfPropertyChange(() => this.IsFormEnabled);
 
-            //var helper = new RegistrationHelper();
-            //helper.ExternalRegistration(this);
+            var helper = new RegistrationHelper();
 
-            RegistrationBindingModel accountForm = new RegistrationBindingModel
+            try
             {
-                UserName = this.LoginTextBox,
-                Password = this.PasswordTextBox,
-                FirstName = this.FirstNameTextBox,
-                LastName = this.LastNameTextBox,
-                Email = this.EmailTextBox,
-                Role = this.Role
-            };
+                var validationResult = await helper.ExternalRegistration(this);
 
-            var validationResult = RegistrationForm.IsValid(
-                accountForm,
-                this.ManagerChecked,
-                this.DeveloperChecked,
-                this.ViewerChecked);
-
-            if (validationResult.IsValid)
-            {
-                try
+                if (validationResult.IsValid)
                 {
-                    await this.HttpDataService.Register(accountForm);
-
-                    Show.SuccesBox(validationResult.Message);
                     this.TryClose();
+                    Show.SuccesBox(validationResult.Message);
                 }
-                catch (RegistrationException exception)
+                else
                 {
-                    Show.ErrorBox(exception.Message);
+                    Show.ErrorBox(validationResult.Message);
 
                     this.IsFormEnabled = true;
                     this.NotifyOfPropertyChange(() => this.IsFormEnabled);
                 }
             }
-            else
+            catch (RegistrationException exception)
             {
-                Show.ErrorBox(validationResult.Message);
+                Show.ErrorBox(exception.Message);
 
                 this.IsFormEnabled = true;
                 this.NotifyOfPropertyChange(() => this.IsFormEnabled);
@@ -87,7 +63,5 @@
         }
 
         public void CancelButton() => this.TryClose();
-
-        private HttpDataService HttpDataService { get; set; }
     }
 }
