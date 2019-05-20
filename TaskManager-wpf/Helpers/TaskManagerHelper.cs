@@ -30,12 +30,12 @@
 
         public async Task<TaskManager.Models.Task> GetTaskToActivate(string selectedTasksList, string selectedProjectsList)
         {
-            var taskId = this.repository
-                .Projects.Single(p => p.Name == selectedProjectsList)
-                .Tasks.Single(t => t.Name == selectedTasksList).Id;
+            var project = this.repository.Projects.Single(p => p.Name == selectedProjectsList);
+
+            var task = project.Tasks.Single(p => p.Name == selectedTasksList.Substring(0, selectedTasksList.IndexOf(" ")));
 
             var httpDataService = new HttpDataService();
-            return await httpDataService.Get<TaskManager.Models.Task>(taskId);
+            return await httpDataService.Get<TaskManager.Models.Task>(task.Id);
         }
     }
 }

@@ -19,6 +19,11 @@
 
         public Project Project { get; set; }
 
+        [ForeignKey("ApplicationUser")]
+        public string ApplicationUserId { get; set; }
+
+        public ApplicationUser ApplicationUser { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }

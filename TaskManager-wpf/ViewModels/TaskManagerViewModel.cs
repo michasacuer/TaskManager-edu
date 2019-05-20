@@ -15,6 +15,7 @@
             this.repository = repository;
 
             this.loggedUser = loggedUser;
+
             this.ProjectsList = new BindableCollection<string>();
 
             foreach (var project in this.Projects)
@@ -36,6 +37,7 @@
             {
                 this.selectedProjectList = value;
                 var helper = new TaskManagerHelper(this.repository);
+
                 try
                 {
                     this.TasksList = helper.PopulateTasksList(this.SelectedProjectsList);
