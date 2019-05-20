@@ -1,7 +1,6 @@
 ﻿namespace TaskManager.WPF.Models
 {
     using Caliburn.Micro;
-    using TaskManager.WPF.Services;
     using TaskManager.WPF.ViewModels;
 
     public static class Show
