@@ -91,5 +91,10 @@
 
             return false;
         }
+
+        public ApplicationUser GetUser(string id)
+        {
+            return this.userManager.Users.Single(u => u.Id == id);
+        }
     }
 }
