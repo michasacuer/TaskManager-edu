@@ -102,7 +102,6 @@
     <Compile Include="Services\FormsValidation\LoginForm.cs" />
     <Compile Include="Services\FormsValidation\ValidationResult.cs" />
     <Compile Include="Services\HttpDataService.cs" />
-    <Compile Include="Services\LogInService.cs" />
     <Compile Include="Services\NewTask.cs" />
     <Compile Include="Services\Repository.cs" />
     <Compile Include="Services\UrlBuilder.cs" />
