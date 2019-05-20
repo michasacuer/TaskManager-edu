@@ -5,7 +5,6 @@
     using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
-    using TaskManager.WPF.Services;
 
     public class RegistrationViewModel : Screen
     {

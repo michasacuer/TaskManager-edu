@@ -35,10 +35,10 @@
             set
             {
                 this.selectedProjectList = value;
-                var helper = new TaskManagerHelper();
+                var helper = new TaskManagerHelper(this.repository);
                 try
                 {
-                    this.TasksList = helper.PopulateTasksList(this.repository, this.SelectedProjectsList);
+                    this.TasksList = helper.PopulateTasksList(this.SelectedProjectsList);
                     this.NotifyOfPropertyChange(() => this.TasksList);
                 }
                 catch (ArgumentNullException)
@@ -50,7 +50,7 @@
 
         private IEnumerable<TaskManager.Models.Project> Projects { get; set; }
 
-        public void AcceptButton()
+        public async void AcceptButton()
         {
             if (!this.loggedUser.HavePermissionToTakeTask())
             {
@@ -64,8 +64,10 @@
                 return;
             }
 
+            var helper = new TaskManagerHelper(this.repository);
+
             this.TryClose();
-            //Show.ActiveTaskBox(this.SelectedTasksList, this.SelectedProjectsList, this.context);
+            Show.ActiveTaskBox(await helper.GetTaskToActivate(this.SelectedTasksList, this.SelectedProjectsList), this.SelectedProjectsList);
         }
 
         public void CancelButton() => this.TryClose();

@@ -15,8 +15,8 @@
         public static void LoginBox(LoggedUser loggedUser)
             => manager.ShowDialog(new LoginViewModel(loggedUser), null, null);
 
-        public static void ActiveTaskBox(string taskName, string projectName, FakeData context)
-            => manager.ShowDialog(new ActiveTaskViewModel(context.GetTask(taskName, projectName), context, projectName), null, null);
+        public static void ActiveTaskBox(TaskManager.Models.Task task, string projectName)
+            => manager.ShowDialog(new ActiveTaskViewModel(task, projectName), null, null);
 
         private static IWindowManager manager = new WindowManager();
     }

@@ -2,10 +2,11 @@
 {
     using Caliburn.Micro;
     using TaskManager.WPF.Models;
-    using TaskManager.WPF.Services;
 
     public class UserInfoViewModel : Screen
     {
+        private readonly LoggedUser loggedUser;
+
         public UserInfoViewModel(LoggedUser loggedUser)
         {
             this.loggedUser = loggedUser;
@@ -30,8 +31,5 @@
 
         public void OkButton() => this.TryClose();
 
-        private LoggedUser loggedUser;
-
-        private HttpDataService httpDataService;
     }
 }

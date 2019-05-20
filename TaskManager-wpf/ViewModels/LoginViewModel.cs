@@ -8,9 +8,9 @@
 
     public class LoginViewModel : Screen
     {
-        public LoginViewModel(LoggedUser LoggedUser)
+        public LoginViewModel(LoggedUser loggedUser)
         {
-            this.LoggedUser = LoggedUser;
+            this.LoggedUser = loggedUser;
         }
 
         public LoggedUser LoggedUser { get; set; }
