@@ -13,7 +13,7 @@
 
         public TaskController(ITaskService taskService)
         {
-            this.taskService = (ITaskService)taskService;
+            this.taskService = taskService;
         }
 
         [HttpGet]
