@@ -9,9 +9,9 @@
     [ApiController]
     public class TaskController : ControllerBase
     {
-        private readonly IDatabaseService<Task> taskService;
+        private readonly ITaskService taskService;
 
-        public TaskController(IDatabaseService<Task> taskService)
+        public TaskController(ITaskService taskService)
         {
             this.taskService = taskService;
         }
@@ -42,6 +42,18 @@
             }
 
             this.taskService.Edit(task);
+
+            return this.Ok(task);
+        }
+
+        [HttpPut("{taskId}/{userId}")]
+        public IActionResult TakeTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
+        {
+            var task = this.taskService.TakeTaskByUser(taskId, userId);
+            if (task == null)
+            {
+                return this.NotFound();
+            }
 
             return this.Ok(task);
         }
