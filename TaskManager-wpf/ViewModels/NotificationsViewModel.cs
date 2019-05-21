@@ -3,7 +3,7 @@
     using Caliburn.Micro;
     using TaskManager.WPF.Models;
 
-    internal class NotificationsViewModel : Screen
+    public class NotificationsViewModel : Screen
     {
         public BindableCollection<string> EndedTasksList { get; set; }
 

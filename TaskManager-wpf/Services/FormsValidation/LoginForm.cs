@@ -10,6 +10,8 @@
             var result = new ValidationResult();
             result.IsValid = true;
 
+            result.Message = Succes.Login;
+
             if (loginForm.UserName == null || loginForm.Password == null)
             {
                 result.IsValid = false;
@@ -20,8 +22,6 @@
                 result.IsValid = false;
                 result.Message = Error.UnallowedChars;
             }
-
-            result.Message = Succes.Login;
 
             return result;
         }

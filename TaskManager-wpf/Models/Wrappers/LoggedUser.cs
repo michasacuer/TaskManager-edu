@@ -4,21 +4,21 @@
 
     public class LoggedUser
     {
-        public void LoginUserToApp(User user) => this.user = user;
+        private User User { get; set; }
 
-        public User GetInstance() => this.user;
+        public void LoginUserToApp(User user) => this.User = user;
 
-        public string GetFullName() => $"{this.user.FirstName} {this.user.LastName}";
+        public User GetInstance() => this.User;
 
-        public string GetPosition() => this.user.Role.ToString();
+        public string GetFullName() => $"{this.User.FirstName} {this.User.LastName}";
 
-        public void Logout() => this.user = null;
+        public string GetPosition() => this.User.Role.ToString();
+
+        public void Logout() => this.User = null;
 
         public bool HavePermissionToTakeTask()
-            => this.user.Role == Role.Manager || this.user.Role == Role.Developer;
+            => this.User.Role == Role.Manager || this.User.Role == Role.Developer;
 
-        public bool HavePermissionToAddTask() => this.user.Role == Role.Manager;
-
-        private User user { get; set; }
+        public bool HavePermissionToAddTask() => this.User.Role == Role.Manager;
     }
 }

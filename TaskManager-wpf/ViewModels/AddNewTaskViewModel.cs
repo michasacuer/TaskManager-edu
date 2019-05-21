@@ -5,7 +5,7 @@
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Services;
 
-    internal class AddNewTaskViewModel : Screen
+    public class AddNewTaskViewModel : Screen
     {
         public BindableCollection<string> ProjectsList { get; set; }
 

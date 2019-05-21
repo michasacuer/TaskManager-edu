@@ -3,19 +3,17 @@
     using System.Windows;
     using Caliburn.Micro;
     using TaskManager.WPF.Exceptions;
+    using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
-    using TaskManager.WPF.Models.BindingModels;
-    using TaskManager.WPF.Services;
-    using TaskManager.WPF.Services.FormsValidation;
 
-    internal class LoginViewModel : Screen
+    public class LoginViewModel : Screen
     {
-        public LoginViewModel(FakeData context, LoggedUser loggedUser, HttpDataService httpDataService)
+        public LoginViewModel(LoggedUser loggedUser)
         {
-            this.context = context;
-            this.loggedUser = loggedUser;
-            this.HttpDataService = httpDataService;
+            this.LoggedUser = loggedUser;
         }
+
+        public LoggedUser LoggedUser { get; set; }
 
         public bool IsFormEnabled { get; set; } = true;
 
@@ -25,53 +23,39 @@
 
         public async void LoginButton()
         {
-
             this.IsFormEnabled = false;
             this.NotifyOfPropertyChange(() => this.IsFormEnabled);
 
-            var loginForm = new LoginBindingModel
-            {
-                UserName = this.LoginTextBox,
-                Password = this.PasswordTextBox
-            };
+            var helper = new LoginHelper();
 
-            var validationResult = LoginForm.IsValid(loginForm);
-
-            if (validationResult.IsValid)
+            try
             {
-                try
+                var validationResult = await helper.ExternalLogin(this);
+
+                if (validationResult.IsValid)
                 {
-                    var account = await this.HttpDataService.Login(loginForm);
-                    this.loggedUser.LoginUserToApp(account);
-
                     this.TryClose();
                     Show.SuccesBox(validationResult.Message);
                 }
-                catch (ExternalLoginException exception)
+                else
                 {
-                    Show.ErrorBox(exception.Message);
+                    Show.ErrorBox(validationResult.Message);
 
                     this.IsFormEnabled = true;
                     this.NotifyOfPropertyChange(() => this.IsFormEnabled);
                 }
             }
-            else
+            catch (ExternalLoginException exception)
             {
-                Show.ErrorBox(validationResult.Message);
+                Show.ErrorBox(exception.Message);
 
                 this.IsFormEnabled = true;
                 this.NotifyOfPropertyChange(() => this.IsFormEnabled);
             }
         }
 
-        public void RegisterButton() => Show.RegistrationBox(this.context, this.HttpDataService);
+        public void RegisterButton() => Show.RegistrationBox();
 
         public void CancelButton() => Application.Current.Shutdown();
-
-        private LoggedUser loggedUser;
-
-        private FakeData context;
-
-        private HttpDataService HttpDataService { get; set; }
     }
 }

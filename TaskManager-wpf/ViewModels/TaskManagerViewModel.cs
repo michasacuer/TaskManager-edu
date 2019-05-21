@@ -3,10 +3,27 @@
     using System;
     using System.Collections.Generic;
     using Caliburn.Micro;
+    using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
 
-    internal class TaskManagerViewModel : Screen
+    public class TaskManagerViewModel : Screen
     {
+        public TaskManagerViewModel(LoggedUser loggedUser, Repository repository)
+        {
+            this.Projects = repository.Projects;
+
+            this.repository = repository;
+
+            this.loggedUser = loggedUser;
+
+            this.ProjectsList = new BindableCollection<string>();
+
+            foreach (var project in this.Projects)
+            {
+                this.ProjectsList.Add(project.Name);
+            }
+        }
+
         public BindableCollection<string> ProjectsList { get; set; }
 
         public BindableCollection<string> TasksList { get; set; }
@@ -19,15 +36,12 @@
             set
             {
                 this.selectedProjectList = value;
-                this.TasksList = new BindableCollection<string>();
+                var helper = new TaskManagerHelper(this.repository);
+
                 try
                 {
-                    this.tasks = this.context.GetProjectsTasks(this.SelectedProjectsList);
-                    foreach (Task task in this.tasks)
-                    {
-                        this.TasksList.Add(task.Name + " - " + task.Priority.ToString());
-                        this.NotifyOfPropertyChange(() => this.TasksList);
-                    }
+                    this.TasksList = helper.PopulateTasksList(this.SelectedProjectsList);
+                    this.NotifyOfPropertyChange(() => this.TasksList);
                 }
                 catch (ArgumentNullException)
                 {
@@ -36,14 +50,9 @@
             }
         }
 
-        public TaskManagerViewModel(FakeData context, LoggedUser loggedUser)
-        {
-            this.context = context;
-            this.loggedUser = loggedUser;
-            this.ProjectsList = context.GetProjectsName();
-        }
+        private IEnumerable<TaskManager.Models.Project> Projects { get; set; }
 
-        public void AcceptButton()
+        public async void AcceptButton()
         {
             if (!this.loggedUser.HavePermissionToTakeTask())
             {
@@ -57,15 +66,20 @@
                 return;
             }
 
+            var helper = new TaskManagerHelper(this.repository);
+
             this.TryClose();
-            Show.ActiveTaskBox(this.SelectedTasksList, this.SelectedProjectsList, this.context);
+            Show.ActiveTaskBox(await helper.GetTaskToActivate(this.SelectedTasksList, this.SelectedProjectsList), this.SelectedProjectsList);
         }
 
         public void CancelButton() => this.TryClose();
 
         private LoggedUser loggedUser;
-        private FakeData context;
-        private List<Task> tasks;
+
+        private List<TaskManager.Models.Task> tasks;
+
         private string selectedProjectList;
+
+        private Repository repository;
     }
 }

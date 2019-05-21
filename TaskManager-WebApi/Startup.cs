@@ -36,6 +36,8 @@
 
             services.AddScoped<IAccountService, AccountService>();
 
+            services.AddMvc().AddJsonOptions(options => { options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; });
+
             Assembly.GetExecutingAssembly()
             .GetTypes()
             .Where(item => item.GetInterfaces()

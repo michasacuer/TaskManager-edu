@@ -1,9 +1,7 @@
 ﻿namespace TaskManager.WPF.Services.FormsValidation
 {
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
     using TaskManager.WPF.Enums;
-    using TaskManager.WPF.Models;
     using TaskManager.WPF.Models.BindingModels;
     using TaskManager.WPF.Strings;
 
@@ -11,7 +9,6 @@
     {
         public static ValidationResult IsValid(
             RegistrationBindingModel accountForm,
-            FakeData context,
             bool isManager,
             bool isDeveloper,
             bool isViewer)
@@ -38,24 +35,10 @@
 
                 return result;
             }
-            else if (IsLoginExist(accountForm.UserName, context))
-            {
-                result.IsValid = false;
-                result.Message = Error.LoginExist;
-
-                return result;
-            }
             else if (!IsEmailValid(accountForm.Email))
             {
                 result.IsValid = false;
                 result.Message = Error.WrongEmail;
-
-                return result;
-            }
-            else if (IsEmailExist(accountForm.Email, context))
-            {
-                result.IsValid = false;
-                result.Message = Error.EmailExist;
 
                 return result;
             }
@@ -89,12 +72,10 @@
                  Role.Developer : isViewer ?
                  Role.Viewer : Role.Viewer;
 
+            result.IsValid = true;
+
             return result;
         }
-
-        private static bool IsLoginExist(string login, FakeData context) => context.GetUsers().Any(u => u.UserName == login);
-
-        private static bool IsEmailExist(string email, FakeData context) => context.GetUsers().Any(u => u.Email == email);
 
         private static bool IsStringHaveSpaces(string text) => text.Contains(" ");
 
