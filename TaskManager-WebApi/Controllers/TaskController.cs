@@ -9,11 +9,11 @@
     [ApiController]
     public class TaskController : ControllerBase
     {
-        private readonly IDatabaseService<Task> taskService;
+        private readonly TaskService taskService;
 
-        public TaskController(IDatabaseService<Task> taskService)
+        public TaskController(ITaskService taskService)
         {
-            this.taskService = taskService;
+            this.taskService = (TaskService)taskService;
         }
 
         [HttpGet]
@@ -42,6 +42,14 @@
             }
 
             this.taskService.Edit(task);
+
+            return this.Ok(task);
+        }
+
+        [HttpPut("{taskId}/{userId}")]
+        public IActionResult TakeTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
+        {
+            Task task = this.taskService.TakeTaskByUser(taskId, userId);
 
             return this.Ok(task);
         }

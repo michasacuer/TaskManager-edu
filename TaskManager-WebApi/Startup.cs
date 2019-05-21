@@ -35,6 +35,7 @@
                 options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ITaskService, TaskService>();
 
             services.AddMvc().AddJsonOptions(options => { options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; });
 

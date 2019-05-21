@@ -2,13 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Linq;
     using Microsoft.EntityFrameworkCore;
     using TaskManager.Models;
     using TaskManager.WebApi.Models;
 
-    public class TaskService : IDatabaseService<Task>
+    public class TaskService : ITaskService
     {
         private readonly TaskManagerDbContext context;
 
@@ -27,18 +26,23 @@
 
         public Task Edit(Task data)
         {
-            this.context.Entry(data).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            this.context.Entry(data).State = EntityState.Modified;
             this.context.SaveChanges();
 
             return data;
         }
 
-        public Task TakeTaskByUser(Task data, string userId)
+        public Task TakeTaskByUser(int taskId, string userId)
         {
-            this.context.Entry(data).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            var task = this.GetItem(taskId);
+
+            task.ApplicationUserId = userId;
+            task.StartTime = DateTime.Now;
+
+            this.context.Entry(task).State = EntityState.Modified;
             this.context.SaveChanges();
 
-            return data;
+            return task;
         }
 
         public Task GetItem(int id)
