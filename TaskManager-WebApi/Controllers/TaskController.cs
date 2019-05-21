@@ -49,7 +49,11 @@
         [HttpPut("{taskId}/{userId}")]
         public IActionResult TakeTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
         {
-            Task task = this.taskService.TakeTaskByUser(taskId, userId);
+            var task = this.taskService.TakeTaskByUser(taskId, userId);
+            if (task == null)
+            {
+                return this.NotFound();
+            }
 
             return this.Ok(task);
         }
