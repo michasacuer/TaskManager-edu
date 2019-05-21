@@ -5,7 +5,7 @@
     using TaskManager.Models;
     using TaskManager.WebApi.Models;
 
-    public class ProjectService : IDatabaseService<Project>
+    public class ProjectService : IProjectService
     {
         private readonly TaskManagerDbContext context;
 

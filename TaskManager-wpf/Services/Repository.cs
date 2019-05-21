@@ -1,7 +1,6 @@
 ﻿namespace TaskManager.WPF.Models
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
     using TaskManager.WPF.Services;
 
     public class Repository

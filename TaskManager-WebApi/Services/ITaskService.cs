@@ -1,6 +1,5 @@
 ﻿namespace TaskManager.WebApi.Services
 {
-    using System.Collections.Generic;
     using TaskManager.Models;
 
     public interface ITaskService : IDatabaseService<Task>

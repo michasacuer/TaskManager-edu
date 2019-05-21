@@ -68,14 +68,12 @@
         {
             string controller = typeof(TObject).Name;
 
-            IEnumerable<TObject> data;
             HttpResponseMessage response
                 = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint(controller));
 
             if (response.IsSuccessStatusCode)
             {
-                data = await response.Content.ReadAsAsync<IEnumerable<TObject>>();
-                return data;
+                return await response.Content.ReadAsAsync<IEnumerable<TObject>>();
             }
             else
             {
@@ -87,14 +85,12 @@
         {
             string controller = typeof(TObject).Name;
 
-            TObject data;
             HttpResponseMessage response
                 = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint(controller, id));
 
             if (response.IsSuccessStatusCode)
             {
-                data = await response.Content.ReadAsAsync<TObject>();
-                return data;
+                return await response.Content.ReadAsAsync<TObject>();;
             }
             else
             {
@@ -108,14 +104,16 @@
 
             HttpResponseMessage response = await this.HttpClient.PostAsJsonAsync(UrlBuilder.BuildEndpoint(controller), data);
 
-            return data;
+            return await response.Content.ReadAsAsync<TObject>();
         }
 
-        public async System.Threading.Tasks.Task Put<TObject>(TObject data, int id)
+        public async Task<TObject> Put<TObject>(TObject data, int id)
         {
             string controller = typeof(TObject).Name;
 
             HttpResponseMessage response = await this.HttpClient.PutAsJsonAsync(UrlBuilder.BuildEndpoint(controller, id), data);
+
+            return await response.Content.ReadAsAsync<TObject>();
         }
 
         public async System.Threading.Tasks.Task Delete<TObject>(TObject data, int id)
