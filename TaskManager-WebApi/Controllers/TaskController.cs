@@ -12,10 +12,12 @@
     public class TaskController : ControllerBase
     {
         private readonly IDatabaseService<Task> taskService;
+        private readonly IAccountService accountService;
 
-        public TaskController(TaskManagerDbContext context, IDatabaseService<Task> taskService)
+        public TaskController(IDatabaseService<Task> taskService, IAccountService accountService)
         {
             this.taskService = taskService;
+            this.accountService = accountService;
         }
 
         // GET: api/Task
@@ -47,6 +49,15 @@
             }
 
             this.taskService.Edit(task);
+
+            return this.Ok(task);
+        }
+
+        // PUT: api/Task/userid
+        [HttpPut("{id}")]
+        public IActionResult TakeTaskByUser([FromRoute] Task task, [FromRoute] string userId)
+        {
+            this.taskService.TakeTaskByUser(task, userId);
 
             return this.Ok(task);
         }
