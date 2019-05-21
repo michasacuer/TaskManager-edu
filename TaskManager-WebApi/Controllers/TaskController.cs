@@ -9,11 +9,11 @@
     [ApiController]
     public class TaskController : ControllerBase
     {
-        private readonly TaskService taskService;
+        private readonly ITaskService taskService;
 
         public TaskController(ITaskService taskService)
         {
-            this.taskService = (TaskService)taskService;
+            this.taskService = (ITaskService)taskService;
         }
 
         [HttpGet]
