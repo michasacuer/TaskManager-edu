@@ -11,12 +11,12 @@
     [ApiController]
     public class TaskController : ControllerBase
     {
-        private readonly IDatabaseService<Task> taskService;
+        private readonly TaskService taskService;
         private readonly IAccountService accountService;
 
         public TaskController(IDatabaseService<Task> taskService, IAccountService accountService)
         {
-            this.taskService = taskService;
+            this.taskService = (TaskService)taskService;
             this.accountService = accountService;
         }
 
