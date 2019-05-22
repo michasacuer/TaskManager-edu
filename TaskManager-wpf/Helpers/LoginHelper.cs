@@ -22,6 +22,7 @@
             {
                 var httpDataService = new HttpDataService();
                 var user = await httpDataService.Login(loginForm);
+
                 vm.LoggedUser.LoginUserToApp(user);
             }
 

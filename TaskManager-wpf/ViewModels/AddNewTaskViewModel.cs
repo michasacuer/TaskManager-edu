@@ -1,13 +1,10 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using Caliburn.Micro;
     using TaskManager.Models.Enums;
-    using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
-    using TaskManager.WPF.Services;
 
     public class AddNewTaskViewModel : Screen
     {
@@ -41,8 +38,6 @@
 
         public bool HighPriorityButton { get; set; }
 
-        public int? StoryPoints { get; set; }
-
         public Priority Priority { get; set; }
 
         public IEnumerable<TaskManager.Models.Project> Projects { get; set; }
@@ -55,68 +50,17 @@
         {
             var helper = new AddNewTaskHelper();
 
-            try
+            var validationResult = await helper.AddTaskToDatabase(this);
+
+            if (validationResult.IsValid)
             {
-                var validationResult = await helper.AddTaskToDatabase(this);
-
-                if (validationResult.IsValid)
-                {
-                    this.TryClose();
-                    Show.SuccesBox(validationResult.Message);
-                }
-                else
-                {
-                    Show.ErrorBox(validationResult.Message);
-                }
+                this.TryClose();
+                Show.SuccesBox(validationResult.Message);
             }
-            catch (AddNewTaskException exception)
+            else
             {
-
+                Show.ErrorBox(validationResult.Message);
             }
-
-
-            //if (!this.loggedUser.HavePermissionToAddTask())
-            //{
-            //    Show.ErrorBox("Brak uprawnień! Zgłoś się do administratora.");
-            //    return;
-            //}
-            //
-            //if (!NewTask.ProjectSelected(this.SelectedProjectsList))
-            //{
-            //    Show.ErrorBox("Wybierz projekt!");
-            //    return;
-            //}
-            //
-            //try
-            //{
-            //    this.Priority = NewTask.SetPriority(this.LowPriorityButton, this.MediumPriorityButton, this.HighPriorityButton);
-            //}
-            //catch
-            //{
-            //    Show.ErrorBox("Wybierz Priorytet!");
-            //    return;
-            //}
-            //
-            //TaskManager.Models.Task taskToCheck = new TaskManager.Models.Task
-            //{
-            //    Name = this.TaskNameTextBox,
-            //    Priority = this.Priority,
-            //    Description = this.DescriptionTextBox
-            //};
-            //
-            //(bool isValid, string alert) = NewTask.IsValid(taskToCheck);
-            //
-            //if (isValid)
-            //{
-            //    //this.context.AddTaskToProject(taskToCheck, this.SelectedProjectsList);
-            //
-            //    Show.SuccesBox(alert + $" do projektu {this.SelectedProjectsList}!");
-            //    this.TryClose();
-            //}
-            //else
-            //{
-            //    Show.ErrorBox(alert);
-            //}
         }
 
         public void CancelButton() => this.TryClose();
