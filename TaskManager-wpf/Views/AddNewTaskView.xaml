@@ -46,7 +46,7 @@
 
         <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" 
                FontSize = "10" 
-               Content="Nazwa Zadania" 
+               Content="Nazwa Zadania, SP" 
                HorizontalAlignment="Left" VerticalAlignment="Center"
                FontWeight="Bold" Height="20" />
 

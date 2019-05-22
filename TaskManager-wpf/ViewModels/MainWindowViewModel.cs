@@ -13,12 +13,12 @@
 
         public void LoadNotificationsPage() => this.ActivateItem(new NotificationsViewModel(this.context));
 
-        public void LoadAddNewTaskPage() => this.ActivateItem(new AddNewTaskViewModel(this.context, this.loggedUser));
+        public void LoadAddNewTaskPage() => this.ActivateItem(new AddNewTaskViewModel(this.loggedUser, this.repository));
 
         private readonly LoggedUser loggedUser = new LoggedUser();
 
         private readonly FakeData context = new FakeData();
 
-        private readonly Repository repository = new Repository();
+        private readonly Repository repository = Repository.Instance;
     }
 }

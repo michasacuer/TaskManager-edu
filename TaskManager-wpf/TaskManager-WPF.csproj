@@ -132,9 +132,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Exceptions\AddNewTaskException.cs" />
     <Compile Include="Exceptions\ExternalLoginException.cs" />
     <Compile Include="Exceptions\FormValidationException.cs" />
     <Compile Include="Exceptions\RegistrationException.cs" />
+    <Compile Include="Helpers\AddNewTaskHelper.cs" />
     <Compile Include="Helpers\LoginHelper.cs" />
     <Compile Include="Helpers\RegistrationHelper.cs" />
     <Compile Include="Helpers\TaskManagerHelper.cs" />
@@ -148,10 +150,10 @@
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\Wrappers\LoggedUser.cs" />
     <Compile Include="Models\Wrappers\Show.cs" />
+    <Compile Include="Services\FormsValidation\NewTaskForm.cs" />
     <Compile Include="Services\FormsValidation\LoginForm.cs" />
     <Compile Include="Services\FormsValidation\ValidationResult.cs" />
     <Compile Include="Services\HttpDataService.cs" />
-    <Compile Include="Services\NewTask.cs" />
     <Compile Include="Services\Repository.cs" />
     <Compile Include="Services\UrlBuilder.cs" />
     <Compile Include="Services\FormsValidation\RegistrationForm.cs" />

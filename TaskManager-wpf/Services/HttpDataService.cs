@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Net.Http;
+    using System.Net.Http.Formatting;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
@@ -104,7 +105,11 @@
 
             HttpResponseMessage response = await this.HttpClient.PostAsJsonAsync(UrlBuilder.BuildEndpoint(controller), data);
 
-            return await response.Content.ReadAsAsync<TObject>();
+            return await response.Content.ReadAsAsync<TObject>(new List<MediaTypeFormatter>
+            {
+                new JsonMediaTypeFormatter(),
+                new XmlMediaTypeFormatter()
+            });
         }
 
         public async Task<TObject> Put<TObject>(TObject data, int id)
