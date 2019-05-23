@@ -20,7 +20,6 @@
 
         public ProjectController (IProjectService projectService)
         {
-            
             this.projectService = projectService;
         }
 
@@ -28,97 +27,66 @@
         [HttpGet]
         public IEnumerable<Project> GetProjects()
         {
-            return;
+            return this.projectService.GetList();
         }
 
         // GET: api/Project/5
         [HttpGet("{id}")]
-        public Task<IActionResult> GetProject([FromRoute] int id)
+        public IActionResult GetProject([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-          
-
-            if (project == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(project);
+            return this.Ok(this.projectService.GetItem(id));
         }
 
         // PUT: api/Project/5
         [HttpPut("{id}")]
-        public Task<IActionResult> PutProject([FromRoute] int id, [FromBody] Project project)
+        public IActionResult PutProject([FromRoute] int id, [FromBody] Project project)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             if (id != project.Id)
             {
-                return BadRequest();
+                return this.BadRequest();
             }
 
+            this.projectService.Edit(project);
 
-            
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProjectExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return this.Ok(project);
         }
        
 
         // POST: api/Project
         [HttpPost]
-        public Task<IActionResult> PostProject([FromBody] Project project)
+        public IActionResult PostProject([FromBody] Project project)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
-           
-
-            return CreatedAtAction("GetProject", new { id = project.Id }, project);
+            return this.Ok(project);
         }
 
         // DELETE: api/Project/5
         [HttpDelete("{id}")]
-        public Task<IActionResult> DeleteProject([FromRoute] int id)
+        public IActionResult DeleteProject([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
-          
+            var project = this.projectService.GetItem(id);
             if (project == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
+            this.projectService.Remove(project);
 
-          
-
-            return Ok(project);
+          return this.Ok(project);
         }
 
-        private bool ProjectExists(int id)
-        {
-            return;
-        }
     }
 }
