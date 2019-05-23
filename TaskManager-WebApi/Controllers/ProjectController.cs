@@ -15,13 +15,13 @@
     [ApiController]
     public class ProjectController : ControllerBase
     {
-        private readonly TaskManagerDbContext context;
+
 
         private readonly IProjectService projectService;
 
         public ProjectController(TaskManagerDbContext context, IProjectService projectService)
         {
-            this.context = context;
+            
             this.projectService = projectService;
         }
 
@@ -29,7 +29,7 @@
         [HttpGet]
         public IEnumerable<Project> GetProjects()
         {
-            return context.Projects.Include(t => t.Tasks);
+            return;
         }
 
         // GET: api/Project/5
@@ -41,7 +41,7 @@
                 return BadRequest(ModelState);
             }
 
-            var project = await context.Projects.FindAsync(id);
+          
 
             if (project == null)
             {
@@ -65,12 +65,8 @@
                 return BadRequest();
             }
 
-            context.Entry(project).State = EntityState.Modified;
 
-            try
-            {
-                await context.SaveChangesAsync();
-            }
+            
             catch (DbUpdateConcurrencyException)
             {
                 if (!ProjectExists(id))
@@ -85,7 +81,7 @@
 
             return NoContent();
         }
-        //comment 
+       
 
         // POST: api/Project
         [HttpPost]
@@ -96,8 +92,7 @@
                 return BadRequest(ModelState);
             }
 
-            context.Projects.Add(project);
-            await context.SaveChangesAsync();
+           
 
             return CreatedAtAction("GetProject", new { id = project.Id }, project);
         }
@@ -111,21 +106,20 @@
                 return BadRequest(ModelState);
             }
 
-            var project = await context.Projects.FindAsync(id);
+          
             if (project == null)
             {
                 return NotFound();
             }
 
-            context.Projects.Remove(project);
-            await context.SaveChangesAsync();
+          
 
             return Ok(project);
         }
 
         private bool ProjectExists(int id)
         {
-            return context.Projects.Any(e => e.Id == id);
+            return;
         }
     }
 }
