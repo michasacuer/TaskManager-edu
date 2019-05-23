@@ -16,10 +16,9 @@
     public class ProjectController : ControllerBase
     {
 
-
         private readonly IProjectService projectService;
 
-        public ProjectController(TaskManagerDbContext context, IProjectService projectService)
+        public ProjectController (IProjectService projectService)
         {
             
             this.projectService = projectService;
@@ -34,7 +33,7 @@
 
         // GET: api/Project/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProject([FromRoute] int id)
+        public Task<IActionResult> GetProject([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -53,7 +52,7 @@
 
         // PUT: api/Project/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProject([FromRoute] int id, [FromBody] Project project)
+        public Task<IActionResult> PutProject([FromRoute] int id, [FromBody] Project project)
         {
             if (!ModelState.IsValid)
             {
@@ -85,7 +84,7 @@
 
         // POST: api/Project
         [HttpPost]
-        public async Task<IActionResult> PostProject([FromBody] Project project)
+        public Task<IActionResult> PostProject([FromBody] Project project)
         {
             if (!ModelState.IsValid)
             {
@@ -99,7 +98,7 @@
 
         // DELETE: api/Project/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProject([FromRoute] int id)
+        public Task<IActionResult> DeleteProject([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
