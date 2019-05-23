@@ -1,7 +1,9 @@
 ﻿namespace TaskManager.WebApi.Services
 {
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using TaskManager.Models;
     using TaskManager.WebApi.Models;
 
@@ -16,27 +18,40 @@
 
         public Project Add(Project data)
         {
-            throw new NotImplementedException();
+            this.context.Projects.Add(data);
+            this.context.SaveChanges();
+            return data;
         }
 
         public Project Edit(Project data)
         {
-            throw new NotImplementedException();
+            this.context.Entry(data).State = EntityState.Modified;
+            this.context.SaveChanges();
+            return data;
         }
 
         public Project GetItem(int id)
         {
-            throw new NotImplementedException();
+            var project = this.context.Projects.Find(id);
+
+            if (project != null)
+            {
+                return project;
+            }
+
+            return null;
         }
 
         public IEnumerable<Project> GetList()
         {
-            throw new NotImplementedException();
+            return this.context.Projects.ToList();
+
         }
 
         public void Remove(Project data)
         {
-            throw new NotImplementedException();
+            this.context.Projects.Remove(data);
+            this.context.SaveChanges();
         }
     }
 }
