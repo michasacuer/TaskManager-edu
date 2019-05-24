@@ -1,16 +1,16 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
-    using Caliburn.Micro;
     using System.Collections.Generic;
+    using Caliburn.Micro;
     using TaskManager.WPF.Models;
 
     public class TasksDataGridViewModel : Screen
     {
         public TasksDataGridViewModel()
         {
-            this.Tasks = (List<TaskManager.Models.Project>)Repository.Instance.Tasks;
+            this.Tasks = (List<TaskManager.Models.Task>)Repository.Instance.Tasks;
         }
 
-        public List<TaskManager.Models.Project> Tasks { get; set; }
+        public List<TaskManager.Models.Task> Tasks { get; set; }
     }
 }
