@@ -4,19 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TaskManager.WPF.Views"
-             mc:Ignorable="d" >
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        
-        <DataGrid Grid.Row ="0" x:Name="Projects" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
-    
+             mc:Ignorable="d">
+
+    <DataGrid Grid.Row ="0" x:Name="Projects" AutoGenerateColumns="True"  IsReadOnly="true" Height="auto">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+
+        </DataGrid.Columns>
+    </DataGrid>
+
 </UserControl>
 
