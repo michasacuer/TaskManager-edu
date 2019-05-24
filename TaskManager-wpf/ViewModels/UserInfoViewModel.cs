@@ -29,7 +29,8 @@
             Show.LoginBox(this.loggedUser);
         }
 
-        public void OkButton() => this.TryClose();
+        public void LoadManagerPanel() => Show.ManagerPanelBox();
 
+        public void OkButton() => this.TryClose();
     }
 }

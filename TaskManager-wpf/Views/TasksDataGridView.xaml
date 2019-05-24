@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="TaskManager.WPF.Views.TasksDataGridView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TaskManager.WPF.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DataGrid Grid.Row ="0" x:Name="Tasks" AutoGenerateColumns="True"  IsReadOnly="true" Height="auto">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+
+        </DataGrid.Columns>
+    </DataGrid>
+
+</UserControl>
