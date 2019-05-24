@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TaskManager.WPF.Views"
              mc:Ignorable="d">
 
-    <DataGrid Grid.Row ="0" x:Name="Projects" AutoGenerateColumns="True"  IsReadOnly="true" Height="auto">
+    <DataGrid Grid.Row ="0" x:Name="Projects" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto">
         <DataGrid.Columns>
             <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
             <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
