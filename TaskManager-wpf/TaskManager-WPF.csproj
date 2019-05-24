@@ -129,8 +129,14 @@
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ManagerPanelView.xaml.cs">
+      <DependentUpon>ManagerPanelView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NotificationsView.xaml.cs">
       <DependentUpon>NotificationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectsDataGridView.xaml.cs">
+      <DependentUpon>ProjectsDataGridView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RegistrationView.xaml.cs">
       <DependentUpon>RegistrationView.xaml</DependentUpon>
@@ -198,7 +204,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ManagerPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NotificationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectsDataGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
