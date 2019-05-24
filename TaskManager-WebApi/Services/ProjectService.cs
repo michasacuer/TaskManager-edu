@@ -44,7 +44,7 @@
 
         public IEnumerable<Project> GetList()
         {
-            return this.context.Projects.ToList();
+            return this.context.Projects.Include(project => project.Tasks).ToList();
 
         }
 
