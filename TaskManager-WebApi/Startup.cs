@@ -16,7 +16,6 @@
     using Microsoft.IdentityModel.Tokens;
     using TaskManager.Models;
     using TaskManager.WebApi.Models;
-    using TaskManager.WebApi.Services;
 
     public class Startup
     {

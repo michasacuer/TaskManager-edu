@@ -1,5 +1,6 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
+    using System.Windows;
     using Caliburn.Micro;
     using TaskManager.WPF.Models;
 
@@ -32,5 +33,7 @@
         public void LoadManagerPanel() => Show.ManagerPanelBox();
 
         public void OkButton() => this.TryClose();
+
+        public void ExitButton() => Application.Current.Shutdown();
     }
 }
