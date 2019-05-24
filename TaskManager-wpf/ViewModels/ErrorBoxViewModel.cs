@@ -2,7 +2,7 @@
 {
     using Caliburn.Micro;
 
-    internal class ErrorBoxViewModel : Screen
+    public class ErrorBoxViewModel : Screen
     {
         public string ErrorTextBox { get; set; }
 

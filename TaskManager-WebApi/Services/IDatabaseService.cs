@@ -9,9 +9,9 @@
 
         IEnumerable<T> GetList();
 
-        void Edit(T data);
+        T Edit(T data);
 
-        void Add(T data);
+        T Add(T data);
 
         void Remove(T data);
     }

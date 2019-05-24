@@ -2,7 +2,7 @@
 {
     using Caliburn.Micro;
 
-    internal class SuccesBoxViewModel : Screen
+    public class SuccesBoxViewModel : Screen
     {
         public string SuccesTextBox { get; set; }
 

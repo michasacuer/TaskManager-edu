@@ -1,126 +1,93 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using TaskManager.Models;
-using TaskManager.WebApi.Models;
-
-namespace TaskManager_WebApi.Controllers
+﻿namespace TaskManager_WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    using System.Collections.Generic;
+    using Microsoft.AspNetCore.Mvc;
+    using TaskManager.Models;
+    using TaskManager.WebApi.Services;
+
+    [Route("[controller]")]
     [ApiController]
     public class TaskController : ControllerBase
     {
-        private readonly TaskManagerDbContext _context;
+        private readonly ITaskService taskService;
 
-        public TaskController(TaskManagerDbContext context)
+        public TaskController(ITaskService taskService)
         {
-            _context = context;
+            this.taskService = taskService;
         }
 
-        // GET: api/Task
         [HttpGet]
         public IEnumerable<Task> GetTasks()
         {
-            return _context.Tasks;
+            return this.taskService.GetList();
         }
 
-        // GET: api/Task/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTask([FromRoute] int id)
+        public IActionResult GetTask([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var task = await _context.Tasks.FindAsync(id);
-
-            if (task == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(task);
+            return this.Ok(this.taskService.GetItem(id));
         }
 
-        // PUT: api/Task/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTask([FromRoute] int id, [FromBody] Task task)
+        public IActionResult PutTask([FromRoute] int id, [FromBody] Task task)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             if (id != task.Id)
             {
-                return BadRequest();
+                return this.BadRequest();
             }
 
-            _context.Entry(task).State = EntityState.Modified;
+            this.taskService.Edit(task);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TaskExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return this.Ok(task);
         }
 
-        // POST: api/Task
-        [HttpPost]
-        public async Task<IActionResult> PostTask([FromBody] Task task)
+        [HttpPut("{taskId}/{userId}")]
+        public IActionResult TakeTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _context.Tasks.Add(task);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetTask", new { id = task.Id }, task);
-        }
-
-        // DELETE: api/Task/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTask([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var task = await _context.Tasks.FindAsync(id);
+            var task = this.taskService.TakeTaskByUser(taskId, userId);
             if (task == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
-            _context.Tasks.Remove(task);
-            await _context.SaveChangesAsync();
-
-            return Ok(task);
+            return this.Ok(task);
         }
 
-        private bool TaskExists(int id)
+        [HttpPost]
+        public IActionResult PostTask([FromBody] Task task)
         {
-            return _context.Tasks.Any(e => e.Id == id);
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            this.taskService.Add(task);
+
+            return this.Ok(task);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteTask([FromRoute] int id)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var task = this.taskService.GetItem(id);
+            if (task == null)
+            {
+                return this.NotFound();
+            }
+
+            this.taskService.Remove(task);
+
+            return this.Ok(task);
         }
     }
 }

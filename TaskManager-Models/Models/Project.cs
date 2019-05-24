@@ -5,6 +5,10 @@
 
     public class Project
     {
+        public Project()
+        {
+        }
+
         [Key]
         public int Id { get; set; }
 

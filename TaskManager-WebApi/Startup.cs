@@ -34,16 +34,16 @@
             services.AddDbContext<TaskManagerDbContext>(
                 options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<IAccountService, AccountService>();
+            services.AddMvc().AddJsonOptions(options => { options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; });
 
             Assembly.GetExecutingAssembly()
             .GetTypes()
             .Where(item => item.GetInterfaces()
-            .Where(i => i.IsGenericType).Any(i => i.GetGenericTypeDefinition() == typeof(IDatabaseService<>)) && !item.IsAbstract && !item.IsInterface)
+            .Where(i => i.IsInterface).Any(i => i.IsInterface) && !item.IsAbstract)
             .ToList()
             .ForEach(assignedTypes =>
             {
-                var serviceType = assignedTypes.GetInterfaces().First(i => i.GetGenericTypeDefinition() == typeof(IDatabaseService<>));
+                var serviceType = assignedTypes.GetInterfaces().First(i => i.IsInterface);
                 services.AddScoped(serviceType, assignedTypes);
             });
 

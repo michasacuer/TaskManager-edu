@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Net.Http;
+    using System.Net.Http.Formatting;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
@@ -26,14 +27,14 @@
                 = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint("Test"));
         }
 
-        public async Task<Account> Login(LoginBindingModel login)
+        public async Task<User> Login(LoginBindingModel login)
         {
             HttpResponseMessage response
                 = await this.HttpClient.PostAsJsonAsync(UrlBuilder.BuildEndpoint("Account", "Login"), login);
 
             string statusCode = response.StatusCode.ToString();
 
-            Account account = JsonConvert.DeserializeObject<Account>(await response.Content.ReadAsStringAsync());
+            User account = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync());
 
             if (statusCode.Equals("Unauthorized"))
             {
@@ -68,14 +69,12 @@
         {
             string controller = typeof(TObject).Name;
 
-            IEnumerable<TObject> data;
             HttpResponseMessage response
                 = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint(controller));
 
             if (response.IsSuccessStatusCode)
             {
-                data = await response.Content.ReadAsAsync<IEnumerable<TObject>>();
-                return data;
+                return await response.Content.ReadAsAsync<IEnumerable<TObject>>();
             }
             else
             {
@@ -87,14 +86,12 @@
         {
             string controller = typeof(TObject).Name;
 
-            TObject data;
             HttpResponseMessage response
                 = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint(controller, id));
 
             if (response.IsSuccessStatusCode)
             {
-                data = await response.Content.ReadAsAsync<TObject>();
-                return data;
+                return await response.Content.ReadAsAsync<TObject>();;
             }
             else
             {
@@ -108,14 +105,20 @@
 
             HttpResponseMessage response = await this.HttpClient.PostAsJsonAsync(UrlBuilder.BuildEndpoint(controller), data);
 
-            return data;
+            return await response.Content.ReadAsAsync<TObject>(new List<MediaTypeFormatter>
+            {
+                new JsonMediaTypeFormatter(),
+                new XmlMediaTypeFormatter()
+            });
         }
 
-        public async System.Threading.Tasks.Task Put<TObject>(TObject data, int id)
+        public async Task<TObject> Put<TObject>(TObject data, int id)
         {
             string controller = typeof(TObject).Name;
 
             HttpResponseMessage response = await this.HttpClient.PutAsJsonAsync(UrlBuilder.BuildEndpoint(controller, id), data);
+
+            return await response.Content.ReadAsAsync<TObject>();
         }
 
         public async System.Threading.Tasks.Task Delete<TObject>(TObject data, int id)

@@ -17,9 +17,9 @@
     {
         private readonly TaskManagerDbContext context;
 
-        private readonly IDatabaseService<Project> projectService;
+        private readonly IProjectService projectService;
 
-        public ProjectController(TaskManagerDbContext context, IDatabaseService<Project> projectService)
+        public ProjectController(TaskManagerDbContext context, IProjectService projectService)
         {
             this.context = context;
             this.projectService = projectService;
@@ -29,7 +29,7 @@
         [HttpGet]
         public IEnumerable<Project> GetProjects()
         {
-            return context.Projects;
+            return context.Projects.Include(t => t.Tasks);
         }
 
         // GET: api/Project/5

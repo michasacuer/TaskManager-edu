@@ -1,12 +1,29 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
+    using System.Collections.Generic;
     using Caliburn.Micro;
-    using TaskManager.WPF.Enums;
+    using TaskManager.Models.Enums;
+    using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
-    using TaskManager.WPF.Services;
 
-    internal class AddNewTaskViewModel : Screen
+    public class AddNewTaskViewModel : Screen
     {
+        public AddNewTaskViewModel(LoggedUser loggedUser, Repository repository)
+        {
+            this.Projects = repository.Projects;
+
+            this.Repository = repository;
+
+            this.LoggedUser = loggedUser;
+
+            this.ProjectsList = new BindableCollection<string>();
+
+            foreach (var project in this.Projects)
+            {
+                this.ProjectsList.Add(project.Name);
+            }
+        }
+
         public BindableCollection<string> ProjectsList { get; set; }
 
         public string SelectedProjectsList { get; set; }
@@ -23,55 +40,29 @@
 
         public Priority Priority { get; set; }
 
-        public AddNewTaskViewModel(FakeData context, LoggedUser loggedUser)
+        public IEnumerable<TaskManager.Models.Project> Projects { get; set; }
+
+        public LoggedUser LoggedUser { get; set; }
+
+        public Repository Repository { get; set; }
+
+        public async void AcceptButton()
         {
-            this.context = context;
-            this.loggedUser = loggedUser;
-            this.ProjectsList = context.GetProjectsName();
-        }
+            var helper = new AddNewTaskHelper();
 
-        public void AcceptButton()
-        {
-            if(!this.loggedUser.HavePermissionToAddTask())
-            {
-                Show.ErrorBox("Brak uprawnień! Zgłoś się do administratora.");
-                return;
-            }
+            var validationResult = await helper.AddTaskToDatabase(this);
 
-            if (!NewTask.ProjectSelected(this.SelectedProjectsList))
+            if (validationResult.IsValid)
             {
-                Show.ErrorBox("Wybierz projekt!");
-                return;
-            }
-
-            try
-            {
-                this.Priority = NewTask.SetPriority(this.LowPriorityButton, this.MediumPriorityButton, this.HighPriorityButton);
-            }
-            catch
-            {
-                Show.ErrorBox("Wybierz Priorytet!");
-                return;
-            }
-
-            Task taskToCheck = new Task { Name = this.TaskNameTextBox, Priority = this.Priority, Description = this.DescriptionTextBox };
-            (bool isValid, string alert) = NewTask.IsValid(taskToCheck);
-
-            if (isValid)
-            {
-                this.context.AddTaskToProject(taskToCheck, this.SelectedProjectsList);
-                Show.SuccesBox(alert + $" do projektu {this.SelectedProjectsList}!");
                 this.TryClose();
+                Show.SuccesBox(validationResult.Message);
             }
             else
             {
-                Show.ErrorBox(alert);
+                Show.ErrorBox(validationResult.Message);
             }
         }
 
         public void CancelButton() => this.TryClose();
-
-        private FakeData context;
-        private LoggedUser loggedUser;
     }
 }

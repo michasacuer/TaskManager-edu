@@ -1,6 +1,6 @@
 ﻿namespace TaskManager.WPF.Models
 {
-    using System.Collections.Generic;
+    using Caliburn.Micro;
     using TaskManager.WPF.Services;
 
     public class Repository
@@ -10,9 +10,9 @@
             this.HttpDataService = httpDataService;
         }
 
-        private List<Project> Projects { get; set; }
+        private BindableCollection<Project> Projects { get; set; }
 
-        private List<Task> Tasks { get; set; }
+        private BindableCollection<Task> Tasks { get; set; }
 
         private HttpDataService HttpDataService { get; set; }
     }

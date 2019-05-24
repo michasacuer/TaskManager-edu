@@ -49,8 +49,10 @@
                 return new AccountViewModel
                 {
                     Id = appUser.Id,
+                    UserName = appUser.UserName,
                     FirstName = appUser.FirstName,
                     LastName = appUser.LastName,
+                    Email = appUser.Email,
                     Role = role,
                     Bearer = (string)token,
                 };
@@ -88,6 +90,11 @@
             }
 
             return false;
+        }
+
+        public ApplicationUser GetUser(string id)
+        {
+            return this.userManager.Users.Single(u => u.Id == id);
         }
     }
 }
