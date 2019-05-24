@@ -169,6 +169,7 @@
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\SuccesBoxViewModel.cs" />
     <Compile Include="ViewModels\TaskManagerViewModel.cs" />
+    <Compile Include="ViewModels\TasksDataGridViewModel.cs" />
     <Compile Include="ViewModels\UserInfoViewModel.cs" />
     <Compile Include="Views\ActiveTaskView.xaml.cs">
       <DependentUpon>ActiveTaskView.xaml</DependentUpon>
