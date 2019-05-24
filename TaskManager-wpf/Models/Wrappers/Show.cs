@@ -16,6 +16,8 @@
         public static void ActiveTaskBox(TaskManager.Models.Task task, string projectName)
             => manager.ShowDialog(new ActiveTaskViewModel(task, projectName), null, null);
 
+        public static void ManagerPanelBox() => manager.ShowWindow(new ManagerPanelViewModel(), null, null);
+
         private static IWindowManager manager = new WindowManager();
     }
 }
