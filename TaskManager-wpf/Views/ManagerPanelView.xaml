@@ -36,8 +36,17 @@
                VerticalAlignment="Center" 
                FontWeight="Bold" Margin="0,7,0,5" Height="38" Width="auto" />
 
-        <TabControl x:Name="Items" Grid.Row="1"/>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Projekty">
+                <ContentControl x:Name="LoadProjectsDataGrid" />
+            </TabItem>
 
+            <TabItem Header="Zadania">
+
+            </TabItem>
+        </TabControl>
+        <ContentControl x:Name="ActiveItem" Grid.Row="1" Margin="0,22,0,0" />
+        
         <Button x:Name="ExitButton"
                 Grid.Row="3" Grid.ColumnSpan="2"
                 Content="Wyjście"
