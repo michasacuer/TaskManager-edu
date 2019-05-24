@@ -35,30 +35,8 @@
                HorizontalAlignment="Left" 
                VerticalAlignment="Center" 
                FontWeight="Bold" Margin="0,7,0,5" Height="38" Width="auto" />
-        
-        <TabControl Grid.Row="1">
-            <TabItem Header="Projekty">
-                <Grid>
-                    <DataGrid Name="ProjectDataGrid" AutoGenerateColumns="False" CanUserAddRows="True">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding ID}" Header="ID" IsReadOnly="True"></DataGridTextColumn>
-                            
-                            <DataGridTemplateColumn Header="UserControl">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <local:ProjectsDataGridView/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </TabItem>
-            
-            <TabItem Header="Zadania">
 
-            </TabItem>
-        </TabControl>
+        <TabControl x:Name="Items" Grid.Row="1"/>
 
         <Button x:Name="ExitButton"
                 Grid.Row="3" Grid.ColumnSpan="2"
