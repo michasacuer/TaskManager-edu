@@ -15,6 +15,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
     using TaskManager.Models;
+    using TaskManager.WebApi.Hubs;
     using TaskManager.WebApi.Models;
 
     public class Startup
@@ -34,6 +35,9 @@
                 options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc().AddJsonOptions(options => { options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; });
+
+            services.AddHttpContextAccessor();
+            services.AddSignalR();
 
             Assembly.GetExecutingAssembly()
             .GetTypes()
@@ -96,6 +100,7 @@
             app.UseMvc();
             app.UseCors(builder => builder.AllowAnyHeader().AllowAnyHeader().AllowAnyOrigin());
             app.UseHttpsRedirection();
+            app.UseSignalR(routes => routes.MapHub<NotificationsHub>("/Notifications"));
         }
     }
 }
