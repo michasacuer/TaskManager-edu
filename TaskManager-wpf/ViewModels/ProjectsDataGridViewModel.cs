@@ -6,6 +6,11 @@
 
     public class ProjectsDataGridViewModel : Screen
     {
-        public List<TaskManager.Models.Project> Projects { get; set; } = (List<TaskManager.Models.Project>)Repository.Instance.Projects;
+        public ProjectsDataGridViewModel()
+        {
+            this.Projects = (List<TaskManager.Models.Project>)Repository.Instance.Projects;
+        }
+
+        public List<TaskManager.Models.Project> Projects { get; set; }
     }
 }
