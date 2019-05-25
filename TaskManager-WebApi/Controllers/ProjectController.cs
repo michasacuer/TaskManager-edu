@@ -15,13 +15,11 @@
     [ApiController]
     public class ProjectController : ControllerBase
     {
-        private readonly TaskManagerDbContext context;
 
         private readonly IProjectService projectService;
 
-        public ProjectController(TaskManagerDbContext context, IProjectService projectService)
+        public ProjectController (IProjectService projectService)
         {
-            this.context = context;
             this.projectService = projectService;
         }
 
@@ -29,103 +27,66 @@
         [HttpGet]
         public IEnumerable<Project> GetProjects()
         {
-            return context.Projects.Include(t => t.Tasks);
+            return this.projectService.GetList();
         }
 
         // GET: api/Project/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProject([FromRoute] int id)
+        public IActionResult GetProject([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var project = await context.Projects.FindAsync(id);
-
-            if (project == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(project);
+            return this.Ok(this.projectService.GetItem(id));
         }
 
         // PUT: api/Project/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProject([FromRoute] int id, [FromBody] Project project)
+        public IActionResult PutProject([FromRoute] int id, [FromBody] Project project)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             if (id != project.Id)
             {
-                return BadRequest();
+                return this.BadRequest();
             }
 
-            context.Entry(project).State = EntityState.Modified;
+            this.projectService.Edit(project);
 
-            try
-            {
-                await context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProjectExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return this.Ok(project);
         }
-        //comment 
+       
 
         // POST: api/Project
         [HttpPost]
-        public async Task<IActionResult> PostProject([FromBody] Project project)
+        public IActionResult PostProject([FromBody] Project project)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
-            context.Projects.Add(project);
-            await context.SaveChangesAsync();
-
-            return CreatedAtAction("GetProject", new { id = project.Id }, project);
+            return this.Ok(project);
         }
 
         // DELETE: api/Project/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProject([FromRoute] int id)
+        public IActionResult DeleteProject([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
-            var project = await context.Projects.FindAsync(id);
+            var project = this.projectService.GetItem(id);
             if (project == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
+            this.projectService.Remove(project);
 
-            context.Projects.Remove(project);
-            await context.SaveChangesAsync();
-
-            return Ok(project);
+          return this.Ok(project);
         }
 
-        private bool ProjectExists(int id)
-        {
-            return context.Projects.Any(e => e.Id == id);
-        }
     }
 }
