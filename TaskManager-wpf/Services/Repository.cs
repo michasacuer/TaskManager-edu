@@ -18,6 +18,7 @@
 
         public async void FetchAll()
         {
+            //test
             var httpDataService = new HttpDataService();
 
             this.Projects = await httpDataService.Get<TaskManager.Models.Project>();
