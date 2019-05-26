@@ -28,6 +28,19 @@
             return this.Ok(this.taskService.GetItem(id));
         }
 
+        [HttpGet("{userId}")]
+        public IActionResult GetUserTask([FromRoute] string userId)
+        {
+            var task = this.taskService.GetUserTask(userId);
+
+            if (task != null)
+            {
+                return this.Ok(task);
+            }
+
+            return this.NotFound();
+        }
+
         [HttpPut("{id}")]
         public IActionResult PutTask([FromRoute] int id, [FromBody] Task task)
         {

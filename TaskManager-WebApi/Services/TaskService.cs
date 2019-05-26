@@ -45,6 +45,18 @@
             return task;
         }
 
+        public Task GetUserTask(string userId)
+        {
+            var task = this.GetItem(this.context.Tasks.SingleOrDefault(t => t.ApplicationUserId == userId).Id);
+
+            if (task != null)
+            {
+                return task;
+            }
+
+            return null;
+        }
+
         public Task GetItem(int id)
         {
             var task = this.context.Tasks.Find(id);
