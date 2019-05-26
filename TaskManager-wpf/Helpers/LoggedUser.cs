@@ -1,17 +1,20 @@
 ﻿namespace TaskManager.WPF.Helpers
 {
+    using TaskManager.Models;
     using TaskManager.Models.Enums;
     using TaskManager.WPF.Models;
 
     public class LoggedUser
     {
-        private WPFApplicationUser User { get; set; }
+        public WPFApplicationUser User { get; set; }
 
-        private ActiveTask UsersTask { get; set; }
+        private ActiveTask ActiveTask { get; set; } = new ActiveTask();
 
         public void LoginUserToApp(WPFApplicationUser user) => this.User = user;
 
-        public WPFApplicationUser GetInstance() => this.User;
+        public void AttachTaskToUser(Task task) => this.ActiveTask.Task = task;
+
+        public ActiveTask GetUserTask() => this.ActiveTask;
 
         public string GetFullName() => $"{this.User.FirstName} {this.User.LastName}";
 
@@ -20,7 +23,7 @@
         public void Logout()
         {
             this.User = null;
-            this.UsersTask = null;
+            this.ActiveTask = null;
         }
 
         public bool HavePermissionToTakeTask()

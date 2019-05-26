@@ -95,7 +95,24 @@
             }
             else
             {
-                throw new Exception(); //todo
+                return default(TObject);
+            }
+        }
+
+        public async Task<TObject> Get<TObject>(string id)
+        {
+            string controller = typeof(TObject).Name;
+
+            HttpResponseMessage response
+                = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint(controller, id));
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<TObject>();
+            }
+            else
+            {
+                return default(TObject);
             }
         }
 

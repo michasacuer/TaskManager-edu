@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TaskManager.WPF.Enums;
+using TaskManager.Models.Enums;
 using TaskManager.WPF.Models.BindingModels;
 using TaskManager.WPF.Services;
 

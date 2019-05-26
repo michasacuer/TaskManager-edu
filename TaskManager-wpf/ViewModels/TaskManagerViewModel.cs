@@ -67,9 +67,11 @@
             }
 
             var helper = new TaskManagerHelper(this.repository);
+            this.loggedUser.AttachTaskToUser(await helper.GetTaskToActivate(this.SelectedTasksList, this.SelectedProjectsList));
+
+            Show.ActiveTaskBox(this.loggedUser.GetUserTask(), this.SelectedProjectsList);
 
             this.TryClose();
-            Show.ActiveTaskBox(await helper.GetTaskToActivate(this.SelectedTasksList, this.SelectedProjectsList), this.SelectedProjectsList);
         }
 
         public void CancelButton() => this.TryClose();

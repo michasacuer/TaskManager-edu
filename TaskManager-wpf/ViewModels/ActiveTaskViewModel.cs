@@ -3,15 +3,16 @@
     using System;
     using Caliburn.Micro;
     using TaskManager.Models;
+    using TaskManager.WPF.Models;
 
     public class ActiveTaskViewModel : Screen
     {
-        public ActiveTaskViewModel(Task task, string projectName)
+        public ActiveTaskViewModel(ActiveTask activeTask, string projectName)
         {
             this.projectName = projectName;
-            this.activeTask = task;
-            this.ActiveTaskTextBlock = $"{task.Name}, Priorytet: {task.Priority}";
-            this.DescriptionTextBlock = task.Description;
+            this.activeTask = activeTask.Task;
+            this.ActiveTaskTextBlock = $"{activeTask.Task.Name}, Priorytet: {activeTask.Task.Priority}";
+            this.DescriptionTextBlock = activeTask.Task.Description;
             this.TimerActiveTaskTextBlock = DateTime.Now.ToString();
             this.NotifyOfPropertyChange(() => this.TimerActiveTaskTextBlock);
         }

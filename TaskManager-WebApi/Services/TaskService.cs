@@ -47,11 +47,11 @@
 
         public Task GetUserTask(string userId)
         {
-            var task = this.GetItem(this.context.Tasks.SingleOrDefault(t => t.ApplicationUserId == userId).Id);
+            var userTask = this.context.Tasks.SingleOrDefault(t => t.ApplicationUserId == userId);
 
-            if (task != null)
+            if (userTask != null)
             {
-                return task;
+                return userTask;
             }
 
             return null;

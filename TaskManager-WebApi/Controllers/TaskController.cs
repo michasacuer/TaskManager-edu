@@ -1,5 +1,6 @@
 ﻿namespace TaskManager_WebApi.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;
     using TaskManager.Models;
@@ -22,7 +23,7 @@
             return this.taskService.GetList();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public IActionResult GetTask([FromRoute] int id)
         {
             return this.Ok(this.taskService.GetItem(id));
@@ -31,7 +32,7 @@
         [HttpGet("{userId}")]
         public IActionResult GetUserTask([FromRoute] string userId)
         {
-            var task = this.taskService.GetUserTask(userId);
+            var task = this.taskService.GetUserTask(userId.ToString());
 
             if (task != null)
             {
