@@ -3,7 +3,7 @@
     using System.Net.Http;
     using System.Windows;
     using Caliburn.Micro;
-    using TaskManager.WPF.Models;
+    using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Services;
     using TaskManager.WPF.Strings;
     using TaskManager.WPF.ViewModels;

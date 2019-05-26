@@ -7,15 +7,11 @@
     {
         public BindableCollection<string> EndedTasksList { get; set; }
 
-        public NotificationsViewModel(FakeData context)
+        public NotificationsViewModel()
         {
-            this.context = context;
-            this.EndedTasksList = context.GetEndedTasks();
             this.NotifyOfPropertyChange(() => this.EndedTasksList);
         }
 
         public void CancelButton() => TryClose();
-
-        private FakeData context;
     }
 }
