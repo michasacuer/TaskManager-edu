@@ -27,14 +27,14 @@
                 = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint("Test"));
         }
 
-        public async Task<User> Login(LoginBindingModel login)
+        public async Task<WPFApplicationUser> Login(LoginBindingModel login)
         {
             HttpResponseMessage response
                 = await this.HttpClient.PostAsJsonAsync(UrlBuilder.BuildEndpoint("Account", "Login"), login);
 
             string statusCode = response.StatusCode.ToString();
 
-            User account = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync());
+            WPFApplicationUser account = JsonConvert.DeserializeObject<WPFApplicationUser>(await response.Content.ReadAsStringAsync());
 
             if (statusCode.Equals("Unauthorized"))
             {
@@ -91,7 +91,7 @@
 
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadAsAsync<TObject>();;
+                return await response.Content.ReadAsAsync<TObject>();
             }
             else
             {
