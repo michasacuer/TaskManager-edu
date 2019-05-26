@@ -1,19 +1,27 @@
 ﻿namespace TaskManager.WPF.Models
 {
-    using Caliburn.Micro;
+    using System.Collections.Generic;
     using TaskManager.WPF.Services;
 
     public class Repository
     {
-        public Repository(HttpDataService httpDataService)
+        public Repository()
         {
-            this.HttpDataService = httpDataService;
+            this.FetchAll();
         }
 
-        private BindableCollection<Project> Projects { get; set; }
+        public static Repository Instance { get; } = new Repository();
 
-        private BindableCollection<Task> Tasks { get; set; }
+        public IEnumerable<TaskManager.Models.Project> Projects { get; set; }
 
-        private HttpDataService HttpDataService { get; set; }
+        public IEnumerable<TaskManager.Models.Task> Tasks { get; set; }
+
+        public async void FetchAll()
+        {
+            var httpDataService = new HttpDataService();
+
+            this.Projects = await httpDataService.Get<TaskManager.Models.Project>();
+            this.Tasks = await httpDataService.Get<TaskManager.Models.Task>();
+        }
     }
 }
