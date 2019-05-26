@@ -5,13 +5,13 @@
 
     public class LoggedUser
     {
-        private User User { get; set; }
+        private WPFApplicationUser User { get; set; }
 
         private ActiveTask UsersTask { get; set; }
 
-        public void LoginUserToApp(User user) => this.User = user;
+        public void LoginUserToApp(WPFApplicationUser user) => this.User = user;
 
-        public User GetInstance() => this.User;
+        public WPFApplicationUser GetInstance() => this.User;
 
         public string GetFullName() => $"{this.User.FirstName} {this.User.LastName}";
 
