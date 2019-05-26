@@ -22,7 +22,10 @@
             var tasks = this.repository.Projects.Single(p => p.Name == selectedProjectsList).Tasks;
             foreach (var task in tasks)
             {
-                tasksList.Add(task.Name + " - " + task.Priority.ToString());
+                if (task.ApplicationUserId != null)
+                {
+                    tasksList.Add(task.Name + " - " + task.Priority.ToString());
+                }
             }
 
             return tasksList;
