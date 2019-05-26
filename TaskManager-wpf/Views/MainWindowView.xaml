@@ -279,7 +279,8 @@
                 Foreground="White" 
                 BorderThickness="0"  
                 BorderBrush="{x:Null}" 
-                Background="Green" Margin="20,3,0,3" Grid.ColumnSpan="3">
+                Background="Green" Margin="20,3,0,3" Grid.ColumnSpan="3"
+                Visibility="{Binding IsActiveTaskButtonVisible}">
             <ToggleButton.Style>
                 <Style TargetType="ToggleButton" BasedOn="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}">
                     <Setter Property="Visibility" Value="Visible"/>

@@ -1,6 +1,7 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
     using Caliburn.Micro;
+    using System.Windows;
     using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
 
@@ -19,5 +20,7 @@
         private readonly LoggedUser loggedUser = new LoggedUser();
 
         private readonly Repository repository = Repository.Instance;
+
+        public Visibility IsActiveTaskButtonVisible { get; set; } = Visibility.Hidden;
     }
 }
