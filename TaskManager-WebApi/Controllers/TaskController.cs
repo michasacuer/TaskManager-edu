@@ -75,7 +75,7 @@
         [HttpPut("End/{taskId}/{userId}")]
         public IActionResult EndTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
         {
-            var task = this.taskService.EndTaskByUser(taskId, userId);
+            this.taskService.EndTaskByUser(taskId, userId);
             return this.Ok();
         }
 

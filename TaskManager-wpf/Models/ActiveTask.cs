@@ -1,6 +1,5 @@
 ﻿namespace TaskManager.WPF.Models
 {
-    using System.Linq;
     using System.Threading.Tasks;
     using TaskManager.WPF.Helpers;
 
@@ -25,11 +24,8 @@
 
         public async void EndActiveTask()
         {
-            var task = await new ActiveTaskHelper().EndActiveTask(this.Task);
-
-            var tasksList = Repository.Instance.Tasks;
-            var taskInList = tasksList.Single(t => t.Id == this.Task.Id);
-            taskInList = task;
+            await new ActiveTaskHelper().EndActiveTask(this.Task);
+            Repository.Instance.FetchAll();
 
             this.Task = null;
         }

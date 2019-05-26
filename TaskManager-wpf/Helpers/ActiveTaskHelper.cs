@@ -9,6 +9,6 @@
             => await new HttpDataService().Get<TaskManager.Models.Task>(userId);
 
         public async Task<TaskManager.Models.Task> EndActiveTask(TaskManager.Models.Task task)
-            => await new HttpDataService().Put(task, task.Id.ToString(), task.ApplicationUserId.ToString());
+            => await new HttpDataService().Put(task, "End", task.Id.ToString(), task.ApplicationUserId.ToString());
     }
 }

@@ -15,6 +15,8 @@
 
         public DbSet<Task> Tasks { get; set; }
 
+        public DbSet<EndedTask> EndedTasks { get; set; }
+
         public DbSet<Notification> Notifications { get; set; }
     }
 }

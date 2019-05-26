@@ -57,16 +57,29 @@
             return null;
         }
 
-        public Task EndTaskByUser(int taskId, string userId)
+        public void EndTaskByUser(int taskId, string userId)
         {
             var task = this.context.Tasks.Single(t => t.Id == taskId && t.ApplicationUserId == userId);
 
             task.EndTime = DateTime.Now;
 
-            this.context.Entry(task).State = EntityState.Modified;
-            this.context.SaveChanges();
+            var endedTask = new EndedTask
+            {
+                TaskId = task.Id,
+                ProjectId = task.ProjectId,
+                ApplicationUserId = task.ApplicationUserId,
+                Name = task.Name,
+                Description = task.Description,
+                Priority = task.Priority,
+                StoryPoints = task.StoryPoints,
+                StartTime = task.StartTime,
+                EndTime = task.EndTime
+            };
 
-            return task;
+            this.context.EndedTasks.Add(endedTask);
+
+            this.context.Remove(task);
+            this.context.SaveChanges();
         }
 
         public Task GetItem(int id)
