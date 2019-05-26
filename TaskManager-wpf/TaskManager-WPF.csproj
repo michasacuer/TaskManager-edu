@@ -148,10 +148,9 @@
     <Compile Include="Models\BindingModels\RegistrationBindingModel.cs" />
     <Compile Include="Models\Enums\Priority.cs" />
     <Compile Include="Models\Enums\Role.cs" />
-    <Compile Include="Models\Wrappers\FakeData.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Task.cs" />
-    <Compile Include="Models\Wrappers\LoggedUser.cs" />
+    <Compile Include="Helpers\LoggedUser.cs" />
     <Compile Include="Models\Wrappers\Show.cs" />
     <Compile Include="Services\FormsValidation\NewTaskForm.cs" />
     <Compile Include="Services\FormsValidation\LoginForm.cs" />

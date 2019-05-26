@@ -1,6 +1,7 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
     using Caliburn.Micro;
+    using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
 
     public class MainWindowViewModel : Conductor<IScreen>.Collection.OneActive

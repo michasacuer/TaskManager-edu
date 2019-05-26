@@ -1,6 +1,7 @@
-﻿namespace TaskManager.WPF.Models
+﻿namespace TaskManager.WPF.Helpers
 {
     using TaskManager.WPF.Enums;
+    using TaskManager.WPF.Models;
 
     public class LoggedUser
     {

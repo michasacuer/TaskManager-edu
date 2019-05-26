@@ -2,6 +2,7 @@
 {
     using System.Windows;
     using Caliburn.Micro;
+    using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
 
     public class UserInfoViewModel : Screen
