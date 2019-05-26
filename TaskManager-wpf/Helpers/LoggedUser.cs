@@ -7,6 +7,8 @@
     {
         private User User { get; set; }
 
+        private ActiveTask UsersTask { get; set; }
+
         public void LoginUserToApp(User user) => this.User = user;
 
         public User GetInstance() => this.User;
@@ -15,7 +17,11 @@
 
         public string GetPosition() => this.User.Role.ToString();
 
-        public void Logout() => this.User = null;
+        public void Logout()
+        {
+            this.User = null;
+            this.UsersTask = null;
+        }
 
         public bool HavePermissionToTakeTask()
             => this.User.Role == Role.Manager || this.User.Role == Role.Developer;
