@@ -14,7 +14,7 @@
 
         public static string BuildEndpoint(string controller, string method, int id) => $"{BaseUrl}/{controller}/{method}/{id}";
 
-        public static string BuildEndpoint(params string[] parameters)
-            => BaseUrl + parameters.Aggregate(string.Empty, (current, next) => current + @"/" + next);
+        public static string BuildEndpoint(string controller, params string[] parameters)
+            => BaseUrl + @"/" + controller + parameters.Aggregate(string.Empty, (current, next) => current + @"/" + next);
     }
 }

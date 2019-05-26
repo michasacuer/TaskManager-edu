@@ -1,5 +1,6 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
+    using System;
     using System.Windows;
     using Caliburn.Micro;
     using TaskManager.WPF.Helpers;
@@ -41,10 +42,17 @@
         {
             Show.LoginBox(this.LoggedUser);
 
-            if (await this.LoggedUser.GetUserTask().IsUserHaveActiveTask(this.LoggedUser.User.Id))
+            try
             {
-                this.IsActiveTaskButtonVisible = Visibility.Visible;
-                this.NotifyOfPropertyChange(() => this.IsActiveTaskButtonVisible);
+                if (await this.LoggedUser.GetUserTask().IsUserHaveActiveTask(this.LoggedUser.User.Id))
+                {
+                    this.IsActiveTaskButtonVisible = Visibility.Visible;
+                    this.NotifyOfPropertyChange(() => this.IsActiveTaskButtonVisible);
+                }
+            }
+            catch (NullReferenceException)
+            {
+                return;
             }
         }
     }

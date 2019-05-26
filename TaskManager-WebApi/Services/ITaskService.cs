@@ -7,5 +7,7 @@
         Task TakeTaskByUser(int taskId, string userId);
 
         Task GetUserTask(string userId);
+
+        Task EndTaskByUser(int taskId, string userId);
     }
 }

@@ -78,7 +78,7 @@
             }
             else
             {
-                throw new Exception(); //todo
+                return default(IEnumerable<TObject>);
             }
         }
 
@@ -134,6 +134,15 @@
             string controller = typeof(TObject).Name;
 
             HttpResponseMessage response = await this.HttpClient.PutAsJsonAsync(UrlBuilder.BuildEndpoint(controller, id), data);
+
+            return await response.Content.ReadAsAsync<TObject>();
+        }
+
+        public async Task<TObject> Put<TObject>(TObject data, params string[] routes)
+        {
+            string controller = typeof(TObject).Name;
+
+            HttpResponseMessage response = await this.HttpClient.PutAsJsonAsync(UrlBuilder.BuildEndpoint(controller, routes), data);
 
             return await response.Content.ReadAsAsync<TObject>();
         }

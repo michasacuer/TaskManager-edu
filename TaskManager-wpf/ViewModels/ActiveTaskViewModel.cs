@@ -9,8 +9,12 @@
     {
         private readonly string projectName;
 
+        private readonly ActiveTask activeTask;
+
         public ActiveTaskViewModel(ActiveTask activeTask)
         {
+            this.activeTask = activeTask;
+
             this.projectName = Repository.Instance.Projects.Single(p => p.Id == activeTask.Task.ProjectId).Name;
             this.ActiveTaskTextBlock = $"{activeTask.Task.Name}, Priorytet: {activeTask.Task.Priority}";
             this.DescriptionTextBlock = activeTask.Task.Description;
@@ -24,10 +28,7 @@
 
         public string TimerActiveTaskTextBlock { get; set; }
 
-        public void EndTaskButton()
-        {
-            this.TryClose();
-        }
+        public void EndTaskButton() => this.activeTask.EndActiveTask();
 
         public void CancelTaskButton() => this.TryClose();
     }

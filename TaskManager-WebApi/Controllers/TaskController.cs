@@ -72,6 +72,13 @@
             return this.Ok(task);
         }
 
+        [HttpPut("End/{taskId}/{userId}")]
+        public IActionResult EndTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
+        {
+            var task = this.taskService.EndTaskByUser(taskId, userId);
+            return this.Ok();
+        }
+
         [HttpPost]
         public IActionResult PostTask([FromBody] Task task)
         {

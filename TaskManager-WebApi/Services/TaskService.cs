@@ -57,6 +57,18 @@
             return null;
         }
 
+        public Task EndTaskByUser(int taskId, string userId)
+        {
+            var task = this.context.Tasks.Single(t => t.Id == taskId && t.ApplicationUserId == userId);
+
+            task.EndTime = DateTime.Now;
+
+            this.context.Entry(task).State = EntityState.Modified;
+            this.context.SaveChanges();
+
+            return task;
+        }
+
         public Task GetItem(int id)
         {
             var task = this.context.Tasks.Find(id);

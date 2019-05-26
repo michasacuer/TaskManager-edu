@@ -1,7 +1,8 @@
 ﻿namespace TaskManager.WPF.Models
 {
+    using System.Linq;
     using System.Threading.Tasks;
-    using TaskManager.WPF.Services;
+    using TaskManager.WPF.Helpers;
 
     public class ActiveTask
     {
@@ -11,9 +12,7 @@
 
         public async Task<bool> IsUserHaveActiveTask(string userId)
         {
-            var httpDataService = new HttpDataService();
-
-            var task = await httpDataService.Get<TaskManager.Models.Task>(userId);
+            var task = await new ActiveTaskHelper().IsUserHaveActiveTask(userId);
 
             if (task != null)
             {
@@ -22,6 +21,17 @@
             }
 
             return false;
+        }
+
+        public async void EndActiveTask()
+        {
+            var task = await new ActiveTaskHelper().EndActiveTask(this.Task);
+
+            var tasksList = Repository.Instance.Tasks;
+            var taskInList = tasksList.Single(t => t.Id == this.Task.Id);
+            taskInList = task;
+
+            this.Task = null;
         }
     }
 }
