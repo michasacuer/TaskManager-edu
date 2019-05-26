@@ -67,7 +67,7 @@
             }
 
             var helper = new TaskManagerHelper(this.repository);
-            this.loggedUser.AttachTaskToUser(await helper.GetTaskToActivate(this.SelectedTasksList, this.SelectedProjectsList));
+            this.loggedUser.AttachTaskToUser(await helper.GetTaskToActivate(this.loggedUser, this.SelectedTasksList, this.SelectedProjectsList));
 
             this.TryClose();
 
