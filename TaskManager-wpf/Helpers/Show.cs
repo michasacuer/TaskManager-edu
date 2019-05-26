@@ -14,8 +14,7 @@
 
         public static void LoginBox(LoggedUser loggedUser) => manager.ShowDialog(new LoginViewModel(loggedUser), null, null);
 
-        public static void ActiveTaskBox(ActiveTask activeTask, string projectName)
-            => manager.ShowDialog(new ActiveTaskViewModel(activeTask, projectName), null, null);
+        public static void ActiveTaskBox(ActiveTask activeTask) => manager.ShowDialog(new ActiveTaskViewModel(activeTask), null, null);
 
         public static void ManagerPanelBox() => manager.ShowDialog(new ManagerPanelViewModel(), null, null);
 

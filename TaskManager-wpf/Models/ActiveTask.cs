@@ -7,6 +7,8 @@
     {
         public TaskManager.Models.Task Task { get; set; }
 
+        public bool IsTaskTakenByUser() => this.Task == null;
+
         public async Task<bool> IsUserHaveActiveTask(string userId)
         {
             var httpDataService = new HttpDataService();

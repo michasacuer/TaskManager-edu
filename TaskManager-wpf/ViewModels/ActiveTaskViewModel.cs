@@ -1,16 +1,17 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
     using System;
+    using System.Linq;
     using Caliburn.Micro;
-    using TaskManager.Models;
     using TaskManager.WPF.Models;
 
     public class ActiveTaskViewModel : Screen
     {
-        public ActiveTaskViewModel(ActiveTask activeTask, string projectName)
+        private readonly string projectName;
+
+        public ActiveTaskViewModel(ActiveTask activeTask)
         {
-            this.projectName = projectName;
-            this.activeTask = activeTask.Task;
+            this.projectName = Repository.Instance.Projects.Single(p => p.Id == activeTask.Task.ProjectId).Name;
             this.ActiveTaskTextBlock = $"{activeTask.Task.Name}, Priorytet: {activeTask.Task.Priority}";
             this.DescriptionTextBlock = activeTask.Task.Description;
             this.TimerActiveTaskTextBlock = DateTime.Now.ToString();
@@ -29,9 +30,5 @@
         }
 
         public void CancelTaskButton() => this.TryClose();
-
-        private string projectName;
-
-        private Task activeTask;
     }
 }

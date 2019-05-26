@@ -312,10 +312,6 @@
                             <Setter Property="Grid.Row" Value="8"/>
                             <Setter Property="IsChecked" Value="False"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding ElementName=LoadActiveTaskPage, Path=IsChecked}"
-                                     Value="True">
-                            <Setter Property="Grid.Row" Value="6"/>
-                        </DataTrigger>
                         <DataTrigger Binding="{Binding ElementName=HideBar, Path=IsChecked}"
                                      Value="True">
                             <Setter Property="Visibility" Value="Hidden"/>

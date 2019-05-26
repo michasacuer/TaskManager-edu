@@ -20,13 +20,22 @@
 
         public void LoadUserInfoPage() => this.ActivateItem(new UserInfoViewModel(this.LoggedUser));
 
-        public void LoadTaskManagerPage() => this.ActivateItem(new TaskManagerViewModel(this.LoggedUser, this.repository));
+        public void LoadTaskManagerPage()
+        {
+            this.ActivateItem(new TaskManagerViewModel(this.LoggedUser, this.repository));
+
+            if (!this.LoggedUser.GetUserTask().IsTaskTakenByUser())
+            {
+                this.IsActiveTaskButtonVisible = Visibility.Visible;
+                this.NotifyOfPropertyChange(() => this.IsActiveTaskButtonVisible);
+            }
+        }
 
         public void LoadNotificationsPage() => this.ActivateItem(new NotificationsViewModel());
 
         public void LoadAddNewTaskPage() => this.ActivateItem(new AddNewTaskViewModel(this.LoggedUser, this.repository));
 
-        public void LoadActiveTaskPage() => this.ActivateItem(new ActiveTaskViewModel(this.LoggedUser.GetUserTask(), null));
+        public void LoadActiveTaskPage() => Show.ActiveTaskBox(this.LoggedUser.GetUserTask());
 
         protected async override void OnViewLoaded(object view)
         {
