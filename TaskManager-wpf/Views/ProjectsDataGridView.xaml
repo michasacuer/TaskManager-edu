@@ -5,12 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TaskManager.WPF.Views"
              mc:Ignorable="d">
+    
+    <UserControl.Resources>
+        <Style x:Key="columnStyle" TargetType="DataGrid">
+            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource columnStyle1}"/>
+        </Style>
 
-    <DataGrid Grid.Row ="0" x:Name="Projects" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto">
+        <Style x:Key="columnStyle1" TargetType="DataGridColumnHeader">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </UserControl.Resources>
+
+    <DataGrid Grid.Row ="0" x:Name="Projects" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto" Style="{DynamicResource columnStyle}">
         <DataGrid.Columns>
             <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-
+            <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
+            <DataGridTextColumn Header="Tag" Binding="{Binding Tag}"/>
+            <DataGridTextColumn Header="Opis" Binding="{Binding Description}"/>
         </DataGrid.Columns>
     </DataGrid>
 
