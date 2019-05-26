@@ -22,7 +22,7 @@
         public void Logout()
         {
             this.User = null;
-            this.ActiveTask = null;
+            this.ActiveTask = new ActiveTask();
         }
 
         public bool HavePermissionToTakeTask()

@@ -15,12 +15,16 @@
 
             if (validationResult.IsValid)
             {
-                int? storyPoints;
+                int? storyPoints = null;
 
                 try
                 {
-                    var substring = vm.TaskNameTextBox.Substring(vm.TaskNameTextBox.IndexOf(",") + 1);
-                    storyPoints = Convert.ToInt32(substring.Replace(" ", string.Empty));
+                    if (vm.TaskNameTextBox.Contains(","))
+                    {
+                        var substring = vm.TaskNameTextBox.Substring(vm.TaskNameTextBox.IndexOf(",") + 1);
+                        storyPoints = Convert.ToInt32(substring.Replace(" ", string.Empty));
+                        vm.TaskNameTextBox = vm.TaskNameTextBox.Substring(0, vm.TaskNameTextBox.IndexOf(","));
+                    }
                 }
                 catch (FormatException)
                 {

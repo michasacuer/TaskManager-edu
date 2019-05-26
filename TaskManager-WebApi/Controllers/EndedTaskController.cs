@@ -1,9 +1,6 @@
 ﻿namespace TaskManager_WebApi.Controllers
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using TaskManager.Models;
     using TaskManager.WebApi.Services;
@@ -20,7 +17,7 @@
         }
 
         [HttpGet]
-        public IEnumerable<Task> GetEndedTasks()
+        public IEnumerable<EndedTask> GetEndedTasks()
         {
             return this.endedTaskService.GetList();
         }

@@ -39,7 +39,7 @@
             task.ApplicationUserId = loggedUser.User.Id;
 
             var httpDataService = new HttpDataService();
-            return await httpDataService.Put(task, task.Id);
+            return await httpDataService.Put(task, task.Id.ToString(), loggedUser.User.Id);
         }
     }
 }

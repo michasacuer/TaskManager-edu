@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using Caliburn.Micro;
+    using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
 
     public class ActiveTaskViewModel : Screen
@@ -27,7 +28,12 @@
 
         public string TimerActiveTaskTextBlock { get; set; }
 
-        public void EndTaskButton() => this.activeTask.EndActiveTask();
+        public void EndTaskButton()
+        {
+            this.activeTask.EndActiveTask();
+            this.TryClose();
+            Show.SuccesBox(string.Empty);
+        }
 
         public void CancelTaskButton() => this.TryClose();
     }
