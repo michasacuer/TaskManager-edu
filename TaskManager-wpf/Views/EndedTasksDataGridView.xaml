@@ -17,7 +17,7 @@
             </Style>
         </UserControl.Resources>
 
-        <DataGrid GridLinesVisibility="Horizontal" Grid.Row ="0" x:Name="Tasks" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto" Style="{DynamicResource columnStyle}">
+        <DataGrid GridLinesVisibility="Horizontal" Grid.Row ="0" x:Name="EndedTasks" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto" Style="{DynamicResource columnStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="NAZWA" Binding="{Binding Name}"/>
