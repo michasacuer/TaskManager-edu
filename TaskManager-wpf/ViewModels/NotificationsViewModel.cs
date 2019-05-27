@@ -12,6 +12,6 @@
             this.NotifyOfPropertyChange(() => this.EndedTasksList);
         }
 
-        public void CancelButton() => TryClose();
+        public void CancelButton() => this.TryCloseAsync();
     }
 }

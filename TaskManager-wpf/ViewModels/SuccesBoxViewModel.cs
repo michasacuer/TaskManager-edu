@@ -8,6 +8,6 @@
 
         public string SuccesTextBox { get; set; }
 
-        public void OkButton() => this.TryClose();
+        public void OkButton() => this.TryCloseAsync();
     }
 }

@@ -69,12 +69,12 @@
             var helper = new TaskManagerHelper(this.repository);
             this.loggedUser.AttachTaskToUser(await helper.GetTaskToActivate(this.loggedUser, this.SelectedTasksList, this.SelectedProjectsList));
 
-            this.TryClose();
+            await this.TryCloseAsync();
 
             Show.ActiveTaskBox(this.loggedUser.GetUserTask());
         }
 
-        public void CancelButton() => this.TryClose();
+        public void CancelButton() => this.TryCloseAsync();
 
         private LoggedUser loggedUser;
 

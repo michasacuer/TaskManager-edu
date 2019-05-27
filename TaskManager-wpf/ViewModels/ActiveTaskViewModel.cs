@@ -31,10 +31,10 @@
         public void EndTaskButton()
         {
             this.activeTask.EndActiveTask();
-            this.TryClose();
+            this.TryCloseAsync();
             Show.SuccesBox(string.Empty);
         }
 
-        public void CancelTaskButton() => this.TryClose();
+        public void CancelTaskButton() => this.TryCloseAsync();
     }
 }

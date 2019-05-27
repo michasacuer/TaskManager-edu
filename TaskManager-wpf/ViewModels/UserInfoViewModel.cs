@@ -27,13 +27,13 @@
         public void LogoutButton()
         {
             this.loggedUser.Logout();
-            this.TryClose();
+            this.TryCloseAsync();
             Show.LoginBox(this.loggedUser);
         }
 
         public void LoadManagerPanel() => Show.ManagerPanelBox();
 
-        public void OkButton() => this.TryClose();
+        public void OkButton() => this.TryCloseAsync();
 
         public void ExitButton() => Application.Current.Shutdown();
     }

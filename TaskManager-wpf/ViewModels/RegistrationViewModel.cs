@@ -40,7 +40,7 @@
 
                 if (validationResult.IsValid)
                 {
-                    this.TryClose();
+                    await this.TryCloseAsync();
                     Show.SuccesBox(validationResult.Message);
                 }
                 else
@@ -60,6 +60,6 @@
             }
         }
 
-        public void CancelButton() => this.TryClose();
+        public void CancelButton() => this.TryCloseAsync();
     }
 }

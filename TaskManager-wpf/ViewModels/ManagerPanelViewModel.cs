@@ -10,6 +10,6 @@
             this.Items.Add(new TasksDataGridViewModel { DisplayName = "Zadania" });
         }
 
-        public void ExitButton() => this.TryClose();
+        public void ExitButton() => this.TryCloseAsync();
     }
 }

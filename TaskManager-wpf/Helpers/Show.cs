@@ -6,17 +6,17 @@
 
     public static class Show
     {
-        public static void ErrorBox(string alert) => manager.ShowDialog(new ErrorBoxViewModel(alert), null, null);
+        public static void ErrorBox(string alert) => manager.ShowDialogAsync(new ErrorBoxViewModel(alert), null, null);
 
-        public static void SuccesBox(string alert) => manager.ShowDialog(new SuccesBoxViewModel(alert), null, null);
+        public static void SuccesBox(string alert) => manager.ShowDialogAsync(new SuccesBoxViewModel(alert), null, null);
 
-        public static void RegistrationBox() => manager.ShowDialog(new RegistrationViewModel(), null, null);
+        public static void RegistrationBox() => manager.ShowDialogAsync(new RegistrationViewModel(), null, null);
 
-        public static void LoginBox(LoggedUser loggedUser) => manager.ShowDialog(new LoginViewModel(loggedUser), null, null);
+        public static void LoginBox(LoggedUser loggedUser) => manager.ShowDialogAsync(new LoginViewModel(loggedUser), null, null);
 
-        public static void ActiveTaskBox(ActiveTask activeTask) => manager.ShowDialog(new ActiveTaskViewModel(activeTask), null, null);
+        public static void ActiveTaskBox(ActiveTask activeTask) => manager.ShowDialogAsync(new ActiveTaskViewModel(activeTask), null, null);
 
-        public static void ManagerPanelBox() => manager.ShowDialog(new ManagerPanelViewModel(), null, null);
+        public static void ManagerPanelBox() => manager.ShowDialogAsync(new ManagerPanelViewModel(), null, null);
 
         private static IWindowManager manager = new WindowManager();
     }

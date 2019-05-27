@@ -19,11 +19,11 @@
 
         private LoggedUser LoggedUser { get; set; }
 
-        public void LoadUserInfoPage() => this.ActivateItem(new UserInfoViewModel(this.LoggedUser));
+        public void LoadUserInfoPage() => this.ActivateItemAsync(new UserInfoViewModel(this.LoggedUser));
 
         public void LoadTaskManagerPage()
         {
-            this.ActivateItem(new TaskManagerViewModel(this.LoggedUser, this.repository));
+            this.ActivateItemAsync(new TaskManagerViewModel(this.LoggedUser, this.repository));
 
             if (!this.LoggedUser.GetUserTask().IsTaskTakenByUser())
             {
@@ -32,9 +32,9 @@
             }
         }
 
-        public void LoadNotificationsPage() => this.ActivateItem(new NotificationsViewModel());
+        public void LoadNotificationsPage() => this.ActivateItemAsync(new NotificationsViewModel());
 
-        public void LoadAddNewTaskPage() => this.ActivateItem(new AddNewTaskViewModel(this.LoggedUser, this.repository));
+        public void LoadAddNewTaskPage() => this.ActivateItemAsync(new AddNewTaskViewModel(this.LoggedUser, this.repository));
 
         public void LoadActiveTaskPage() => Show.ActiveTaskBox(this.LoggedUser.GetUserTask());
 
