@@ -13,15 +13,17 @@
 
         <Style x:Key="columnStyle1" TargetType="DataGridColumnHeader">
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FF085078"/>
+            <Setter Property="Foreground" Value="#FF085078"/>
         </Style>
     </UserControl.Resources>
 
-    <DataGrid Grid.Row ="0" x:Name="Projects" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto" Style="{DynamicResource columnStyle}">
+    <DataGrid GridLinesVisibility="Horizontal" Grid.Row ="0" x:Name="Projects" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto" Style="{DynamicResource columnStyle}">
         <DataGrid.Columns>
             <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-            <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
-            <DataGridTextColumn Header="Tag" Binding="{Binding Tag}"/>
-            <DataGridTextColumn Header="Opis" Binding="{Binding Description}"/>
+            <DataGridTextColumn Header="NAZWA" Binding="{Binding Name}"/>
+            <DataGridTextColumn Header="TAG" Binding="{Binding Tag}"/>
+            <DataGridTextColumn Header="OPIS" Binding="{Binding Description}"/>
         </DataGrid.Columns>
     </DataGrid>
 
