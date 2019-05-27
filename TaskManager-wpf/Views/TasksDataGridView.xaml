@@ -4,12 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TaskManager.WPF.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <DataGrid Grid.Row ="0" x:Name="Tasks" AutoGenerateColumns="True"  IsReadOnly="true" Height="auto">
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style x:Key="columnStyle" TargetType="DataGrid">
+            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource columnStyle1}"/>
+        </Style>
+
+        <Style x:Key="columnStyle1" TargetType="DataGridColumnHeader">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FF085078"/>
+        </Style>
+    </UserControl.Resources>
+
+    <DataGrid GridLinesVisibility="Horizontal" Grid.Row ="0" x:Name="Tasks" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto" Style="{DynamicResource columnStyle}">
         <DataGrid.Columns>
             <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+            <DataGridTextColumn Header="NAZWA" Binding="{Binding Name}"/>
+            <DataGridTextColumn Header="PRIORYTET " Binding="{Binding Priority}"/>
+            <DataGridTextColumn Header="STORY POINTS " Binding="{Binding StoryPoints}"/>
+            <DataGridTextColumn Header="ID PROJEKTU" Binding="{Binding ProjectId}"/>
+            <DataGridTextColumn Header="DATA ROZPOCZĘCIA" Binding="{Binding StartTime}"/>
+            <DataGridTextColumn Header="OPIS" Binding="{Binding Description}"/>
 
         </DataGrid.Columns>
     </DataGrid>
