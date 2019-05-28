@@ -1,10 +1,11 @@
 ﻿namespace TaskManager_WebApi.Controllers
 {
-    using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using TaskManager.Models;
+    using Microsoft.AspNetCore.SignalR;
+    using TaskManager.WebApi.Hubs;
     using TaskManager.WebApi.Services;
 
     [Route("[controller]")]
@@ -13,14 +14,17 @@
     {
         private readonly ITaskService taskService;
 
-        public TaskController(ITaskService taskService)
+        private readonly IHubContext<NotificationsHub> notificationsHub;
+
+        public TaskController(ITaskService taskService, IHubContext<NotificationsHub> notificationsHub)
         {
             this.taskService = taskService;
+            this.notificationsHub = notificationsHub;
         }
 
         [HttpGet]
         [Authorize]
-        public IEnumerable<Task> GetTasks()
+        public IEnumerable<TaskManager.Models.Task> GetTasks()
         {
             return this.taskService.GetList();
         }
@@ -48,7 +52,7 @@
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Developer, Manager")]
-        public IActionResult PutTask([FromRoute] int id, [FromBody] Task task)
+        public IActionResult PutTask([FromRoute] int id, [FromBody] TaskManager.Models.Task task)
         {
             if (!this.ModelState.IsValid)
             {
@@ -67,13 +71,15 @@
 
         [HttpPut("{taskId}/{userId}")]
         [Authorize(Roles = "Developer, Manager")]
-        public IActionResult TakeTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
+        public async Task<IActionResult> TakeTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
         {
             var task = this.taskService.TakeTaskByUser(taskId, userId);
             if (task == null)
             {
                 return this.NotFound();
             }
+
+            await this.notificationsHub.Clients.All.SendAsync("TaskTakenByUser", "User take task!");
 
             return this.Ok(task);
         }
@@ -88,7 +94,7 @@
 
         [HttpPost]
         [Authorize(Roles = "Manager")]
-        public IActionResult PostTask([FromBody] Task task)
+        public async Task<IActionResult> PostTask([FromBody] TaskManager.Models.Task task)
         {
             if (!this.ModelState.IsValid)
             {
@@ -96,6 +102,8 @@
             }
 
             this.taskService.Add(task);
+
+            await this.notificationsHub.Clients.All.SendAsync("NewTask", "New Task in database!");
 
             return this.Ok(task);
         }
