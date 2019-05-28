@@ -5,9 +5,15 @@
     using Caliburn.Micro;
     using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
+    using TaskManager.WPF.Services;
 
     public class MainWindowViewModel : Conductor<IScreen>.Collection.OneActive
     {
+        public MainWindowViewModel()
+        {
+            HubService.Instance.Initialize();
+        }
+
         public Visibility IsActiveTaskButtonVisible { get; set; } = Visibility.Hidden;
 
         public void LoadUserInfoPage() => this.ActivateItemAsync(new UserInfoViewModel());

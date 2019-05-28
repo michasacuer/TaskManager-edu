@@ -93,7 +93,7 @@
         }
 
         [HttpPost]
-        [Authorize(Roles = "Manager")]
+        //[Authorize(Roles = "Manager")]
         public async Task<IActionResult> PostTask([FromBody] TaskManager.Models.Task task)
         {
             if (!this.ModelState.IsValid)
@@ -103,7 +103,7 @@
 
             this.taskService.Add(task);
 
-            await this.notificationsHub.Clients.All.SendAsync("NewTask", "New Task in database!");
+            await this.notificationsHub.Clients.All.SendAsync("ReciveServerUpdate", "New Task in database!");
 
             return this.Ok(task);
         }
