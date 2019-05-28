@@ -6,19 +6,19 @@
              xmlns:local="clr-namespace:TaskManager.WPF.Views"
              mc:Ignorable="d">
 
-        <UserControl.Resources>
-            <Style x:Key="columnStyle" TargetType="DataGrid">
-                <Setter Property="ColumnHeaderStyle" Value="{DynamicResource columnStyle1}"/>
-            </Style>
+    <UserControl.Resources>
+        <Style x:Key="columnStyle" TargetType="DataGrid">
+            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource columnStyle1}"/>
+        </Style>
 
-            <Style x:Key="columnStyle1" TargetType="DataGridColumnHeader">
-                <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="Foreground" Value="#FF085078"/>
-            </Style>
-        </UserControl.Resources>
-
-        <DataGrid GridLinesVisibility="Horizontal" Grid.Row ="0" x:Name="Tasks" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto" Style="{DynamicResource columnStyle}">
-            <DataGrid.Columns>
+        <Style x:Key="columnStyle1" TargetType="DataGridColumnHeader">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FF085078"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <DataGrid GridLinesVisibility="Horizontal" Grid.Row ="0" x:Name="Tasks" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto" Style="{DynamicResource columnStyle}">
+        <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="NAZWA" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="PRIORYTET " Binding="{Binding Priority}"/>
@@ -29,4 +29,5 @@
                 <DataGridTextColumn Header="OPIS" Binding="{Binding Description}"/>
             </DataGrid.Columns>
         </DataGrid>
-    </UserControl>
+    
+</UserControl>
