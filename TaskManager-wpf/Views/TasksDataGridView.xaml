@@ -15,10 +15,29 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="#FF085078"/>
         </Style>
+
+        <Style x:Key="buttonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="#FF085078"/>
+            <Setter Property="Background" Value="white"/>
+            <Setter Property="Margin" Value="3,1,1,1"/>
+            <Setter Property="Padding" Value="3,0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
     </UserControl.Resources>
 
     <DataGrid GridLinesVisibility="Horizontal" Grid.Row ="0" x:Name="Tasks" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto" Style="{DynamicResource columnStyle}">
         <DataGrid.Columns>
+            <DataGridTemplateColumn>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="INFO" x:Name="infoButton" Style="{DynamicResource buttonStyle}"/>
+                            <Button Content="USUŃ" x:Name="deleteButton" Style="{DynamicResource buttonStyle}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
             <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
             <DataGridTextColumn Header="NAZWA" Binding="{Binding Name}"/>
             <DataGridTextColumn Header="PRIORYTET " Binding="{Binding Priority}"/>
