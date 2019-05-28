@@ -1,6 +1,7 @@
 ﻿namespace TaskManager.WPF.Models
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using TaskManager.WPF.Services;
 
     public class Repository
@@ -13,7 +14,7 @@
 
         public IEnumerable<TaskManager.Models.EndedTask> EndedTasks { get; set; }
 
-        public async void FetchAll()
+        public async Task FetchAll()
         {
             var httpDataService = new HttpDataService();
 

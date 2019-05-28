@@ -8,11 +8,6 @@
 
     public class MainWindowViewModel : Conductor<IScreen>.Collection.OneActive
     {
-        public MainWindowViewModel()
-        {
-            Repository.Instance.FetchAll();
-        }
-
         public Visibility IsActiveTaskButtonVisible { get; set; } = Visibility.Hidden;
 
         public void LoadUserInfoPage() => this.ActivateItemAsync(new UserInfoViewModel());
@@ -45,6 +40,8 @@
                     this.IsActiveTaskButtonVisible = Visibility.Visible;
                     this.NotifyOfPropertyChange(() => this.IsActiveTaskButtonVisible);
                 }
+
+                await Repository.Instance.FetchAll();
             }
             catch (NullReferenceException)
             {
