@@ -25,6 +25,8 @@
                 var user = await httpDataService.Login(loginForm);
 
                 LoggedUser.Instance.LoginUserToApp(user);
+
+                await LoggedUser.Instance.GetUserTask().IsUserHaveActiveTask(LoggedUser.Instance.User.Id);
             }
 
             return validationResult;

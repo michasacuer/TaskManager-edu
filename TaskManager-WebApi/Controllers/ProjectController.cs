@@ -1,14 +1,9 @@
 ﻿namespace TaskManager_WebApi.Controllers
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
     using TaskManager.Models;
-    using TaskManager.WebApi.Models;
     using TaskManager.WebApi.Services;
 
     [Route("[controller]")]
@@ -18,27 +13,27 @@
 
         private readonly IProjectService projectService;
 
-        public ProjectController (IProjectService projectService)
+        public ProjectController(IProjectService projectService)
         {
             this.projectService = projectService;
         }
 
-        // GET: api/Project
         [HttpGet]
+        [Authorize]
         public IEnumerable<Project> GetProjects()
         {
             return this.projectService.GetList();
         }
 
-        // GET: api/Project/5
         [HttpGet("{id}")]
+        [Authorize]
         public IActionResult GetProject([FromRoute] int id)
         {
             return this.Ok(this.projectService.GetItem(id));
         }
 
-        // PUT: api/Project/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult PutProject([FromRoute] int id, [FromBody] Project project)
         {
             if (!this.ModelState.IsValid)
@@ -55,10 +50,9 @@
 
             return this.Ok(project);
         }
-       
 
-        // POST: api/Project
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         public IActionResult PostProject([FromBody] Project project)
         {
             if (!this.ModelState.IsValid)
@@ -69,8 +63,8 @@
             return this.Ok(project);
         }
 
-        // DELETE: api/Project/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult DeleteProject([FromRoute] int id)
         {
             if (!this.ModelState.IsValid)
@@ -83,6 +77,7 @@
             {
                 return this.NotFound();
             }
+
             this.projectService.Remove(project);
 
           return this.Ok(project);

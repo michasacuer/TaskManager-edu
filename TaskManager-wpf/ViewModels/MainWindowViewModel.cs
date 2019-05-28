@@ -16,7 +16,7 @@
         {
             this.ActivateItemAsync(new TaskManagerViewModel());
 
-            if (!LoggedUser.Instance.GetUserTask().IsTaskTakenByUser())
+            if (LoggedUser.Instance.GetUserTask().IsTaskTakenByUser())
             {
                 this.IsActiveTaskButtonVisible = Visibility.Visible;
                 this.NotifyOfPropertyChange(() => this.IsActiveTaskButtonVisible);
@@ -35,7 +35,7 @@
 
             try
             {
-                if (await LoggedUser.Instance.GetUserTask().IsUserHaveActiveTask(LoggedUser.Instance.User.Id))
+                if (LoggedUser.Instance.GetUserTask().IsTaskTakenByUser())
                 {
                     this.IsActiveTaskButtonVisible = Visibility.Visible;
                     this.NotifyOfPropertyChange(() => this.IsActiveTaskButtonVisible);

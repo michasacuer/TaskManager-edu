@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using TaskManager.Models;
     using TaskManager.WebApi.Services;
@@ -18,18 +19,21 @@
         }
 
         [HttpGet]
+        [Authorize]
         public IEnumerable<Task> GetTasks()
         {
             return this.taskService.GetList();
         }
 
         [HttpGet("{id:int}")]
+        [Authorize]
         public IActionResult GetTask([FromRoute] int id)
         {
             return this.Ok(this.taskService.GetItem(id));
         }
 
         [HttpGet("{userId}")]
+        [Authorize]
         public IActionResult GetUserTask([FromRoute] string userId)
         {
             var task = this.taskService.GetUserTask(userId.ToString());
@@ -43,6 +47,7 @@
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Developer, Manager")]
         public IActionResult PutTask([FromRoute] int id, [FromBody] Task task)
         {
             if (!this.ModelState.IsValid)
@@ -61,6 +66,7 @@
         }
 
         [HttpPut("{taskId}/{userId}")]
+        [Authorize(Roles = "Developer, Manager")]
         public IActionResult TakeTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
         {
             var task = this.taskService.TakeTaskByUser(taskId, userId);
@@ -73,6 +79,7 @@
         }
 
         [HttpPut("End/{taskId}/{userId}")]
+        [Authorize(Roles = "Developer, Manager")]
         public IActionResult EndTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
         {
             this.taskService.EndTaskByUser(taskId, userId);
@@ -80,6 +87,7 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         public IActionResult PostTask([FromBody] Task task)
         {
             if (!this.ModelState.IsValid)
@@ -93,6 +101,7 @@
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Manager")]
         public IActionResult DeleteTask([FromRoute] int id)
         {
             if (!this.ModelState.IsValid)

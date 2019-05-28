@@ -7,7 +7,7 @@
     {
         public TaskManager.Models.Task Task { get; set; }
 
-        public bool IsTaskTakenByUser() => this.Task == null;
+        public bool IsTaskTakenByUser() => this.Task != null;
 
         public async Task<bool> IsUserHaveActiveTask(string userId)
         {
@@ -22,10 +22,10 @@
             return false;
         }
 
-        public async void EndActiveTask()
+        public async Task EndActiveTask()
         {
             await new ActiveTaskHelper().EndActiveTask(this.Task);
-            Repository.Instance.FetchAll();
+            await Repository.Instance.FetchAll();
 
             this.Task = null;
         }
