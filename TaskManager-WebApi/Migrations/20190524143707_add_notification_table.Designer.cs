@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManager.WebApi.Models;
 
 namespace TaskManager.WebApi.Migrations
 {
     [DbContext(typeof(TaskManagerDbContext))]
-    partial class TaskManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190524143707_add_notification_table")]
+    partial class add_notification_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,39 +186,6 @@ namespace TaskManager.WebApi.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("TaskManager.Models.EndedTask", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<string>("Description");
-
-                    b.Property<DateTime?>("EndTime");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int>("Priority");
-
-                    b.Property<int>("ProjectId");
-
-                    b.Property<DateTime?>("StartTime");
-
-                    b.Property<int?>("StoryPoints");
-
-                    b.Property<int>("TaskId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.ToTable("EndedTasks");
-                });
-
             modelBuilder.Entity("TaskManager.Models.Notification", b =>
                 {
                     b.Property<int>("Id")
@@ -320,18 +289,6 @@ namespace TaskManager.WebApi.Migrations
                     b.HasOne("TaskManager.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("TaskManager.Models.EndedTask", b =>
-                {
-                    b.HasOne("TaskManager.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("TaskManager.Models.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -1,6 +1,7 @@
 ﻿namespace TaskManager.WPF.Helpers
 {
     using System.Threading.Tasks;
+    using TaskManager.WPF.Models;
     using TaskManager.WPF.Models.BindingModels;
     using TaskManager.WPF.Services;
     using TaskManager.WPF.Services.FormsValidation;
@@ -23,7 +24,9 @@
                 var httpDataService = new HttpDataService();
                 var user = await httpDataService.Login(loginForm);
 
-                vm.LoggedUser.LoginUserToApp(user);
+                LoggedUser.Instance.LoginUserToApp(user);
+
+                await LoggedUser.Instance.GetUserTask().IsUserHaveActiveTask(LoggedUser.Instance.User.Id);
             }
 
             return validationResult;

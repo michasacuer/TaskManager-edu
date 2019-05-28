@@ -1,6 +1,5 @@
 ﻿namespace TaskManager.WPF.Services
 {
-    using System;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Net.Http.Formatting;
@@ -17,6 +16,12 @@
         public HttpDataService()
         {
             this.HttpClient = new HttpClient();
+
+            if (LoggedUser.Instance.User != null)
+            {
+                this.HttpClient.DefaultRequestHeaders.Authorization
+                        = new AuthenticationHeaderValue("Bearer", LoggedUser.Instance.User.Bearer);
+            }
         }
 
         private HttpClient HttpClient { get; set; }
@@ -27,14 +32,14 @@
                 = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint("Test"));
         }
 
-        public async Task<User> Login(LoginBindingModel login)
+        public async Task<WPFApplicationUser> Login(LoginBindingModel login)
         {
             HttpResponseMessage response
                 = await this.HttpClient.PostAsJsonAsync(UrlBuilder.BuildEndpoint("Account", "Login"), login);
 
             string statusCode = response.StatusCode.ToString();
 
-            User account = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync());
+            WPFApplicationUser account = JsonConvert.DeserializeObject<WPFApplicationUser>(await response.Content.ReadAsStringAsync());
 
             if (statusCode.Equals("Unauthorized"))
             {
@@ -42,8 +47,6 @@
             }
             else
             {
-                this.HttpClient.DefaultRequestHeaders.Authorization
-                    = new AuthenticationHeaderValue("Bearer", account.Bearer);
                 return account;
             }
         }
@@ -78,7 +81,7 @@
             }
             else
             {
-                throw new Exception(); //todo
+                return default(IEnumerable<TObject>);
             }
         }
 
@@ -91,11 +94,28 @@
 
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadAsAsync<TObject>();;
+                return await response.Content.ReadAsAsync<TObject>();
             }
             else
             {
-                throw new Exception(); //todo
+                return default(TObject);
+            }
+        }
+
+        public async Task<TObject> Get<TObject>(string id)
+        {
+            string controller = typeof(TObject).Name;
+
+            HttpResponseMessage response
+                = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint(controller, id));
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<TObject>();
+            }
+            else
+            {
+                return default(TObject);
             }
         }
 
@@ -117,6 +137,15 @@
             string controller = typeof(TObject).Name;
 
             HttpResponseMessage response = await this.HttpClient.PutAsJsonAsync(UrlBuilder.BuildEndpoint(controller, id), data);
+
+            return await response.Content.ReadAsAsync<TObject>();
+        }
+
+        public async Task<TObject> Put<TObject>(TObject data, params string[] routes)
+        {
+            string controller = typeof(TObject).Name;
+
+            HttpResponseMessage response = await this.HttpClient.PutAsJsonAsync(UrlBuilder.BuildEndpoint(controller, routes), data);
 
             return await response.Content.ReadAsAsync<TObject>();
         }

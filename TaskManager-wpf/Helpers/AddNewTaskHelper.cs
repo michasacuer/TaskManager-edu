@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using TaskManager.WPF.Models;
     using TaskManager.WPF.Services;
     using TaskManager.WPF.Services.FormsValidation;
     using TaskManager.WPF.ViewModels;
@@ -15,12 +16,16 @@
 
             if (validationResult.IsValid)
             {
-                int? storyPoints;
+                int? storyPoints = null;
 
                 try
                 {
-                    var substring = vm.TaskNameTextBox.Substring(vm.TaskNameTextBox.IndexOf(",") + 1);
-                    storyPoints = Convert.ToInt32(substring.Replace(" ", string.Empty));
+                    if (vm.TaskNameTextBox.Contains(","))
+                    {
+                        var substring = vm.TaskNameTextBox.Substring(vm.TaskNameTextBox.IndexOf(",") + 1);
+                        storyPoints = Convert.ToInt32(substring.Replace(" ", string.Empty));
+                        vm.TaskNameTextBox = vm.TaskNameTextBox.Substring(0, vm.TaskNameTextBox.IndexOf(","));
+                    }
                 }
                 catch (FormatException)
                 {
@@ -34,7 +39,7 @@
                 {
                     Name = vm.TaskNameTextBox,
                     Description = vm.DescriptionTextBox,
-                    ProjectId = vm.Repository.Projects.Single(p => p.Name == vm.SelectedProjectsList).Id,
+                    ProjectId = Repository.Instance.Projects.Single(p => p.Name == vm.SelectedProjectsList).Id,
                     StoryPoints = storyPoints
                 };
 
@@ -42,7 +47,7 @@
 
                 var taskFromResponse = await httpDataService.Post(newTask);
 
-                vm.Repository.FetchAll();
+                Repository.Instance.FetchAll();
 
                 validationResult.Message = "Task dodano pomyślnie!";
             }

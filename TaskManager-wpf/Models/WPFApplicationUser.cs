@@ -1,8 +1,8 @@
 ﻿namespace TaskManager.WPF.Models
 {
-    using TaskManager.WPF.Enums;
+    using TaskManager.Models.Enums;
 
-    public class User
+    public class WPFApplicationUser
     {
         public string Id { get; set; }
 

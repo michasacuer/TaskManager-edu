@@ -80,5 +80,16 @@
                 BorderBrush="{x:Null}" 
                 Background="#FF085078" Grid.ColumnSpan="1" Margin="0,5,0,0"/>
 
+        <Button x:Name="ExitButton"
+                Grid.Row="2" 
+                Grid.Column="2" 
+                Content="Wyjście"
+                FontSize="8"
+                Foreground="White" 
+                Height="15"
+                BorderThickness="0"  
+                BorderBrush="{x:Null}" 
+                Background="#FF0000" Grid.ColumnSpan="1" Margin="0,7,0,18" Grid.RowSpan="2"/>
+
     </Grid>
 </UserControl>

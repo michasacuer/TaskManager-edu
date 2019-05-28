@@ -2,19 +2,20 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Windows;
     using Caliburn.Micro;
     using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
 
     public class TaskManagerViewModel : Screen
     {
-        public TaskManagerViewModel(LoggedUser loggedUser, Repository repository)
+        private readonly MainWindowViewModel vm;
+
+        public TaskManagerViewModel(MainWindowViewModel vm)
         {
-            this.Projects = repository.Projects;
+            this.vm = vm;
 
-            this.repository = repository;
-
-            this.loggedUser = loggedUser;
+            this.Projects = Repository.Instance.Projects;
 
             this.ProjectsList = new BindableCollection<string>();
 
@@ -36,7 +37,7 @@
             set
             {
                 this.selectedProjectList = value;
-                var helper = new TaskManagerHelper(this.repository);
+                var helper = new TaskManagerHelper();
 
                 try
                 {
@@ -54,7 +55,7 @@
 
         public async void AcceptButton()
         {
-            if (!this.loggedUser.HavePermissionToTakeTask())
+            if (!LoggedUser.Instance.HavePermissionToTakeTask())
             {
                 Show.ErrorBox("Brak uprawnień! Zgłoś się do administratora.");
                 return;
@@ -66,20 +67,21 @@
                 return;
             }
 
-            var helper = new TaskManagerHelper(this.repository);
+            var helper = new TaskManagerHelper();
+            LoggedUser.Instance.AttachTaskToUser(await helper.GetTaskToActivate(LoggedUser.Instance, this.SelectedTasksList, this.SelectedProjectsList));
 
-            this.TryClose();
-            Show.ActiveTaskBox(await helper.GetTaskToActivate(this.SelectedTasksList, this.SelectedProjectsList), this.SelectedProjectsList);
+            await this.TryCloseAsync();
+
+            if (LoggedUser.Instance.GetUserTask().IsTaskTakenByUser())
+            {
+                this.vm.IsActiveTaskButtonVisible = Visibility.Visible;
+                this.vm.NotifyOfPropertyChange(() => this.vm.IsActiveTaskButtonVisible);
+            }
+
         }
 
-        public void CancelButton() => this.TryClose();
-
-        private LoggedUser loggedUser;
-
-        private List<TaskManager.Models.Task> tasks;
+        public void CancelButton() => this.TryCloseAsync();
 
         private string selectedProjectList;
-
-        private Repository repository;
     }
 }

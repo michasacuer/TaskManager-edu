@@ -11,6 +11,6 @@
             this.Items.Add(new EndedTasksDataGridViewModel { DisplayName = "Skończone zadania" });
         }
 
-        public void ExitButton() => this.TryClose();
+        public void ExitButton() => this.TryCloseAsync();
     }
 }

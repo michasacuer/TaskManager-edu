@@ -11,7 +11,7 @@
         WindowState="Maximized" 
         Topmost="True"
         ShowInTaskbar="False"
-        FontSize="25">
+        FontSize="25" Height="600">
 
     <Window.Background>
         <SolidColorBrush Opacity="0"
@@ -28,7 +28,6 @@
             <ColumnDefinition Width="4.667"/>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="10"/>
-
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -39,7 +38,10 @@
             <RowDefinition Height="55"/>
             <RowDefinition Height="55"/>
             <RowDefinition Height="55"/>
-            <RowDefinition Height="65"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <ContentControl x:Name="ActiveItem" Grid.Column="2" Grid.ColumnSpan="5"
@@ -253,6 +255,62 @@
                         <DataTrigger Binding="{Binding ElementName=LoadAddNewTaskPage, Path=IsChecked}"
                                      Value="True">
                             <Setter Property="Grid.Row" Value="4"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=HideBar, Path=IsChecked}"
+                                     Value="True">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=ShowBar, Path=IsChecked}"
+                                     Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.7"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ToggleButton.Style>
+        </ToggleButton>
+
+        <ToggleButton x:Name="LoadActiveTaskPage"               
+                Grid.Column="4"
+                Width="50" Height="50" 
+                Content="&#xf085;" 
+                Foreground="White" 
+                BorderThickness="0"  
+                BorderBrush="{x:Null}" 
+                Background="Green" Margin="20,3,0,3" Grid.ColumnSpan="3"
+                Visibility="{Binding IsActiveTaskButtonVisible}">
+            <ToggleButton.Style>
+                <Style TargetType="ToggleButton" BasedOn="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Content, ElementName=ActiveItem}"
+                                     Value="{x:Null}">
+                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="IsChecked" Value="False"/>
+                            <Setter Property="Grid.Row" Value="5"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=LoadUserInfoPage, Path=IsChecked}"
+                                     Value="True">
+                            <Setter Property="Grid.Row" Value="6"/>
+                            <Setter Property="IsChecked" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=LoadTaskManagerPage, Path=IsChecked}"
+                                     Value="True">
+                            <Setter Property="Grid.Row" Value="6"/>
+                            <Setter Property="IsChecked" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=LoadNotificationsPage, Path=IsChecked}"
+                                     Value="True">
+                            <Setter Property="Grid.Row" Value="7"/>
+                            <Setter Property="IsChecked" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=LoadAddNewTaskPage, Path=IsChecked}"
+                                     Value="True">
+                            <Setter Property="Grid.Row" Value="8"/>
+                            <Setter Property="IsChecked" Value="False"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ElementName=HideBar, Path=IsChecked}"
                                      Value="True">

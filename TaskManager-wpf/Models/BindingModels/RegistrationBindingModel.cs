@@ -1,6 +1,6 @@
 ﻿namespace TaskManager.WPF.Models.BindingModels
 {
-    using TaskManager.WPF.Enums;
+    using TaskManager.Models.Enums;
 
     public class RegistrationBindingModel
     {

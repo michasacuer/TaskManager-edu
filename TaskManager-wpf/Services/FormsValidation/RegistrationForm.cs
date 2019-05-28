@@ -1,7 +1,7 @@
 ﻿namespace TaskManager.WPF.Services.FormsValidation
 {
     using System.ComponentModel.DataAnnotations;
-    using TaskManager.WPF.Enums;
+    using TaskManager.Models.Enums;
     using TaskManager.WPF.Models.BindingModels;
     using TaskManager.WPF.Strings;
 

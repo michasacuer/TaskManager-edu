@@ -1,10 +1,9 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
     using Caliburn.Micro;
-    using TaskManager.WPF.Enums;
+    using TaskManager.Models.Enums;
     using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Helpers;
-    using TaskManager.WPF.Models;
 
     public class RegistrationViewModel : Screen
     {
@@ -41,7 +40,7 @@
 
                 if (validationResult.IsValid)
                 {
-                    this.TryClose();
+                    await this.TryCloseAsync();
                     Show.SuccesBox(validationResult.Message);
                 }
                 else
@@ -61,6 +60,6 @@
             }
         }
 
-        public void CancelButton() => this.TryClose();
+        public void CancelButton() => this.TryCloseAsync();
     }
 }

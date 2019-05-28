@@ -45,6 +45,43 @@
             return task;
         }
 
+        public Task GetUserTask(string userId)
+        {
+            var userTask = this.context.Tasks.SingleOrDefault(t => t.ApplicationUserId == userId);
+
+            if (userTask != null)
+            {
+                return userTask;
+            }
+
+            return null;
+        }
+
+        public void EndTaskByUser(int taskId, string userId)
+        {
+            var task = this.context.Tasks.Single(t => t.Id == taskId && t.ApplicationUserId == userId);
+
+            task.EndTime = DateTime.Now;
+
+            var endedTask = new EndedTask
+            {
+                TaskId = task.Id,
+                ProjectId = task.ProjectId,
+                ApplicationUserId = task.ApplicationUserId,
+                Name = task.Name,
+                Description = task.Description,
+                Priority = task.Priority,
+                StoryPoints = task.StoryPoints,
+                StartTime = task.StartTime,
+                EndTime = task.EndTime
+            };
+
+            this.context.EndedTasks.Add(endedTask);
+
+            this.context.Remove(task);
+            this.context.SaveChanges();
+        }
+
         public Task GetItem(int id)
         {
             var task = this.context.Tasks.Find(id);

@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TaskManager-Models\TaskManager-Models.csproj">
+      <Project>{B2AEF5CD-0E36-4C2F-8DE4-4C1AA2E93615}</Project>
+      <Name>TaskManager-Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskManager-wpf\TaskManager-WPF.csproj">
       <Project>{81d9a849-b02c-4556-b111-174143361597}</Project>
       <Name>TaskManager-WPF</Name>

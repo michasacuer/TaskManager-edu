@@ -1,24 +1,46 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
+    using System;
+    using System.Windows;
     using Caliburn.Micro;
+    using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
 
     public class MainWindowViewModel : Conductor<IScreen>.Collection.OneActive
     {
-        protected override void OnViewLoaded(object view) => Show.LoginBox(this.loggedUser);
+        public Visibility IsActiveTaskButtonVisible { get; set; } = Visibility.Hidden;
 
-        public void LoadUserInfoPage() => this.ActivateItem(new UserInfoViewModel(this.loggedUser));
+        public void LoadUserInfoPage() => this.ActivateItemAsync(new UserInfoViewModel());
 
-        public void LoadTaskManagerPage() => this.ActivateItem(new TaskManagerViewModel(this.loggedUser, this.repository));
+        public void LoadTaskManagerPage()
+        {
+            this.ActivateItemAsync(new TaskManagerViewModel(this));
+        }
 
-        public void LoadNotificationsPage() => this.ActivateItem(new NotificationsViewModel(this.context));
+        public void LoadNotificationsPage() => this.ActivateItemAsync(new NotificationsViewModel());
 
-        public void LoadAddNewTaskPage() => this.ActivateItem(new AddNewTaskViewModel(this.loggedUser, this.repository));
+        public void LoadAddNewTaskPage() => this.ActivateItemAsync(new AddNewTaskViewModel());
 
-        private readonly LoggedUser loggedUser = new LoggedUser();
+        public void LoadActiveTaskPage() => Show.ActiveTaskBox(this);
 
-        private readonly FakeData context = new FakeData();
+        protected async override void OnViewLoaded(object view)
+        {
+            Show.LoginBox();
 
-        private readonly Repository repository = Repository.Instance;
+            try
+            {
+                if (LoggedUser.Instance.GetUserTask().IsTaskTakenByUser())
+                {
+                    this.IsActiveTaskButtonVisible = Visibility.Visible;
+                    this.NotifyOfPropertyChange(() => this.IsActiveTaskButtonVisible);
+                }
+
+                await Repository.Instance.FetchAll();
+            }
+            catch (NullReferenceException)
+            {
+                return;
+            }
+        }
     }
 }

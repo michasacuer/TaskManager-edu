@@ -4,17 +4,17 @@
 
     public static class UrlBuilder
     {
-        private static string url = "https://localhost:44365";
+        public static string BaseUrl = "https://localhost:44365";
 
-        public static string BuildEndpoit(string controller) => $"{url}/{controller}";
+        public static string BuildEndponit(string controller) => $"{BaseUrl}/{controller}";
 
-        public static string BuildEndpoint(string controller, int id) => $"{url}/{controller}/{id}";
+        public static string BuildEndpoint(string controller, int id) => $"{BaseUrl}/{controller}/{id}";
 
-        public static string BuildEndpoint(string controller, string method) => $"{url}/{controller}/{method}";
+        public static string BuildEndpoint(string controller, string method) => $"{BaseUrl}/{controller}/{method}";
 
-        public static string BuildEndpoint(string controller, string method, int id) => $"{url}/{controller}/{method}/{id}";
+        public static string BuildEndpoint(string controller, string method, int id) => $"{BaseUrl}/{controller}/{method}/{id}";
 
-        public static string BuildEndpoint(params string[] parameters)
-            => url + parameters.Aggregate(string.Empty, (current, next) => current + @"/" + next);
+        public static string BuildEndpoint(string controller, params string[] parameters)
+            => BaseUrl + @"/" + controller + parameters.Aggregate(string.Empty, (current, next) => current + @"/" + next);
     }
 }

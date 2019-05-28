@@ -8,9 +8,9 @@
     {
         public EndedTasksDataGridViewModel()
         {
-            this.Tasks = (List<TaskManager.Models.Task>)Repository.Instance.Tasks;
+            this.EndedTasks = (List<TaskManager.Models.EndedTask>)Repository.Instance.EndedTasks;
         }
 
-        public List<TaskManager.Models.Task> Tasks { get; set; }
+        public List<TaskManager.Models.EndedTask> EndedTasks { get; set; }
     }
 }
