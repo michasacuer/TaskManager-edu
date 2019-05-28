@@ -8,24 +8,20 @@
 
     public class MainWindowViewModel : Conductor<IScreen>.Collection.OneActive
     {
-        private readonly Repository repository = Repository.Instance;
-
         public MainWindowViewModel()
         {
-            this.LoggedUser = new LoggedUser();
+            Repository.Instance.FetchAll();
         }
 
         public Visibility IsActiveTaskButtonVisible { get; set; } = Visibility.Hidden;
 
-        private LoggedUser LoggedUser { get; set; }
-
-        public void LoadUserInfoPage() => this.ActivateItemAsync(new UserInfoViewModel(this.LoggedUser));
+        public void LoadUserInfoPage() => this.ActivateItemAsync(new UserInfoViewModel());
 
         public void LoadTaskManagerPage()
         {
-            this.ActivateItemAsync(new TaskManagerViewModel(this.LoggedUser, this.repository));
+            this.ActivateItemAsync(new TaskManagerViewModel());
 
-            if (!this.LoggedUser.GetUserTask().IsTaskTakenByUser())
+            if (!LoggedUser.Instance.GetUserTask().IsTaskTakenByUser())
             {
                 this.IsActiveTaskButtonVisible = Visibility.Visible;
                 this.NotifyOfPropertyChange(() => this.IsActiveTaskButtonVisible);
@@ -34,17 +30,17 @@
 
         public void LoadNotificationsPage() => this.ActivateItemAsync(new NotificationsViewModel());
 
-        public void LoadAddNewTaskPage() => this.ActivateItemAsync(new AddNewTaskViewModel(this.LoggedUser, this.repository));
+        public void LoadAddNewTaskPage() => this.ActivateItemAsync(new AddNewTaskViewModel());
 
-        public void LoadActiveTaskPage() => Show.ActiveTaskBox(this.LoggedUser.GetUserTask());
+        public void LoadActiveTaskPage() => Show.ActiveTaskBox();
 
         protected async override void OnViewLoaded(object view)
         {
-            Show.LoginBox(this.LoggedUser);
+            Show.LoginBox();
 
             try
             {
-                if (await this.LoggedUser.GetUserTask().IsUserHaveActiveTask(this.LoggedUser.User.Id))
+                if (await LoggedUser.Instance.GetUserTask().IsUserHaveActiveTask(LoggedUser.Instance.User.Id))
                 {
                     this.IsActiveTaskButtonVisible = Visibility.Visible;
                     this.NotifyOfPropertyChange(() => this.IsActiveTaskButtonVisible);

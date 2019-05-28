@@ -8,18 +8,11 @@
 
     public class TaskManagerHelper
     {
-        private readonly Repository repository;
-
-        public TaskManagerHelper(Repository repository)
-        {
-            this.repository = repository;
-        }
-
         public BindableCollection<string> PopulateTasksList(string selectedProjectsList)
         {
             var tasksList = new BindableCollection<string>();
 
-            var tasks = this.repository.Projects.Single(p => p.Name == selectedProjectsList).Tasks;
+            var tasks = Repository.Instance.Projects.Single(p => p.Name == selectedProjectsList).Tasks;
             foreach (var task in tasks)
             {
                 if (task.ApplicationUserId == null)
@@ -33,7 +26,7 @@
 
         public async Task<TaskManager.Models.Task> GetTaskToActivate(LoggedUser loggedUser, string selectedTasksList, string selectedProjectsList)
         {
-            var project = this.repository.Projects.Single(p => p.Name == selectedProjectsList);
+            var project = Repository.Instance.Projects.Single(p => p.Name == selectedProjectsList);
 
             var task = project.Tasks.Single(p => p.Name == selectedTasksList.Substring(0, selectedTasksList.IndexOf(" ")));
             task.ApplicationUserId = loggedUser.User.Id;

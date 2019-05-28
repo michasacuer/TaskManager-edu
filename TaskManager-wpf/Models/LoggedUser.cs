@@ -5,6 +5,8 @@
 
     public class LoggedUser
     {
+        public static LoggedUser Instance { get; } = new LoggedUser();
+
         public WPFApplicationUser User { get; set; }
 
         private ActiveTask ActiveTask { get; set; } = new ActiveTask();

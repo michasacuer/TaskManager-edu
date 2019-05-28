@@ -8,13 +8,9 @@
 
     public class AddNewTaskViewModel : Screen
     {
-        public AddNewTaskViewModel(LoggedUser loggedUser, Repository repository)
+        public AddNewTaskViewModel()
         {
-            this.Projects = repository.Projects;
-
-            this.Repository = repository;
-
-            this.LoggedUser = loggedUser;
+            this.Projects = Repository.Instance.Projects;
 
             this.ProjectsList = new BindableCollection<string>();
 
@@ -41,10 +37,6 @@
         public Priority Priority { get; set; }
 
         public IEnumerable<TaskManager.Models.Project> Projects { get; set; }
-
-        public LoggedUser LoggedUser { get; set; }
-
-        public Repository Repository { get; set; }
 
         public async void AcceptButton()
         {

@@ -12,9 +12,9 @@
 
         public static void RegistrationBox() => manager.ShowDialogAsync(new RegistrationViewModel(), null, null);
 
-        public static void LoginBox(LoggedUser loggedUser) => manager.ShowDialogAsync(new LoginViewModel(loggedUser), null, null);
+        public static void LoginBox() => manager.ShowDialogAsync(new LoginViewModel(), null, null);
 
-        public static void ActiveTaskBox(ActiveTask activeTask) => manager.ShowDialogAsync(new ActiveTaskViewModel(activeTask), null, null);
+        public static void ActiveTaskBox() => manager.ShowDialogAsync(new ActiveTaskViewModel(), null, null);
 
         public static void ManagerPanelBox() => manager.ShowDialogAsync(new ManagerPanelViewModel(), null, null);
 

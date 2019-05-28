@@ -7,14 +7,10 @@
 
     public class UserInfoViewModel : Screen
     {
-        private readonly LoggedUser loggedUser;
-
-        public UserInfoViewModel(LoggedUser loggedUser)
+        public UserInfoViewModel()
         {
-            this.loggedUser = loggedUser;
-
-            this.LoggedUserFullName = loggedUser.GetFullName();
-            this.LoggedUserJob = loggedUser.GetPosition();
+            this.LoggedUserFullName = LoggedUser.Instance.GetFullName();
+            this.LoggedUserJob = LoggedUser.Instance.GetPosition();
 
             this.NotifyOfPropertyChange(() => this.LoggedUserJob);
             this.NotifyOfPropertyChange(() => this.LoggedUserFullName);
@@ -26,9 +22,9 @@
 
         public void LogoutButton()
         {
-            this.loggedUser.Logout();
+            LoggedUser.Instance.Logout();
             this.TryCloseAsync();
-            Show.LoginBox(this.loggedUser);
+            Show.LoginBox();
         }
 
         public void LoadManagerPanel() => Show.ManagerPanelBox();

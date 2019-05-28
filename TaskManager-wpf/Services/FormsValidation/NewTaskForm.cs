@@ -1,8 +1,8 @@
 ﻿namespace TaskManager.WPF.Services.FormsValidation
 {
     using System;
-    using TaskManager.Models;
     using TaskManager.Models.Enums;
+    using TaskManager.WPF.Models;
     using TaskManager.WPF.ViewModels;
 
     public static class NewTaskForm
@@ -11,7 +11,7 @@
         {
             var result = new ValidationResult();
 
-            if (!vm.LoggedUser.HavePermissionToAddTask())
+            if (!LoggedUser.Instance.HavePermissionToAddTask())
             {
                 result.Message = "Brak uprawnień! Zgłoś się do administratora!";
                 result.IsValid = false;

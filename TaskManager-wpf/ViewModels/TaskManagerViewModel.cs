@@ -8,13 +8,9 @@
 
     public class TaskManagerViewModel : Screen
     {
-        public TaskManagerViewModel(LoggedUser loggedUser, Repository repository)
+        public TaskManagerViewModel()
         {
-            this.Projects = repository.Projects;
-
-            this.repository = repository;
-
-            this.loggedUser = loggedUser;
+            this.Projects = Repository.Instance.Projects;
 
             this.ProjectsList = new BindableCollection<string>();
 
@@ -36,7 +32,7 @@
             set
             {
                 this.selectedProjectList = value;
-                var helper = new TaskManagerHelper(this.repository);
+                var helper = new TaskManagerHelper();
 
                 try
                 {
@@ -54,7 +50,7 @@
 
         public async void AcceptButton()
         {
-            if (!this.loggedUser.HavePermissionToTakeTask())
+            if (!LoggedUser.Instance.HavePermissionToTakeTask())
             {
                 Show.ErrorBox("Brak uprawnień! Zgłoś się do administratora.");
                 return;
@@ -66,22 +62,16 @@
                 return;
             }
 
-            var helper = new TaskManagerHelper(this.repository);
-            this.loggedUser.AttachTaskToUser(await helper.GetTaskToActivate(this.loggedUser, this.SelectedTasksList, this.SelectedProjectsList));
+            var helper = new TaskManagerHelper();
+            LoggedUser.Instance.AttachTaskToUser(await helper.GetTaskToActivate(LoggedUser.Instance, this.SelectedTasksList, this.SelectedProjectsList));
 
             await this.TryCloseAsync();
 
-            Show.ActiveTaskBox(this.loggedUser.GetUserTask());
+            Show.ActiveTaskBox();
         }
 
         public void CancelButton() => this.TryCloseAsync();
 
-        private LoggedUser loggedUser;
-
-        private List<TaskManager.Models.Task> tasks;
-
         private string selectedProjectList;
-
-        private Repository repository;
     }
 }

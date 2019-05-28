@@ -4,17 +4,9 @@
     using Caliburn.Micro;
     using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Helpers;
-    using TaskManager.WPF.Models;
 
     public class LoginViewModel : Screen
     {
-        public LoginViewModel(LoggedUser loggedUser)
-        {
-            this.LoggedUser = loggedUser;
-        }
-
-        public LoggedUser LoggedUser { get; set; }
-
         public bool IsFormEnabled { get; set; } = true;
 
         public string LoginTextBox { get; set; }

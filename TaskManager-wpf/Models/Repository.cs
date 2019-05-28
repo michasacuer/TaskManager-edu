@@ -5,11 +5,6 @@
 
     public class Repository
     {
-        public Repository()
-        {
-            this.FetchAll();
-        }
-
         public static Repository Instance { get; } = new Repository();
 
         public IEnumerable<TaskManager.Models.Project> Projects { get; set; }

@@ -11,14 +11,14 @@
 
         private readonly ActiveTask activeTask;
 
-        public ActiveTaskViewModel(ActiveTask activeTask)
+        public ActiveTaskViewModel()
         {
-            this.activeTask = activeTask;
+            this.activeTask = LoggedUser.Instance.GetUserTask();
 
-            this.projectName = Repository.Instance.Projects.Single(p => p.Id == activeTask.Task.ProjectId).Name;
-            this.ActiveTaskTextBlock = $"{activeTask.Task.Name}, Priorytet: {activeTask.Task.Priority}";
-            this.DescriptionTextBlock = activeTask.Task.Description;
-            this.TimerActiveTaskTextBlock = activeTask.Task.StartTime.ToString();
+            this.projectName = Repository.Instance.Projects.Single(p => p.Id == this.activeTask.Task.ProjectId).Name;
+            this.ActiveTaskTextBlock = $"{this.activeTask.Task.Name}, Priorytet: {this.activeTask.Task.Priority}";
+            this.DescriptionTextBlock = this.activeTask.Task.Description;
+            this.TimerActiveTaskTextBlock = this.activeTask.Task.StartTime.ToString();
             this.NotifyOfPropertyChange(() => this.TimerActiveTaskTextBlock);
         }
 
@@ -31,6 +31,7 @@
         public void EndTaskButton()
         {
             this.activeTask.EndActiveTask();
+
             this.TryCloseAsync();
             Show.SuccesBox(string.Empty);
         }
