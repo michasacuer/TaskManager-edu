@@ -14,7 +14,7 @@
 
         public static void LoginBox() => manager.ShowDialogAsync(new LoginViewModel(), null, null);
 
-        public static void ActiveTaskBox() => manager.ShowDialogAsync(new ActiveTaskViewModel(), null, null);
+        public static void ActiveTaskBox(MainWindowViewModel vm) => manager.ShowDialogAsync(new ActiveTaskViewModel(vm), null, null);
 
         public static void ManagerPanelBox() => manager.ShowDialogAsync(new ManagerPanelViewModel(), null, null);
 

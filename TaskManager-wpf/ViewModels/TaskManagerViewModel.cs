@@ -2,14 +2,19 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Windows;
     using Caliburn.Micro;
     using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
 
     public class TaskManagerViewModel : Screen
     {
-        public TaskManagerViewModel()
+        private readonly MainWindowViewModel vm;
+
+        public TaskManagerViewModel(MainWindowViewModel vm)
         {
+            this.vm = vm;
+
             this.Projects = Repository.Instance.Projects;
 
             this.ProjectsList = new BindableCollection<string>();
@@ -67,7 +72,12 @@
 
             await this.TryCloseAsync();
 
-            Show.ActiveTaskBox();
+            if (LoggedUser.Instance.GetUserTask().IsTaskTakenByUser())
+            {
+                this.vm.IsActiveTaskButtonVisible = Visibility.Visible;
+                this.vm.NotifyOfPropertyChange(() => this.vm.IsActiveTaskButtonVisible);
+            }
+
         }
 
         public void CancelButton() => this.TryCloseAsync();

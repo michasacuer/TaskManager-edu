@@ -1,6 +1,8 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
     using System.Linq;
+    using System.Threading.Tasks;
+    using System.Windows;
     using Caliburn.Micro;
     using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
@@ -11,8 +13,12 @@
 
         private readonly ActiveTask activeTask;
 
-        public ActiveTaskViewModel()
+        private readonly MainWindowViewModel vm;
+
+        public ActiveTaskViewModel(MainWindowViewModel vm)
         {
+            this.vm = vm;
+
             this.activeTask = LoggedUser.Instance.GetUserTask();
 
             this.projectName = Repository.Instance.Projects.Single(p => p.Id == this.activeTask.Task.ProjectId).Name;
@@ -28,12 +34,15 @@
 
         public string TimerActiveTaskTextBlock { get; set; }
 
-        public void EndTaskButton()
+        public async Task EndTaskButton()
         {
-            this.activeTask.EndActiveTask();
+            this.vm.IsActiveTaskButtonVisible = Visibility.Hidden;
+            this.vm.NotifyOfPropertyChange(() => this.vm.IsActiveTaskButtonVisible);
 
-            this.TryCloseAsync();
-            Show.SuccesBox(string.Empty);
+            await this.activeTask.EndActiveTask();
+            await this.TryCloseAsync();
+
+            Show.SuccesBox("Task zakończono pomyślnie!");
         }
 
         public void CancelTaskButton() => this.TryCloseAsync();

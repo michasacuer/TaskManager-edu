@@ -14,20 +14,14 @@
 
         public void LoadTaskManagerPage()
         {
-            this.ActivateItemAsync(new TaskManagerViewModel());
-
-            if (LoggedUser.Instance.GetUserTask().IsTaskTakenByUser())
-            {
-                this.IsActiveTaskButtonVisible = Visibility.Visible;
-                this.NotifyOfPropertyChange(() => this.IsActiveTaskButtonVisible);
-            }
+            this.ActivateItemAsync(new TaskManagerViewModel(this));
         }
 
         public void LoadNotificationsPage() => this.ActivateItemAsync(new NotificationsViewModel());
 
         public void LoadAddNewTaskPage() => this.ActivateItemAsync(new AddNewTaskViewModel());
 
-        public void LoadActiveTaskPage() => Show.ActiveTaskBox();
+        public void LoadActiveTaskPage() => Show.ActiveTaskBox(this);
 
         protected async override void OnViewLoaded(object view)
         {
