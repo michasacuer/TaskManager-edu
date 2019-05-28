@@ -16,6 +16,8 @@
         public HttpDataService()
         {
             this.HttpClient = new HttpClient();
+            this.HttpClient.DefaultRequestHeaders.Authorization
+                    = new AuthenticationHeaderValue("Bearer", LoggedUser.Instance.User.Bearer);
         }
 
         private HttpClient HttpClient { get; set; }
@@ -41,8 +43,6 @@
             }
             else
             {
-                this.HttpClient.DefaultRequestHeaders.Authorization
-                    = new AuthenticationHeaderValue("Bearer", account.Bearer);
                 return account;
             }
         }
