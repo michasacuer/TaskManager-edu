@@ -83,8 +83,6 @@
                 return this.NotFound();
             }
 
-            await this.notificationsHub.Clients.All.SendAsync("TaskTakenByUser", "User take task!");
-
             return this.Ok(task);
         }
 
@@ -106,8 +104,6 @@
             }
 
             this.taskService.Add(task);
-
-            await this.notificationsHub.Clients.All.SendAsync("ReciveServerUpdate", "New Task in database!");
 
             return this.Ok(task);
         }
