@@ -10,7 +10,6 @@
     [ApiController]
     public class ProjectController : ControllerBase
     {
-
         private readonly IProjectService projectService;
 
         public ProjectController(IProjectService projectService)
@@ -82,6 +81,5 @@
 
           return this.Ok(project);
         }
-
     }
 }

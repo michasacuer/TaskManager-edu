@@ -11,12 +11,15 @@
     {
         private readonly TaskManagerDbContext context;
 
+        private readonly IAccountService accountService;
+
         private readonly IHubContext<NotificationsHub> notificationsHub;
 
-        public NotificationService(TaskManagerDbContext context, IHubContext<NotificationsHub> notificationsHub)
+        public NotificationService(TaskManagerDbContext context, IHubContext<NotificationsHub> notificationsHub, IAccountService accountService)
         {
             this.context = context;
             this.notificationsHub = notificationsHub;
+            this.accountService = accountService;
         }
 
         public IEnumerable<Notification> GetList()
@@ -27,6 +30,20 @@
         public async void SendNotification(string message)
         {
             await this.notificationsHub.Clients.All.SendAsync("ReciveServerUpdate", message);
+
+            this.context.Notifications.Add(new Notification
+            {
+                Message = message
+            });
+
+            this.context.SaveChanges();
+        }
+
+        public async void SendNotification(string userId, string message)
+        {
+            var userFullname = this.accountService.GetUserFullname(userId);
+
+            await this.notificationsHub.Clients.All.SendAsync("ReciveServerUpdate", userFullname + " " + message);
 
             this.context.Notifications.Add(new Notification
             {

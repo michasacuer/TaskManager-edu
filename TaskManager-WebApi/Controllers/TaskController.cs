@@ -14,12 +14,15 @@
     {
         private readonly ITaskService taskService;
 
+        private readonly INotificationService notificationService;
+
         private readonly IHubContext<NotificationsHub> notificationsHub;
 
-        public TaskController(ITaskService taskService, IHubContext<NotificationsHub> notificationsHub)
+        public TaskController(ITaskService taskService, IHubContext<NotificationsHub> notificationsHub, INotificationService notificationService)
         {
             this.taskService = taskService;
             this.notificationsHub = notificationsHub;
+            this.notificationService = notificationService;
         }
 
         [HttpGet]
@@ -44,6 +47,7 @@
 
             if (task != null)
             {
+                this.notificationService.SendNotification(userId, "wziął taska!");
                 return this.Ok(task);
             }
 

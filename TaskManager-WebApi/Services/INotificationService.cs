@@ -8,5 +8,7 @@
         IEnumerable<Notification> GetList();
 
         void SendNotification(string message);
+
+        void SendNotification(string userId, string message);
     }
 }
