@@ -17,7 +17,7 @@
                 .WithUrl(UrlBuilder.BuildEndpoint("Notifications"))
                 .Build();
 
-            hubConnection.On<string>("ReciveServerUpdate", update =>
+            hubConnection.On<string>("ReciveServerUpdate", message =>
             {
                 //todo
             });
