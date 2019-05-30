@@ -1,11 +1,8 @@
 ﻿namespace TaskManager_WebApi.Controllers
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.SignalR;
-    using TaskManager.WebApi.Hubs;
     using TaskManager.WebApi.Services;
 
     [Route("[controller]")]
@@ -101,6 +98,7 @@
             }
 
             this.taskService.Add(task);
+
             this.notificationService.SendNotification($"Dodano task - {task.Name}");
 
             return this.Ok(task);

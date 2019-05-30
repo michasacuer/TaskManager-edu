@@ -81,7 +81,7 @@
 
             this.projectService.Remove(project);
 
-          return this.Ok(project);
+            return this.Ok(project);
         }
     }
 }
