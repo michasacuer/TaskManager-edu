@@ -89,7 +89,7 @@
         }
 
         [HttpPost]
-        [Authorize(Roles = "Manager")]
+        //[Authorize(Roles = "Manager")]
         public IActionResult PostTask([FromBody] TaskManager.Models.Task task)
         {
             if (!this.ModelState.IsValid)

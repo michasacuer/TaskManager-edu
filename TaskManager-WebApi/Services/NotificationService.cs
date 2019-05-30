@@ -15,7 +15,10 @@
 
         private readonly IHubContext<NotificationsHub> notificationsHub;
 
-        public NotificationService(TaskManagerDbContext context, IHubContext<NotificationsHub> notificationsHub, IAccountService accountService)
+        public NotificationService(
+            TaskManagerDbContext context,
+            IHubContext<NotificationsHub> notificationsHub,
+            IAccountService accountService)
         {
             this.context = context;
             this.notificationsHub = notificationsHub;

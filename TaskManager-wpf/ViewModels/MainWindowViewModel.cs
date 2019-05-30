@@ -11,7 +11,7 @@
     {
         public MainWindowViewModel()
         {
-            HubService.Initialize();
+            NotificationsHubService.Instance.Initialize();
         }
 
         public Visibility IsActiveTaskButtonVisible { get; set; } = Visibility.Hidden;
