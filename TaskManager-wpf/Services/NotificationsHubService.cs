@@ -1,7 +1,7 @@
 ﻿namespace TaskManager.WPF.Services
 {
-    using Caliburn.Micro;
     using Microsoft.AspNetCore.SignalR.Client;
+    using TaskManager.WPF.Models;
     using TaskManager.WPF.ViewModels;
 
     public class NotificationsHubService
@@ -10,13 +10,11 @@
 
         public static NotificationsHubService Instance { get; } = new NotificationsHubService();
 
-        public BindableCollection<string> Notifications { get; set; }
-
         public void SetReferenceToViewModel(NotificationsViewModel notificationsViewModel)
         {
             this.vm = notificationsViewModel;
 
-            this.vm.Notifications = this.Notifications;
+            this.vm.Notifications = Repository.Instance.NotificationsMessages;
             this.vm.NotifyOfPropertyChange(() => this.vm.Notifications);
         }
 
@@ -24,15 +22,13 @@
 
         public async void Initialize()
         {
-            this.Notifications = new BindableCollection<string>();
-
             var hubConnection = new HubConnectionBuilder()
                 .WithUrl(UrlBuilder.BuildEndpoint("Notifications"))
                 .Build();
 
             hubConnection.On<string>("ReciveServerUpdate", message =>
             {
-                this.Notifications.Add(message);
+                Repository.Instance.NotificationsMessages.Add(message);
 
                 if (this.vm != null)
                 {

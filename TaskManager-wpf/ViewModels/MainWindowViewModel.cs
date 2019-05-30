@@ -9,11 +9,6 @@
 
     public class MainWindowViewModel : Conductor<IScreen>.Collection.OneActive
     {
-        public MainWindowViewModel()
-        {
-            NotificationsHubService.Instance.Initialize();
-        }
-
         public Visibility IsActiveTaskButtonVisible { get; set; } = Visibility.Hidden;
 
         public void LoadUserInfoPage() => this.ActivateItemAsync(new UserInfoViewModel());
@@ -39,6 +34,8 @@
                 }
 
                 await Repository.Instance.FetchAll();
+
+                NotificationsHubService.Instance.Initialize();
             }
             catch (NullReferenceException)
             {
