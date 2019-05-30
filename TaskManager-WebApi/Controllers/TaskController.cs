@@ -41,7 +41,6 @@
 
             if (task != null)
             {
-                this.notificationService.SendNotification(userId, "wziął taska!");
                 return this.Ok(task);
             }
 
@@ -89,7 +88,7 @@
         }
 
         [HttpPost]
-        //[Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Manager")]
         public IActionResult PostTask([FromBody] TaskManager.Models.Task task)
         {
             if (!this.ModelState.IsValid)
