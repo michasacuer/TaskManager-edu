@@ -59,6 +59,8 @@
                 return this.BadRequest(this.ModelState);
             }
 
+            this.projectService.Add(project);
+
             return this.Ok(project);
         }
 

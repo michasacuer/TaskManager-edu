@@ -16,12 +16,9 @@
 
         private readonly INotificationService notificationService;
 
-        private readonly IHubContext<NotificationsHub> notificationsHub;
-
-        public TaskController(ITaskService taskService, IHubContext<NotificationsHub> notificationsHub, INotificationService notificationService)
+        public TaskController(ITaskService taskService, INotificationService notificationService)
         {
             this.taskService = taskService;
-            this.notificationsHub = notificationsHub;
             this.notificationService = notificationService;
         }
 
@@ -75,7 +72,7 @@
 
         [HttpPut("{taskId}/{userId}")]
         [Authorize(Roles = "Developer, Manager")]
-        public async Task<IActionResult> TakeTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
+        public IActionResult TakeTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
         {
             var task = this.taskService.TakeTaskByUser(taskId, userId);
             if (task == null)
@@ -95,8 +92,8 @@
         }
 
         [HttpPost]
-        //[Authorize(Roles = "Manager")]
-        public async Task<IActionResult> PostTask([FromBody] TaskManager.Models.Task task)
+        [Authorize(Roles = "Manager")]
+        public IActionResult PostTask([FromBody] TaskManager.Models.Task task)
         {
             if (!this.ModelState.IsValid)
             {
@@ -104,6 +101,7 @@
             }
 
             this.taskService.Add(task);
+            this.notificationService.SendNotification($"Dodano task - {task.Name}");
 
             return this.Ok(task);
         }

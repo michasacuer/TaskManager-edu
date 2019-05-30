@@ -19,7 +19,7 @@
 
             hubConnection.On<string>("ReciveServerUpdate", message =>
             {
-                //todo
+                this.Notifications.Add(message);
             });
 
             await hubConnection.StartAsync();

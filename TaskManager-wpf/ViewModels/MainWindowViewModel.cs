@@ -11,17 +11,14 @@
     {
         public MainWindowViewModel()
         {
-            HubService.Instance.Initialize();
+            HubService.Initialize();
         }
 
         public Visibility IsActiveTaskButtonVisible { get; set; } = Visibility.Hidden;
 
         public void LoadUserInfoPage() => this.ActivateItemAsync(new UserInfoViewModel());
 
-        public void LoadTaskManagerPage()
-        {
-            this.ActivateItemAsync(new TaskManagerViewModel(this));
-        }
+        public void LoadTaskManagerPage() => this.ActivateItemAsync(new TaskManagerViewModel(this));
 
         public void LoadNotificationsPage() => this.ActivateItemAsync(new NotificationsViewModel());
 
