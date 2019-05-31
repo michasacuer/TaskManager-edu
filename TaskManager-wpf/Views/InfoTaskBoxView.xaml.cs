@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace TaskManager.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for ManagerPanelView.xaml
+    /// Interaction logic for InfoTaskBoxView.xaml
     /// </summary>
-    public partial class ManagerPanelView : Window
+    public partial class InfoTaskBoxView : Window
     {
-        public ManagerPanelView()
+        public InfoTaskBoxView()
         {
-            this.InitializeComponent();
-        }
-
-        private void ExitButton_Click(object sender, RoutedEventArgs e)
-        {
-
+            InitializeComponent();
         }
     }
 }

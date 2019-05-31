@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Caliburn.Micro;
+    using TaskManager.Models;
     using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
 
@@ -13,6 +14,11 @@
         }
 
         public List<TaskManager.Models.Project> Projects { get; set; }
+
+        public void InfoButton(Project project)
+        {
+            Show.InfoProjectBox(project);
+        }
 
         public void DeleteButton(TaskManager.Models.Project project)
         {

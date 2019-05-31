@@ -31,20 +31,20 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="Yes"
+        <Button x:Name="YesButton"
                 Grid.Row="4" Grid.Column="1"  
                 Content="Tak"
-                FontSize="8"
+                FontSize="10"
                 Foreground="White" 
                 BorderThickness="0"  
                 Height="25"
                 BorderBrush="{x:Null}" 
                 Background="#FF085078" Margin="0,16,0,4" Grid.RowSpan="2"/>
 
-        <Button x:Name="No"
+        <Button x:Name="NoButton"
                 Grid.Row="4" Grid.Column="3"  
                 Content="Nie"
-                FontSize="8"
+                FontSize="10"
                 Foreground="White" 
                 BorderThickness="0"  
                 Height="25"
@@ -65,12 +65,13 @@
                FontWeight="Bold" Margin="0,7,0,5" Height="38" Width="304" />
 
         <TextBlock x:Name="ErrorTextBox"
-                    Grid.Row="3"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontWeight="Bold" 
-                    Height="auto"
-                    Width="auto"
-                    FontSize="12" Grid.ColumnSpan="3" Margin="15,0" />
+                   Text="Czy na pewno chcesz usunąć ten projekt?"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontWeight="Bold" 
+                   FontSize="12"
+                   Grid.ColumnSpan="3"/>
     </Grid>
 </Window>

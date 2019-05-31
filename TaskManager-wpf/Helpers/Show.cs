@@ -22,6 +22,10 @@
 
         public static void DeleteProjectBox(Project project) => manager.ShowDialogAsync(new DeleteProjectBoxViewModel(project), null, null);
 
+        public static void InfoTaskBox(Task task) => manager.ShowDialogAsync(new InfoTaskBoxViewModel(task), null, null);
+
+        public static void InfoProjectBox(Project project) => manager.ShowDialogAsync(new InfoProjectBoxViewModel(project), null, null);
+
         private static IWindowManager manager = new WindowManager();
     }
 }

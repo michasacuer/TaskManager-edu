@@ -15,6 +15,11 @@
 
         public List<TaskManager.Models.Task> Tasks { get; set; }
 
+        public void InfoButton(TaskManager.Models.Task task)
+        {
+            Show.InfoTaskBox(task);
+        }
+
         public void DeleteButton(TaskManager.Models.Task task)
         {
             if (LoggedUser.Instance.HavePermissionToDelete())

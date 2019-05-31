@@ -33,7 +33,7 @@
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Button Content="INFO" x:Name="InfoButton" Style="{DynamicResource buttonStyle}"/>
+                            <Button Content="INFO" x:Name="InfoButton" cal:Message.Attach="InfoButton($this)" Style="{DynamicResource buttonStyle}"/>
                             <Button Content="USUŃ" x:Name="DeleteButton"  cal:Message.Attach="DeleteButton($this)" Style="{DynamicResource buttonStyle}"/>
                         </StackPanel>
                     </DataTemplate>
@@ -41,10 +41,6 @@
             </DataGridTemplateColumn>
             <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
             <DataGridTextColumn Header="NAZWA" Binding="{Binding Name}"/>
-            <DataGridTextColumn Header="PRIORYTET " Binding="{Binding Priority}"/>
-            <DataGridTextColumn Header="STORY POINTS " Binding="{Binding StoryPoints}"/>
-            <DataGridTextColumn Header="ID PROJEKTU" Binding="{Binding ProjectId}"/>
-            <DataGridTextColumn Header="DATA ROZPOCZĘCIA" Binding="{Binding StartTime}"/>
             <DataGridTextColumn Header="OPIS" Binding="{Binding Description}"/>
 
         </DataGrid.Columns>

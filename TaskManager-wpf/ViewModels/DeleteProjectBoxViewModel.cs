@@ -11,22 +11,22 @@
         public DeleteProjectBoxViewModel(Project project)
         {
             this.projectToDelete = project;
-            this.DeleteName = "Usunąć projekt " + project.Name + "?";
+            this.DeleteName = project.Name;
         }
 
         public string DeleteName { get; set; }
 
-        public void Yes()
+        public void YesButton()
         {
             var helper = new DeleteProjectHelper();
             helper.DeleteProjectFromDatabase(this.projectToDelete);
 
-            this.TryCloseAsync(true);
+            this.TryCloseAsync();
         }
 
-        public void No()
+        public void NoButton()
         {
-            this.TryCloseAsync(false);
+            this.TryCloseAsync();
         }
     }
 }

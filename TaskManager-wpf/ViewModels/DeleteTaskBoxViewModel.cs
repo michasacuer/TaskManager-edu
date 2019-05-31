@@ -1,31 +1,32 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
     using Caliburn.Micro;
+    using TaskManager.Models;
     using TaskManager.WPF.Helpers;
 
     public class DeleteTaskBoxViewModel : Screen
     {
-        private readonly TaskManager.Models.Task taskToDelete;
+        private readonly Task editedTask;
 
-        public DeleteTaskBoxViewModel(TaskManager.Models.Task task)
+        public DeleteTaskBoxViewModel(Task task)
         {
-            this.taskToDelete = task;
-            this.DeleteName = "Usunąć zadanie " + task.Name + "?";
+            this.editedTask = task;
+            this.DeleteName = task.Name;
         }
 
         public string DeleteName { get; set; }
 
-        public void Yes()
+        public void YesButton()
         {
             var helper = new DeleteTaskHelper();
-            helper.DeleteTaskFromDatabase(this.taskToDelete);
+            helper.DeleteTaskFromDatabase(this.editedTask);
 
-            this.TryCloseAsync(true);
+            this.TryCloseAsync();
         }
 
-        public void No()
+        public void NoButton()
         {
-            this.TryCloseAsync(false);
+            this.TryCloseAsync();
         }
     }
 }
