@@ -260,6 +260,7 @@
     <Compile Include="Strings\Error.cs" />
     <Compile Include="Strings\Succes.cs" />
     <Compile Include="ViewModels\ActiveTaskViewModel.cs" />
+    <Compile Include="ViewModels\AddNewProjectViewModel.cs" />
     <Compile Include="ViewModels\AddNewViewModel.cs" />
     <Compile Include="ViewModels\AddNewTaskViewModel.cs" />
     <Compile Include="ViewModels\EndedTasksDataGridViewModel.cs" />
@@ -276,6 +277,9 @@
     <Compile Include="ViewModels\UserInfoViewModel.cs" />
     <Compile Include="Views\ActiveTaskView.xaml.cs">
       <DependentUpon>ActiveTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddNewProjectView.xaml.cs">
+      <DependentUpon>AddNewProjectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddNewTaskView.xaml.cs">
       <DependentUpon>AddNewTaskView.xaml</DependentUpon>
@@ -354,6 +358,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\ActiveTaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddNewProjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

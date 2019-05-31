@@ -7,6 +7,7 @@
         public AddNewViewModel()
         {
             this.Items.Add(new AddNewTaskViewModel { DisplayName = "Zadanie" });
+            this.Items.Add(new AddNewProjectViewModel { DisplayName = "Projekt" });
         }
 
         public void CancelButton() => this.TryCloseAsync();
