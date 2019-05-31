@@ -11,6 +11,8 @@
     {
         private readonly MainWindowViewModel vm;
 
+        private string selectedProjectList;
+
         public TaskManagerViewModel(MainWindowViewModel vm)
         {
             this.vm = vm;
@@ -81,11 +83,8 @@
                 this.vm.IsActiveTaskButtonVisible = Visibility.Visible;
                 this.vm.NotifyOfPropertyChange(() => this.vm.IsActiveTaskButtonVisible);
             }
-
         }
 
         public void CancelButton() => this.TryCloseAsync();
-
-        private string selectedProjectList;
     }
 }
