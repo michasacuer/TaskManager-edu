@@ -46,7 +46,6 @@
 
             if (validationResult.IsValid)
             {
-                await this.TryCloseAsync();
                 Show.SuccesBox(validationResult.Message);
             }
             else
@@ -54,7 +53,5 @@
                 Show.ErrorBox(validationResult.Message);
             }
         }
-
-        public void CancelButton() => this.TryCloseAsync();
     }
 }
