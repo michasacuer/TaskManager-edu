@@ -11,7 +11,7 @@
     {
         public Visibility IsActiveTaskButtonVisible { get; set; } = Visibility.Hidden;
 
-        public void LoadUserInfoPage() => this.ActivateItemAsync(new UserInfoViewModel());
+        public void LoadUserInfoPage() => this.ActivateItemAsync(new UserInfoViewModel(this));
 
         public void LoadTaskManagerPage() => this.ActivateItemAsync(new TaskManagerViewModel(this));
 
@@ -23,16 +23,10 @@
 
         protected async override void OnViewLoaded(object view)
         {
-            Show.LoginBox();
+            Show.LoginBox(this);
 
             try
             {
-                if (LoggedUser.Instance.GetUserTask().IsTaskTakenByUser())
-                {
-                    this.IsActiveTaskButtonVisible = Visibility.Visible;
-                    this.NotifyOfPropertyChange(() => this.IsActiveTaskButtonVisible);
-                }
-
                 await Repository.Instance.FetchAll();
 
                 NotificationsHubService.Instance.Initialize();

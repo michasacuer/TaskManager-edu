@@ -12,7 +12,7 @@
 
         public static void RegistrationBox() => manager.ShowDialogAsync(new RegistrationViewModel(), null, null);
 
-        public static void LoginBox() => manager.ShowDialogAsync(new LoginViewModel(), null, null);
+        public static void LoginBox(MainWindowViewModel vm) => manager.ShowDialogAsync(new LoginViewModel(vm), null, null);
 
         public static void ActiveTaskBox(MainWindowViewModel vm) => manager.ShowDialogAsync(new ActiveTaskViewModel(vm), null, null);
 
