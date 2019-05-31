@@ -1,9 +1,8 @@
 ﻿namespace TaskManager.WebApi.Services
 {
-    using Microsoft.EntityFrameworkCore;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Microsoft.EntityFrameworkCore;
     using TaskManager.Models;
     using TaskManager.WebApi.Models;
 
@@ -20,6 +19,7 @@
         {
             this.context.Projects.Add(data);
             this.context.SaveChanges();
+
             return data;
         }
 
@@ -27,6 +27,7 @@
         {
             this.context.Entry(data).State = EntityState.Modified;
             this.context.SaveChanges();
+
             return data;
         }
 

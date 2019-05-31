@@ -37,7 +37,7 @@
             services.AddMvc().AddJsonOptions(options => { options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; });
 
             services.AddHttpContextAccessor();
-            services.AddSignalR().AddJsonProtocol();
+            services.AddSignalR();
 
             Assembly.GetExecutingAssembly()
             .GetTypes()

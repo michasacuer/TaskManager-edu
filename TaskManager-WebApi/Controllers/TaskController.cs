@@ -1,11 +1,8 @@
 ﻿namespace TaskManager_WebApi.Controllers
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.SignalR;
-    using TaskManager.WebApi.Hubs;
     using TaskManager.WebApi.Services;
 
     [Route("[controller]")]
@@ -14,12 +11,12 @@
     {
         private readonly ITaskService taskService;
 
-        private readonly IHubContext<NotificationsHub> notificationsHub;
+        private readonly INotificationService notificationService;
 
-        public TaskController(ITaskService taskService, IHubContext<NotificationsHub> notificationsHub)
+        public TaskController(ITaskService taskService, INotificationService notificationService)
         {
             this.taskService = taskService;
-            this.notificationsHub = notificationsHub;
+            this.notificationService = notificationService;
         }
 
         [HttpGet]
@@ -71,15 +68,13 @@
 
         [HttpPut("{taskId}/{userId}")]
         [Authorize(Roles = "Developer, Manager")]
-        public async Task<IActionResult> TakeTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
+        public IActionResult TakeTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
         {
             var task = this.taskService.TakeTaskByUser(taskId, userId);
             if (task == null)
             {
                 return this.NotFound();
             }
-
-            await this.notificationsHub.Clients.All.SendAsync("TaskTakenByUser", "User take task!");
 
             return this.Ok(task);
         }
@@ -94,7 +89,7 @@
 
         [HttpPost]
         [Authorize(Roles = "Manager")]
-        public async Task<IActionResult> PostTask([FromBody] TaskManager.Models.Task task)
+        public IActionResult PostTask([FromBody] TaskManager.Models.Task task)
         {
             if (!this.ModelState.IsValid)
             {
@@ -103,7 +98,7 @@
 
             this.taskService.Add(task);
 
-            await this.notificationsHub.Clients.All.SendAsync("NewTask", "New Task in database!");
+            this.notificationService.SendNotification($"Dodano task - {task.Name}");
 
             return this.Ok(task);
         }

@@ -10,7 +10,6 @@
     [ApiController]
     public class ProjectController : ControllerBase
     {
-
         private readonly IProjectService projectService;
 
         public ProjectController(IProjectService projectService)
@@ -60,6 +59,8 @@
                 return this.BadRequest(this.ModelState);
             }
 
+            this.projectService.Add(project);
+
             return this.Ok(project);
         }
 
@@ -80,8 +81,7 @@
 
             this.projectService.Remove(project);
 
-          return this.Ok(project);
+            return this.Ok(project);
         }
-
     }
 }

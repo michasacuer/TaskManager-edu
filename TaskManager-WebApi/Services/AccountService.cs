@@ -92,9 +92,16 @@
             return false;
         }
 
-        public ApplicationUser GetUser(string id)
+        public ApplicationUser GetUser(string userId)
         {
-            return this.userManager.Users.Single(u => u.Id == id);
+            return this.userManager.Users.Single(u => u.Id == userId);
+        }
+
+        public string GetUserFullname(string userId)
+        {
+            var user = this.GetUser(userId);
+
+            return $"{user.FirstName} {user.LastName}";
         }
     }
 }

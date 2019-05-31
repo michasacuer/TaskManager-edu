@@ -11,19 +11,25 @@
     {
         private readonly MainWindowViewModel vm;
 
+        private string selectedProjectList;
+
         public TaskManagerViewModel(MainWindowViewModel vm)
         {
             this.vm = vm;
 
             this.Projects = Repository.Instance.Projects;
-
             this.ProjectsList = new BindableCollection<string>();
 
             foreach (var project in this.Projects)
             {
                 this.ProjectsList.Add(project.Name);
             }
+
+            this.IsAcceptButtonEnabled = !LoggedUser.Instance.GetUserTask().IsTaskTakenByUser();
+            this.NotifyOfPropertyChange(() => this.IsAcceptButtonEnabled);
         }
+
+        public bool IsAcceptButtonEnabled { get; set; }
 
         public BindableCollection<string> ProjectsList { get; set; }
 
@@ -77,11 +83,8 @@
                 this.vm.IsActiveTaskButtonVisible = Visibility.Visible;
                 this.vm.NotifyOfPropertyChange(() => this.vm.IsActiveTaskButtonVisible);
             }
-
         }
 
         public void CancelButton() => this.TryCloseAsync();
-
-        private string selectedProjectList;
     }
 }

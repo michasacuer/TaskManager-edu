@@ -8,7 +8,6 @@
 
     [Route("[controller]")]
     [ApiController]
-    [Authorize(Roles = "Manager")]
     public class EndedTaskController : ControllerBase
     {
         private readonly IEndedTaskService endedTaskService;
@@ -19,6 +18,7 @@
         }
 
         [HttpGet]
+        [Authorize]
         public IEnumerable<EndedTask> GetEndedTasks()
         {
             return this.endedTaskService.GetList();
