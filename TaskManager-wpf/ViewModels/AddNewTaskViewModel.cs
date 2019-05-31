@@ -54,7 +54,5 @@
                 Show.ErrorBox(validationResult.Message);
             }
         }
-
-        public void CancelButton() => this.TryCloseAsync();
     }
 }

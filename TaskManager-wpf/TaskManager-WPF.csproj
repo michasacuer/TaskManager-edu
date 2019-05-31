@@ -260,6 +260,7 @@
     <Compile Include="Strings\Error.cs" />
     <Compile Include="Strings\Succes.cs" />
     <Compile Include="ViewModels\ActiveTaskViewModel.cs" />
+    <Compile Include="ViewModels\AddNewViewModel.cs" />
     <Compile Include="ViewModels\AddNewTaskViewModel.cs" />
     <Compile Include="ViewModels\EndedTasksDataGridViewModel.cs" />
     <Compile Include="ViewModels\ErrorBoxViewModel.cs" />
@@ -278,6 +279,9 @@
     </Compile>
     <Compile Include="Views\AddNewTaskView.xaml.cs">
       <DependentUpon>AddNewTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddNewView.xaml.cs">
+      <DependentUpon>AddNewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EndedTasksDataGridView.xaml.cs">
       <DependentUpon>EndedTasksDataGridView.xaml</DependentUpon>
@@ -354,6 +358,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddNewTaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddNewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
