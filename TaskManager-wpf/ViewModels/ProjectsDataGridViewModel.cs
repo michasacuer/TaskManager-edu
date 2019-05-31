@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Caliburn.Micro;
+    using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
 
     public class ProjectsDataGridViewModel : Screen
@@ -12,5 +13,17 @@
         }
 
         public List<TaskManager.Models.Project> Projects { get; set; }
+
+        public void DeleteButton(TaskManager.Models.Project project)
+        {
+            if (LoggedUser.Instance.HavePermissionToDelete())
+            {
+                Show.DeleteProjectBox(project);
+            }
+            else
+            {
+                Show.ErrorBox("Nie masz uprawnień do usuwania zadań!");
+            }
+        }
     }
 }

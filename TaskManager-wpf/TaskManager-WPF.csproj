@@ -240,6 +240,7 @@
     <Compile Include="Exceptions\RegistrationException.cs" />
     <Compile Include="Helpers\ActiveTaskHelper.cs" />
     <Compile Include="Helpers\AddNewTaskHelper.cs" />
+    <Compile Include="Helpers\DeleteProjectHelper.cs" />
     <Compile Include="Helpers\DeleteTaskHelper.cs" />
     <Compile Include="Helpers\LoginHelper.cs" />
     <Compile Include="Helpers\RegistrationHelper.cs" />
@@ -262,6 +263,7 @@
     <Compile Include="Strings\Succes.cs" />
     <Compile Include="ViewModels\ActiveTaskViewModel.cs" />
     <Compile Include="ViewModels\AddNewTaskViewModel.cs" />
+    <Compile Include="ViewModels\DeleteProjectBoxViewModel.cs" />
     <Compile Include="ViewModels\DeleteTaskBoxViewModel.cs" />
     <Compile Include="ViewModels\EndedTasksDataGridViewModel.cs" />
     <Compile Include="ViewModels\ErrorBoxViewModel.cs" />
@@ -280,6 +282,9 @@
     </Compile>
     <Compile Include="Views\AddNewTaskView.xaml.cs">
       <DependentUpon>AddNewTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeleteProjectBoxView.xaml.cs">
+      <DependentUpon>DeleteProjectBoxView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DeleteTaskBoxView.xaml.cs">
       <DependentUpon>DeleteTaskBoxView.xaml</DependentUpon>
@@ -359,6 +364,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddNewTaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeleteProjectBoxView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

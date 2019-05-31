@@ -17,7 +17,7 @@
 
         public void DeleteButton(TaskManager.Models.Task task)
         {
-            if (LoggedUser.Instance.HavePermissionToDeleteTask())
+            if (LoggedUser.Instance.HavePermissionToDelete())
             {
                 Show.DeleteTaskBox(task);
             }
