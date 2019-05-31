@@ -17,7 +17,7 @@
 
         public void LoadNotificationsPage() => this.ActivateItemAsync(new NotificationsViewModel());
 
-        public void LoadAddNewTaskPage() => this.ActivateItemAsync(new AddNewTaskViewModel());
+        public void LoadAddNewTaskPage() => this.ActivateItemAsync(new AddNewViewModel());
 
         public void LoadActiveTaskPage() => Show.ActiveTaskBox(this);
 

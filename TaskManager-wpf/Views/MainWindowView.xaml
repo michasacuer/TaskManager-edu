@@ -255,6 +255,7 @@
                         <DataTrigger Binding="{Binding ElementName=LoadAddNewTaskPage, Path=IsChecked}"
                                      Value="True">
                             <Setter Property="Grid.Row" Value="4"/>
+                            <Setter Property="Visibility" Value="Hidden"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ElementName=HideBar, Path=IsChecked}"
                                      Value="True">

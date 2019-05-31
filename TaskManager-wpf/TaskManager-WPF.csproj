@@ -239,6 +239,7 @@
     <Compile Include="Exceptions\FormValidationException.cs" />
     <Compile Include="Exceptions\RegistrationException.cs" />
     <Compile Include="Helpers\ActiveTaskHelper.cs" />
+    <Compile Include="Helpers\AddNewProjectHelper.cs" />
     <Compile Include="Helpers\AddNewTaskHelper.cs" />
     <Compile Include="Helpers\DeleteTaskHelper.cs" />
     <Compile Include="Helpers\LoginHelper.cs" />
@@ -250,6 +251,7 @@
     <Compile Include="Models\BindingModels\RegistrationBindingModel.cs" />
     <Compile Include="Models\LoggedUser.cs" />
     <Compile Include="Helpers\Show.cs" />
+    <Compile Include="Services\FormsValidation\NewProjectForm.cs" />
     <Compile Include="Services\FormsValidation\NewTaskForm.cs" />
     <Compile Include="Services\FormsValidation\LoginForm.cs" />
     <Compile Include="Services\FormsValidation\ValidationResult.cs" />
@@ -261,6 +263,8 @@
     <Compile Include="Strings\Error.cs" />
     <Compile Include="Strings\Succes.cs" />
     <Compile Include="ViewModels\ActiveTaskViewModel.cs" />
+    <Compile Include="ViewModels\AddNewProjectViewModel.cs" />
+    <Compile Include="ViewModels\AddNewViewModel.cs" />
     <Compile Include="ViewModels\AddNewTaskViewModel.cs" />
     <Compile Include="ViewModels\DeleteTaskBoxViewModel.cs" />
     <Compile Include="ViewModels\EndedTasksDataGridViewModel.cs" />
@@ -278,11 +282,17 @@
     <Compile Include="Views\ActiveTaskView.xaml.cs">
       <DependentUpon>ActiveTaskView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddNewProjectView.xaml.cs">
+      <DependentUpon>AddNewProjectView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddNewTaskView.xaml.cs">
       <DependentUpon>AddNewTaskView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DeleteTaskBoxView.xaml.cs">
       <DependentUpon>DeleteTaskBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddNewView.xaml.cs">
+      <DependentUpon>AddNewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EndedTasksDataGridView.xaml.cs">
       <DependentUpon>EndedTasksDataGridView.xaml</DependentUpon>
@@ -358,11 +368,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddNewProjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddNewTaskView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DeleteTaskBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddNewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

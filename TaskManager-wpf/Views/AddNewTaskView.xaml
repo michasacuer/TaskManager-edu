@@ -8,65 +8,51 @@
              Background="White">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-        <Rectangle Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6"
-                   Fill="#FF085078"/>
-
-        <Label Grid.ColumnSpan="3"
-               Grid.Row="0"
-               Content="DODAJ ZADANIE"  
-               FontSize="20" 
-               Foreground="White" 
-               HorizontalAlignment="Left" 
-               VerticalAlignment="Center" 
-               FontWeight="Bold" Margin="0,10,0,2" Height="38" Width="auto" />
-
-        <Label Grid.Column="0" Grid.Row="1" 
+        <Label Grid.Column="0" Grid.Row="0" 
                FontSize = "10" 
                Content="Projekt" 
                HorizontalAlignment="Left" VerticalAlignment="Center"
-               FontWeight="Bold" Height="20" Width="auto"/>
+               FontWeight="Bold" Height="25" Width="auto" Margin="0,5,0,0"/>
 
-        <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" 
+        <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" 
                FontSize = "10" 
                Content="Nazwa Zadania, SP" 
                HorizontalAlignment="Left" VerticalAlignment="Center"
-               FontWeight="Bold" Height="20" />
+               FontWeight="Bold" Height="25" />
 
-        <Label Grid.Column="0" Grid.Row="3" 
+        <Label Grid.Column="0" Grid.Row="2" 
                FontSize = "10" 
                Content="Priorytet" 
                HorizontalAlignment="Left" VerticalAlignment="Center"
-               FontWeight="Bold" Height="20" Width="auto"/>
+               FontWeight="Bold" Height="25" Width="auto"/>
 
-        <Label Grid.Column="0" Grid.Row="4" 
+        <Label Grid.Column="0" Grid.Row="3" 
                FontSize = "10" 
                Content="Opis" 
                HorizontalAlignment="Left" VerticalAlignment="Center"
-               FontWeight="Bold" Height="20" Width="auto"/>
+               FontWeight="Bold" Height="25" Width="auto"/>
 
-        <ComboBox FontSize="10" x:Name="ProjectsList" SelectedValuePath="{Binding Path=SelectedProjectsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Width="170" Height="16"/>
-        <TextBox Name="TaskNameTextBox" FontSize="10" Grid.ColumnSpan="4" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Width="170" Height="16"/>
+        <ComboBox FontSize="10" x:Name="ProjectsList" SelectedValuePath="{Binding Path=SelectedProjectsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Width="170" Height="16"/>
+        <TextBox Name="TaskNameTextBox" FontSize="10" Grid.ColumnSpan="4" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Width="170" Height="16"/>
 
         <ToggleButton x:Name="LowPriorityButton"               
-                Grid.Row="3" Grid.Column="2"
+                Grid.Row="2" Grid.Column="2"
                 Width="50" Height="15" 
                 Content="Niski"
                 FontSize="8"
@@ -90,7 +76,7 @@
         </ToggleButton>
 
         <ToggleButton x:Name="NormalPriorityButton"               
-                Grid.Row="3" Grid.Column="3"
+                Grid.Row="2" Grid.Column="3"
                 Width="50" Height="15" 
                 Content="Średni"
                 FontSize="8"
@@ -114,7 +100,7 @@
         </ToggleButton>
 
         <ToggleButton x:Name="HighPriorityButton"               
-                Grid.Row="3" Grid.Column="4"
+                Grid.Row="2" Grid.Column="4"
                 Width="50" Height="15" 
                 Content="Wysoki"
                 FontSize="8"
@@ -138,14 +124,14 @@
         </ToggleButton>
 
         <TextBox Name="DescriptionTextBox"
-            Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="2"
+            Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="2"
             FontSize="10"
                  AcceptsReturn = "True"
                  TextWrapping="Wrap"/>
 
         <Button x:Name="AcceptButton" 
                 VerticalAlignment="Bottom"
-                Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" 
+                Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" 
                 Height="15"
                 Width="70"
                 Content="Akceptuj"
@@ -153,19 +139,7 @@
                 Foreground="White" 
                 BorderThickness="0"  
                 BorderBrush="{x:Null}" 
-                Background="#FF085078" Margin="0,0,26,0"/>
-
-        <Button x:Name="CancelButton"
-                VerticalAlignment="Bottom"
-                Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" 
-                Height="15"
-                Width="70"
-                Content="Anuluj"
-                FontSize="8"
-                Foreground="White" 
-                BorderThickness="0"  
-                BorderBrush="{x:Null}" 
-                Background="#FF0000" Margin="33,0,20,0"/>
+                Background="Green" Margin="0,0,50,25"/>
 
     </Grid>
 </UserControl>
