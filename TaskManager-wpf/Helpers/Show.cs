@@ -18,6 +18,8 @@
 
         public static void ManagerPanelBox() => manager.ShowDialogAsync(new ManagerPanelViewModel(), null, null);
 
+        public static void DeleteTaskBox(TaskManager.Models.Task task) => manager.ShowDialogAsync(new DeleteTaskBoxViewModel(task), null, null);
+
         private static IWindowManager manager = new WindowManager();
     }
 }

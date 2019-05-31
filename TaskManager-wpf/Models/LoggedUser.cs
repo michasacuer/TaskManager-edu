@@ -31,5 +31,7 @@
             => this.User.Role == Role.Manager || this.User.Role == Role.Developer;
 
         public bool HavePermissionToAddTask() => this.User.Role == Role.Manager;
+
+        public bool HavePermissionToDeleteTask() => this.User.Role == Role.Manager;
     }
 }

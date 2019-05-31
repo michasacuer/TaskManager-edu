@@ -15,12 +15,16 @@
 
         public List<TaskManager.Models.Task> Tasks { get; set; }
 
-        public async Task DeleteButton(TaskManager.Models.Task task)
+        public void DeleteButton(TaskManager.Models.Task task)
         {
-            await this.TryCloseAsync();
-
-            Show.
-            Show.SuccesBox("Task usunięto pomyślnie!");
+            if (LoggedUser.Instance.HavePermissionToDeleteTask())
+            {
+                Show.DeleteTaskBox(task);
+            }
+            else
+            {
+                Show.ErrorBox("Nie masz uprawnień do usuwania zadań!");
+            }
         }
     }
 }
