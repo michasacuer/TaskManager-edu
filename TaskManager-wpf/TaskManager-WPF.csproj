@@ -239,6 +239,7 @@
     <Compile Include="Exceptions\FormValidationException.cs" />
     <Compile Include="Exceptions\RegistrationException.cs" />
     <Compile Include="Helpers\ActiveTaskHelper.cs" />
+    <Compile Include="Helpers\AddNewProjectHelper.cs" />
     <Compile Include="Helpers\AddNewTaskHelper.cs" />
     <Compile Include="Helpers\LoginHelper.cs" />
     <Compile Include="Helpers\RegistrationHelper.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Models\BindingModels\RegistrationBindingModel.cs" />
     <Compile Include="Models\LoggedUser.cs" />
     <Compile Include="Helpers\Show.cs" />
+    <Compile Include="Services\FormsValidation\NewProjectForm.cs" />
     <Compile Include="Services\FormsValidation\NewTaskForm.cs" />
     <Compile Include="Services\FormsValidation\LoginForm.cs" />
     <Compile Include="Services\FormsValidation\ValidationResult.cs" />

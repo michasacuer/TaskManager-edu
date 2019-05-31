@@ -46,7 +46,6 @@
 
             if (validationResult.IsValid)
             {
-                await this.TryCloseAsync();
                 Show.SuccesBox(validationResult.Message);
             }
             else
