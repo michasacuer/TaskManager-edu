@@ -16,14 +16,18 @@
             this.vm = vm;
 
             this.Projects = Repository.Instance.Projects;
-
             this.ProjectsList = new BindableCollection<string>();
 
             foreach (var project in this.Projects)
             {
                 this.ProjectsList.Add(project.Name);
             }
+
+            this.IsAcceptButtonEnabled = !LoggedUser.Instance.GetUserTask().IsTaskTakenByUser();
+            this.NotifyOfPropertyChange(() => this.IsAcceptButtonEnabled);
         }
+
+        public bool IsAcceptButtonEnabled { get; set; }
 
         public BindableCollection<string> ProjectsList { get; set; }
 
