@@ -1,7 +1,7 @@
 ﻿namespace TaskManager.WPF.Helpers
 {
     using Caliburn.Micro;
-    using TaskManager.WPF.Models;
+    using TaskManager.Models;
     using TaskManager.WPF.ViewModels;
 
     public static class Show
@@ -17,6 +17,14 @@
         public static void ActiveTaskBox(MainWindowViewModel vm) => manager.ShowDialogAsync(new ActiveTaskViewModel(vm), null, null);
 
         public static void ManagerPanelBox() => manager.ShowDialogAsync(new ManagerPanelViewModel(), null, null);
+
+        public static void DeleteTaskBox(Task task) => manager.ShowDialogAsync(new DeleteTaskBoxViewModel(task), null, null);
+
+        public static void DeleteProjectBox(Project project) => manager.ShowDialogAsync(new DeleteProjectBoxViewModel(project), null, null);
+
+        public static void InfoTaskBox(Task task) => manager.ShowDialogAsync(new InfoTaskBoxViewModel(task), null, null);
+
+        public static void InfoProjectBox(Project project) => manager.ShowDialogAsync(new InfoProjectBoxViewModel(project), null, null);
 
         private static IWindowManager manager = new WindowManager();
     }

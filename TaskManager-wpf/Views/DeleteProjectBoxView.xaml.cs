@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace TaskManager.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for ManagerPanelView.xaml
+    /// Interaction logic for DeleteProjectBoxView.xaml
     /// </summary>
-    public partial class ManagerPanelView : Window
+    public partial class DeleteProjectBoxView : Window
     {
-        public ManagerPanelView()
+        public DeleteProjectBoxView()
         {
-            this.InitializeComponent();
-        }
-
-        private void ExitButton_Click(object sender, RoutedEventArgs e)
-        {
-
+            InitializeComponent();
         }
     }
 }

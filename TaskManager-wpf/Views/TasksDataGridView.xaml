@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
              xmlns:local="clr-namespace:TaskManager.WPF.Views"
              mc:Ignorable="d">
 
@@ -32,18 +33,14 @@
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Button Content="INFO" x:Name="infoButton" Style="{DynamicResource buttonStyle}"/>
-                            <Button Content="USUŃ" x:Name="deleteButton" Style="{DynamicResource buttonStyle}"/>
+                            <Button Content="INFO" x:Name="InfoButton" cal:Message.Attach="InfoButton($this)" Style="{DynamicResource buttonStyle}"/>
+                            <Button Content="USUŃ" x:Name="DeleteButton"  cal:Message.Attach="DeleteButton($this)" Style="{DynamicResource buttonStyle}"/>
                         </StackPanel>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
             <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
             <DataGridTextColumn Header="NAZWA" Binding="{Binding Name}"/>
-            <DataGridTextColumn Header="PRIORYTET " Binding="{Binding Priority}"/>
-            <DataGridTextColumn Header="STORY POINTS " Binding="{Binding StoryPoints}"/>
-            <DataGridTextColumn Header="ID PROJEKTU" Binding="{Binding ProjectId}"/>
-            <DataGridTextColumn Header="DATA ROZPOCZĘCIA" Binding="{Binding StartTime}"/>
             <DataGridTextColumn Header="OPIS" Binding="{Binding Description}"/>
 
         </DataGrid.Columns>

@@ -21,8 +21,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
 
         <Rectangle Grid.Row="0" Grid.ColumnSpan="3" Fill="#FF085078"/>
@@ -43,14 +43,36 @@
                 </DataTemplate>
             </TabControl.ItemTemplate>
         </TabControl>
-        
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Generuj PDF"
+                    x:Name="GeneratePDF"
+                    FontSize="10"
+                    Foreground="White" 
+                    BorderThickness="0"  
+                    Background="#FF085078"
+                    Margin="10, 10, 5, 3"/>
+
+            <ComboBox FontSize="10"
+                      x:Name="ProjectsList"
+                      SelectedValuePath="{Binding Path=SelectedProjectsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      Grid.Column="1"
+                      Margin="5, 10, 10, 3"/>
+
+        </Grid>
+
         <Button x:Name="ExitButton"
                 Grid.Row="3" Grid.ColumnSpan="2"
                 Content="Wyjście"
-                FontSize="8"
+                FontSize="10"
                 Foreground="White" 
                 BorderThickness="0"  
                 BorderBrush="{x:Null}" 
-                Background="#FF085078" Margin="10, 10, 10, 10" Grid.RowSpan="2"/>
+                Background="#FF085078" Margin="10, 3, 10, 10" Grid.RowSpan="2" Click="ExitButton_Click"/>
     </Grid>
 </Window>
