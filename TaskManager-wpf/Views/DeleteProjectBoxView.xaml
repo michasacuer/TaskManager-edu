@@ -72,6 +72,6 @@
                    VerticalAlignment="Center"
                    FontWeight="Bold" 
                    FontSize="12"
-                   Grid.ColumnSpan="3"/>
+                   Grid.ColumnSpan="3" Margin="6.333,28,6.667,10"/>
     </Grid>
 </Window>
