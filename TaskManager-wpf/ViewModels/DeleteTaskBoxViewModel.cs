@@ -18,8 +18,8 @@
 
         public void YesButton()
         {
-            var helper = new DeleteTaskHelper();
-            helper.DeleteTaskFromDatabase(this.editedTask);
+            var helper = new DeleteFromDatabaseHelper();
+            helper.DeleteTask(this.editedTask);
 
             this.TryCloseAsync();
         }

@@ -45,7 +45,7 @@
                 this.editedTask.Name = this.NameTextBox;
                 this.editedTask.Description = this.DescriptionTextBox;
 
-                var helper = new InfoTaskHelper();
+                var helper = new InfoHelper();
                 helper.EditTask(this.editedTask);
 
                 Show.SuccesBox("Pomyslnie edytowano zadanie.");

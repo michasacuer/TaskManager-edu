@@ -37,7 +37,7 @@
                 this.editedProject.Tag = this.TagTextBox;
                 this.editedProject.Description = this.DescriptionTextBox;
 
-                var helper = new InfoProjectHelper();
+                var helper = new InfoHelper();
                 helper.EditProject(this.editedProject);
 
                 Show.SuccesBox("Pomyslnie edytowano projekt.");

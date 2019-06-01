@@ -18,8 +18,8 @@
 
         public void YesButton()
         {
-            var helper = new DeleteProjectHelper();
-            helper.DeleteProjectFromDatabase(this.projectToDelete);
+            var helper = new DeleteFromDatabaseHelper();
+            helper.DeleteProject(this.projectToDelete);
 
             this.TryCloseAsync();
         }
