@@ -21,6 +21,24 @@
 
         public void LoadActiveTaskPage() => Show.ActiveTaskBox(this);
 
+        public void HideBar()
+        {
+            if (LoggedUser.Instance.GetUserTask().IsTaskTakenByUser())
+            {
+                this.IsActiveTaskButtonVisible = Visibility.Hidden;
+                this.NotifyOfPropertyChange(() => this.IsActiveTaskButtonVisible);
+            }
+        }
+
+        public void ShowBar()
+        {
+            if (LoggedUser.Instance.GetUserTask().IsTaskTakenByUser())
+            {
+                this.IsActiveTaskButtonVisible = Visibility.Visible;
+                this.NotifyOfPropertyChange(() => this.IsActiveTaskButtonVisible);
+            }
+        }
+
         protected async override void OnViewLoaded(object view)
         {
             Show.LoginBox(this);
