@@ -27,7 +27,7 @@
         </Style>
     </UserControl.Resources>
 
-    <DataGrid GridLinesVisibility="Horizontal" Grid.Row ="0" x:Name="Projects" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto" Style="{DynamicResource columnStyle}">
+    <DataGrid Visibility="{Binding null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" GridLinesVisibility="Horizontal" Grid.Row ="0" x:Name="Projects" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto" Style="{DynamicResource columnStyle}">
         <DataGrid.Columns>
             <DataGridTemplateColumn>
                 <DataGridTemplateColumn.CellTemplate>
