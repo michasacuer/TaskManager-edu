@@ -40,7 +40,7 @@
 
         public void SaveButton()
         {
-            if (LoggedUser.Instance.HavePermissionToDelete())
+            if (LoggedUser.Instance.IsManager())
             {
                 this.editedTask.Name = this.NameTextBox;
                 this.editedTask.Description = this.DescriptionTextBox;

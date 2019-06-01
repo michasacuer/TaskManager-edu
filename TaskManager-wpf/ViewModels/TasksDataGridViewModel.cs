@@ -22,7 +22,7 @@
 
         public void DeleteButton(TaskManager.Models.Task task)
         {
-            if (LoggedUser.Instance.HavePermissionToDelete())
+            if (LoggedUser.Instance.IsManager())
             {
                 Show.DeleteTaskBox(task);
             }

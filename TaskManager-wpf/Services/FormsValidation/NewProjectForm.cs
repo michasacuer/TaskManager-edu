@@ -9,7 +9,7 @@
         {
             var result = new ValidationResult();
 
-            if (!LoggedUser.Instance.HavePermissionToAddTask())
+            if (!LoggedUser.Instance.IsManager())
             {
                 result.Message = "Brak uprawnień! Zgłoś się do administratora!";
                 result.IsValid = false;

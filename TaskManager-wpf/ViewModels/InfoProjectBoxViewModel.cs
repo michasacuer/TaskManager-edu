@@ -31,7 +31,7 @@
 
         public void SaveButton()
         {
-            if (LoggedUser.Instance.HavePermissionToDelete())
+            if (LoggedUser.Instance.IsManager())
             {
                 this.editedProject.Name = this.NameTextBox;
                 this.editedProject.Tag = this.TagTextBox;
