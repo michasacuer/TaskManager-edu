@@ -12,9 +12,12 @@
     {
         private readonly IProjectService projectService;
 
-        public ProjectController(IProjectService projectService)
+        private readonly INotificationService notificationService;
+
+        public ProjectController(IProjectService projectService, INotificationService notificationService)
         {
             this.projectService = projectService;
+            this.notificationService = notificationService;
         }
 
         [HttpGet]

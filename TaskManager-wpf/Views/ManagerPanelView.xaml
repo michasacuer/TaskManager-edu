@@ -51,7 +51,7 @@
             </Grid.ColumnDefinitions>
 
             <Button Content="Generuj PDF"
-                    x:Name="GeneratePDF"
+                    x:Name="GeneratePdfButton"
                     FontSize="10"
                     Foreground="White" 
                     BorderThickness="0"  
