@@ -57,9 +57,6 @@
             }
         }
 
-        public void CancelButton()
-        {
-            this.TryCloseAsync();
-        }
+        public void CancelButton() => this.TryCloseAsync();
     }
 }

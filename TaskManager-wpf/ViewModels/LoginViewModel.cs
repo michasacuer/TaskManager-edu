@@ -10,10 +10,6 @@
     {
         private MainWindowViewModel vm;
 
-        public LoginViewModel()
-        {
-        }
-
         public LoginViewModel(MainWindowViewModel vm)
         {
             this.vm = vm;

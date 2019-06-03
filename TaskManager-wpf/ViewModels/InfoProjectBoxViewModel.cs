@@ -40,7 +40,7 @@
                 var helper = new InfoHelper();
                 helper.EditProject(this.editedProject);
 
-                Show.SuccesBox("Pomyslnie edytowano projekt.");
+                Show.SuccesBox("Pomyślnie edytowano projekt.");
                 this.TryCloseAsync();
             }
             else
@@ -49,9 +49,6 @@
             }
         }
 
-        public void CancelButton()
-        {
-            this.TryCloseAsync();
-        }
+        public void CancelButton() => this.TryCloseAsync();
     }
 }

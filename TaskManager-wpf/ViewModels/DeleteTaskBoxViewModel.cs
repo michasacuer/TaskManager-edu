@@ -24,9 +24,6 @@
             this.TryCloseAsync();
         }
 
-        public void NoButton()
-        {
-            this.TryCloseAsync();
-        }
+        public void NoButton() => this.TryCloseAsync();
     }
 }

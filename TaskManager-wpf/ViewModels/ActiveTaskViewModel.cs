@@ -1,6 +1,5 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
-    using System.Linq;
     using System.Threading.Tasks;
     using System.Windows;
     using Caliburn.Micro;
@@ -22,7 +21,6 @@
             this.ActiveTaskTextBlock = $"{this.activeTask.Task.Name}, Priorytet: {this.activeTask.Task.Priority}";
             this.DescriptionTextBlock = this.activeTask.Task.Description;
             this.TimerActiveTaskTextBlock = this.activeTask.Task.StartTime.ToString();
-            this.NotifyOfPropertyChange(() => this.TimerActiveTaskTextBlock);
         }
 
         public string ActiveTaskTextBlock { get; set; }
