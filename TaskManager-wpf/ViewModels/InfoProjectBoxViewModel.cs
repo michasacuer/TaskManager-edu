@@ -7,11 +7,11 @@
 
     public class InfoProjectBoxViewModel : Screen
     {
-        private readonly Project editedProject;
+        private readonly Project projectToEdit;
 
         public InfoProjectBoxViewModel(Project project)
         {
-            this.editedProject = project;
+            this.projectToEdit = project;
             this.NavbarProjectName = project.Name;
             this.IdTextBox = project.Id.ToString();
             this.NameTextBox = project.Name;
@@ -33,12 +33,12 @@
         {
             if (LoggedUser.Instance.IsManager())
             {
-                this.editedProject.Name = this.NameTextBox;
-                this.editedProject.Tag = this.TagTextBox;
-                this.editedProject.Description = this.DescriptionTextBox;
+                this.projectToEdit.Name = this.NameTextBox;
+                this.projectToEdit.Tag = this.TagTextBox;
+                this.projectToEdit.Description = this.DescriptionTextBox;
 
                 var helper = new InfoHelper();
-                helper.EditProject(this.editedProject);
+                helper.EditProject(this.projectToEdit);
 
                 Show.SuccesBox("Pomyślnie edytowano projekt.");
                 this.TryCloseAsync();
