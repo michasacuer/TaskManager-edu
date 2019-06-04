@@ -84,6 +84,8 @@
         public IActionResult EndTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
         {
             this.taskService.EndTaskByUser(taskId, userId);
+            this.notificationService.SendNotification(userId, $" Zakończył zadanie ID: {taskId}");
+
             return this.Ok();
         }
 

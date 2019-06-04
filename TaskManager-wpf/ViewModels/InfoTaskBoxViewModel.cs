@@ -40,13 +40,13 @@
 
         public void SaveButton()
         {
-            if (LoggedUser.Instance.HavePermissionToDelete())
+            if (LoggedUser.Instance.IsManager())
             {
                 this.taskToEdit.Name = this.NameTextBox;
                 this.taskToEdit.Description = this.DescriptionTextBox;
 
-                var helper = new InfoTaskHelper();
-                helper.EditTask(this.taskToEdit);
+                var helper = new InfoHelper();
+                helper.EditTask(this.editedTask);
 
                 Show.SuccesBox("Pomyslnie edytowano zadanie.");
                 this.TryCloseAsync();
@@ -57,9 +57,6 @@
             }
         }
 
-        public void CancelButton()
-        {
-            this.TryCloseAsync();
-        }
+        public void CancelButton() => this.TryCloseAsync();
     }
 }

@@ -38,10 +38,10 @@
         <TextBox Name="ProjectNameTextBox" FontSize="10" Grid.ColumnSpan="4" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Width="170" Height="16"/>
 
         <TextBox Name="DescriptionTextBox"
-            Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="2" Grid.RowSpan="2"
+            Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="2" Grid.RowSpan="4"
             FontSize="10"
                  AcceptsReturn = "True"
-                 TextWrapping="Wrap"/>
+                 TextWrapping="Wrap" Margin="0,30,0,26.333"/>
 
         <Button x:Name="AcceptButton" 
                 VerticalAlignment="Bottom"

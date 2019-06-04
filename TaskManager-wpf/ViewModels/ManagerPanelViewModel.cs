@@ -1,8 +1,9 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
-    using Caliburn.Micro;
     using System.Collections.Generic;
+    using Caliburn.Micro;
     using TaskManager.Models;
+    using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
 
     public class ManagerPanelViewModel : Conductor<IScreen>.Collection.OneActive
@@ -26,6 +27,16 @@
         public string SelectedProjectsList { get; set; }
 
         public IEnumerable<Project> Projects { get; set; }
+
+        public void GeneratePdfButton()
+        {
+            if (this.SelectedProjectsList == null)
+            {
+                Show.ErrorBox("Wybierz projekt!");
+            }
+
+            //todo
+        }
 
         public void ExitButton() => this.TryCloseAsync();
     }

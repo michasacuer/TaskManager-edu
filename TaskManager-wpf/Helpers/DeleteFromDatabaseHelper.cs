@@ -4,12 +4,21 @@
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Services;
 
-    public class DeleteProjectHelper
+    public class DeleteFromDatabaseHelper
     {
-        public async void DeleteProjectFromDatabase(Project project)
+        public async void DeleteProject(Project project)
         {
             var httpDataService = new HttpDataService();
             await httpDataService.Delete(project, project.Id);
+
+            await Repository.Instance.FetchAll();
+        }
+
+        public async void DeleteTask(Task task)
+        {
+            var httpDataService = new HttpDataService();
+            await httpDataService.Delete(task, task.Id);
+
             await Repository.Instance.FetchAll();
         }
     }

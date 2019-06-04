@@ -1,5 +1,6 @@
 ﻿namespace TaskManager_WebApi.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,13 @@
         public IEnumerable<EndedTask> GetEndedTasks()
         {
             return this.endedTaskService.GetList();
+        }
+
+        [HttpGet("SP")]
+        [Authorize(Roles = "Manager")]
+        public IEnumerable<EndedTask> GetEndedTasksWithStoryPoints()
+        {
+            throw new NotImplementedException();
         }
     }
 }

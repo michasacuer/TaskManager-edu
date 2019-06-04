@@ -241,10 +241,8 @@
     <Compile Include="Helpers\ActiveTaskHelper.cs" />
     <Compile Include="Helpers\AddNewProjectHelper.cs" />
     <Compile Include="Helpers\AddNewTaskHelper.cs" />
-    <Compile Include="Helpers\DeleteProjectHelper.cs" />
-    <Compile Include="Helpers\DeleteTaskHelper.cs" />
-    <Compile Include="Helpers\InfoProjectHelper.cs" />
-    <Compile Include="Helpers\InfoTaskHelper.cs" />
+    <Compile Include="Helpers\DeleteFromDatabaseHelper.cs" />
+    <Compile Include="Helpers\InfoHelper.cs" />
     <Compile Include="Helpers\LoginHelper.cs" />
     <Compile Include="Helpers\RegistrationHelper.cs" />
     <Compile Include="Helpers\TaskManagerHelper.cs" />

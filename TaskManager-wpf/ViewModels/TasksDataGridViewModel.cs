@@ -1,8 +1,8 @@
 ﻿namespace TaskManager.WPF.ViewModels
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Caliburn.Micro;
+    using TaskManager.Models;
     using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Services;
@@ -11,12 +11,12 @@
     {
         public TasksDataGridViewModel()
         {
-            this.Tasks = (List<TaskManager.Models.Task>)Repository.Instance.Tasks;
+            this.Tasks = (List<Task>)Repository.Instance.Tasks;
         }
 
-        public List<TaskManager.Models.Task> Tasks { get; set; }
+        public List<Task> Tasks { get; set; }
 
-        public async void InfoButton(TaskManager.Models.Task task)
+        public void InfoButton(Task task)
         {
             Show.InfoTaskBox(task);
 
@@ -31,7 +31,7 @@
 
         public async void DeleteButton(TaskManager.Models.Task task)
         {
-            if (LoggedUser.Instance.HavePermissionToDelete())
+            if (LoggedUser.Instance.IsManager())
             {
                 Show.DeleteTaskBox(task);
                  

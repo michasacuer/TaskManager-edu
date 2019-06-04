@@ -34,6 +34,8 @@
 
         public int? StoryPoints { get; set; }
 
+        public int? SpentStoryPoints { get; set; }
+
         public DateTime? StartTime { get; set; }
 
         public DateTime? EndTime { get; set; }

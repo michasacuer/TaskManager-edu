@@ -31,16 +31,16 @@
 
         public void SaveButton()
         {
-            if (LoggedUser.Instance.HavePermissionToDelete())
+            if (LoggedUser.Instance.IsManager())
             {
                 this.projectToEdit.Name = this.NameTextBox;
                 this.projectToEdit.Tag = this.TagTextBox;
                 this.projectToEdit.Description = this.DescriptionTextBox;
 
-                var helper = new InfoProjectHelper();
-                helper.EditProject(this.projectToEdit);
+                var helper = new InfoHelper();
+                helper.EditProject(this.editedProject);
 
-                Show.SuccesBox("Pomyslnie edytowano projekt.");
+                Show.SuccesBox("Pomyślnie edytowano projekt.");
                 this.TryCloseAsync();
             }
             else
@@ -49,9 +49,6 @@
             }
         }
 
-        public void CancelButton()
-        {
-            this.TryCloseAsync();
-        }
+        public void CancelButton() => this.TryCloseAsync();
     }
 }
