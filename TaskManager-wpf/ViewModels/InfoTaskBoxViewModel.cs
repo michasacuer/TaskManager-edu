@@ -7,11 +7,11 @@
 
     public class InfoTaskBoxViewModel : Screen
     {
-        private readonly Task editedTask;
+        private readonly Task taskToEdit;
 
         public InfoTaskBoxViewModel(Task task)
         {
-            this.editedTask = task;
+            this.taskToEdit = task;
             this.NavbarTaskName = task.Name;
             this.IdTextBox = task.Id.ToString();
             this.NameTextBox = task.Name;
@@ -42,11 +42,11 @@
         {
             if (LoggedUser.Instance.HavePermissionToDelete())
             {
-                this.editedTask.Name = this.NameTextBox;
-                this.editedTask.Description = this.DescriptionTextBox;
+                this.taskToEdit.Name = this.NameTextBox;
+                this.taskToEdit.Description = this.DescriptionTextBox;
 
                 var helper = new InfoTaskHelper();
-                helper.EditTask(this.editedTask);
+                helper.EditTask(this.taskToEdit);
 
                 Show.SuccesBox("Pomyslnie edytowano zadanie.");
                 this.TryCloseAsync();
