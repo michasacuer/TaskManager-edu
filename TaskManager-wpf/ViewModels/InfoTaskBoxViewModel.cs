@@ -46,7 +46,7 @@
                 this.taskToEdit.Description = this.DescriptionTextBox;
 
                 var helper = new InfoHelper();
-                helper.EditTask(this.editedTask);
+                helper.EditTask(this.taskToEdit);
 
                 Show.SuccesBox("Pomyslnie edytowano zadanie.");
                 this.TryCloseAsync();

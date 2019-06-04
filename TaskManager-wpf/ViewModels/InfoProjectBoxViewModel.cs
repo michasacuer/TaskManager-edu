@@ -38,7 +38,7 @@
                 this.projectToEdit.Description = this.DescriptionTextBox;
 
                 var helper = new InfoHelper();
-                helper.EditProject(this.editedProject);
+                helper.EditProject(this.projectToEdit);
 
                 Show.SuccesBox("Pomyślnie edytowano projekt.");
                 this.TryCloseAsync();

@@ -16,7 +16,7 @@
 
         public List<Task> Tasks { get; set; }
 
-        public void InfoButton(Task task)
+        public async void InfoButton(Task task)
         {
             Show.InfoTaskBox(task);
 
@@ -34,7 +34,7 @@
             if (LoggedUser.Instance.IsManager())
             {
                 Show.DeleteTaskBox(task);
-                 
+
                 await Repository.Instance.FetchAll();
 
                 var httpDataService = new HttpDataService();
