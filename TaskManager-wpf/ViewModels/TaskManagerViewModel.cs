@@ -79,7 +79,9 @@
             if (taskToActivate != null)
             {
                 LoggedUser.Instance.AttachTaskToUser(taskToActivate);
+
                 await this.TryCloseAsync();
+
                 this.vm.IsActiveTaskButtonVisible = Visibility.Visible;
                 this.vm.NotifyOfPropertyChange(() => this.vm.IsActiveTaskButtonVisible);
             }
