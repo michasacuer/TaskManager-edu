@@ -62,6 +62,7 @@
             }
 
             this.taskService.Edit(task);
+            this.notificationService.SendNotification($"Zedytowano task - {task.Name}");
 
             return this.Ok(task);
         }
@@ -76,6 +77,8 @@
                 return this.NotFound();
             }
 
+            this.notificationService.SendNotification(userId, $" zaczął pracę nad taskiem ID: {task.Id}");
+
             return this.Ok(task);
         }
 
@@ -84,7 +87,7 @@
         public IActionResult EndTaskByUser([FromRoute] int taskId, [FromRoute] string userId)
         {
             this.taskService.EndTaskByUser(taskId, userId);
-            this.notificationService.SendNotification(userId, $" Zakończył zadanie ID: {taskId}");
+            this.notificationService.SendNotification(userId, $" zakończył zadanie ID: {taskId}");
 
             return this.Ok();
         }
@@ -121,6 +124,7 @@
             }
 
             this.taskService.Remove(task);
+            this.notificationService.SendNotification($"Usunięto task - {task.Name}");
 
             return this.Ok(task);
         }

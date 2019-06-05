@@ -49,6 +49,8 @@
             }
 
             this.projectService.Edit(project);
+            this.notificationService.SendNotification($"Zedytowanie projekt - {project.Name}");
+
 
             return this.Ok(project);
         }
@@ -63,6 +65,7 @@
             }
 
             this.projectService.Add(project);
+            this.notificationService.SendNotification($"Dodano projekt - {project.Name}");
 
             return this.Ok(project);
         }
@@ -83,6 +86,7 @@
             }
 
             this.projectService.Remove(project);
+            this.notificationService.SendNotification($"Usunięt projekt - {project.Name}");
 
             return this.Ok(project);
         }

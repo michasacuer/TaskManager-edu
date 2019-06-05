@@ -1,5 +1,6 @@
 ﻿namespace TaskManager.WPF.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Caliburn.Micro;
@@ -34,6 +35,15 @@
             {
                 this.NotificationsMessages.Add(notification.Message);
             }
+        }
+
+        public async Task FetchUpdates()
+        {
+            var httpDataService = new HttpDataService();
+
+            this.Projects = await httpDataService.Get<TaskManager.Models.Project>();
+            this.Tasks = await httpDataService.Get<TaskManager.Models.Task>();
+            this.EndedTasks = await httpDataService.Get<TaskManager.Models.EndedTask>();
         }
     }
 }

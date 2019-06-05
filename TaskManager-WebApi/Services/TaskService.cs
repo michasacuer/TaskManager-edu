@@ -36,6 +36,11 @@
         {
             var task = this.GetItem(taskId);
 
+            if (task == null)
+            {
+                return null;
+            }
+
             task.ApplicationUserId = userId;
             task.StartTime = DateTime.Now;
 
