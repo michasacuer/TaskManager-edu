@@ -259,5 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
 /Settings.StyleCop
 /TaskManager-wpf/Services/UrlBuilder.cs
+\TaskManager-wpf\Services\UrlBuilder.cs
