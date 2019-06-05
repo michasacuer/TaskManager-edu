@@ -3,6 +3,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Caliburn.Micro;
+    using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Services;
 
@@ -31,8 +32,17 @@
             var task = project.Tasks.Single(p => p.Name == selectedTasksList.Substring(0, selectedTasksList.IndexOf(" ")));
             task.ApplicationUserId = loggedUser.User.Id;
 
-            var httpDataService = new HttpDataService();
-            return await httpDataService.Put(task, task.Id.ToString(), loggedUser.User.Id);
+            try
+            {
+                var httpDataService = new HttpDataService();
+                return await httpDataService.Put(task, task.Id.ToString(), loggedUser.User.Id);
+            }
+            catch (InternalServerErrorException exception)
+            {
+                Show.ErrorBox(exception.Message);
+                await Repository.Instance.FetchUpdates();
+                return null;
+            }
         }
     }
 }

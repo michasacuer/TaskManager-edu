@@ -102,7 +102,6 @@
             }
 
             this.taskService.Add(task);
-
             this.notificationService.SendNotification($"Dodano task - {task.Name}");
 
             return this.Ok(task);

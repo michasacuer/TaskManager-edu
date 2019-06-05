@@ -228,6 +228,7 @@
     </Compile>
     <Compile Include="Exceptions\ExternalLoginException.cs" />
     <Compile Include="Exceptions\FormValidationException.cs" />
+    <Compile Include="Exceptions\InternalServerErrorException.cs" />
     <Compile Include="Exceptions\RegistrationException.cs" />
     <Compile Include="Helpers\ActiveTaskHelper.cs" />
     <Compile Include="Helpers\AddNewProjectHelper.cs" />
@@ -237,6 +238,7 @@
     <Compile Include="Helpers\LoginHelper.cs" />
     <Compile Include="Helpers\RegistrationHelper.cs" />
     <Compile Include="Helpers\TaskManagerHelper.cs" />
+    <Compile Include="InternalServerException.cs" />
     <Compile Include="Models\ActiveTask.cs" />
     <Compile Include="Models\WPFApplicationUser.cs" />
     <Compile Include="Models\BindingModels\LoginBindingModel.cs" />

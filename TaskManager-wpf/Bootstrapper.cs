@@ -1,11 +1,10 @@
 ﻿namespace TaskManager.WPF
 {
-    using System.Net.Http;
     using System.Windows;
     using Caliburn.Micro;
+    using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Helpers;
     using TaskManager.WPF.Services;
-    using TaskManager.WPF.Strings;
     using TaskManager.WPF.ViewModels;
 
     internal class Bootstrapper : BootstrapperBase
@@ -22,11 +21,11 @@
             try
             {
                 await client.TestServerConnection();
-                this.DisplayRootViewFor<MainWindowViewModel>();
+                await this.DisplayRootViewFor<MainWindowViewModel>();
             }
-            catch (HttpRequestException)
+            catch (InternalServerErrorException exception)
             {
-                Show.ErrorBox(Error.NoServerConnection);
+                Show.ErrorBox(exception.Message);
             }
         }
     }

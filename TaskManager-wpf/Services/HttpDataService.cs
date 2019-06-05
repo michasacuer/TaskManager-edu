@@ -26,10 +26,14 @@
 
         private HttpClient HttpClient { get; set; }
 
-        public async System.Threading.Tasks.Task TestServerConnection()
+        public async Task TestServerConnection()
         {
-            HttpResponseMessage response
-                = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint("Test"));
+            HttpResponseMessage response = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint("Test"));
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new InternalServerErrorException("Brak połączenia z serwerem!");
+            }
         }
 
         public async Task<WPFApplicationUser> Login(LoginBindingModel login)
@@ -81,7 +85,7 @@
             }
             else
             {
-                return default(IEnumerable<TObject>);
+                return default;
             }
         }
 
@@ -98,7 +102,7 @@
             }
             else
             {
-                return default(TObject);
+                return default;
             }
         }
 
@@ -115,7 +119,7 @@
             }
             else
             {
-                return default(TObject);
+                return default;
             }
         }
 
@@ -147,14 +151,21 @@
 
             HttpResponseMessage response = await this.HttpClient.PutAsJsonAsync(UrlBuilder.BuildEndpoint(controller, routes), data);
 
-            return await response.Content.ReadAsAsync<TObject>();
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<TObject>();
+            }
+            else
+            {
+                throw new InternalServerErrorException("Błąd serwera! Pobieranie danych...");
+            }
         }
 
-        public async System.Threading.Tasks.Task Delete<TObject>(TObject data, int id)
+        public async Task Delete<TObject>(TObject data, int id)
         {
             string controller = typeof(TObject).Name;
 
-            HttpResponseMessage response = await this.HttpClient.DeleteAsync(UrlBuilder.BuildEndpoint(controller, id));
+            await this.HttpClient.DeleteAsync(UrlBuilder.BuildEndpoint(controller, id));
         }
     }
 }

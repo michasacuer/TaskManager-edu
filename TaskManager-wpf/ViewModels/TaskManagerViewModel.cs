@@ -74,14 +74,18 @@
             }
 
             var helper = new TaskManagerHelper();
-            LoggedUser.Instance.AttachTaskToUser(await helper.GetTaskToActivate(LoggedUser.Instance, this.SelectedTasksList, this.SelectedProjectsList));
+            var taskToActivate = await helper.GetTaskToActivate(LoggedUser.Instance, this.SelectedTasksList, this.SelectedProjectsList);
 
-            await this.TryCloseAsync();
-
-            if (LoggedUser.Instance.GetUserTask().IsTaskTakenByUser())
+            if (taskToActivate != null)
             {
+                LoggedUser.Instance.AttachTaskToUser(taskToActivate);
+                await this.TryCloseAsync();
                 this.vm.IsActiveTaskButtonVisible = Visibility.Visible;
                 this.vm.NotifyOfPropertyChange(() => this.vm.IsActiveTaskButtonVisible);
+            }
+            else
+            {
+                await this.TryCloseAsync();
             }
         }
 
