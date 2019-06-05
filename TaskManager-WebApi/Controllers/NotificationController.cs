@@ -23,5 +23,12 @@
         {
             return this.notificationService.GetList();
         }
+
+        [HttpGet("Delete")]
+        public IActionResult DeleteAllNotifications()
+        {
+            this.notificationService.DeleteAllNotifications();
+            return this.Ok();
+        }
     }
 }

@@ -26,9 +26,10 @@
                 .WithUrl(UrlBuilder.BuildEndpoint("Notifications"))
                 .Build();
 
-            hubConnection.On<string>("ReciveServerUpdate", message =>
+            hubConnection.On<string>("ReciveServerUpdate", async message =>
             {
                 Repository.Instance.NotificationsMessages.Add(message);
+                await Repository.Instance.FetchUpdates();
 
                 if (this.vm != null)
                 {

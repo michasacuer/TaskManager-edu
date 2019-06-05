@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <RootNamespace>TaskManager.WebApi</RootNamespace>
+    <UserSecretsId>e21d1e04-673e-46d6-a9da-12df15d110fc</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

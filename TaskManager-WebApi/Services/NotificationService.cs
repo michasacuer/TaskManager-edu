@@ -25,6 +25,12 @@
             this.accountService = accountService;
         }
 
+        public void DeleteAllNotifications()
+        {
+            this.context.Notifications.RemoveRange(this.context.Notifications);
+            this.context.SaveChanges();
+        }
+
         public IEnumerable<Notification> GetList()
         {
             return this.context.Notifications.ToList();
