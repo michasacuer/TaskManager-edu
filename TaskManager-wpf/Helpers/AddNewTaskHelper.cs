@@ -44,10 +44,9 @@
                 };
 
                 var httpDataService = new HttpDataService();
-
                 var taskFromResponse = await httpDataService.Post(newTask);
 
-                Repository.Instance.FetchAll();
+                await Repository.Instance.FetchUpdates();
 
                 validationResult.Message = "Task dodano pomyślnie!";
             }

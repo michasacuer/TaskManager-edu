@@ -21,10 +21,9 @@
                 };
 
                 var httpDataService = new HttpDataService();
+                await httpDataService.Post(newProject);
 
-                var projectFromResponse = await httpDataService.Post(newProject);
-
-                Repository.Instance.FetchAll();
+                await Repository.Instance.FetchUpdates();
 
                 validationResult.Message = "Projekt dodano pomyślnie!";
             }
