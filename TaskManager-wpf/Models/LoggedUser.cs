@@ -13,7 +13,7 @@
 
         public void LoginUserToApp(WPFApplicationUser user) => this.User = user;
 
-        public void AttachTaskToUser(Task task) => this.ActiveTask.Task = task;
+        public void AttachTaskToUser(Task task) => this.ActiveTask.AttachTask(task);
 
         public ActiveTask GetUserTask() => this.ActiveTask;
 

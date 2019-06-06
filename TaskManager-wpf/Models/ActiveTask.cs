@@ -15,6 +15,8 @@
 
         public string GetTaskPriority() => this.Task.Priority.ToString();
 
+        public void AttachTask(TaskManager.Models.Task task) => this.Task = task;
+
         public bool IsTaskTakenByUser() => this.Task != null;
 
         public async Task<bool> IsUserHaveActiveTask(string userId)
