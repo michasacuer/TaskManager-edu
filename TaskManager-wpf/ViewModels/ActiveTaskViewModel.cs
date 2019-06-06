@@ -18,9 +18,9 @@
 
             this.activeTask = LoggedUser.Instance.GetUserTask();
 
-            this.ActiveTaskTextBlock = $"{this.activeTask.Task.Name}, Priorytet: {this.activeTask.Task.Priority}";
-            this.DescriptionTextBlock = this.activeTask.Task.Description;
-            this.TimerActiveTaskTextBlock = this.activeTask.Task.StartTime.ToString();
+            this.ActiveTaskTextBlock = $"{this.activeTask.GetTaskName()}, Priorytet: {this.activeTask.GetTaskPriority()}";
+            this.DescriptionTextBlock = this.activeTask.GetTaskDescription();
+            this.TimerActiveTaskTextBlock = this.activeTask.GetTaskStartTime();
         }
 
         public string ActiveTaskTextBlock { get; set; }

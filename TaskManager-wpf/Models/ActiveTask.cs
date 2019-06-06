@@ -5,7 +5,15 @@
 
     public class ActiveTask
     {
-        public TaskManager.Models.Task Task { get; set; }
+        private TaskManager.Models.Task Task { get; set; }
+
+        public string GetTaskName() => this.Task.Name;
+
+        public string GetTaskDescription() => this.Task.Description;
+
+        public string GetTaskStartTime() => this.Task.StartTime.ToString();
+
+        public string GetTaskPriority() => this.Task.Priority.ToString();
 
         public bool IsTaskTakenByUser() => this.Task != null;
 
