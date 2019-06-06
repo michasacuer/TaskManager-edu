@@ -56,7 +56,7 @@
 
             this.context.Notifications.Add(new Notification
             {
-                Message = message
+                Message = userFullname + " " + message
             });
 
             this.context.SaveChanges();
