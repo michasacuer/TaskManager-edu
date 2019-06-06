@@ -165,7 +165,12 @@
         {
             string controller = typeof(TObject).Name;
 
-            await this.HttpClient.DeleteAsync(UrlBuilder.BuildEndpoint(controller, id));
+            HttpResponseMessage response = await this.HttpClient.DeleteAsync(UrlBuilder.BuildEndpoint(controller, id));
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new InternalServerErrorException("Błąd serwera! Pobieranie danych...");
+            }
         }
     }
 }
