@@ -19,5 +19,7 @@
         public string Description { get; set; }
 
         public virtual List<Task> Tasks { get; set; }
+
+        public virtual List<EndedTask> EndedTasks { get; set; }
     }
 }
