@@ -9,7 +9,6 @@
     using TaskManager.WPF.Exceptions;
     using TaskManager.WPF.Models;
     using TaskManager.WPF.Models.BindingModels;
-    using TaskManager.WPF.Strings;
 
     public class HttpDataService
     {
@@ -19,8 +18,7 @@
 
             if (LoggedUser.Instance.User != null)
             {
-                this.HttpClient.DefaultRequestHeaders.Authorization
-                        = new AuthenticationHeaderValue("Bearer", LoggedUser.Instance.User.Bearer);
+                this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", LoggedUser.Instance.User.Bearer);
             }
         }
 
@@ -38,37 +36,27 @@
 
         public async Task<WPFApplicationUser> Login(LoginBindingModel login)
         {
-            HttpResponseMessage response
-                = await this.HttpClient.PostAsJsonAsync(UrlBuilder.BuildEndpoint("Account", "Login"), login);
-
-            string statusCode = response.StatusCode.ToString();
+            HttpResponseMessage response = await this.HttpClient.PostAsJsonAsync(UrlBuilder.BuildEndpoint("Account", "Login"), login);
 
             WPFApplicationUser account = JsonConvert.DeserializeObject<WPFApplicationUser>(await response.Content.ReadAsStringAsync());
 
-            if (statusCode.Equals("Unauthorized"))
-            {
-                throw new ExternalLoginException(Error.ExternalLogin);
-            }
-            else
+            if (response.IsSuccessStatusCode)
             {
                 return account;
             }
-        }
-
-        public async Task<string> Register(RegistrationBindingModel account)
-        {
-            HttpResponseMessage response
-                = await this.HttpClient.PostAsJsonAsync(UrlBuilder.BuildEndpoint("Account", "Register"), account);
-
-            string statusCode = response.StatusCode.ToString();
-
-            if (statusCode.Equals("Conflict"))
-            {
-                throw new RegistrationException(Error.Registration);
-            }
             else
             {
-                return statusCode;
+                throw new ExternalLoginException("Błędne dane logowania!");
+            }
+        }
+
+        public async Task Register(RegistrationBindingModel account)
+        {
+            HttpResponseMessage response = await this.HttpClient.PostAsJsonAsync(UrlBuilder.BuildEndpoint("Account", "Register"), account);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new RegistrationException("Błąd serwera, sprawdź formularz!");
             }
         }
 

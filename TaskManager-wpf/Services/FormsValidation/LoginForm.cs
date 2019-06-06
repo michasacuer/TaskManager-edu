@@ -1,7 +1,6 @@
 ﻿namespace TaskManager.WPF.Services.FormsValidation
 {
     using TaskManager.WPF.Models.BindingModels;
-    using TaskManager.WPF.Strings;
 
     public static class LoginForm
     {
@@ -10,17 +9,17 @@
             var result = new ValidationResult();
             result.IsValid = true;
 
-            result.Message = Succes.Login;
+            result.Message = "Zalogowano pomyślnie!";
 
             if (loginForm.UserName == null || loginForm.Password == null)
             {
                 result.IsValid = false;
-                result.Message = Error.FormEmpty;
+                result.Message = "Wypełnij wszystkie pola!";
             }
             else if (loginForm.UserName.Contains(" ") || loginForm.Password.Contains(" "))
             {
                 result.IsValid = false;
-                result.Message = Error.UnallowedChars;
+                result.Message = "Niedozwolone znaki w polu Nazwisko!";
             }
 
             return result;

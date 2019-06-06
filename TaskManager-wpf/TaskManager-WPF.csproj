@@ -255,8 +255,6 @@
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Services\UrlBuilder.cs" />
     <Compile Include="Services\FormsValidation\RegistrationForm.cs" />
-    <Compile Include="Strings\Error.cs" />
-    <Compile Include="Strings\Succes.cs" />
     <Compile Include="ViewModels\ActiveTaskViewModel.cs" />
     <Compile Include="ViewModels\AddNewProjectViewModel.cs" />
     <Compile Include="ViewModels\AddNewViewModel.cs" />

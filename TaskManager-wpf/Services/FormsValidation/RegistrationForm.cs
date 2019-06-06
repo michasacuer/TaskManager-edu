@@ -3,7 +3,6 @@
     using System.ComponentModel.DataAnnotations;
     using TaskManager.Models.Enums;
     using TaskManager.WPF.Models.BindingModels;
-    using TaskManager.WPF.Strings;
 
     public static class RegistrationForm
     {
@@ -24,33 +23,33 @@
                 accountForm.LastName == null || accountForm.Email == null)
             {
                 result.IsValid = false;
-                result.Message = Error.FormEmpty;
+                result.Message = "Wypełnij wszystkie pola!";
 
                 return result;
             }
             else if (IsStringHaveSpaces(accountForm.UserName))
             {
                 result.IsValid = false;
-                result.Message = Error.UnallowedCharsInLoginLabel;
+                result.Message = "Niedozwolone znaki w polu Login!";
 
                 return result;
             }
             else if (!IsEmailValid(accountForm.Email))
             {
                 result.IsValid = false;
-                result.Message = Error.WrongEmail;
+                result.Message = "Błędny adres Email!";
 
                 return result;
             }
             else if (IsStringHaveSpaces(accountForm.LastName))
             {
                 result.IsValid = false;
-                result.Message = Error.UnallowrdCharsInLastnameLabel;
+                result.Message = "Niedozwolone znaki w polu Nazwisko!";
 
                 return result;
             }
 
-            result.Message = Succes.Registration;
+            result.Message = "Zarejestrowano pomyślnie!";
 
             return result;
         }
@@ -62,7 +61,7 @@
             if (!isManager && !isDeveloper && !isViewer)
             {
                 result.IsValid = false;
-                result.Message = Error.SetRole;
+                result.Message = "Wybierz stanowisko!";
 
                 return result;
             }
