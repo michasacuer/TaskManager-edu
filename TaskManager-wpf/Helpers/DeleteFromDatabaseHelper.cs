@@ -7,29 +7,16 @@
 
     public class DeleteFromDatabaseHelper
     {
-        public async void DeleteProject(Project project)
-        {
-            try
-            {
-                var httpDataService = new HttpDataService();
-                await httpDataService.Delete(project, project.Id);
-            }
-            catch (InternalServerErrorException exception)
-            {
-                Show.ErrorBox(exception.Message);
-            }
-            finally
-            {
-                await Repository.Instance.FetchUpdates();
-            }
-        }
+        public void DeleteProject(Project project) => this.DeleteItemFromDatabase(project, project.Id);
 
-        public async void DeleteTask(Task task)
+        public void DeleteTask(Task task) => this.DeleteItemFromDatabase(task, task.Id);
+
+        private async void DeleteItemFromDatabase<TObject>(TObject item, int itemId)
         {
             try
             {
                 var httpDataService = new HttpDataService();
-                await httpDataService.Delete(task, task.Id);
+                await httpDataService.Delete(item, itemId);
             }
             catch (InternalServerErrorException exception)
             {
