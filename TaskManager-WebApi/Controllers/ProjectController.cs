@@ -43,9 +43,10 @@
                 return this.BadRequest(this.ModelState);
             }
 
-            if (id != project.Id)
+            var projectToEdit = this.projectService.GetItem(id);
+            if (id != project.Id || projectToEdit == null)
             {
-                return this.BadRequest();
+                return this.NotFound();
             }
 
             this.projectService.Edit(project);

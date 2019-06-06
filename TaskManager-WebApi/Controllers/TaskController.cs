@@ -56,9 +56,10 @@
                 return this.BadRequest(this.ModelState);
             }
 
-            if (id != task.Id)
+            var taskToEdit = this.taskService.GetItem(id);
+            if (id != task.Id || taskToEdit == null)
             {
-                return this.BadRequest();
+                return this.NotFound();
             }
 
             this.taskService.Edit(task);
