@@ -11,7 +11,7 @@
 
         public void EditProject(Project project) => this.EditItemInDatabase(project, project.Id);
 
-        public async void EditItemInDatabase<TObject>(TObject item, int itemId)
+        private async void EditItemInDatabase<TObject>(TObject item, int itemId)
         {
             try
             {
