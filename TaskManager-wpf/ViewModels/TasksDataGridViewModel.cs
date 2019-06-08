@@ -19,7 +19,7 @@
         {
             Show.InfoTaskBox(task);
 
-            this.Tasks = (List<Task>)Repository.Instance.Projects;
+            this.Tasks = (List<Task>)Repository.Instance.Tasks;
             this.NotifyOfPropertyChange(() => this.Tasks);
         }
 
