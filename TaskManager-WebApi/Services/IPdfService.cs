@@ -2,6 +2,6 @@
 {
     public interface IPdfService
     {
-        string GeneratePdf(int projectId);
+        string RenderViewToHtml(int projectId);
     }
 }
