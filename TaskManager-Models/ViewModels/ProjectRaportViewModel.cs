@@ -6,9 +6,9 @@
     {
         public Project Project { get; set; }
 
-        public List<Task> Tasks { get; set; }
+        public List<Task> ProjectTasks { get; set; }
 
-        public List<EndedTask> EndedTasks { get; set; }
+        public List<EndedTask> ProjectEndedTasks { get; set; }
 
         public int SpentStoryPoints { get; set; }
 

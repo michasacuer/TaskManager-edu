@@ -8,3 +8,12 @@
 <br />
 <4h>Hello World!</4h>
 
+@{ 
+    foreach(var item in Model.Project.Tasks)
+    {
+        <li>
+            @item.Name
+        </li>
+    }
+}
+

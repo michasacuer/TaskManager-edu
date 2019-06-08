@@ -50,7 +50,8 @@
                 {
                     Model = new ProjectRaportViewModel
                     {
-                        Project = project
+                        Project = project,
+                        ProjectTasks = project.Tasks
                     }
                 };
 

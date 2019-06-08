@@ -33,7 +33,7 @@
 
         public Project GetItem(int id)
         {
-            var project = this.context.Projects.Find(id);
+            var project = this.context.Projects.Include(p => p.Tasks).Include(p => p.EndedTasks).SingleOrDefault(p => p.Id == id);
 
             if (project != null)
             {
@@ -45,7 +45,7 @@
 
         public IEnumerable<Project> GetList()
         {
-            return this.context.Projects.Include(project => project.Tasks).ToList();
+            return this.context.Projects.Include(p => p.Tasks).Include(p => p.EndedTasks).ToList();
 
         }
 
