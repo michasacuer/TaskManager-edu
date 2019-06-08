@@ -16,9 +16,10 @@
         }
 
         [HttpGet("{projectId}")]
-        public string GetRaportFromProject([FromRoute] int projectId)
+        public IActionResult GetRaportFromProject([FromRoute] int projectId)
         {
-            return this.pdfService.RenderViewToHtml(projectId);
+            var html = this.pdfService.RenderViewToHtml(projectId);
+            return this.Content(html, "text/html", Encoding.UTF8);
         }
     }
 }
