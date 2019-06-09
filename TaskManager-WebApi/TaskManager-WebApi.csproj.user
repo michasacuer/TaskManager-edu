@@ -11,5 +11,6 @@
     <WebStackScaffolding_DbContextTypeFullName>TaskManager.WebApi.Models.TaskManagerDbContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <NameOfLastUsedPublishProfile>TaskManager-edu - Web Deploy</NameOfLastUsedPublishProfile>
+    <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
 </Project>
