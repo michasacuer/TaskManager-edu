@@ -51,7 +51,8 @@
                     Model = new ProjectRaportViewModel
                     {
                         Project = project,
-                        ProjectTasks = project.Tasks
+                        ProjectTasks = project.Tasks,
+                        ProjectEndedTasks = project.EndedTasks,
                     }
                 };
 

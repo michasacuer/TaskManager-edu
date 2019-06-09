@@ -1,74 +1,99 @@
 ﻿@model TaskManager.Models.ViewModels.ProjectRaportViewModel
 
-@{
-    Layout = "~/PdfTemplate/Layout.cshtml";
-}
+<!DOCTYPE html>
+<html>
+<head>
 
+    <style type="text/css">
+        table, td, tr, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+            background-color: #ffc;
+            padding:3px;
+        }
+        body{
+            font-size:20px
 
-    <h2>
-        Data: @DateTime.Now
-    </h2>
-    <h1>
-        Nazwa Projektu: @Model.Project.Name
-    </h1>
-
-<div style="width:600px; height:auto; margin:0px auto; float:left;">
-
-    <h1>Taski niezakończone</h1>
-
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>NAZWA</th>
-            <th>PRIORYTET</th>
-            <th>STORY POINTY</th>
-            <th>DATA ROZPOCZĘCIA</th>
-        </tr>
-        @foreach (var item in Model.ProjectTasks)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.Priority</td>
-                <td>@item.StoryPoints</td>
-                <td>@item.StartTime.ToString()</td>
-                
-            </tr>
+        }
+        th{
+            background-color:cornflowerblue
         }
 
+    </style>
+</head>
+<body>
 
-    </table>
+    <div style="border:solid; width:1000px; padding:10px" >
 
-</div>
 
-<div style="width:600px; height:auto; margin:0px auto; float:left;">
-    <h1>Taski zakończone</h1>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>NAZWA</th>
-            <th>PRIORYTET</th>
-            <th>DATA ZAKOŃCZENIA</th>
-        </tr>
 
-        @*@foreach (var item in Model.ProjectEndedTasks)
-        {
+        <h2>
+            Data: @DateTime.Now
+        </h2>
+        <h1>
+            Nazwa Projektu: @Model.Project.Name
+        </h1>
+    </div>
+
+    <div style="width:500px; height:auto; margin:0px auto; float:left;">
+
+        <h1>Taski niezakończone</h1>
+
+        <table>
             <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.StoryPoints</td>
-                <td>@item.StartTime</td>
+                <th>ID</th>
+                <th>NAZWA</th>
+                <th>PRIORYTET</th>
+                <th>STORY POINTY</th>
+
             </tr>
 
+            @foreach (var item in Model.ProjectTasks)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Priority</td>
+                    <td>@item.StoryPoints</td>
+                </tr>
+            }
 
-        }*@
 
-    </table>
+        </table>
+
+    </div>
+
+    <div style="width:500px; height:auto; margin:0px auto; float:left;">
+        <h1>Taski zakończone</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>NAZWA</th>
+                <th>PRIORYTET</th>
+                <th>STORY POINTY</th>
+
+            </tr>
+
+            @foreach (var item in Model.ProjectEndedTasks)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Priority</td>
+                    <td> </td>
+
+                </tr>
+
+
+            }
+
+        </table>
 
 
 
-</div>
-    
+    </div>
+</body>
+</html>
 
 
 
