@@ -67,6 +67,25 @@
             var task = this.context.Tasks.Single(t => t.Id == taskId && t.ApplicationUserId == userId);
 
             task.EndTime = DateTime.Now;
+            int days = (int)(task.EndTime - task.StartTime).Value.TotalDays;
+            int storyPoints, hours;
+
+            if (days == 1)
+            {
+                storyPoints = (int)(task.EndTime - task.StartTime).Value.TotalHours;
+            }
+            else
+            {
+                storyPoints = (days - 2) * 8;
+
+                hours = (task.StartTime.Value.Hour < 8) ? 8 : (16 - task.StartTime.Value.Hour);
+                hours = (hours < 0) ? 0 : hours;
+                storyPoints += hours;
+
+                hours = (task.EndTime.Value.Hour > 16) ? 8 : (task.EndTime.Value.Hour - 8);
+                hours = (task.EndTime.Value.Hour < 8) ? 0 : hours;
+                storyPoints += hours;
+            }
 
             var endedTask = new EndedTask
             {
@@ -76,7 +95,7 @@
                 Name = task.Name,
                 Description = task.Description,
                 Priority = task.Priority,
-                StoryPoints = task.StoryPoints,
+                StoryPoints = storyPoints,
                 StartTime = task.StartTime,
                 EndTime = task.EndTime
             };
