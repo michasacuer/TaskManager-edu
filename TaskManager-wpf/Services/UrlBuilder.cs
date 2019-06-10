@@ -4,9 +4,9 @@
 
     public static class UrlBuilder
     {
-        public static string BaseUrl = "https://localhost:44365";
+        //public static string BaseUrl = "https://localhost:44365";
 
-        //public static string BaseUrl = "https://taskmanager-edu.azurewebsites.net";
+        public static string BaseUrl = "https://taskmanager-edu.azurewebsites.net";
 
         public static string BuildEndponit(string controller) => $"{BaseUrl}/{controller}";
 

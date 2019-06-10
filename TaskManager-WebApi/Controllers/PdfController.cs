@@ -1,5 +1,6 @@
 ﻿namespace TaskManager_WebApi.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using TaskManager.Models;
     using TaskManager.WebApi.Services;
@@ -16,6 +17,7 @@
         }
 
         [HttpGet("{projectId}")]
+        [Authorize]
         public IActionResult GetRaportFromProject([FromRoute] int projectId)
         {
             var html = this.pdfService.RenderViewToHtml(projectId);

@@ -29,7 +29,7 @@
         {
             var project = Repository.Instance.Projects.Single(p => p.Name == selectedProjectsList);
 
-            var task = project.Tasks.Single(p => p.Name == selectedTasksList.Substring(0, selectedTasksList.IndexOf(" ")));
+            var task = project.Tasks.Single(p => p.Name == selectedTasksList.Substring(0, selectedTasksList.IndexOf(" -")));
             task.ApplicationUserId = loggedUser.User.Id;
 
             try

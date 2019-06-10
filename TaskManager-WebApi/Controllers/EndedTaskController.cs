@@ -24,12 +24,5 @@
         {
             return this.endedTaskService.GetList();
         }
-
-        [HttpGet("SP")]
-        [Authorize(Roles = "Manager")]
-        public IEnumerable<EndedTask> GetEndedTasksWithStoryPoints()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

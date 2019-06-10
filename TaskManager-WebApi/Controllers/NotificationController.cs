@@ -25,6 +25,7 @@
         }
 
         [HttpGet("Delete")]
+        [Authorize]
         public IActionResult DeleteAllNotifications()
         {
             this.notificationService.DeleteAllNotifications();
