@@ -48,6 +48,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Button Content="Generuj PDF"
@@ -58,10 +59,19 @@
                     Background="#FF085078"
                     Margin="10, 10, 5, 3"/>
 
+            <Button Content="Drukuj raport"
+                    x:Name="PringRaportButton"
+                    Grid.Column="1"
+                    FontSize="10"
+                    Foreground="White" 
+                    BorderThickness="0"  
+                    Background="#FF085078"
+                    Margin="3, 10, 5, 3"/>
+
             <ComboBox FontSize="10"
                       x:Name="ProjectsList"
                       SelectedValuePath="{Binding Path=SelectedProjectsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      Grid.Column="1"
+                      Grid.Column="2"
                       Margin="5, 10, 10, 3"/>
 
         </Grid>
