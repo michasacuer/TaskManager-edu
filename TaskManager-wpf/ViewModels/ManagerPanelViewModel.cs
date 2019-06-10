@@ -33,9 +33,21 @@
             if (this.SelectedProjectsList == null)
             {
                 Show.ErrorBox("Wybierz projekt!");
+                return;
             }
 
-            //todo
+            var fileDialog = new FileDialog();
+            var filepath = fileDialog.OpenSaveFile();
+
+            if (filepath == string.Empty)
+            {
+                Show.ErrorBox("Wybierz nazwę projektu!");
+                return;
+            }
+
+            var helper = new ManagerPanelHelper();
+            helper.GeneratePdf(this.SelectedProjectsList, filepath);
+            Show.SuccesBox("PDF utworzono pomyślnie!");
         }
 
         public void ExitButton() => this.TryCloseAsync();

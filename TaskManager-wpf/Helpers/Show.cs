@@ -1,5 +1,7 @@
 ﻿namespace TaskManager.WPF.Helpers
 {
+    using System;
+    using System.Diagnostics;
     using Caliburn.Micro;
     using TaskManager.Models;
     using TaskManager.WPF.ViewModels;
@@ -9,6 +11,15 @@
         public static void ErrorBox(string alert) => manager.ShowDialogAsync(new ErrorBoxViewModel(alert), null, null);
 
         public static void SuccesBox(string alert) => manager.ShowDialogAsync(new SuccesBoxViewModel(alert), null, null);
+
+        public static void Pdf(string filepath)
+        {
+            var process = new Process();
+            var pdf = new Uri(filepath, UriKind.RelativeOrAbsolute);
+
+            process.StartInfo.FileName = pdf.LocalPath;
+            process.Start();
+        }
 
         public static void RegistrationBox() => manager.ShowDialogAsync(new RegistrationViewModel(), null, null);
 

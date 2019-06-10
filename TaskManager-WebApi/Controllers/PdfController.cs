@@ -1,7 +1,7 @@
 ﻿namespace TaskManager_WebApi.Controllers
 {
-    using System.Text;
     using Microsoft.AspNetCore.Mvc;
+    using TaskManager.Models;
     using TaskManager.WebApi.Services;
 
     [Route("[controller]")]
@@ -19,7 +19,10 @@
         public IActionResult GetRaportFromProject([FromRoute] int projectId)
         {
             var html = this.pdfService.RenderViewToHtml(projectId);
-            return this.Content(html, "text/html", Encoding.UTF8);
+            return this.Ok(new Pdf
+            {
+                Content = html
+            });
         }
     }
 }

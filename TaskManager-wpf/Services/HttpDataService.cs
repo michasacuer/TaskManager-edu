@@ -81,8 +81,7 @@
         {
             string controller = typeof(TObject).Name;
 
-            HttpResponseMessage response
-                = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint(controller, id));
+            HttpResponseMessage response = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint(controller, id));
 
             if (response.IsSuccessStatusCode)
             {
@@ -98,8 +97,7 @@
         {
             string controller = typeof(TObject).Name;
 
-            HttpResponseMessage response
-                = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint(controller, id));
+            HttpResponseMessage response = await this.HttpClient.GetAsync(UrlBuilder.BuildEndpoint(controller, id));
 
             if (response.IsSuccessStatusCode)
             {
