@@ -1,6 +1,5 @@
 ﻿namespace TaskManager.WPF.Helpers
 {
-    using System;
     using System.Linq;
     using IronPdf;
     using TaskManager.Models;

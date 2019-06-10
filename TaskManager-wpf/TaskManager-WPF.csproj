@@ -260,7 +260,6 @@
     <Compile Include="Helpers\ManagerPanelHelper.cs" />
     <Compile Include="Helpers\RegistrationHelper.cs" />
     <Compile Include="Helpers\TaskManagerHelper.cs" />
-    <Compile Include="InternalServerException.cs" />
     <Compile Include="Models\ActiveTask.cs" />
     <Compile Include="Models\WPFApplicationUser.cs" />
     <Compile Include="Models\BindingModels\LoginBindingModel.cs" />

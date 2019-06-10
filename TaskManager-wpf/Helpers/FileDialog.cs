@@ -1,6 +1,5 @@
 ﻿namespace TaskManager.WPF.Helpers
 {
-    using System;
     using Microsoft.Win32;
 
     public class FileDialog
