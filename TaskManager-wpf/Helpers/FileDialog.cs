@@ -1,6 +1,5 @@
 ﻿namespace TaskManager.WPF.Helpers
 {
-    using Microsoft.Win32;
     using System.Drawing.Printing;
     using System.Windows.Forms;
 
@@ -8,7 +7,7 @@
     {
         public string OpenSaveFile()
         {
-            var saveFileDialog = new SaveFileDialog()
+            var saveFileDialog = new Microsoft.Win32.SaveFileDialog()
             {
                 Filter = "Pdf Files|*.pdf"
             };
