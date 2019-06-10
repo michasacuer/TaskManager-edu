@@ -20,5 +20,21 @@
 
             Show.Pdf(filepath);
         }
+
+        public async void PrintRaport(string projectName)
+        {
+            var projectId = Repository.Instance.Projects.Single(p => p.Name == projectName).Id;
+
+            var httpDataService = new HttpDataService();
+            var html = await httpDataService.Get<Pdf>(projectId);
+
+            var htmlToPdf = new HtmlToPdf();
+            var pdf = htmlToPdf.RenderHtmlAsPdf(html.Content);
+
+            var printDocument = pdf.GetPrintDocument();
+
+            var fileDialog = new FileDialog();
+            fileDialog.OpenPrinterDialog(printDocument);
+        }
     }
 }

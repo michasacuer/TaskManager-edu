@@ -1,6 +1,8 @@
 ﻿namespace TaskManager.WPF.Helpers
 {
     using Microsoft.Win32;
+    using System.Drawing.Printing;
+    using System.Windows.Forms;
 
     public class FileDialog
     {
@@ -18,6 +20,17 @@
             else
             {
                 return string.Empty;
+            }
+        }
+
+        public void OpenPrinterDialog(PrintDocument printDocument)
+        {
+            var printDialog = new PrintDialog();
+            printDialog.Document = printDocument;
+
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDocument.Print();
             }
         }
     }

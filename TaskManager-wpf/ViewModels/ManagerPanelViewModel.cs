@@ -50,6 +50,18 @@
             Show.SuccesBox("PDF utworzono pomyślnie!");
         }
 
+        public void PrintRaportButton()
+        {
+            if (this.SelectedProjectsList == null)
+            {
+                Show.ErrorBox("Wybierz projekt!");
+                return;
+            }
+
+            var helper = new ManagerPanelHelper();
+            helper.PrintRaport(this.SelectedProjectsList);
+        }
+
         public void ExitButton() => this.TryCloseAsync();
     }
 }
