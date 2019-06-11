@@ -83,7 +83,7 @@
 
                HorizontalAlignment="Left" 
                VerticalAlignment="Center" 
-               Margin="10,12,-6,0" Height="38" Width="129" FontFamily="Trajan Pro 3" />
+               Margin="10,12,-6,0" Height="38" Width="129" FontFamily="/Font/#Trajan Pro" />
 
         <TextBox x:Name="LoginTextBox"
                  Grid.Column="1" Grid.Row="2"
