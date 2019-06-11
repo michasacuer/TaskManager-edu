@@ -39,6 +39,7 @@
                 {
                     Name = vm.TaskNameTextBox,
                     Description = vm.DescriptionTextBox,
+                    Priority = vm.Priority,
                     ProjectId = Repository.Instance.Projects.Single(p => p.Name == vm.SelectedProjectsList).Id,
                     StoryPoints = storyPoints
                 };

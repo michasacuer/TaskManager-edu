@@ -42,7 +42,7 @@
             <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
             <DataGridTextColumn Header="NAZWA" Binding="{Binding Name}"/>
             <DataGridTextColumn Header="OPIS" Binding="{Binding Description}"/>
-
+            <DataGridTextColumn Header="User" Binding="{Binding ApplicationUserId}"/>
         </DataGrid.Columns>
     </DataGrid>
 

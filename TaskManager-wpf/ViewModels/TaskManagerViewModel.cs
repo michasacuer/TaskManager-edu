@@ -20,7 +20,7 @@
             this.Projects = Repository.Instance.Projects;
             this.ProjectsList = new BindableCollection<string>();
 
-            foreach (var project in this.Projects)  
+            foreach (var project in this.Projects)
             {
                 this.ProjectsList.Add(project.Name);
             }

@@ -75,7 +75,7 @@
             </ToggleButton.Style>
         </ToggleButton>
 
-        <ToggleButton x:Name="NormalPriorityButton"               
+        <ToggleButton x:Name="MediumPriorityButton"               
                 Grid.Row="2" Grid.Column="3"
                 Width="50" Height="15" 
                 Content="Średni"

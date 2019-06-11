@@ -44,9 +44,26 @@
             return result;
         }
 
-        private static Priority SetPriority(bool isLow, bool isMedium, bool isHigh) =>
-            isLow ? Priority.Low :
-            isMedium ? Priority.Medium :
-            isHigh ? Priority.High : throw new ArgumentNullException();
+        private static Priority SetPriority(bool isLow, bool isMedium, bool isHigh)
+        {
+            if (isLow)
+            {
+                return Priority.Low;
+            }
+
+            if (isMedium)
+            {
+                return Priority.Medium;
+            }
+
+            if (isHigh)
+            {
+                return Priority.High;
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
+        }
     }
 }
