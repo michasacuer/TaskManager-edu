@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <style type="text/css">
         table, td, tr, th {
             border: 1px solid black;
@@ -18,15 +17,11 @@
         th{
             background-color:cornflowerblue
         }
-
     </style>
 </head>
 <body>
 
     <div style="border:solid; width:1000px; padding:10px" >
-
-
-
         <h2>
             Data: @DateTime.Now
         </h2>
@@ -36,9 +31,7 @@
     </div>
 
     <div style="width:500px; height:auto; margin:0px auto; float:left;">
-
         <h1>Taski niezakończone</h1>
-
         <table>
             <tr>
                 <th>ID</th>
@@ -47,7 +40,6 @@
                 <th>STORY POINTY</th>
 
             </tr>
-
             @foreach (var item in Model.ProjectTasks)
             {
                 <tr>
@@ -57,10 +49,7 @@
                     <td>@item.StoryPoints</td>
                 </tr>
             }
-
-
         </table>
-
     </div>
 
     <div style="width:500px; height:auto; margin:0px auto; float:left;">
@@ -71,7 +60,6 @@
                 <th>NAZWA</th>
                 <th>PRIORYTET</th>
                 <th>STORY POINTY</th>
-
             </tr>
 
             @foreach (var item in Model.ProjectEndedTasks)
@@ -83,18 +71,9 @@
                     <td>@item.StoryPoints</td>
 
                 </tr>
-
-
             }
-
         </table>
-
-
-
     </div>
+
 </body>
 </html>
-
-
-
-
