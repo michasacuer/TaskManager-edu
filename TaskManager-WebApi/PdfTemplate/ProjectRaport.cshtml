@@ -1,5 +1,21 @@
 ﻿@model TaskManager.Models.ViewModels.ProjectRaportViewModel
 
+@{ 
+    int? spentStoryPoints = 0;
+    int? storyPoints = 0;
+
+    foreach(var item in Model.ProjectEndedTasks)
+    {
+        spentStoryPoints += item.SpentStoryPoints;
+        storyPoints += item.StoryPoints;
+    }
+
+    foreach(var item in Model.ProjectTasks)
+    {
+        storyPoints += item.StoryPoints;
+    }
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,6 +90,9 @@
             }
         </table>
     </div>
+
+    <h2>Story pointy projektu: @storyPoints</h2>
+    <h2>Spędzone story pointy: @spentStoryPoints</h2>
 
 </body>
 </html>

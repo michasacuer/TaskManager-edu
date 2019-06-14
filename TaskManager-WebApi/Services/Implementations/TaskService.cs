@@ -67,7 +67,7 @@
             var task = this.context.Tasks.Single(t => t.Id == taskId && t.ApplicationUserId == userId);
 
             task.EndTime = DateTime.Now;
-            int storyPoints = (int)(task.EndTime - task.StartTime).Value.TotalHours;
+            int spentStoryPoints = (int)(task.EndTime - task.StartTime).Value.TotalHours;
 
             var endedTask = new EndedTask
             {
@@ -77,7 +77,8 @@
                 Name = task.Name,
                 Description = task.Description,
                 Priority = task.Priority,
-                StoryPoints = storyPoints,
+                StoryPoints = task.StoryPoints,
+                SpentStoryPoints = spentStoryPoints,
                 StartTime = task.StartTime,
                 EndTime = task.EndTime
             };
