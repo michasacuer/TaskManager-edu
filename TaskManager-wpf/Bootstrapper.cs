@@ -1,5 +1,7 @@
 ﻿namespace TaskManager.WPF
 {
+    using System;
+    using System.Net.Http;
     using System.Windows;
     using Caliburn.Micro;
     using TaskManager.WPF.Exceptions;
@@ -23,9 +25,17 @@
                 await client.TestServerConnection();
                 await this.DisplayRootViewFor<MainWindowViewModel>();
             }
-            catch (InternalServerErrorException exception)
+            catch (Exception exception)
             {
-                Show.ErrorBox(exception.Message);
+                if (exception is InternalServerErrorException)
+                {
+                    Show.ErrorBox(exception.Message);
+                }
+
+                if (exception is HttpRequestException)
+                {
+                    Show.ErrorBox("Uruchom localhost (PowerShell > dotnet run)!");
+                }
             }
         }
     }
