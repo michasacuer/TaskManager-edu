@@ -34,7 +34,7 @@
 
                 if (exception is HttpRequestException)
                 {
-                    Show.ErrorBox("Uruchom serwer na localhost!");
+                    Show.ErrorBox("Uruchom localhost (PowerShell > dotnet run)!");
                 }
             }
         }
