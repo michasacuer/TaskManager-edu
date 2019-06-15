@@ -34,9 +34,7 @@ namespace TaskManager_WPF_Tests
                 Role = Role.Manager
             };
 
-            string response = await http.Register(account);
-
-            Assert.Equals(response, "OK");
+            await http.Register(account);
         }
     }
 }

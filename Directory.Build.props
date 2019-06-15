@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Label="CommonSetup">
+    <LangVersion>latest</LangVersion>
+    <NoWarn>1591;1701;1702;8032;NU1701;AD0001</NoWarn>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+
+  <ItemGroup Label="FilesSetup">
+    <AdditionalFiles Include="..\stylecop.json" Visible="false" />
+    <None Include="..\.editorconfig" Visible="false" />
+  </ItemGroup>
+
+  <Choose>
+    <When Condition="!Exists('$(MSBuildProjectDirectory)\packages.config')">
+      <PropertyGroup>
+        <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+      </PropertyGroup>
+      <ItemGroup>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
+      </ItemGroup>
+    </When>
+  </Choose>
+</Project>
