@@ -29,7 +29,7 @@
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<TaskManagerDbContext>(
                 options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
