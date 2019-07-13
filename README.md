@@ -6,9 +6,9 @@ https://github.com/michasacuer/TaskManager-edu
 # TODO:
 - Clean Architecture
 - ~~ASP Identity (for now, users are hardcoded in WPF project)~~
-- ~~More integration with ASP
+- ~~More integration with ASP~~
 - ~~REST on WPF part (deserialize json from ASP Core backend)~~
-- ~~Improvement in WPF app (will be done in next semester)
+- ~~Improvement in WPF app (will be done in next semester)~~
 
 # Registration
 ![My image](https://github.com/michasacuer/TaskManager-edu/blob/master/TaskManager-wpf/photos/3.PNG)
