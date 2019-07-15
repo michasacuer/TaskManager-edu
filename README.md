@@ -1,10 +1,10 @@
 # Task Manager app
 
 Im rewriting this app with Clean Architecture patterns:
-https://github.com/michasacuer/TaskManager-edu
+https://github.com/michasacuer/TaskManager
 
 # TODO:
-- Clean Architecture
+- Clean Architecture (new repo: https://github.com/michasacuer/TaskManager)
 - ~~ASP Identity (for now, users are hardcoded in WPF project)~~
 - ~~More integration with ASP~~
 - ~~REST on WPF part (deserialize json from ASP Core backend)~~
